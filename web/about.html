@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<script src="https://telegram.org/js/telegram-web-app.js"></script>
+
+<style>
+*{box-sizing:border-box}
+body{margin:0;font-family:Arial;background:#000;color:#fff}
+
+/* HEADER */
+.header{
+height:140px;
+padding-top:env(safe-area-inset-top);
+display:flex;
+align-items:flex-end;
+justify-content:space-between;
+padding:0 16px 12px;
+}
+
+.logo{
+font-size:32px;
+font-weight:800;
+}
+
+.active{
+background:#cb6ce6;
+color:#fff;
+}
+
+/* CONTENT */
+.wrap{
+padding:16px;
+}
+
+/* BACK */
+.back{
+color:#ffffff;
+margin-bottom:15px;
+cursor:pointer;
+}
+
+/* CARD */
+.card{
+background:#181818;
+border-radius:10px;
+padding:20px;
+}
+
+/* TOP */
+.top{
+display:flex;
+align-items:center;
+gap:12px;
+margin-bottom:10px;
+}
+
+.top img{
+width:120px;
+}
+
+.top h2{
+margin-top:0px;
+font-size:35px;
+}
+
+/* DESC */
+.desc{
+color:#aaa;
+margin-bottom:5px;
+margin-top:5px;
+}
+
+/* TITLE */
+.title{
+color:#cb6ce6;
+margin:10px 0 5px;
+}
+
+/* ITEM */
+.item{
+display:flex;
+align-items:center;
+gap:10px;
+margin-bottom:12px;
+}
+
+.item img{
+width:30px;
+}
+
+/* BUTTON */
+.btn{
+margin-top:20px;
+width:100%;
+padding:14px;
+border:none;
+border-radius:12px;
+background:#cb6ce6;
+color:#fff;
+}
+</style>
+</head>
+
+<body>
+
+<div class="header">
+    <div class="logo">gaphub</div>
+</div>
+
+<div class="wrap">
+
+<div class="back" onclick="goBack()" id="back"></div>
+
+<div class="card">
+
+    <div class="top">
+        <img src="images/about2.png">
+        <h2 id="title"></h2>
+    </div>
+
+    <p class="desc" id="desc"></p>
+
+    <div class="title" id="block1"></div>
+
+    <div class="item"><img src="images/skills.png"><span id="b1_1"></span></div>
+    <div class="item"><img src="images/support.png"><span id="b1_2"></span></div>
+    <div class="item"><img src="images/money2.png"><span id="b1_3"></span></div>
+
+    <div class="title" id="block2"></div>
+
+    <div class="item"><img src="images/time.png"><span id="b2_1"></span></div>
+    <div class="item"><img src="images/brain.png"><span id="b2_2"></span></div>
+    <div class="item"><img src="images/rocket.png"><span id="b2_3"></span></div>
+
+    <button class="btn" id="btn"></button>
+
+</div>
+
+</div>
+
+<script>
+let lang = localStorage.getItem("lang") || "uz"
+
+const t = {
+uz:{
+back:"← Orqaga",
+title:"gaphub nima bu?",
+desc:"Onlayn platforma, ko'nikmalar va amaliyot",
+block1:"Sen olasan",
+b1_1:"Amaliy ko'nikmalar",
+b1_2:"Qo'llab-quvvatlash",
+b1_3:"Daromad",
+block2:"Bizning maqsad",
+b2_1:"Tez o'rgan",
+b2_2:"Amalda qo'lla",
+b2_3:"Pul top",
+btn:"Kurs tanlash"
+},
+ru:{
+back:"← Назад",
+title:"Что такое gaphub?",
+desc:"Платформа навыков и практики",
+block1:"Ты получишь",
+b1_1:"Навыки",
+b1_2:"Поддержку",
+b1_3:"Доход",
+block2:"Наша цель",
+b2_1:"Учись быстро",
+b2_2:"Применяй",
+b2_3:"Зарабатывай",
+btn:"Подобрать курс"
+}
+}
+
+function setLang(l){
+    lang=l
+    localStorage.setItem("lang", lang)
+    update()
+}
+
+function update(){
+    let d=t[lang]
+
+    document.getElementById("back").innerText=d.back
+    document.getElementById("title").innerText=d.title
+    document.getElementById("desc").innerText=d.desc
+
+    document.getElementById("block1").innerText=d.block1
+    document.getElementById("b1_1").innerText=d.b1_1
+    document.getElementById("b1_2").innerText=d.b1_2
+    document.getElementById("b1_3").innerText=d.b1_3
+
+    document.getElementById("block2").innerText=d.block2
+    document.getElementById("b2_1").innerText=d.b2_1
+    document.getElementById("b2_2").innerText=d.b2_2
+    document.getElementById("b2_3").innerText=d.b2_3
+
+    document.getElementById("btn").innerText=d.btn
+
+    document.getElementById("uz").classList.toggle("active",lang==="uz")
+    document.getElementById("ru").classList.toggle("active",lang==="ru")
+}
+
+function goBack(){
+    window.location.href="index.html"
+}
+
+update()
+
+function initTelegram(){
+    if (window.Telegram && Telegram.WebApp) {
+        const tg = Telegram.WebApp;
+
+        tg.ready();
+        tg.expand();
+
+        // пробуем fullscreen
+        try {
+            tg.requestFullscreen();
+        } catch(e) {}
+
+        // фикс высоты
+        document.body.style.minHeight = tg.viewportHeight + "px";
+    }
+}
+
+initTelegram();
+</script>
+
+</body>
+</html>

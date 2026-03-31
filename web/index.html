@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<script src="https://telegram.org/js/telegram-web-app.js"></script>
+<title>gaphub</title>
+
+<style>
+:root{
+--accent:#cb6ce6;
+}
+
+*{box-sizing:border-box}
+body{margin:0;font-family:Arial;background:#fff}
+
+/* HEADER */
+.header{
+height:160px;
+padding-top:env(safe-area-inset-top);
+background:#000;
+color:#fff;
+display:flex;
+align-items:flex-end;
+justify-content:space-between;
+padding:0 16px 10px;
+}
+
+.logo{
+font-size:50px;
+font-weight:800;
+}
+
+.lang{
+display:flex;
+background:#1a1a1a;
+border-radius:20px;
+padding:2px;
+}
+
+.lang span{
+padding:2px 10px;
+font-size:14px;
+color:#fff;
+cursor:pointer;
+border-radius:16px;
+}
+
+.active{
+background:var(--accent);
+}
+
+/* MAIN */
+.main{
+padding:16px;
+padding-bottom:100px;
+}
+
+/* ABOUT */
+.about{
+background:#000;
+color:#fff;
+border-radius:14px;
+padding:16px;
+margin-bottom:14px;
+}
+
+.about-top{
+display:flex;
+gap:12px;
+align-items:center;
+margin-bottom:10px;
+}
+
+.about-img-wrap{
+width:120px;
+height:120px;
+display:flex;
+align-items:center;
+justify-content:center;
+flex-shrink:0;
+}
+
+.about-img-wrap img{
+max-width:100%;
+max-height:100%;
+display:block;
+}
+
+.about-text h3{
+margin:0 0 6px;
+font-size:20px;
+}
+
+.about-text p{
+margin:0;
+font-size:14px;
+line-height:1.4;
+color:#ffffff;
+}
+
+.btn{
+background:var(--accent);
+border:none;
+color:#fff;
+padding:12px;
+border-radius:10px;
+width:100%;
+font-size:15px;
+}
+
+/* COURSE */
+.course{
+background:#000;
+color:#fff;
+border-radius:14px;
+padding:14px;
+margin-bottom:12px;
+display:flex;
+align-items:center;
+gap:14px;
+cursor:pointer;
+}
+
+.course-img{
+width:70px;
+height:70px;
+display:flex;
+align-items:center;
+justify-content:center;
+flex-shrink:0;
+}
+
+.course-img img{
+max-width:100%;
+max-height:100%;
+}
+
+.course h3{
+margin:0;
+font-size:22px;
+}
+
+/* FOOTER */
+.bottom-nav{
+position:fixed;
+bottom:0;
+width:100%;
+background:#000;
+display:flex;
+justify-content:space-between;
+align-items:center;
+padding:8px 10px;
+padding-bottom:calc(8px + env(safe-area-inset-bottom));
+}
+
+.nav-item{
+display:flex;
+flex-direction:column;
+align-items:center;
+font-size:12px;
+color:#fff;
+width:20%;
+text-align:center;
+}
+
+.nav-item img{
+width:27px;
+margin-bottom:2px;
+}
+
+.nav-item span{
+white-space:nowrap;
+overflow:hidden;
+text-overflow:ellipsis;
+}
+
+.nav-center{
+position:relative;
+top:-18px;
+}
+
+.circle{
+width:60px;
+height:60px;
+background:#ffffff;
+border-radius:50%;
+border:4px solid var(--accent);
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="header">
+    <div class="logo">gaphub</div>
+
+    <div class="lang">
+        <span onclick="setLang('uz')" id="uz">UZ</span>
+        <span onclick="setLang('ru')" id="ru">RU</span>
+    </div>
+</div>
+
+<div class="main">
+
+<div class="about">
+    <div class="about-top">
+        <div class="about-img-wrap">
+            <img src="images/about.png">
+        </div>
+
+        <div class="about-text">
+            <h3 id="title"></h3>
+            <p id="text"></p>
+        </div>
+    </div>
+
+    <button class="btn" id="btn" onclick="goAbout()"></button>
+</div>
+
+<div class="course" onclick="openCourse('smm')">
+    <div class="course-img">
+        <img src="images/smm2.png">
+    </div>
+    <h3>SMM</h3>
+</div>
+
+<div class="course" onclick="openCourse('target')">
+    <div class="course-img">
+        <img src="images/target2.png">
+    </div>
+    <h3>TARGET</h3>
+</div>
+
+<div class="course" onclick="openCourse('ai')">
+    <div class="course-img">
+        <img src="images/ai2.png">
+    </div>
+    <h3 id="ai"></h3>
+</div>
+
+</div>
+
+<div class="bottom-nav">
+
+    <div class="nav-item" onclick="goPage('mycourses.html')">
+        <img src="images/courses2.png">
+        <span id="m1"></span>
+    </div>
+
+    <div class="nav-item" onclick="goPage('earn.html')">
+        <img src="images/money2.png">
+        <span id="m4"></span>
+    </div>
+
+    <div class="nav-center">
+        <div class="circle"></div>
+    </div>
+
+    <div class="nav-item" onclick="goPage('chat.html')">
+        <img src="images/chat2.png">
+        <span id="m5"></span>
+    </div>
+
+    <div class="nav-item" onclick="goPage('myprofile.html')">
+        <img src="images/profile2.png">
+        <span id="m6"></span>
+    </div>
+
+</div>
+
+<script>
+let lang = localStorage.getItem("lang") || "uz"
+
+const t = {
+uz:{
+m1:"Kurslarim",
+m4:"Daromad",
+m5:"Sharhlar",
+m6:"Profil",
+title:"gaphub nima bu?",
+text:"Kasbni noldan o‘rganing\nKuchli portfolio yig‘n\nBirinchi buyurtmalarni olin\nBarqaror daromadga chiqin",
+btn:"Batafsil",
+ai:"Sun'iy intellekt"
+},
+
+ru:{
+m1:"Мои курсы",
+m4:"Заработок",
+m5:"Отзывы",
+m6:"Профиль",
+title:"Что такое gaphub?",
+text:"Освой профессию с нуля\nСобери сильное портфолио\nПолучи первые заказы\nВыйди на стабильный доход",
+btn:"Подробнее",
+ai:"Искусственный интеллект"
+}
+}
+
+function setLang(l){
+    lang = l
+    localStorage.setItem("lang", l)
+    update()
+}
+
+function update(){
+    let d = t[lang]
+
+    document.getElementById("m1").innerText = d.m1
+    document.getElementById("m4").innerText = d.m4
+    document.getElementById("m5").innerText = d.m5
+    document.getElementById("m6").innerText = d.m6
+
+    document.getElementById("title").innerText = d.title
+    document.getElementById("text").innerText = d.text
+    document.getElementById("btn").innerText = d.btn
+    document.getElementById("ai").innerText = d.ai
+
+    document.getElementById("uz").classList.toggle("active", lang === "uz")
+    document.getElementById("ru").classList.toggle("active", lang === "ru")
+}
+
+function openCourse(name){
+    alert(name)
+}
+
+function goAbout(){
+    localStorage.setItem("lang", lang)
+    window.location.href = "about.html"
+}
+
+function goPage(){
+    localStorage.setItem("lang", lang)
+    window.location.href = "myprofile.html"
+}
+
+update()
+
+function initTelegram(){
+    if (window.Telegram && Telegram.WebApp) {
+        const tg = Telegram.WebApp;
+
+        tg.ready();
+        tg.expand();
+
+        // пробуем fullscreen
+        try {
+            tg.requestFullscreen();
+        } catch(e) {}
+
+        // фикс высоты
+        document.body.style.minHeight = tg.viewportHeight + "px";
+    }
+}
+
+initTelegram();
+</script>
