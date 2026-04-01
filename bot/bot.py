@@ -2,13 +2,15 @@ from aiogram import Bot, Dispatcher, types
 from aiogram.filters import Command
 from aiogram.types import ReplyKeyboardMarkup, KeyboardButton, WebAppInfo
 from aiogram.fsm.storage.memory import MemoryStorage
+from dotenv import load_dotenv
+load_dotenv()
 import asyncio
+import os
 
-# Токен от BotFather
-TOKEN = "8729696270:AAGCFeBvkFOir3qfqHAg4XZ82kgJkMvCSs4"
+BOT_TOKEN = os.getenv("BOT_TOKEN")
 
 # Создаём объекты бота и диспетчера
-bot = Bot(token=TOKEN)
+bot = Bot(token=BOT_TOKEN)
 dp = Dispatcher(storage=MemoryStorage())
 
 # Локальный URL Mini App (пока пустой)
