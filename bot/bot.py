@@ -14,7 +14,7 @@ bot = Bot(token=BOT_TOKEN)
 dp = Dispatcher(storage=MemoryStorage())
 
 # Локальный URL Mini App (пока пустой)
-MINI_APP_URL = "https://pre-yukon-asking-cats.trycloudflare.com"
+MINI_APP_URL = "https://bot.gaphub.uz"
 
 @dp.message(Command("start"))
 async def start(message: types.Message):
