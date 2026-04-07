@@ -17,7 +17,6 @@ DB_PASSWORD = os.getenv("DB_PASSWORD")
 DB_HOST = os.getenv("DB_HOST")
 DB_PORT = os.getenv("DB_PORT")
 
-# Подключение к базе
 conn = psycopg2.connect(
     dbname=DB_NAME,
     user=DB_USER,
@@ -25,7 +24,6 @@ conn = psycopg2.connect(
     host=DB_HOST,
     port=DB_PORT
 )
-
 cursor = conn.cursor()
 
 bot = Bot(token=BOT_TOKEN)
