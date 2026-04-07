@@ -28,7 +28,6 @@ conn = psycopg2.connect(
 
 cursor = conn.cursor()
 
-# Создаём объекты бота и диспетчера
 bot = Bot(token=BOT_TOKEN)
 dp = Dispatcher(storage=MemoryStorage())
 
@@ -39,7 +38,6 @@ MINI_APP_URL = "https://bot.gaphub.uz"
 async def start(message: types.Message):
     user = message.from_user
 
-    # Сохраняем пользователя в базу
     cursor.execute("""
         INSERT INTO users (telegram_id, username, first_name, last_name)
         VALUES (%s, %s, %s, %s)
