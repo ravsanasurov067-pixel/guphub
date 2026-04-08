@@ -32,26 +32,39 @@ dp = Dispatcher(storage=MemoryStorage())
 MINI_APP_URL = "https://bot.gaphub.uz"
 
 
-@dp.message(Command("start"))
-async def start(message: types.Message):
-    user = message.from_user
-
+def save_user_to_db(user: types.User):
     cursor.execute("""
-        INSERT INTO users (telegram_id, username, first_name, last_name)
-        VALUES (%s, %s, %s, %s)
+        INSERT INTO users (
+            telegram_id,
+            username,
+            first_name,
+            last_name,
+            language_code,
+            is_premium
+        )
+        VALUES (%s, %s, %s, %s, %s, %s)
         ON CONFLICT (telegram_id) DO UPDATE SET
             username = EXCLUDED.username,
             first_name = EXCLUDED.first_name,
             last_name = EXCLUDED.last_name,
+            language_code = EXCLUDED.language_code,
+            is_premium = EXCLUDED.is_premium,
             updated_at = CURRENT_TIMESTAMP
     """, (
         user.id,
         user.username,
         user.first_name,
-        user.last_name
+        user.last_name,
+        user.language_code,
+        user.is_premium if user.is_premium is not None else False
     ))
-
     conn.commit()
+
+
+@dp.message(Command("start"))
+async def start(message: types.Message):
+    user = message.from_user
+    save_user_to_db(user)
 
     keyboard = ReplyKeyboardMarkup(
         keyboard=[
@@ -70,6 +83,8 @@ async def main():
     try:
         await dp.start_polling(bot)
     finally:
+        cursor.close()
+        conn.close()
         await bot.session.close()
 
 
