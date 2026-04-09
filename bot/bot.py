@@ -121,6 +121,11 @@ async def start(message: types.Message):
     if phone:
         await message.answer(
             "Добро пожаловать. Можешь открыть gaphub:",
+            reply_markup=ReplyKeyboardRemove()
+        )
+
+        await message.answer(
+            "Открыть приложение:",
             reply_markup=get_open_app_keyboard()
         )
     else:

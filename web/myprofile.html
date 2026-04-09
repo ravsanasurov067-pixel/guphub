@@ -176,7 +176,7 @@ border:4px solid #cb6ce6;
     <div class="name" id="name">User</div>
     <div class="username" id="username">@username</div>
 
-    <button class="reg-btn" id="regBtn"></button>
+    <div class="reg-btn" id="phone"></div>
 
     <div class="desc" id="desc"></div>
 
@@ -230,7 +230,6 @@ let lang = localStorage.getItem("lang") || "uz"
 const t = {
 uz:{
 back:"← Orqaga",
-reg:"Ro‘yxatdan o‘tish",
 desc:"Bu yerda ertaklar yo‘q. Faqat ish, tajriba va real daromad",
 buy:"Kurs sotib olish",
 lang:"Til",
@@ -245,7 +244,6 @@ m6:"Profil",
 },
 ru:{
 back:"← Назад",
-reg:"Зарегистрироваться",
 desc:"Здесь нет сказок про миллионы. Только работа, опыт и реальные деньги",
 buy:"Купить курс",
 lang:"Язык",
@@ -264,7 +262,6 @@ function update(){
     let d = t[lang]
 
     document.getElementById("back").innerText = d.back
-    document.getElementById("regBtn").innerText = d.reg
     document.getElementById("desc").innerText = d.desc
     document.getElementById("buyBtn").innerText = d.buy
 
@@ -303,20 +300,25 @@ if (window.Telegram && Telegram.WebApp) {
 
     const user = tg.initDataUnsafe.user
 
-    if(user){
-        document.getElementById("name").innerText =
-            user.first_name + (user.last_name ? " " + user.last_name : "")
+    if (user) {
+        const fullName = [user.first_name, user.last_name]
+            .filter(Boolean)
+            .join(" ")
 
-        document.getElementById("username").innerText =
-            user.username ? "@" + user.username : ""
+        document.getElementById("name").innerText = fullName || "User"
 
-        if(user.photo_url){
+        document.getElementById("username").innerText = user.username
+            ? "@" + user.username
+            : ""
+
+        if (user.photo_url) {
             document.getElementById("avatar").src = user.photo_url
         }
     }
 }
 
 update()
+  
 </script>
 
 </body>
