@@ -318,7 +318,25 @@ if (window.Telegram && Telegram.WebApp) {
 }
 
 update()
-  
+
+if (window.Telegram && Telegram.WebApp) {
+    const tg = Telegram.WebApp
+    const user = tg.initDataUnsafe.user
+
+    if (user) {
+        fetch(`https://api.gaphub.uz/user/${user.id}`)
+            .then(res => res.json())
+            .then(data => {
+                if (data.phone) {
+                    document.getElementById("phone").innerText = data.phone
+                }
+            })
+            .catch(err => {
+                console.log("Phone fetch error:", err)
+            })
+    }
+}
+
 </script>
 
 </body>
