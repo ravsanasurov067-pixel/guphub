@@ -1,6 +1,6 @@
 from aiogram import Bot, Dispatcher, types
 from aiogram.filters import Command
-from aiogram.types import ReplyKeyboardMarkup, KeyboardButton, WebAppInfo
+from aiogram.types import InlineKeyboardMarkup, InlineKeyboardButton, WebAppInfo
 from aiogram.fsm.storage.memory import MemoryStorage
 from dotenv import load_dotenv
 import psycopg2
@@ -66,14 +66,15 @@ async def start(message: types.Message):
     user = message.from_user
     save_user_to_db(user)
 
-    keyboard = ReplyKeyboardMarkup(
-        keyboard=[
-            [KeyboardButton(
-                text="Открыть gaphub",
-                web_app=WebAppInfo(url=MINI_APP_URL)
-            )]
-        ],
-        resize_keyboard=True
+    keyboard = InlineKeyboardMarkup(
+        inline_keyboard=[
+            [
+                InlineKeyboardButton(
+                    text="Открыть gaphub",
+                    web_app=WebAppInfo(url=MINI_APP_URL)
+                )
+            ]
+        ]
     )
 
     await message.answer("Запусти приложение:", reply_markup=keyboard)
