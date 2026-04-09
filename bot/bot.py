@@ -144,6 +144,8 @@ async def handle_contact(message: types.Message):
         return
 
     phone = contact.phone_number
+    if not phone.startswith("+"):
+     phone = "+" + phone
     user_id = message.from_user.id
 
     save_phone_to_db(user_id, phone)
