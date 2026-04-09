@@ -1,6 +1,13 @@
 from aiogram import Bot, Dispatcher, types
 from aiogram.filters import Command
-from aiogram.types import InlineKeyboardMarkup, InlineKeyboardButton, ReplyKeyboardMarkup, KeyboardButton, WebAppInfo
+from aiogram.types import (
+    InlineKeyboardMarkup,
+    InlineKeyboardButton,
+    ReplyKeyboardMarkup,
+    KeyboardButton,
+    ReplyKeyboardRemove,
+    WebAppInfo,
+)
 from aiogram.fsm.storage.memory import MemoryStorage
 from dotenv import load_dotenv
 import psycopg2
@@ -61,35 +68,28 @@ def save_user_to_db(user: types.User):
     conn.commit()
 
 
-@dp.message(Command("start"))
-async def start(message: types.Message):
-    user = message.from_user
-    save_user_to_db(user)
-
-    keyboard = ReplyKeyboardMarkup(
-        keyboard=[
-            [KeyboardButton(text="Поделиться номером", request_contact=True)]
-        ],
-        resize_keyboard=True,
-        one_time_keyboard=True
-    )
-
-    await message.answer("Сначала отправь свой номер:", reply_markup=keyboard)
+def get_user_phone(telegram_id: int):
+    cursor.execute("""
+        SELECT phone
+        FROM users
+        WHERE telegram_id = %s
+    """, (telegram_id,))
+    result = cursor.fetchone()
+    return result[0] if result and result[0] else None
 
 
-@dp.message(lambda message: message.contact is not None)
-async def handle_contact(message: types.Message):
-    contact = message.contact.phone_number
-    user_id = message.from_user.id
-
+def save_phone_to_db(telegram_id: int, phone: str):
     cursor.execute("""
         UPDATE users
-        SET phone = %s
+        SET phone = %s,
+            updated_at = CURRENT_TIMESTAMP
         WHERE telegram_id = %s
-    """, (contact, user_id))
+    """, (phone, telegram_id))
     conn.commit()
 
-    keyboard = InlineKeyboardMarkup(
+
+def get_open_app_keyboard():
+    return InlineKeyboardMarkup(
         inline_keyboard=[
             [
                 InlineKeyboardButton(
@@ -100,7 +100,58 @@ async def handle_contact(message: types.Message):
         ]
     )
 
-    await message.answer("Номер сохранен. Теперь можешь открыть gaphub:", reply_markup=keyboard)
+
+def get_contact_keyboard():
+    return ReplyKeyboardMarkup(
+        keyboard=[
+            [KeyboardButton(text="Поделиться номером", request_contact=True)]
+        ],
+        resize_keyboard=True,
+        one_time_keyboard=True
+    )
+
+
+@dp.message(Command("start"))
+async def start(message: types.Message):
+    user = message.from_user
+    save_user_to_db(user)
+
+    phone = get_user_phone(user.id)
+
+    if phone:
+        await message.answer(
+            "Добро пожаловать. Можешь открыть gaphub:",
+            reply_markup=get_open_app_keyboard()
+        )
+    else:
+        await message.answer(
+            "Сначала отправь свой номер:",
+            reply_markup=get_contact_keyboard()
+        )
+
+
+@dp.message(lambda message: message.contact is not None)
+async def handle_contact(message: types.Message):
+    contact = message.contact
+
+    if contact.user_id and contact.user_id != message.from_user.id:
+        await message.answer("Отправь, пожалуйста, свой номер.")
+        return
+
+    phone = contact.phone_number
+    user_id = message.from_user.id
+
+    save_phone_to_db(user_id, phone)
+
+    await message.answer(
+        "Номер сохранен. Теперь можешь открыть gaphub:",
+        reply_markup=ReplyKeyboardRemove()
+    )
+
+    await message.answer(
+        "Открыть приложение:",
+        reply_markup=get_open_app_keyboard()
+    )
 
 
 async def main():
