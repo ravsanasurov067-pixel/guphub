@@ -1,6 +1,6 @@
 from aiogram import Bot, Dispatcher, types
 from aiogram.filters import Command
-from aiogram.types import InlineKeyboardMarkup, InlineKeyboardButton, WebAppInfo
+from aiogram.types import InlineKeyboardMarkup, InlineKeyboardButton, ReplyKeyboardMarkup, KeyboardButton, WebAppInfo
 from aiogram.fsm.storage.memory import MemoryStorage
 from dotenv import load_dotenv
 import psycopg2
@@ -66,6 +66,29 @@ async def start(message: types.Message):
     user = message.from_user
     save_user_to_db(user)
 
+    keyboard = ReplyKeyboardMarkup(
+        keyboard=[
+            [KeyboardButton(text="Поделиться номером", request_contact=True)]
+        ],
+        resize_keyboard=True,
+        one_time_keyboard=True
+    )
+
+    await message.answer("Сначала отправь свой номер:", reply_markup=keyboard)
+
+
+@dp.message(lambda message: message.contact is not None)
+async def handle_contact(message: types.Message):
+    contact = message.contact.phone_number
+    user_id = message.from_user.id
+
+    cursor.execute("""
+        UPDATE users
+        SET phone = %s
+        WHERE telegram_id = %s
+    """, (contact, user_id))
+    conn.commit()
+
     keyboard = InlineKeyboardMarkup(
         inline_keyboard=[
             [
@@ -77,7 +100,7 @@ async def start(message: types.Message):
         ]
     )
 
-    await message.answer("Запусти приложение:", reply_markup=keyboard)
+    await message.answer("Номер сохранен. Теперь можешь открыть gaphub:", reply_markup=keyboard)
 
 
 async def main():
