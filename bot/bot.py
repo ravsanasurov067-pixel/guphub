@@ -36,6 +36,7 @@ cursor = conn.cursor()
 bot = Bot(token=BOT_TOKEN)
 dp = Dispatcher(storage=MemoryStorage())
 
+# 🔥 ВАЖНО: возвращаем прод ссылку
 MINI_APP_URL = "https://bot.gaphub.uz"
 
 
@@ -145,7 +146,8 @@ async def handle_contact(message: types.Message):
 
     phone = contact.phone_number
     if not phone.startswith("+"):
-     phone = "+" + phone
+        phone = "+" + phone
+
     user_id = message.from_user.id
 
     save_phone_to_db(user_id, phone)

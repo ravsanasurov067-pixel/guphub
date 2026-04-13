@@ -249,7 +249,7 @@ border:4px solid var(--accent);
         <span id="m1"></span>
     </div>
 
-    <div class="nav-item" onclick="goPage('earn.html')">
+    <div class="nav-item" onclick="goPage('support.html')">
         <img src="images/money2.png">
         <span id="m4"></span>
     </div>
@@ -329,9 +329,9 @@ function goAbout(){
     window.location.href = "about.html"
 }
 
-function goPage(){
+function goPage(page){
     localStorage.setItem("lang", lang)
-    window.location.href = "myprofile.html"
+    window.location.href = page
 }
 
 update()

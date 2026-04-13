@@ -1,0 +1,417 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<script src="https://telegram.org/js/telegram-web-app.js"></script>
+<title>gaphub - support</title>
+
+<style>
+:root{
+    --accent:#cb6ce6;
+}
+
+*{
+    box-sizing:border-box;
+    -webkit-tap-highlight-color:transparent;
+}
+
+body{
+    margin:0;
+    font-family:Arial, sans-serif;
+    background:#000;
+    color:#fff;
+}
+
+.page{
+    padding:calc(env(safe-area-inset-top) + 48px) 16px calc(110px + env(safe-area-inset-bottom));
+    max-width:480px;
+    margin:0 auto;
+
+    min-height:100vh;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+}
+
+.back-wrap{
+    margin-bottom:18px;
+}
+
+.back-btn{
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+    background:#1a1a1a;
+    color:#fff;
+    border:none;
+    border-radius:12px;
+    padding:10px 14px;
+    font-size:15px;
+    cursor:pointer;
+}
+
+.back-btn svg{
+    width:16px;
+    height:16px;
+    flex-shrink:0;
+}
+
+.hero{
+    margin-bottom:16px;
+}
+
+.hero h1{
+    margin:0 0 6px;
+    font-size:32px;
+    line-height:1.05;
+    font-weight:800;
+}
+
+.hero p{
+    margin:0;
+    font-size:14px;
+    line-height:1.4;
+    color:#bfbfbf;
+}
+
+.faq-list{
+    display:flex;
+    flex-direction:column;
+    gap:12px;
+    margin-top:18px;
+}
+
+.faq-item{
+    background:#111;
+    border-radius:14px;
+    overflow:hidden;
+}
+
+.faq-question{
+    width:100%;
+    background:transparent;
+    border:none;
+    color:#fff;
+    padding:16px;
+    font-size:15px;
+    line-height:1.35;
+    font-weight:700;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:12px;
+    text-align:left;
+    cursor:pointer;
+}
+
+.faq-question-text{
+    flex:1;
+}
+
+.faq-icon{
+    width:10px;
+    height:10px;
+    flex-shrink:0;
+    border-right:2px solid var(--accent);
+    border-bottom:2px solid var(--accent);
+    transform:rotate(45deg);
+    transition:transform 0.25s ease;
+    margin-right:2px;
+}
+
+.faq-item.open .faq-icon{
+    transform:rotate(225deg);
+}
+
+.faq-answer-wrap{
+    max-height:0;
+    overflow:hidden;
+    transition:max-height 0.28s ease;
+}
+
+.faq-answer{
+    padding:0 16px 16px;
+    font-size:14px;
+    line-height:1.45;
+    color:#d3d3d3;
+}
+
+.note{
+    text-align:center;
+    color:#bfbfbf;
+    font-size:14px;
+    line-height:1.45;
+    margin:22px 0 14px;
+}
+
+.support-btn{
+    background:var(--accent);
+    border:none;
+    color:#fff;
+    padding:14px;
+    border-radius:12px;
+    width:100%;
+    font-size:15px;
+    font-weight:700;
+    cursor:pointer;
+}
+
+/* FOOTER */
+.bottom-nav{
+    position:fixed;
+    bottom:0;
+    width:100%;
+    background:#000;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:8px 10px;
+    padding-bottom:calc(8px + env(safe-area-inset-bottom));
+    left:0;
+    right:0;
+}
+
+.nav-item{
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    font-size:12px;
+    color:#fff;
+    width:20%;
+    text-align:center;
+    cursor:pointer;
+}
+
+.nav-item img{
+    width:27px;
+    margin-bottom:2px;
+}
+
+.nav-item span{
+    white-space:nowrap;
+    overflow:hidden;
+    text-overflow:ellipsis;
+}
+
+.nav-center{
+    position:relative;
+    top:-18px;
+}
+
+.circle{
+    width:60px;
+    height:60px;
+    background:#ffffff;
+    border-radius:50%;
+    border:4px solid var(--accent);
+}
+</style>
+</head>
+
+<body>
+
+<div class="page">
+
+    <div class="back-wrap">
+        <button class="back-btn" onclick="goBack()">
+            <svg viewBox="0 0 24 24" fill="none">
+                <path d="M15 5L8 12L15 19" stroke="white" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+            <span id="backText"></span>
+        </button>
+    </div>
+
+    <div class="hero">
+        <h1 id="pageTitle"></h1>
+        <p id="pageSubtitle"></p>
+    </div>
+
+    <div class="faq-list" id="faqList"></div>
+
+    <div class="note" id="bottomNote"></div>
+
+    <button class="support-btn" id="supportBtn" onclick="openSupport()"></button>
+</div>
+
+<div class="bottom-nav">
+
+    <div class="nav-item" onclick="goPage('mycourses.html')">
+        <img src="images/courses2.png">
+        <span id="m1"></span>
+    </div>
+
+    <div class="nav-item" onclick="goPage('support.html')">
+        <img src="images/money2.png">
+        <span id="m4"></span>
+    </div>
+
+    <div class="nav-center">
+        <div class="circle"></div>
+    </div>
+
+    <div class="nav-item" onclick="goPage('chat.html')">
+        <img src="images/chat2.png">
+        <span id="m5"></span>
+    </div>
+
+    <div class="nav-item" onclick="goPage('myprofile.html')">
+        <img src="images/profile2.png">
+        <span id="m6"></span>
+    </div>
+
+</div>
+
+<script>
+let lang = localStorage.getItem("lang") || "uz";
+
+const t = {
+    uz:{
+        m1:"Kurslarim",
+        m4:"Yordam",
+        m5:"Sharhlar",
+        m6:"Profil",
+        back:"Orqaga",
+        pageTitle:"Yordam",
+        pageSubtitle:"Savollarga javoblar va qo‘llab-quvvatlash",
+        bottomNote:"Bu yerda tez boyish haqidagi ertaklar yo‘q. Faqat real ko‘nikma va ish.",
+        supportBtn:"Qo‘llab-quvvatlashga yozish",
+        faq:[
+            {
+                q:"Men boshlovchiman, menda chiqadimi?",
+                a:"Ha. Kurslar noldan tuzilgan. Hammasi bosqichma-bosqich, ortiqcha qiyin terminlarsiz tushuntiriladi."
+            },
+            {
+                q:"Kuniga qancha vaqt kerak bo‘ladi?",
+                a:"O‘rtacha kuniga 1-2 soat yetadi. O‘qish yoki boshqa ishlar bilan birga olib borish mumkin."
+            },
+            {
+                q:"Kompyuter shartmi?",
+                a:"Yo‘q. Boshlash uchun telefonning o‘zi ham yetadi. Keyinroq qulaylik uchun kompyuter bo‘lsa yaxshi."
+            },
+            {
+                q:"Birinchi pulni qachon topsa bo‘ladi?",
+                a:"Bu odamning harakatiga bog‘liq. Kimdadir o‘qish vaqtidayoq chiqadi, kimdadir keyinroq. Tez million va’da qilinmaydi."
+            }
+        ]
+    },
+
+    ru:{
+        m1:"Мои курсы",
+        m4:"Поддержка",
+        m5:"Отзывы",
+        m6:"Профиль",
+        back:"Назад",
+        pageTitle:"Помощь",
+        pageSubtitle:"Ответы на вопросы и поддержка",
+        bottomNote:"Здесь нет обещаний быстрых миллионов. Только реальные навыки и работа.",
+        supportBtn:"Написать в поддержку",
+        faq:[
+            {
+                q:"Я новичок, у меня получится?",
+                a:"Да. Курсы сделаны с нуля. Все объясняется пошагово, без перегруза и сложных терминов."
+            },
+            {
+                q:"Сколько времени нужно?",
+                a:"В среднем 1-2 часа в день. Можно спокойно совмещать с учебой или другими делами."
+            },
+            {
+                q:"Нужен ли компьютер?",
+                a:"Нет. Начать можно и с телефона. Позже компьютер просто даст больше удобства."
+            },
+            {
+                q:"Когда будут первые деньги?",
+                a:"Это зависит от человека и от того, как он внедряет материал. У кого-то получается уже в процессе, у кого-то позже. Сказок про быстрые миллионы здесь нет."
+            }
+        ]
+    }
+};
+
+function update(){
+    let d = t[lang];
+
+    document.documentElement.lang = lang === "uz" ? "uz" : "ru";
+
+    document.getElementById("m1").innerText = d.m1;
+    document.getElementById("m4").innerText = d.m4;
+    document.getElementById("m5").innerText = d.m5;
+    document.getElementById("m6").innerText = d.m6;
+
+    document.getElementById("backText").innerText = d.back;
+    document.getElementById("pageTitle").innerText = d.pageTitle;
+    document.getElementById("pageSubtitle").innerText = d.pageSubtitle;
+    document.getElementById("bottomNote").innerText = d.bottomNote;
+    document.getElementById("supportBtn").innerText = d.supportBtn;
+
+    renderFaq();
+}
+
+function renderFaq(){
+    let list = document.getElementById("faqList");
+    let data = t[lang].faq;
+
+    list.innerHTML = data.map(item => `
+        <div class="faq-item">
+            <button class="faq-question" onclick="toggleFaq(this)">
+                <span class="faq-question-text">${item.q}</span>
+                <span class="faq-icon"></span>
+            </button>
+            <div class="faq-answer-wrap">
+                <div class="faq-answer">${item.a}</div>
+            </div>
+        </div>
+    `).join("");
+}
+
+function toggleFaq(button){
+    const item = button.parentElement;
+    const wrap = item.querySelector(".faq-answer-wrap");
+    const isOpen = item.classList.contains("open");
+
+    document.querySelectorAll(".faq-item").forEach(el => {
+        el.classList.remove("open");
+        el.querySelector(".faq-answer-wrap").style.maxHeight = null;
+    });
+
+    if (!isOpen){
+        item.classList.add("open");
+        wrap.style.maxHeight = wrap.scrollHeight + "px";
+    }
+}
+
+function goBack(){
+    localStorage.setItem("lang", lang);
+    window.location.href = "index.html";
+}
+
+function goPage(page){
+    localStorage.setItem("lang", lang);
+    window.location.href = page;
+}
+
+function openSupport(){
+    localStorage.setItem("lang", lang);
+    window.location.href = "https://t.me/Yusuf_bayer";
+}
+
+function initTelegram(){
+    if (window.Telegram && Telegram.WebApp) {
+        const tg = Telegram.WebApp;
+
+        tg.ready();
+        tg.expand();
+
+        try {
+            tg.requestFullscreen();
+        } catch(e) {}
+
+        document.body.style.minHeight = tg.viewportHeight + "px";
+    }
+}
+
+update();
+initTelegram();
+</script>
+
+</body>
+</html>
