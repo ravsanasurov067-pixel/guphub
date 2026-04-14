@@ -4,223 +4,721 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 <script src="https://telegram.org/js/telegram-web-app.js"></script>
+<title>gaphub - my profile</title>
 
 <style>
-*{box-sizing:border-box}
-body{margin:0;font-family:Arial;background:#000;color:#fff}
+/* =========================
+   BASE
+========================= */
+:root{
+    --accent:#cb6ce6;
+    --text:#ffffff;
+    --muted:#aaa;
+    --bg:#0c0b14;
+    --card:#0b0b0b;
+    --panel:#1a1a1a;
+    --line:rgba(255,255,255,.08);
+    --shadow:0 10px 35px rgba(0,0,0,.35);
+}
 
-/* WRAP */
+*{
+    box-sizing:border-box;
+}
+
+html, body{
+    margin:0;
+    padding:0;
+    min-height:100%;
+    font-family:Arial, sans-serif;
+    background:#000;
+    color:#fff;
+}
+
+body{
+    position:relative;
+}
+
+img{
+    display:block;
+    max-width:100%;
+}
+
+button{
+    font-family:inherit;
+    cursor:pointer;
+}
+
+.desktop-only{
+    display:none;
+}
+
+.btn{
+    border:none;
+    color:#fff;
+    background:linear-gradient(90deg,#cb6ce6,#a855f7);
+}
+
+/* =========================
+   MOBILE
+========================= */
+.mobile-shell{
+    display:block;
+}
+
 .wrap{
-padding:16px;
-padding-top:150px; /* регулируешь руками */
-padding-bottom:90px;
+    padding:16px;
+    padding-top:150px;
+    padding-bottom:90px;
 }
 
-/* CARD */
 .card{
-background:#0B0B0B;
-border-radius:20px;
-padding:20px;
-text-align:center;
-position:relative;
+    background:#0B0B0B;
+    border-radius:20px;
+    padding:20px;
+    text-align:center;
+    position:relative;
 }
 
-/* BACK */
 .back{
-position:absolute;
-top:10px;
-left:12px;
-background:#1a1a1a;
-padding:6px 10px;
-border-radius:10px;
-font-size:12px;
-color:#aaa;
-cursor:pointer;
+    position:absolute;
+    top:10px;
+    left:12px;
+    background:#1a1a1a;
+    padding:6px 10px;
+    border-radius:10px;
+    font-size:12px;
+    color:#aaa;
+    cursor:pointer;
 }
 
-/* AVATAR */
 .avatar{
-width:90px;
-height:90px;
-border-radius:50%;
-border:3px solid #cb6ce6;
-margin:0 auto 10px;
-background:#ddd;
-overflow:hidden;
+    width:90px;
+    height:90px;
+    border-radius:50%;
+    border:3px solid #cb6ce6;
+    margin:0 auto 10px;
+    background:#ddd;
+    overflow:hidden;
+    flex-shrink:0;
 }
 
 .avatar img{
-width:100%;
-height:100%;
-object-fit:cover;
+    width:100%;
+    height:100%;
+    object-fit:cover;
 }
 
-/* TEXT */
 .name{
-font-size:20px;
-font-weight:700;
+    font-size:20px;
+    font-weight:700;
 }
 
 .username{
-color:#aaa;
-margin-bottom:10px;
+    color:#aaa;
+    margin-bottom:10px;
 }
 
-/* BUTTONS */
 .reg-btn{
-background:#cb6ce6;
-border:none;
-padding:8px 16px;
-border-radius:12px;
-color:#fff;
-margin-bottom:12px;
+    background:#2a1933;
+    border:none;
+    padding:8px 16px;
+    border-radius:12px;
+    color:#d68cff;
+    margin-bottom:12px;
+    display:inline-block;
+    min-width:120px;
 }
 
 .desc{
-font-size:14px;
-color:#aaa;
-margin-bottom:16px;
+    font-size:14px;
+    color:#aaa;
+    margin-bottom:16px;
+    line-height:1.45;
 }
 
-/* BIG BTN */
 .buy{
-width:100%;
-padding:14px;
-border:none;
-border-radius:16px;
-background:linear-gradient(90deg,#cb6ce6,#a855f7);
-color:#fff;
-font-size:18px;
-font-weight:600;
-margin-bottom:16px;
+    width:100%;
+    padding:14px;
+    border:none;
+    border-radius:16px;
+    background:linear-gradient(90deg,#cb6ce6,#a855f7);
+    color:#fff;
+    font-size:18px;
+    font-weight:600;
+    margin-bottom:16px;
 }
 
-/* MENU */
 .menu{
-background:#1a1a1a;
-border-radius:12px;
-overflow:hidden;
+    background:#1a1a1a;
+    border-radius:12px;
+    overflow:hidden;
 }
 
 .menu-item{
-padding:14px;
-border-bottom:1px solid #333;
-display:flex;
-justify-content:space-between;
-align-items:center;
-cursor:pointer;
+    padding:14px;
+    border-bottom:1px solid #333;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    cursor:pointer;
+    font-size:16px;
 }
 
 .menu-item:last-child{
-border-bottom:none;
+    border-bottom:none;
 }
 
 .menu-item span{
-color:#aaa;
+    color:#aaa;
 }
 
 /* BOTTOM NAV */
 .bottom-nav{
-position:fixed;
-bottom:0;
-width:100%;
-background:#000;
-display:flex;
-justify-content:space-around;
-align-items:center;
-padding:8px 0;
-padding-bottom:calc(8px + env(safe-area-inset-bottom));
+    position:fixed;
+    left:0;
+    bottom:0;
+    width:100%;
+    background:#000;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:8px 10px;
+    padding-bottom:calc(8px + env(safe-area-inset-bottom));
+    z-index:50;
 }
 
 .nav-item{
-display:flex;
-flex-direction:column;
-align-items:center;
-font-size:10px;
-color:#fff;
-cursor:pointer;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    font-size:12px;
+    color:#fff;
+    width:20%;
+    text-align:center;
+    cursor:pointer;
 }
 
 .nav-item img{
-width:22px;
-margin-bottom:2px;
+    width:27px;
+    margin-bottom:2px;
+}
+
+.nav-item span{
+    white-space:nowrap;
+    overflow:hidden;
+    text-overflow:ellipsis;
 }
 
 .nav-center{
-position:relative;
-top:-20px;
+    position:relative;
+    top:-18px;
+    width:20%;
+    display:flex;
+    justify-content:center;
 }
 
 .circle{
-width:60px;
-height:60px;
-background:#ddd;
-border-radius:50%;
-border:4px solid #cb6ce6;
+    width:60px;
+    height:60px;
+    background:#ffffff;
+    border-radius:50%;
+    border:4px solid var(--accent);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+}
+
+.circle img{
+    width:24px;
+    height:24px;
+    object-fit:contain;
+}
+
+/* =========================
+   DESKTOP
+========================= */
+@media (min-width:1024px){
+
+    html, body{
+        min-height:100vh;
+        background:
+            radial-gradient(circle at 15% 18%, rgba(203,108,230,.08), transparent 24%),
+            radial-gradient(circle at 85% 28%, rgba(203,108,230,.07), transparent 24%),
+            linear-gradient(180deg, #09080f 0%, #0c0b14 100%);
+        color:var(--text);
+    }
+
+    body{
+        overflow:hidden;
+    }
+
+    .mobile-shell{
+        display:none;
+    }
+
+    .desktop-only{
+        display:block;
+    }
+
+    .desktop-app{
+        min-height:100vh;
+        color:var(--text);
+    }
+
+    .desktop-layout{
+        display:grid;
+        grid-template-columns:280px 1fr;
+        min-height:100vh;
+    }
+
+    .desktop-sidebar{
+        padding:22px 22px;
+        border-right:1px solid rgba(255,255,255,.05);
+        background:linear-gradient(180deg, rgba(14,13,23,.70) 0%, rgba(12,11,20,.40) 100%);
+    }
+
+    .desktop-brand{
+        font-size:34px;
+        font-weight:800;
+        line-height:1;
+        margin:8px 0 56px;
+    }
+
+    .desktop-nav{
+        display:flex;
+        flex-direction:column;
+        gap:10px;
+        margin-top:4px;
+    }
+
+    .desktop-nav-item{
+        display:flex;
+        align-items:center;
+        gap:14px;
+        width:100%;
+        min-height:56px;
+        padding:0 18px;
+        border-radius:16px;
+        color:#f1f1f1;
+        background:transparent;
+        border:1px solid transparent;
+        font-size:16px;
+        font-weight:600;
+        transition:.2s ease;
+        cursor:pointer;
+        text-align:left;
+    }
+
+    .desktop-nav-item img{
+        width:28px;
+        height:28px;
+        object-fit:contain;
+        flex-shrink:0;
+    }
+
+    .desktop-nav-item.active-nav{
+        background:linear-gradient(180deg, rgba(255,255,255,.06) 0%, rgba(255,255,255,.03) 100%);
+        border-color:rgba(255,255,255,.06);
+        box-shadow:var(--shadow);
+    }
+
+    .desktop-main{
+        padding:34px 36px;
+    }
+
+    .desktop-back{
+        display:inline-flex;
+        align-items:center;
+        gap:14px;
+        font-size:24px;
+        color:#fff;
+        margin-bottom:22px;
+        cursor:pointer;
+        user-select:none;
+    }
+
+    .desktop-back-arrow{
+        font-size:42px;
+        line-height:1;
+        transform:translateY(-1px);
+    }
+
+    .desktop-card{
+        border:2px solid rgba(203,108,230,.6);
+        border-radius:28px;
+        padding:12px;
+        background:rgba(255,255,255,.015);
+        box-shadow:0 10px 40px rgba(0,0,0,.24);
+    }
+
+    .desktop-card-inner{
+        border-radius:22px;
+        background:
+            radial-gradient(circle at 80% 40%, rgba(203,108,230,.06), transparent 28%),
+            linear-gradient(180deg, rgba(7,7,11,.98) 0%, rgba(8,8,13,.96) 100%);
+        padding:32px 38px 30px;
+    }
+
+    .desktop-profile-top{
+        display:flex;
+        align-items:flex-start;
+        gap:28px;
+        margin-bottom:26px;
+    }
+
+    .desktop-avatar{
+        width:160px;
+        height:160px;
+        border-radius:50%;
+        border:6px solid var(--accent);
+        background:linear-gradient(135deg,#f3bb63,#f7a35f);
+        display:flex;
+        align-items:center;
+        justify-content:center;
+        color:#fff;
+        font-size:72px;
+        font-weight:700;
+        overflow:hidden;
+        flex-shrink:0;
+    }
+
+    .desktop-avatar img{
+        width:100%;
+        height:100%;
+        object-fit:cover;
+    }
+
+    .desktop-profile-info{
+        flex:1;
+        padding-top:16px;
+    }
+
+    .desktop-name{
+        font-size:54px;
+        line-height:1;
+        font-weight:800;
+        margin:0 0 8px;
+    }
+
+    .desktop-username{
+        font-size:28px;
+        color:#a9a1b1;
+        margin-bottom:22px;
+    }
+
+    .desktop-phone{
+        display:inline-block;
+        background:#2a1933;
+        color:#d68cff;
+        border-radius:18px;
+        padding:12px 22px;
+        font-size:24px;
+        margin-bottom:22px;
+        min-width:220px;
+        text-align:center;
+    }
+
+    .desktop-desc{
+        max-width:760px;
+        color:#aaa;
+        font-size:22px;
+        line-height:1.5;
+        margin-bottom:26px;
+    }
+
+    .desktop-actions{
+        display:grid;
+        grid-template-columns:1fr 1.2fr;
+        gap:14px;
+        margin-bottom:24px;
+    }
+
+    .desktop-buy{
+        height:74px;
+        border-radius:22px;
+        font-size:26px;
+        font-weight:700;
+    }
+
+    .desktop-lang-btn{
+        height:74px;
+        border:none;
+        border-radius:22px;
+        background:#181820;
+        color:#fff;
+        display:flex;
+        align-items:center;
+        justify-content:space-between;
+        padding:0 28px;
+        font-size:24px;
+    }
+
+    .desktop-lang-btn span:last-child{
+        color:#cfcfcf;
+    }
+
+    .desktop-menu{
+        background:#16161d;
+        border-radius:22px;
+        overflow:hidden;
+        box-shadow:var(--shadow);
+    }
+
+    .desktop-menu-item{
+        min-height:92px;
+        padding:0 28px;
+        border-bottom:1px solid rgba(255,255,255,.08);
+        display:flex;
+        align-items:center;
+        justify-content:space-between;
+        font-size:24px;
+        color:#fff;
+        cursor:pointer;
+    }
+
+    .desktop-menu-item:last-child{
+        border-bottom:none;
+    }
+
+    .desktop-menu-arrow{
+        font-size:34px;
+        color:#bfbfbf;
+        line-height:1;
+    }
+}
+
+@media (min-width:1024px) and (max-width:1400px){
+    .desktop-layout{
+        grid-template-columns:260px 1fr;
+    }
+
+    .desktop-main{
+        padding:28px 28px;
+    }
+
+    .desktop-card-inner{
+        padding:26px 28px 24px;
+    }
+
+    .desktop-profile-top{
+        gap:22px;
+        margin-bottom:20px;
+    }
+
+    .desktop-avatar{
+        width:132px;
+        height:132px;
+        font-size:58px;
+    }
+
+    .desktop-name{
+        font-size:42px;
+    }
+
+    .desktop-username{
+        font-size:22px;
+        margin-bottom:16px;
+    }
+
+    .desktop-phone{
+        font-size:20px;
+        padding:10px 18px;
+        margin-bottom:16px;
+    }
+
+    .desktop-desc{
+        font-size:18px;
+        margin-bottom:20px;
+    }
+
+    .desktop-actions{
+        margin-bottom:18px;
+    }
+
+    .desktop-buy,
+    .desktop-lang-btn{
+        height:62px;
+        font-size:22px;
+        border-radius:18px;
+    }
+
+    .desktop-lang-btn{
+        padding:0 20px;
+    }
+
+    .desktop-menu-item{
+        min-height:74px;
+        font-size:21px;
+        padding:0 22px;
+    }
 }
 </style>
 </head>
 
 <body>
 
-<div class="wrap">
+<!-- =========================
+     MOBILE VERSION
+========================= -->
+<div class="mobile-shell">
+    <div class="wrap">
 
-<div class="card">
+        <div class="card">
+            <div class="back" onclick="goBack()" id="back-mobile"></div>
 
-    <div class="back" onclick="goHome()" id="back"></div>
+            <div class="avatar">
+                <img id="avatar-mobile" src="" alt="">
+            </div>
 
-    <div class="avatar">
-        <img id="avatar" src="">
+            <div class="name" id="name-mobile">User</div>
+            <div class="username" id="username-mobile">@username</div>
+
+            <div class="reg-btn" id="phone-mobile"></div>
+
+            <div class="desc" id="desc-mobile"></div>
+
+            <button class="buy" id="buyBtn-mobile"></button>
+
+            <div class="menu">
+                <div class="menu-item" onclick="toggleLang()">
+                    <div id="langText-mobile"></div>
+                    <span id="langValue-mobile"></span>
+                </div>
+
+                <div class="menu-item" onclick="goPage('mycourses.html')">
+                    <div id="courses-mobile"></div>
+                    <span>›</span>
+                </div>
+
+                <div class="menu-item" onclick="goPage('support.html')">
+                    <div id="support-mobile"></div>
+                    <span>›</span>
+                </div>
+
+                <div class="menu-item" onclick="goPage('progress.html')">
+                    <div id="progress-mobile"></div>
+                    <span>›</span>
+                </div>
+            </div>
+        </div>
     </div>
 
-    <div class="name" id="name">User</div>
-    <div class="username" id="username">@username</div>
-
-    <div class="reg-btn" id="phone"></div>
-
-    <div class="desc" id="desc"></div>
-
-    <button class="buy" id="buyBtn"></button>
-
-    <div class="menu">
-        <div class="menu-item" onclick="toggleLang()">
-            <div id="langText"></div>
-            <span id="langValue"></span>
+    <div class="bottom-nav">
+        <div class="nav-item" onclick="goPage('mycourses.html')">
+            <img src="images/courses2.png" alt="">
+            <span id="m1-mobile"></span>
         </div>
 
-        <div class="menu-item" onclick="goPage('mycourses.html')" id="courses"></div>
-        <div class="menu-item" onclick="goPage('support.html')" id="support"></div>
-        <div class="menu-item" onclick="goPage('progress.html')" id="progress"></div>
-    </div>
+        <div class="nav-item" onclick="goPage('support.html')">
+            <img src="images/support.png" alt="">
+            <span id="m4-mobile"></span>
+        </div>
 
+        <div class="nav-center" onclick="goHome()">
+            <div class="circle">
+                <img src="images/home2.png" alt="home">
+            </div>
+        </div>
+
+        <div class="nav-item">
+            <img src="images/chat2.png" alt="">
+            <span id="m5-mobile"></span>
+        </div>
+
+        <div class="nav-item" onclick="goPage('myprofile.html')">
+            <img src="images/profile2.png" alt="">
+            <span id="m6-mobile"></span>
+        </div>
+    </div>
 </div>
 
-</div>
+<!-- =========================
+     DESKTOP VERSION
+========================= -->
+<div class="desktop-app desktop-only">
+    <div class="desktop-layout">
 
-<!-- BOTTOM -->
-<div class="bottom-nav">
-    <div class="nav-item" onclick="goPage('mycourses.html')">
-        <img src="images/courses2.png">
-        <span id="m1"></span>
-    </div>
+        <aside class="desktop-sidebar">
+            <div class="desktop-brand">gaphub</div>
 
-    <div class="nav-item" onclick="goPage('earn.html')">
-        <img src="images/money2.png">
-        <span id="m4"></span>
-    </div>
+            <nav class="desktop-nav">
+                <button class="desktop-nav-item" onclick="goHome()">
+                    <img src="images/home.png" alt="">
+                    <span id="home-desktop"></span>
+                </button>
 
-    <div class="nav-center">
-        <div class="circle"></div>
-    </div>
+                <button class="desktop-nav-item" onclick="goPage('mycourses.html')">
+                    <img src="images/courses2.png" alt="">
+                    <span id="m1-desktop"></span>
+                </button>
 
-    <div class="nav-item">
-        <img src="images/chat2.png">
-        <span id="m5"></span>
-    </div>
+                <button class="desktop-nav-item" onclick="goPage('support.html')">
+                    <img src="images/support.png" alt="">
+                    <span id="m4-desktop"></span>
+                </button>
 
-    <div class="nav-item" onclick="goPage('myprofile.html')">
-        <img src="images/profile2.png">
-        <span id="m6"></span>
+                <button class="desktop-nav-item" onclick="goPage('chat.html')">
+                    <img src="images/chat2.png" alt="">
+                    <span id="m5-desktop"></span>
+                </button>
+
+                <button class="desktop-nav-item active-nav" onclick="goPage('myprofile.html')">
+                    <img src="images/profile2.png" alt="">
+                    <span id="m6-desktop"></span>
+                </button>
+            </nav>
+        </aside>
+
+        <main class="desktop-main">
+            <div class="desktop-back" onclick="goBack()">
+                <span class="desktop-back-arrow">←</span>
+                <span id="back-desktop"></span>
+            </div>
+
+            <section class="desktop-card">
+                <div class="desktop-card-inner">
+
+                    <div class="desktop-profile-top">
+                        <div class="desktop-avatar" id="avatarWrap-desktop">C</div>
+
+                        <div class="desktop-profile-info">
+                            <div class="desktop-name" id="name-desktop">User</div>
+                            <div class="desktop-username" id="username-desktop">@username</div>
+                            <div class="desktop-phone" id="phone-desktop"></div>
+                            <div class="desktop-desc" id="desc-desktop"></div>
+                        </div>
+                    </div>
+
+                    <div class="desktop-actions">
+                        <button class="btn desktop-buy" id="buyBtn-desktop"></button>
+
+                        <button class="desktop-lang-btn" onclick="toggleLang()">
+                            <span id="langText-desktop"></span>
+                            <span id="langValue-desktop"></span>
+                        </button>
+                    </div>
+
+                    <div class="desktop-menu">
+                        <div class="desktop-menu-item" onclick="goPage('mycourses.html')">
+                            <span id="courses-desktop"></span>
+                            <span class="desktop-menu-arrow">›</span>
+                        </div>
+
+                        <div class="desktop-menu-item" onclick="goPage('support.html')">
+                            <span id="support-desktop"></span>
+                            <span class="desktop-menu-arrow">›</span>
+                        </div>
+
+                        <div class="desktop-menu-item" onclick="goPage('progress.html')">
+                            <span id="progress-desktop"></span>
+                            <span class="desktop-menu-arrow">›</span>
+                        </div>
+                    </div>
+
+                </div>
+            </section>
+        </main>
+
     </div>
 </div>
 
@@ -228,54 +726,74 @@ border:4px solid #cb6ce6;
 let lang = localStorage.getItem("lang") || "uz"
 
 const t = {
-uz:{
-back:"← Orqaga",
-desc:"Bu yerda ertaklar yo‘q. Faqat ish, tajriba va real daromad",
-buy:"Kurs sotib olish",
-lang:"Til",
-courses:"Mening kurslarim",
-support:"Yordam",
-progress:"Mening progressim",
-langVal:"O‘zbek",
-m1:"Kurslarim",
-m4:"Daromad",
-m5:"Sharhlar",
-m6:"Profil",
-},
-ru:{
-back:"← Назад",
-desc:"Здесь нет сказок про миллионы. Только работа, опыт и реальные деньги",
-buy:"Купить курс",
-lang:"Язык",
-courses:"Мои курсы",
-support:"Поддержка",
-progress:"Мой прогресс",
-langVal:"Русский",
-m1:"Мои курсы",
-m4:"Заработок",
-m5:"Отзывы",
-m6:"Профиль",
+    uz:{
+        back:"Orqaga",
+        desc:"Bu yerda ertaklar yo‘q. Faqat ish, tajriba va real daromad",
+        buy:"Kurs sotib olish",
+        lang:"Til",
+        courses:"Mening kurslarim",
+        support:"Yordam",
+        progress:"Mening progressim",
+        langVal:"O‘zbek",
+        home:"Bosh sahifa",
+        m1:"Kurslarim",
+        m4:"Aloqa",
+        m5:"Sharhlar",
+        m6:"Profil"
+    },
+    ru:{
+        back:"Назад",
+        desc:"Здесь нет сказок про миллионы. Только работа, опыт и реальные деньги",
+        buy:"Купить курс",
+        lang:"Язык",
+        courses:"Мои курсы",
+        support:"Поддержка",
+        progress:"Мой прогресс",
+        langVal:"Русский",
+        home:"Главное меню",
+        m1:"Мои курсы",
+        m4:"Поддержка",
+        m5:"Отзывы",
+        m6:"Профиль"
+    }
 }
+
+function setText(id, value){
+    const el = document.getElementById(id)
+    if(el) el.innerText = value
 }
 
 function update(){
-    let d = t[lang]
+    const d = t[lang]
 
-    document.getElementById("back").innerText = d.back
-    document.getElementById("desc").innerText = d.desc
-    document.getElementById("buyBtn").innerText = d.buy
+    // mobile
+    setText("back-mobile", "← " + d.back)
+    setText("desc-mobile", d.desc)
+    setText("buyBtn-mobile", d.buy)
+    setText("langText-mobile", d.lang)
+    setText("langValue-mobile", d.langVal)
+    setText("courses-mobile", d.courses)
+    setText("support-mobile", d.support)
+    setText("progress-mobile", d.progress)
+    setText("m1-mobile", d.m1)
+    setText("m4-mobile", d.m4)
+    setText("m5-mobile", d.m5)
+    setText("m6-mobile", d.m6)
 
-    document.getElementById("langText").innerText = d.lang
-    document.getElementById("langValue").innerText = d.langVal
-
-    document.getElementById("courses").innerText = d.courses
-    document.getElementById("support").innerText = d.support
-    document.getElementById("progress").innerText = d.progress
-
-    document.getElementById("m1").innerText = d.m1
-    document.getElementById("m4").innerText = d.m4
-    document.getElementById("m5").innerText = d.m5
-    document.getElementById("m6").innerText = d.m6
+    // desktop
+    setText("back-desktop", d.back)
+    setText("desc-desktop", d.desc)
+    setText("buyBtn-desktop", d.buy)
+    setText("langText-desktop", d.lang)
+    setText("langValue-desktop", d.langVal)
+    setText("courses-desktop", d.courses)
+    setText("support-desktop", d.support)
+    setText("progress-desktop", d.progress)
+    setText("home-desktop", d.home)
+    setText("m1-desktop", d.m1)
+    setText("m4-desktop", d.m4)
+    setText("m5-desktop", d.m5)
+    setText("m6-desktop", d.m6)
 }
 
 function toggleLang(){
@@ -285,58 +803,89 @@ function toggleLang(){
 }
 
 function goHome(){
+    localStorage.setItem("lang", lang)
     window.location.href = "index.html"
 }
 
 function goPage(page){
+    localStorage.setItem("lang", lang)
     window.location.href = page
 }
 
-/* TELEGRAM */
-if (window.Telegram && Telegram.WebApp) {
-    const tg = Telegram.WebApp
-    tg.ready()
-    tg.expand()
+function setUserData(user){
+    if(!user) return
 
-    const user = tg.initDataUnsafe.user
+    const fullName = [user.first_name, user.last_name].filter(Boolean).join(" ") || "User"
+    const username = user.username ? "@" + user.username : ""
 
-    if (user) {
-        const fullName = [user.first_name, user.last_name]
-            .filter(Boolean)
-            .join(" ")
+    setText("name-mobile", fullName)
+    setText("username-mobile", username)
+    setText("name-desktop", fullName)
+    setText("username-desktop", username)
 
-        document.getElementById("name").innerText = fullName || "User"
+    if(user.photo_url){
+        const avatarMobile = document.getElementById("avatar-mobile")
+        if(avatarMobile) avatarMobile.src = user.photo_url
 
-        document.getElementById("username").innerText = user.username
-            ? "@" + user.username
-            : ""
+        const avatarDesktop = document.getElementById("avatarWrap-desktop")
+        if(avatarDesktop){
+            avatarDesktop.innerHTML = `<img src="${user.photo_url}" alt="avatar">`
+        }
+    }else{
+        const letter = fullName.trim().charAt(0).toUpperCase()
+        const avatarDesktop = document.getElementById("avatarWrap-desktop")
+        if(avatarDesktop) avatarDesktop.textContent = letter
+    }
+}
 
-        if (user.photo_url) {
-            document.getElementById("avatar").src = user.photo_url
+function setPhone(phone){
+    const mobilePhone = document.getElementById("phone-mobile")
+    const desktopPhone = document.getElementById("phone-desktop")
+
+    if(mobilePhone) mobilePhone.innerText = phone || ""
+    if(desktopPhone) desktopPhone.innerText = phone || ""
+}
+
+function goBack(){
+    if (window.history.length > 1) {
+        window.history.back()
+    } else {
+        window.location.href = "index.html"
+    }
+}
+
+function initTelegram(){
+    if(window.Telegram && Telegram.WebApp){
+        const tg = Telegram.WebApp
+        tg.ready()
+        tg.expand()
+
+        try{
+            tg.requestFullscreen()
+        }catch(e){}
+
+        document.body.style.minHeight = tg.viewportHeight + "px"
+
+        const user = tg.initDataUnsafe?.user
+        if(user){
+            setUserData(user)
+
+            fetch(`https://api.gaphub.uz/user/${user.id}`)
+                .then(res => res.json())
+                .then(data => {
+                    if(data.phone){
+                        setPhone(data.phone)
+                    }
+                })
+                .catch(err => {
+                    console.log("Phone fetch error:", err)
+                })
         }
     }
 }
 
 update()
-
-if (window.Telegram && Telegram.WebApp) {
-    const tg = Telegram.WebApp
-    const user = tg.initDataUnsafe.user
-
-    if (user) {
-        fetch(`https://api.gaphub.uz/user/${user.id}`)
-            .then(res => res.json())
-            .then(data => {
-                if (data.phone) {
-                    document.getElementById("phone").innerText = data.phone
-                }
-            })
-            .catch(err => {
-                console.log("Phone fetch error:", err)
-            })
-    }
-}
-
+initTelegram()
 </script>
 
 </body>

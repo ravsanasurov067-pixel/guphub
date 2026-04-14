@@ -36,7 +36,7 @@ cursor = conn.cursor()
 bot = Bot(token=BOT_TOKEN)
 dp = Dispatcher(storage=MemoryStorage())
 
-# 🔥 ВАЖНО: возвращаем прод ссылку
+# 🔥 прод ссылка
 MINI_APP_URL = "https://bot.gaphub.uz"
 
 

@@ -9,6 +9,13 @@
 <style>
 :root{
     --accent:#cb6ce6;
+    --text:#ffffff;
+    --muted:#aaa;
+    --bg:#0c0b14;
+    --card:#0b0b0b;
+    --panel:#1a1a1a;
+    --line:rgba(255,255,255,.08);
+    --shadow:0 10px 35px rgba(0,0,0,.35);
 }
 
 *{
@@ -16,18 +23,44 @@
     -webkit-tap-highlight-color:transparent;
 }
 
-body{
+html, body{
     margin:0;
+    padding:0;
+    min-height:100%;
     font-family:Arial, sans-serif;
     background:#000;
     color:#fff;
+}
+
+body{
+    position:relative;
+}
+
+img{
+    display:block;
+    max-width:100%;
+}
+
+button{
+    font-family:inherit;
+    cursor:pointer;
+}
+
+.desktop-only{
+    display:none;
+}
+
+/* =========================
+   MOBILE
+========================= */
+.mobile-shell{
+    display:block;
 }
 
 .page{
     padding:calc(env(safe-area-inset-top) + 48px) 16px calc(110px + env(safe-area-inset-bottom));
     max-width:480px;
     margin:0 auto;
-
     min-height:100vh;
     display:flex;
     flex-direction:column;
@@ -146,7 +179,7 @@ body{
 }
 
 .support-btn{
-    background:var(--accent);
+    background:linear-gradient(90deg,#cb6ce6,#a855f7);
     border:none;
     color:#fff;
     padding:14px;
@@ -157,9 +190,10 @@ body{
     cursor:pointer;
 }
 
-/* FOOTER */
+/* BOTTOM NAV */
 .bottom-nav{
     position:fixed;
+    left:0;
     bottom:0;
     width:100%;
     background:#000;
@@ -168,8 +202,7 @@ body{
     align-items:center;
     padding:8px 10px;
     padding-bottom:calc(8px + env(safe-area-inset-bottom));
-    left:0;
-    right:0;
+    z-index:50;
 }
 
 .nav-item{
@@ -197,6 +230,9 @@ body{
 .nav-center{
     position:relative;
     top:-18px;
+    width:20%;
+    display:flex;
+    justify-content:center;
 }
 
 .circle{
@@ -205,61 +241,427 @@ body{
     background:#ffffff;
     border-radius:50%;
     border:4px solid var(--accent);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+}
+
+.circle img{
+    width:24px;
+    height:24px;
+    object-fit:contain;
+}
+
+/* =========================
+   DESKTOP
+========================= */
+@media (min-width:1024px){
+
+    html, body{
+        min-height:100vh;
+        background:
+            radial-gradient(circle at 15% 18%, rgba(203,108,230,.08), transparent 24%),
+            radial-gradient(circle at 85% 28%, rgba(203,108,230,.07), transparent 24%),
+            linear-gradient(180deg, #09080f 0%, #0c0b14 100%);
+        color:var(--text);
+    }
+
+    body{
+        overflow:hidden;
+    }
+
+    .mobile-shell{
+        display:none;
+    }
+
+    .desktop-only{
+        display:block;
+    }
+
+    .desktop-app{
+        min-height:100vh;
+        color:var(--text);
+    }
+
+    .desktop-layout{
+        display:grid;
+        grid-template-columns:280px 1fr;
+        min-height:100vh;
+    }
+
+    .desktop-sidebar{
+        padding:22px 22px;
+        border-right:1px solid rgba(255,255,255,.05);
+        background:linear-gradient(180deg, rgba(14,13,23,.70) 0%, rgba(12,11,20,.40) 100%);
+    }
+
+    .desktop-brand{
+        font-size:34px;
+        font-weight:800;
+        line-height:1;
+        margin:8px 0 56px;
+    }
+
+    .desktop-nav{
+        display:flex;
+        flex-direction:column;
+        gap:10px;
+        margin-top:4px;
+    }
+
+    .desktop-nav-item{
+        display:flex;
+        align-items:center;
+        gap:14px;
+        width:100%;
+        min-height:56px;
+        padding:0 18px;
+        border-radius:16px;
+        color:#f1f1f1;
+        background:transparent;
+        border:1px solid transparent;
+        font-size:16px;
+        font-weight:600;
+        transition:.2s ease;
+        cursor:pointer;
+        text-align:left;
+    }
+
+    .desktop-nav-item img{
+        width:28px;
+        height:28px;
+        object-fit:contain;
+        flex-shrink:0;
+    }
+
+    .desktop-nav-item.active-nav{
+        background:linear-gradient(180deg, rgba(255,255,255,.06) 0%, rgba(255,255,255,.03) 100%);
+        border-color:rgba(255,255,255,.06);
+        box-shadow:var(--shadow);
+    }
+
+    .desktop-main{
+    padding:24px 28px;
+    height:100vh;
+    overflow:auto;
+    }
+
+    .desktop-back{
+        display:inline-flex;
+        align-items:center;
+        gap:14px;
+        font-size:24px;
+        color:#fff;
+        margin-bottom:22px;
+        cursor:pointer;
+        user-select:none;
+    }
+
+    .desktop-back-arrow{
+        font-size:42px;
+        line-height:1;
+        transform:translateY(-1px);
+    }
+
+    .desktop-card{
+        border:2px solid rgba(203,108,230,.6);
+        border-radius:28px;
+        padding:12px;
+        background:rgba(255,255,255,.015);
+        box-shadow:0 10px 40px rgba(0,0,0,.24);
+    }
+
+    .desktop-card-inner{
+    border-radius:22px;
+    background:
+        radial-gradient(circle at 80% 40%, rgba(203,108,230,.06), transparent 28%),
+        linear-gradient(180deg, rgba(7,7,11,.98) 0%, rgba(8,8,13,.96) 100%);
+    padding:24px 24px 22px;
+    }
+
+    .desktop-hero{
+        margin-bottom:16px;
+    }
+
+    .desktop-hero h1{
+        margin:0 0 8px;
+        font-size:46px;
+        line-height:1;
+        font-weight:800;
+    }
+
+    .desktop-hero p{
+        margin:0;
+        color:#bfbfbf;
+        font-size:18px;
+        line-height:1.35;
+    }
+
+    .desktop-faq-list{
+    display:flex;
+    flex-direction:column;
+    gap:12px;
+    margin-top:20px;
+    }
+
+    .desktop-faq-item{
+        background:#17171e;
+        border-radius:22px;
+        overflow:hidden;
+        box-shadow:var(--shadow);
+    }
+
+    .desktop-faq-question{
+    width:100%;
+    min-height:74px;
+    background:transparent;
+    border:none;
+    color:#fff;
+    padding:0 24px;
+    font-size:18px;
+    line-height:1.3;
+    font-weight:700;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:14px;
+    text-align:left;
+    cursor:pointer;
+    }
+
+    .desktop-faq-question-text{
+        flex:1;
+    }
+
+    .desktop-faq-icon{
+        width:16px;
+        height:16px;
+        flex-shrink:0;
+        border-right:4px solid var(--accent);
+        border-bottom:4px solid var(--accent);
+        transform:rotate(45deg);
+        transition:transform 0.25s ease;
+        margin-right:8px;
+    }
+
+    .desktop-faq-item.open .desktop-faq-icon{
+        transform:rotate(225deg);
+    }
+
+    .desktop-faq-answer-wrap{
+        max-height:0;
+        overflow:hidden;
+        transition:max-height 0.28s ease;
+    }
+
+    .desktop-faq-answer{
+        padding:0 34px 24px;
+        font-size:20px;
+        line-height:1.55;
+        color:#d3d3d3;
+    }
+
+    .desktop-note{
+        text-align:center;
+        color:#bfbfbf;
+        font-size:22px;
+        line-height:1.5;
+        margin:28px 0 24px;
+    }
+
+    .desktop-btn-wrap{
+        display:flex;
+        justify-content:center;
+    }
+
+    .desktop-support-btn{
+        width:100%;
+        max-width:580px;
+        height:72px;
+        border:none;
+        border-radius:20px;
+        background:linear-gradient(90deg,#cb6ce6,#a855f7);
+        color:#fff;
+        font-size:24px;
+        font-weight:700;
+        cursor:pointer;
+    }
+}
+
+@media (min-width:1024px) and (max-width:1400px){
+    .desktop-layout{
+        grid-template-columns:260px 1fr;
+    }
+
+    .desktop-main{
+        padding:28px 28px;
+    }
+
+    .desktop-card-inner{
+        padding:26px 24px 24px;
+    }
+
+    .desktop-hero h1{
+        font-size:48px;
+    }
+
+    .desktop-hero p{
+        font-size:18px;
+    }
+
+    .desktop-faq-list{
+        gap:14px;
+        margin-top:22px;
+    }
+
+    .desktop-faq-question{
+        min-height:78px;
+        padding:0 24px;
+        font-size:20px;
+    }
+
+    .desktop-faq-answer{
+        padding:0 24px 18px;
+        font-size:16px;
+    }
+
+    .desktop-note{
+        font-size:18px;
+        margin:22px 0 18px;
+    }
+
+    .desktop-support-btn{
+        max-width:520px;
+        height:62px;
+        font-size:21px;
+        border-radius:18px;
+    }
 }
 </style>
 </head>
 
 <body>
 
-<div class="page">
+<!-- =========================
+     MOBILE VERSION
+========================= -->
+<div class="mobile-shell">
+    <div class="page">
 
-    <div class="back-wrap">
-        <button class="back-btn" onclick="goBack()">
-            <svg viewBox="0 0 24 24" fill="none">
-                <path d="M15 5L8 12L15 19" stroke="white" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
-            </svg>
-            <span id="backText"></span>
-        </button>
+        <div class="back-wrap">
+            <button class="back-btn" onclick="goBack()">
+                <svg viewBox="0 0 24 24" fill="none">
+                    <path d="M15 5L8 12L15 19" stroke="white" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+                <span id="backText-mobile"></span>
+            </button>
+        </div>
+
+        <div class="hero">
+            <h1 id="pageTitle-mobile"></h1>
+            <p id="pageSubtitle-mobile"></p>
+        </div>
+
+        <div class="faq-list" id="faqList-mobile"></div>
+
+        <div class="note" id="bottomNote-mobile"></div>
+
+        <button class="support-btn" id="supportBtn-mobile" onclick="openSupport()"></button>
     </div>
 
-    <div class="hero">
-        <h1 id="pageTitle"></h1>
-        <p id="pageSubtitle"></p>
+    <div class="bottom-nav">
+        <div class="nav-item" onclick="goPage('mycourses.html')">
+            <img src="images/courses2.png" alt="">
+            <span id="m1-mobile"></span>
+        </div>
+
+        <div class="nav-item" onclick="goPage('support.html')">
+            <img src="images/support.png" alt="">
+            <span id="m4-mobile"></span>
+        </div>
+
+        <div class="nav-center" onclick="goHome()">
+            <div class="circle">
+                <img src="images/home2.png" alt="home">
+            </div>
+        </div>
+
+        <div class="nav-item" onclick="goPage('chat.html')">
+            <img src="images/chat2.png" alt="">
+            <span id="m5-mobile"></span>
+        </div>
+
+        <div class="nav-item" onclick="goPage('myprofile.html')">
+            <img src="images/profile2.png" alt="">
+            <span id="m6-mobile"></span>
+        </div>
     </div>
-
-    <div class="faq-list" id="faqList"></div>
-
-    <div class="note" id="bottomNote"></div>
-
-    <button class="support-btn" id="supportBtn" onclick="openSupport()"></button>
 </div>
 
-<div class="bottom-nav">
+<!-- =========================
+     DESKTOP VERSION
+========================= -->
+<div class="desktop-app desktop-only">
+    <div class="desktop-layout">
 
-    <div class="nav-item" onclick="goPage('mycourses.html')">
-        <img src="images/courses2.png">
-        <span id="m1"></span>
+        <aside class="desktop-sidebar">
+            <div class="desktop-brand">gaphub</div>
+
+            <nav class="desktop-nav">
+                <button class="desktop-nav-item" onclick="goHome()">
+                    <img src="images/home.png" alt="">
+                    <span id="home-desktop"></span>
+                </button>
+
+                <button class="desktop-nav-item" onclick="goPage('mycourses.html')">
+                    <img src="images/courses2.png" alt="">
+                    <span id="m1-desktop"></span>
+                </button>
+
+                <button class="desktop-nav-item active-nav" onclick="goPage('support.html')">
+                    <img src="images/support.png" alt="">
+                    <span id="m4-desktop"></span>
+                </button>
+
+                <button class="desktop-nav-item" onclick="goPage('chat.html')">
+                    <img src="images/chat2.png" alt="">
+                    <span id="m5-desktop"></span>
+                </button>
+
+                <button class="desktop-nav-item" onclick="goPage('myprofile.html')">
+                    <img src="images/profile2.png" alt="">
+                    <span id="m6-desktop"></span>
+                </button>
+            </nav>
+        </aside>
+
+        <main class="desktop-main">
+            <div class="desktop-back" onclick="goBack()">
+                <span class="desktop-back-arrow">←</span>
+                <span id="backText-desktop"></span>
+            </div>
+
+            <section class="desktop-card">
+                <div class="desktop-card-inner">
+
+                    <div class="desktop-hero">
+                        <h1 id="pageTitle-desktop"></h1>
+                        <p id="pageSubtitle-desktop"></p>
+                    </div>
+
+                    <div class="desktop-faq-list" id="faqList-desktop"></div>
+
+                    <div class="desktop-note" id="bottomNote-desktop"></div>
+
+                    <div class="desktop-btn-wrap">
+                        <button class="desktop-support-btn" id="supportBtn-desktop" onclick="openSupport()"></button>
+                    </div>
+
+                </div>
+            </section>
+        </main>
+
     </div>
-
-    <div class="nav-item" onclick="goPage('support.html')">
-        <img src="images/money2.png">
-        <span id="m4"></span>
-    </div>
-
-    <div class="nav-center">
-        <div class="circle"></div>
-    </div>
-
-    <div class="nav-item" onclick="goPage('chat.html')">
-        <img src="images/chat2.png">
-        <span id="m5"></span>
-    </div>
-
-    <div class="nav-item" onclick="goPage('myprofile.html')">
-        <img src="images/profile2.png">
-        <span id="m6"></span>
-    </div>
-
 </div>
 
 <script>
@@ -267,8 +669,9 @@ let lang = localStorage.getItem("lang") || "uz";
 
 const t = {
     uz:{
+        home:"Bosh sahifa",
         m1:"Kurslarim",
-        m4:"Yordam",
+        m4:"Aloqa",
         m5:"Sharhlar",
         m6:"Profil",
         back:"Orqaga",
@@ -297,6 +700,7 @@ const t = {
     },
 
     ru:{
+        home:"Главное меню",
         m1:"Мои курсы",
         m4:"Поддержка",
         m5:"Отзывы",
@@ -327,32 +731,50 @@ const t = {
     }
 };
 
+function setText(id, value){
+    const el = document.getElementById(id);
+    if(el) el.innerText = value;
+}
+
 function update(){
     let d = t[lang];
 
     document.documentElement.lang = lang === "uz" ? "uz" : "ru";
 
-    document.getElementById("m1").innerText = d.m1;
-    document.getElementById("m4").innerText = d.m4;
-    document.getElementById("m5").innerText = d.m5;
-    document.getElementById("m6").innerText = d.m6;
+    // mobile
+    setText("m1-mobile", d.m1);
+    setText("m4-mobile", d.m4);
+    setText("m5-mobile", d.m5);
+    setText("m6-mobile", d.m6);
+    setText("backText-mobile", d.back);
+    setText("pageTitle-mobile", d.pageTitle);
+    setText("pageSubtitle-mobile", d.pageSubtitle);
+    setText("bottomNote-mobile", d.bottomNote);
+    setText("supportBtn-mobile", d.supportBtn);
 
-    document.getElementById("backText").innerText = d.back;
-    document.getElementById("pageTitle").innerText = d.pageTitle;
-    document.getElementById("pageSubtitle").innerText = d.pageSubtitle;
-    document.getElementById("bottomNote").innerText = d.bottomNote;
-    document.getElementById("supportBtn").innerText = d.supportBtn;
+    // desktop
+    setText("home-desktop", d.home);
+    setText("m1-desktop", d.m1);
+    setText("m4-desktop", d.m4);
+    setText("m5-desktop", d.m5);
+    setText("m6-desktop", d.m6);
+    setText("backText-desktop", d.back);
+    setText("pageTitle-desktop", d.pageTitle);
+    setText("pageSubtitle-desktop", d.pageSubtitle);
+    setText("bottomNote-desktop", d.bottomNote);
+    setText("supportBtn-desktop", d.supportBtn);
 
-    renderFaq();
+    renderFaqMobile();
+    renderFaqDesktop();
 }
 
-function renderFaq(){
-    let list = document.getElementById("faqList");
-    let data = t[lang].faq;
+function renderFaqMobile(){
+    const list = document.getElementById("faqList-mobile");
+    const data = t[lang].faq;
 
     list.innerHTML = data.map(item => `
         <div class="faq-item">
-            <button class="faq-question" onclick="toggleFaq(this)">
+            <button class="faq-question" onclick="toggleFaqMobile(this)">
                 <span class="faq-question-text">${item.q}</span>
                 <span class="faq-icon"></span>
             </button>
@@ -363,23 +785,66 @@ function renderFaq(){
     `).join("");
 }
 
-function toggleFaq(button){
+function renderFaqDesktop(){
+    const list = document.getElementById("faqList-desktop");
+    const data = t[lang].faq;
+
+    list.innerHTML = data.map(item => `
+        <div class="desktop-faq-item">
+            <button class="desktop-faq-question" onclick="toggleFaqDesktop(this)">
+                <span class="desktop-faq-question-text">${item.q}</span>
+                <span class="desktop-faq-icon"></span>
+            </button>
+            <div class="desktop-faq-answer-wrap">
+                <div class="desktop-faq-answer">${item.a}</div>
+            </div>
+        </div>
+    `).join("");
+}
+
+function toggleFaqMobile(button){
     const item = button.parentElement;
     const wrap = item.querySelector(".faq-answer-wrap");
     const isOpen = item.classList.contains("open");
 
     document.querySelectorAll(".faq-item").forEach(el => {
         el.classList.remove("open");
-        el.querySelector(".faq-answer-wrap").style.maxHeight = null;
+        const target = el.querySelector(".faq-answer-wrap");
+        if(target) target.style.maxHeight = null;
     });
 
-    if (!isOpen){
+    if(!isOpen){
+        item.classList.add("open");
+        wrap.style.maxHeight = wrap.scrollHeight + "px";
+    }
+}
+
+function toggleFaqDesktop(button){
+    const item = button.parentElement;
+    const wrap = item.querySelector(".desktop-faq-answer-wrap");
+    const isOpen = item.classList.contains("open");
+
+    document.querySelectorAll(".desktop-faq-item").forEach(el => {
+        el.classList.remove("open");
+        const target = el.querySelector(".desktop-faq-answer-wrap");
+        if(target) target.style.maxHeight = null;
+    });
+
+    if(!isOpen){
         item.classList.add("open");
         wrap.style.maxHeight = wrap.scrollHeight + "px";
     }
 }
 
 function goBack(){
+    if (window.history.length > 1) {
+        window.history.back();
+    } else {
+        window.location.href = "index.html";
+    }
+}
+
+function goHome(){
     localStorage.setItem("lang", lang);
     window.location.href = "index.html";
 }
@@ -395,15 +860,15 @@ function openSupport(){
 }
 
 function initTelegram(){
-    if (window.Telegram && Telegram.WebApp) {
+    if(window.Telegram && Telegram.WebApp){
         const tg = Telegram.WebApp;
 
         tg.ready();
         tg.expand();
 
-        try {
+        try{
             tg.requestFullscreen();
-        } catch(e) {}
+        }catch(e){}
 
         document.body.style.minHeight = tg.viewportHeight + "px";
     }
