@@ -7,25 +7,21 @@
 <title>gaphub</title>
 
 <style>
-/* =========================
-   BASE
-========================= */
 :root{
     --accent:#cb6ce6;
     --bg:#0c0b14;
     --bg-soft:#14121f;
-    --card:#000000;
+    --card:#111117;
+    --card-soft:#17171f;
     --text:#ffffff;
-    --muted:#d9d9d9;
+    --muted:#a8a8b3;
     --line:rgba(255,255,255,0.08);
     --shadow:0 10px 35px rgba(0,0,0,.35);
-    --radius:18px;
-    --desktop-sidebar:320px;
-    --desktop-topbar:92px;
 }
 
 *{
     box-sizing:border-box;
+    -webkit-tap-highlight-color:transparent;
 }
 
 html, body{
@@ -33,8 +29,8 @@ html, body{
     padding:0;
     min-height:100%;
     font-family:Arial, sans-serif;
-    background:#fff;
-    color:#000;
+    background:#000;
+    color:#fff;
 }
 
 body{
@@ -55,15 +51,11 @@ button{
     display:none;
 }
 
-.mobile-only{
-    display:block;
-}
-
 .btn{
-    background:var(--accent);
     border:none;
     color:#fff;
-    border-radius:12px;
+    background:linear-gradient(90deg,#cb6ce6,#a855f7);
+    border-radius:16px;
     transition:.2s ease;
 }
 
@@ -96,112 +88,268 @@ button{
 }
 
 /* =========================
-   MOBILE STYLES
+   MOBILE
 ========================= */
 .mobile-shell{
     display:block;
 }
 
-.header{
-    height:160px;
-    padding-top:env(safe-area-inset-top);
-    background:#000;
-    color:#fff;
-    display:flex;
-    align-items:flex-end;
-    justify-content:space-between;
-    padding-left:16px;
-    padding-right:16px;
-    padding-bottom:10px;
-}
-
-.logo{
-    font-size:50px;
-    font-weight:800;
-    line-height:1;
-}
-
-.main{
-    padding:16px;
+.mobile-page{
     padding-bottom:110px;
-    background:#fff;
+    background:
+        radial-gradient(circle at 20% 10%, rgba(203,108,230,.10), transparent 24%),
+        linear-gradient(180deg, #09080f 0%, #0c0b14 100%);
+    min-height:100vh;
 }
 
-.about{
-    background:#000;
-    color:#fff;
-    border-radius:14px;
-    padding:16px;
+.mobile-header{
+    padding:calc(env(safe-area-inset-top) + 14px) 16px 0;
+    display:flex;
+    align-items:flex-start;
+    justify-content:space-between;
+    gap:14px;
+}
+
+.mobile-logo{
+    font-size:42px;
+    font-weight:800;
+    line-height:.95;
+    letter-spacing:-1px;
+}
+
+.mobile-main{
+    padding:14px 16px 0;
+}
+
+.mobile-hero{
+    position:relative;
+    overflow:hidden;
+    border-radius:28px;
+    background:
+        radial-gradient(circle at 84% 14%, rgba(203,108,230,.18), transparent 24%),
+        radial-gradient(circle at 18% 85%, rgba(203,108,230,.08), transparent 22%),
+        linear-gradient(180deg, #15141e 0%, #0f0e17 100%);
+    border:1px solid rgba(255,255,255,.05);
+    box-shadow:var(--shadow);
+    padding:20px 16px 18px;
+}
+
+.mobile-kicker{
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+    background:rgba(255,255,255,.06);
+    border:1px solid rgba(255,255,255,.06);
+    border-radius:999px;
+    padding:8px 12px;
+    font-size:12px;
+    color:#ebe4f5;
     margin-bottom:14px;
 }
 
-.about-top{
+.mobile-hero-row{
     display:flex;
+    align-items:flex-start;
+    justify-content:space-between;
     gap:12px;
-    align-items:center;
-    margin-bottom:10px;
 }
 
-.about-img-wrap{
-    width:120px;
-    height:120px;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    flex-shrink:0;
+.mobile-hero-text{
+    flex:1;
 }
 
-.about-img-wrap img{
-    max-width:100%;
-    max-height:100%;
+.mobile-hero-title{
+    margin:0 0 10px;
+    font-size:34px;
+    line-height:.96;
+    font-weight:800;
+    letter-spacing:-0.8px;
 }
 
-.about-text h3{
-    margin:0 0 6px;
-    font-size:20px;
-    line-height:1.15;
-}
-
-.about-text p{
+.mobile-hero-text p{
     margin:0;
+    color:var(--muted);
     font-size:14px;
-    line-height:1.4;
+    line-height:1.5;
     white-space:pre-line;
 }
 
-.about .btn{
-    width:100%;
-    padding:12px;
-    font-size:15px;
-}
-
-.course{
-    background:#000;
-    color:#fff;
-    border-radius:14px;
-    padding:14px;
-    margin-bottom:12px;
-    display:flex;
-    align-items:center;
-    gap:14px;
-    cursor:pointer;
-}
-
-.course-img{
-    width:70px;
-    height:70px;
-    display:flex;
-    align-items:center;
-    justify-content:center;
+.mobile-hero-art{
+    width:96px;
+    height:96px;
+    object-fit:contain;
+    border-radius:18px;
+    background:#1a1a1a;
+    padding:10px;
     flex-shrink:0;
 }
 
-.course h3{
-    margin:0;
-    font-size:22px;
-    line-height:1.1;
+.mobile-hero-bottom{
+    margin-top:16px;
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:10px;
 }
 
+.mobile-mini-stat{
+    background:rgba(255,255,255,.04);
+    border-radius:16px;
+    padding:12px;
+}
+
+.mobile-mini-stat-title{
+    font-size:12px;
+    color:#9f98aa;
+    margin-bottom:6px;
+}
+
+.mobile-mini-stat-value{
+    font-size:14px;
+    font-weight:700;
+    line-height:1.35;
+}
+
+.mobile-about-wrap{
+    margin-top:14px;
+}
+
+.mobile-about{
+    background:#121218;
+    border:1px solid rgba(255,255,255,.05);
+    border-radius:24px;
+    padding:16px;
+    box-shadow:var(--shadow);
+}
+
+.mobile-about-top{
+    display:flex;
+    gap:12px;
+    align-items:center;
+    margin-bottom:12px;
+}
+
+.mobile-about-img{
+    width:84px;
+    height:84px;
+    object-fit:contain;
+    border-radius:18px;
+    background:#1a1a1a;
+    padding:8px;
+    flex-shrink:0;
+}
+
+.mobile-about-title{
+    margin:0 0 6px;
+    font-size:22px;
+    line-height:1.05;
+    font-weight:800;
+}
+
+.mobile-about-text{
+    margin:0;
+    font-size:14px;
+    line-height:1.45;
+    color:var(--muted);
+}
+
+.mobile-about .btn{
+    width:100%;
+    height:50px;
+    font-size:15px;
+    margin-top:14px;
+}
+
+.mobile-section{
+    margin-top:14px;
+}
+
+.mobile-section-title{
+    margin:0 0 12px;
+    font-size:22px;
+    line-height:1.1;
+    font-weight:800;
+}
+
+.mobile-courses{
+    display:flex;
+    flex-direction:column;
+    gap:12px;
+}
+
+.mobile-course-card{
+    position:relative;
+    overflow:hidden;
+    background:
+        radial-gradient(circle at 88% 18%, rgba(203,108,230,.10), transparent 24%),
+        linear-gradient(180deg, #111117 0%, #0d0d12 100%);
+    border:1px solid rgba(255,255,255,.05);
+    border-radius:22px;
+    padding:16px;
+    box-shadow:var(--shadow);
+    cursor:pointer;
+}
+
+.mobile-course-top{
+    display:flex;
+    align-items:center;
+    gap:12px;
+    margin-bottom:12px;
+}
+
+.mobile-course-icon{
+    width:64px;
+    height:64px;
+    object-fit:contain;
+    border-radius:16px;
+    background:#1a1a1a;
+    padding:8px;
+    flex-shrink:0;
+}
+
+.mobile-course-title{
+    margin:0;
+    font-size:24px;
+    line-height:1.05;
+    font-weight:800;
+}
+
+.mobile-course-desc{
+    margin:0 0 14px;
+    color:var(--muted);
+    font-size:14px;
+    line-height:1.5;
+}
+
+.mobile-course-btn{
+    width:100%;
+    height:48px;
+    font-size:15px;
+}
+
+.mobile-proof{
+    margin-top:14px;
+    background:#121218;
+    border:1px solid rgba(255,255,255,.05);
+    border-radius:24px;
+    padding:16px;
+    box-shadow:var(--shadow);
+}
+
+.mobile-proof-title{
+    margin:0 0 10px;
+    font-size:20px;
+    line-height:1.1;
+    font-weight:800;
+}
+
+.mobile-proof-text{
+    margin:0;
+    font-size:14px;
+    line-height:1.5;
+    color:var(--muted);
+}
+
+/* BOTTOM NAV */
 .bottom-nav{
     position:fixed;
     left:0;
@@ -264,9 +412,9 @@ button{
 }
 
 /* =========================
-   DESKTOP STYLES
+   DESKTOP
 ========================= */
-@media (min-width: 1024px){
+@media (min-width:1024px){
 
     html, body{
         min-height:100vh;
@@ -279,11 +427,7 @@ button{
     }
 
     body{
-        overflow-x:hidden;
-    }
-
-    .mobile-only{
-        display:none !important;
+        overflow:hidden;
     }
 
     .desktop-only{
@@ -301,19 +445,19 @@ button{
     }
 
     .desktop-topbar{
-    position:fixed;
-    top:0;
-    left:0;
-    right:0;
-    height:78px;
-    display:flex;
-    align-items:center;
-    justify-content:space-between;
-    padding:18px 120px 14px 34px;
-    background:linear-gradient(180deg, rgba(16,14,25,.94) 0%, rgba(16,14,25,.78) 100%);
-    border-bottom:1px solid rgba(255,255,255,.04);
-    z-index:30;
-    backdrop-filter:blur(12px);
+        position:fixed;
+        top:0;
+        left:0;
+        right:0;
+        height:78px;
+        display:flex;
+        align-items:center;
+        justify-content:space-between;
+        padding:18px 120px 14px 34px;
+        background:linear-gradient(180deg, rgba(16,14,25,.94) 0%, rgba(16,14,25,.78) 100%);
+        border-bottom:1px solid rgba(255,255,255,.04);
+        z-index:30;
+        backdrop-filter:blur(12px);
     }
 
     .desktop-brand{
@@ -325,12 +469,6 @@ button{
         letter-spacing:-0.5px;
     }
 
-    .desktop-brand img{
-        height:42px;
-        width:auto;
-        object-fit:contain;
-    }
-
     .desktop-right{
         display:flex;
         align-items:center;
@@ -338,42 +476,42 @@ button{
     }
 
     .desktop-layout{
-    display:grid;
-    grid-template-columns:280px 1fr;
-    height:100vh;
-    padding-top:78px;
-    overflow:hidden;
+        display:grid;
+        grid-template-columns:280px 1fr;
+        height:100vh;
+        padding-top:78px;
+        overflow:hidden;
     }
 
     .desktop-sidebar{
-    padding:22px 22px;
-    border-right:1px solid rgba(255,255,255,.05);
-    background:linear-gradient(180deg, rgba(14,13,23,.70) 0%, rgba(12,11,20,.40) 100%);
+        padding:22px 22px;
+        border-right:1px solid rgba(255,255,255,.05);
+        background:linear-gradient(180deg, rgba(14,13,23,.70) 0%, rgba(12,11,20,.40) 100%);
     }
 
     .desktop-nav{
-    display:flex;
-    flex-direction:column;
-    gap:10px;
-    margin-top:4px;
+        display:flex;
+        flex-direction:column;
+        gap:10px;
+        margin-top:4px;
     }
 
     .desktop-nav-item{
-    display:flex;
-    align-items:center;
-    gap:14px;
-    width:100%;
-    min-height:56px;
-    padding:0 18px;
-    border-radius:16px;
-    color:#f1f1f1;
-    background:transparent;
-    border:1px solid transparent;
-    font-size:16px;
-    font-weight:600;
-    transition:.2s ease;
-    cursor:pointer;
-    text-align:left;
+        display:flex;
+        align-items:center;
+        gap:14px;
+        width:100%;
+        min-height:56px;
+        padding:0 18px;
+        border-radius:16px;
+        color:#f1f1f1;
+        background:transparent;
+        border:1px solid transparent;
+        font-size:16px;
+        font-weight:600;
+        transition:.2s ease;
+        cursor:pointer;
+        text-align:left;
     }
 
     .desktop-nav-item img{
@@ -390,102 +528,212 @@ button{
     }
 
     .desktop-main{
-    padding:24px 28px 24px 28px;
-    overflow:hidden;
+        padding:24px 28px 28px;
+        height:100%;
+        overflow:auto;
     }
 
-    .hero-card{
-    position:relative;
-    border:2px solid rgba(203,108,230,.85);
-    border-radius:24px;
-    padding:10px;
-    background:rgba(255,255,255,.02);
-    box-shadow:0 0 0 1px rgba(255,255,255,.02), 0 20px 60px rgba(0,0,0,.35);
-    margin-bottom:22px;
+    .desktop-hero{
+        position:relative;
+        overflow:hidden;
+        border-radius:32px;
+        background:
+            radial-gradient(circle at 84% 16%, rgba(203,108,230,.20), transparent 24%),
+            radial-gradient(circle at 12% 85%, rgba(203,108,230,.08), transparent 22%),
+            linear-gradient(180deg, #15141e 0%, #0f0e17 100%);
+        border:1px solid rgba(255,255,255,.05);
+        box-shadow:var(--shadow);
+        padding:30px 28px 24px;
+        margin-bottom:16px;
     }
 
-    .hero-inner{
-    background:
-        radial-gradient(circle at 82% 45%, rgba(203,108,230,.10), transparent 28%),
-        linear-gradient(180deg, rgba(0,0,0,.95) 0%, rgba(0,0,0,.92) 100%);
-    border-radius:20px;
-    padding:22px 28px 22px 28px;
-    min-height:220px;
-    display:grid;
-    grid-template-columns:180px 1fr;
-    align-items:center;
-    gap:18px;
-    }
-
-    .hero-image{
-        display:flex;
+    .desktop-kicker{
+        display:inline-flex;
         align-items:center;
-        justify-content:center;
+        gap:8px;
+        background:rgba(255,255,255,.06);
+        border:1px solid rgba(255,255,255,.06);
+        border-radius:999px;
+        padding:10px 14px;
+        font-size:13px;
+        color:#ebe4f5;
+        margin-bottom:18px;
     }
 
-    .hero-image img{
-        width:180px;
-        max-width:100%;
+    .desktop-hero-top{
+        display:grid;
+        grid-template-columns:1.05fr .95fr;
+        gap:26px;
+        align-items:center;
     }
 
-    .hero-content{
-        max-width:700px;
+    .desktop-hero-title{
+        margin:0 0 12px;
+        font-size:68px;
+        line-height:.94;
+        font-weight:800;
+        letter-spacing:-1.2px;
+        max-width:760px;
     }
 
-    .hero-content h2{
-    margin:0 0 8px;
-    font-size:34px;
-    line-height:1.05;
-    letter-spacing:-0.5px;
-    font-weight:800;
+    .desktop-hero-text p{
+        margin:0;
+        color:var(--muted);
+        font-size:19px;
+        line-height:1.6;
+        white-space:pre-line;
+        max-width:760px;
     }
 
-    .hero-content p{
-    margin:0;
-    font-size:16px;
-    line-height:1.45;
-    color:#f0f0f0;
-    white-space:pre-line;
+    .desktop-hero-art-wrap{
+        display:flex;
+        justify-content:flex-end;
+        align-items:center;
     }
 
-    .hero-btn{
-        margin-top:26px;
+    .desktop-hero-art{
+        width:250px;
+        height:250px;
+        object-fit:contain;
+        border-radius:26px;
+        background:#1a1a1a;
+        padding:18px;
+    }
+
+    .desktop-hero-bottom{
+        margin-top:22px;
+        display:grid;
+        grid-template-columns:repeat(4, minmax(0,1fr));
+        gap:12px;
+    }
+
+    .desktop-mini-stat{
+        background:rgba(255,255,255,.04);
+        border-radius:18px;
+        padding:14px;
+        min-height:86px;
+    }
+
+    .desktop-mini-stat-title{
+        font-size:13px;
+        color:#9f98aa;
+        margin-bottom:8px;
+    }
+
+    .desktop-mini-stat-value{
+        font-size:16px;
+        font-weight:700;
+        line-height:1.4;
+    }
+
+    .desktop-grid{
+        display:grid;
+        grid-template-columns:1.1fr .9fr;
+        gap:16px;
+        margin-bottom:16px;
+    }
+
+    .desktop-about{
+        background:#121218;
+        border:1px solid rgba(255,255,255,.05);
+        border-radius:28px;
+        padding:20px;
+        box-shadow:var(--shadow);
+    }
+
+    .desktop-about-top{
+        display:flex;
+        gap:14px;
+        align-items:flex-start;
+        margin-bottom:14px;
+    }
+
+    .desktop-about-img{
+        width:108px;
+        height:108px;
+        object-fit:contain;
+        border-radius:22px;
+        background:#1a1a1a;
+        padding:10px;
+        flex-shrink:0;
+    }
+
+    .desktop-about-title{
+        margin:0 0 8px;
+        font-size:30px;
+        line-height:1.02;
+        font-weight:800;
+    }
+
+    .desktop-about-text{
+        margin:0;
+        color:var(--muted);
+        font-size:16px;
+        line-height:1.55;
+    }
+
+    .desktop-about .btn{
         width:100%;
-        max-width:620px;
-        height:64px;
-        font-size:22px;
-        border-radius:16px;
-        background:linear-gradient(90deg, #b85bda 0%, #cb6ce6 100%);
-        box-shadow:0 14px 30px rgba(203,108,230,.20);
+        height:54px;
+        font-size:16px;
+        margin-top:14px;
+    }
+
+    .desktop-proof{
+        background:
+            radial-gradient(circle at 88% 18%, rgba(203,108,230,.10), transparent 20%),
+            linear-gradient(180deg, #121218 0%, #101017 100%);
+        border:1px solid rgba(255,255,255,.05);
+        border-radius:28px;
+        padding:20px;
+        box-shadow:var(--shadow);
+    }
+
+    .desktop-proof-title{
+        margin:0 0 10px;
+        font-size:24px;
+        line-height:1.1;
+        font-weight:800;
+    }
+
+    .desktop-proof-text{
+        margin:0;
+        color:var(--muted);
+        font-size:15px;
+        line-height:1.6;
     }
 
     .desktop-section-title{
-    margin:0 0 14px;
-    font-size:24px;
-    font-weight:800;
-    line-height:1.1;
-    letter-spacing:-0.2px;
+        margin:0 0 14px;
+        font-size:28px;
+        font-weight:800;
+        line-height:1.08;
+        letter-spacing:-0.2px;
     }
 
     .desktop-courses{
         display:grid;
         grid-template-columns:repeat(3, minmax(0, 1fr));
-        gap:22px;
+        gap:16px;
     }
 
     .desktop-course-card{
-        min-height:360px;
-        background:linear-gradient(180deg, rgba(0,0,0,.96) 0%, rgba(0,0,0,.92) 100%);
-        border:1px solid rgba(255,255,255,.08);
-        border-radius:22px;
-        padding:26px 22px 20px;
+        position:relative;
+        overflow:hidden;
+        background:
+            radial-gradient(circle at 88% 18%, rgba(203,108,230,.10), transparent 24%),
+            linear-gradient(180deg, #111117 0%, #0d0d12 100%);
+        border:1px solid rgba(255,255,255,.05);
+        border-radius:24px;
+        padding:18px;
         box-shadow:var(--shadow);
         display:flex;
         flex-direction:column;
         justify-content:space-between;
-        gap:18px;
+        gap:16px;
         cursor:pointer;
         transition:.2s ease;
+        min-height:300px;
     }
 
     .desktop-course-card:hover{
@@ -496,16 +744,19 @@ button{
     .desktop-course-top{
         display:flex;
         align-items:flex-start;
-        gap:18px;
+        gap:14px;
     }
 
     .desktop-course-icon{
-        width:90px;
-        height:90px;
+        width:72px;
+        height:72px;
         display:flex;
         align-items:center;
         justify-content:center;
         flex-shrink:0;
+        border-radius:18px;
+        background:#1a1a1a;
+        padding:8px;
     }
 
     .desktop-course-icon img{
@@ -516,54 +767,65 @@ button{
 
     .desktop-course-top h3{
         margin:0;
-        font-size:28px;
-        line-height:1.15;
+        font-size:24px;
+        line-height:1.08;
         font-weight:800;
     }
 
     .desktop-course-desc{
         margin:0;
-        font-size:16px;
-        line-height:1.65;
+        font-size:15px;
+        line-height:1.6;
         color:var(--muted);
-        min-height:88px;
+        min-height:96px;
     }
 
     .desktop-course-btn{
         width:100%;
-        height:56px;
-        font-size:18px;
+        height:52px;
+        font-size:16px;
         border-radius:14px;
-        background:linear-gradient(90deg, #b85bda 0%, #cb6ce6 100%);
     }
 }
 
-@media (min-width: 1024px) and (max-width: 1320px){
+@media (min-width:1024px) and (max-width:1320px){
     .desktop-courses{
         grid-template-columns:1fr;
     }
 
-    .hero-inner{
-        grid-template-columns:170px 1fr;
+    .desktop-grid{
+        grid-template-columns:1fr;
     }
 
-    .hero-content h2{
-        font-size:42px;
+    .desktop-hero-top{
+        grid-template-columns:1fr;
+    }
+
+    .desktop-hero-art-wrap{
+        justify-content:flex-start;
     }
 }
 
-@media (min-width: 1024px) and (max-width: 1160px){
+@media (min-width:1024px) and (max-width:1160px){
     .desktop-layout{
         grid-template-columns:260px 1fr;
     }
 
     .desktop-main{
-        padding:28px 24px 34px 24px;
+        padding:22px 22px 24px;
     }
 
     .desktop-topbar{
         padding-left:24px;
-        padding-right:24px;
+        padding-right:120px;
+    }
+
+    .desktop-hero-title{
+        font-size:54px;
+    }
+
+    .desktop-hero-bottom{
+        grid-template-columns:repeat(2, minmax(0,1fr));
     }
 }
 </style>
@@ -575,54 +837,108 @@ button{
      MOBILE VERSION
 ========================= -->
 <div class="mobile-shell">
+    <div class="mobile-page">
 
-    <div class="header">
-        <div class="logo">gaphub</div>
+        <div class="mobile-header">
+            <div class="mobile-logo">gaphub</div>
 
-        <div class="lang">
-            <span onclick="setLang('uz')" id="uz-mobile">UZ</span>
-            <span onclick="setLang('ru')" id="ru-mobile">RU</span>
+            <div class="lang">
+                <span onclick="setLang('uz')" id="uz-mobile">UZ</span>
+                <span onclick="setLang('ru')" id="ru-mobile">RU</span>
+            </div>
         </div>
-    </div>
 
-    <div class="main">
+        <div class="mobile-main">
+            <section class="mobile-hero">
+                <div class="mobile-kicker" id="kicker-mobile"></div>
 
-        <div class="about">
-            <div class="about-top">
-                <div class="about-img-wrap">
-                    <img src="images/about.png" alt="about">
+                <div class="mobile-hero-row">
+                    <div class="mobile-hero-text">
+                        <h1 class="mobile-hero-title" id="heroTitle-mobile"></h1>
+                        <p id="heroText-mobile"></p>
+                    </div>
+
+                    <img class="mobile-hero-art" src="images/home-hero-mobile.png" alt="hero">
                 </div>
 
-                <div class="about-text">
-                    <h3 id="title-mobile"></h3>
-                    <p id="text-mobile"></p>
+                <div class="mobile-hero-bottom">
+                    <div class="mobile-mini-stat">
+                        <div class="mobile-mini-stat-title" id="stat1Title-mobile"></div>
+                        <div class="mobile-mini-stat-value" id="stat1Value-mobile"></div>
+                    </div>
+
+                    <div class="mobile-mini-stat">
+                        <div class="mobile-mini-stat-title" id="stat2Title-mobile"></div>
+                        <div class="mobile-mini-stat-value" id="stat2Value-mobile"></div>
+                    </div>
                 </div>
+            </section>
+
+            <div class="mobile-about-wrap">
+                <section class="mobile-about">
+                    <div class="mobile-about-top">
+                        <img class="mobile-about-img" src="images/about.png" alt="about">
+
+                        <div>
+                            <h2 class="mobile-about-title" id="aboutTitle-mobile"></h2>
+                            <p class="mobile-about-text" id="aboutText-mobile"></p>
+                        </div>
+                    </div>
+
+                    <button class="btn" id="aboutBtn-mobile" onclick="goAbout()"></button>
+                </section>
             </div>
 
-            <button class="btn" id="btn-mobile" onclick="goAbout()"></button>
-        </div>
+            <section class="mobile-section">
+                <h2 class="mobile-section-title" id="popularTitle-mobile"></h2>
 
-        <div class="course" onclick="openCourse('smm')">
-            <div class="course-img">
-                <img src="images/smm2.png" alt="SMM">
-            </div>
-            <h3>SMM</h3>
-        </div>
+                <div class="mobile-courses">
+                    <article class="mobile-course-card" onclick="openCourse('smm')">
+                        <div>
+                            <div class="mobile-course-top">
+                                <img class="mobile-course-icon" src="images/smm2.png" alt="SMM">
+                                <h3 class="mobile-course-title">SMM</h3>
+                            </div>
 
-        <div class="course" onclick="openCourse('target')">
-            <div class="course-img">
-                <img src="images/target2.png" alt="TARGET">
-            </div>
-            <h3>TARGET</h3>
-        </div>
+                            <p class="mobile-course-desc" id="smmDesc-mobile"></p>
+                        </div>
 
-        <div class="course" onclick="openCourse('ai')">
-            <div class="course-img">
-                <img src="images/ai2.png" alt="AI">
-            </div>
-            <h3 id="ai-mobile"></h3>
-        </div>
+                        <button class="btn mobile-course-btn" id="courseBtn1-mobile"></button>
+                    </article>
 
+                    <article class="mobile-course-card" onclick="openCourse('target')">
+                        <div>
+                            <div class="mobile-course-top">
+                                <img class="mobile-course-icon" src="images/target2.png" alt="TARGET">
+                                <h3 class="mobile-course-title">TARGET</h3>
+                            </div>
+
+                            <p class="mobile-course-desc" id="targetDesc-mobile"></p>
+                        </div>
+
+                        <button class="btn mobile-course-btn" id="courseBtn2-mobile"></button>
+                    </article>
+
+                    <article class="mobile-course-card" onclick="openCourse('ai')">
+                        <div>
+                            <div class="mobile-course-top">
+                                <img class="mobile-course-icon" src="images/ai2.png" alt="AI">
+                                <h3 class="mobile-course-title" id="ai-mobile"></h3>
+                            </div>
+
+                            <p class="mobile-course-desc" id="aiDesc-mobile"></p>
+                        </div>
+
+                        <button class="btn mobile-course-btn" id="courseBtn3-mobile"></button>
+                    </article>
+                </div>
+            </section>
+
+            <section class="mobile-proof">
+                <h2 class="mobile-proof-title" id="proofTitle-mobile"></h2>
+                <p class="mobile-proof-text" id="proofText-mobile"></p>
+            </section>
+        </div>
     </div>
 
     <div class="bottom-nav">
@@ -660,9 +976,7 @@ button{
 <div class="desktop-app desktop-only">
 
     <div class="desktop-topbar">
-        <div class="desktop-brand">
-            gaphub
-        </div>
+        <div class="desktop-brand">gaphub</div>
 
         <div class="desktop-right">
             <div class="lang">
@@ -675,7 +989,7 @@ button{
     <div class="desktop-layout">
         <aside class="desktop-sidebar">
             <nav class="desktop-nav">
-                 <button class="desktop-nav-item active-nav" onclick="goHome()">
+                <button class="desktop-nav-item active-nav" onclick="goHome()">
                     <img src="images/home.png" alt="">
                     <span id="home-desktop"></span>
                 </button>
@@ -703,25 +1017,67 @@ button{
         </aside>
 
         <main class="desktop-main">
-            <section class="hero-card">
-                <div class="hero-inner">
-                    <div class="hero-image">
-                        <img src="images/about.png" alt="about">
+            <section class="desktop-hero">
+                <div class="desktop-kicker" id="kicker-desktop"></div>
+
+                <div class="desktop-hero-top">
+                    <div class="desktop-hero-text">
+                        <h1 class="desktop-hero-title" id="heroTitle-desktop"></h1>
+                        <p id="heroText-desktop"></p>
                     </div>
 
-                    <div class="hero-content">
-                        <h2 id="title-desktop"></h2>
-                        <p id="text-desktop"></p>
-                        <button class="btn hero-btn" id="btn-desktop" onclick="goAbout()"></button>
+                    <div class="desktop-hero-art-wrap">
+                        <img class="desktop-hero-art" src="images/home-hero-desktop.png" alt="hero">
+                    </div>
+                </div>
+
+                <div class="desktop-hero-bottom">
+                    <div class="desktop-mini-stat">
+                        <div class="desktop-mini-stat-title" id="stat1Title-desktop"></div>
+                        <div class="desktop-mini-stat-value" id="stat1Value-desktop"></div>
+                    </div>
+
+                    <div class="desktop-mini-stat">
+                        <div class="desktop-mini-stat-title" id="stat2Title-desktop"></div>
+                        <div class="desktop-mini-stat-value" id="stat2Value-desktop"></div>
+                    </div>
+
+                    <div class="desktop-mini-stat">
+                        <div class="desktop-mini-stat-title" id="stat3Title-desktop"></div>
+                        <div class="desktop-mini-stat-value" id="stat3Value-desktop"></div>
+                    </div>
+
+                    <div class="desktop-mini-stat">
+                        <div class="desktop-mini-stat-title" id="stat4Title-desktop"></div>
+                        <div class="desktop-mini-stat-value" id="stat4Value-desktop"></div>
                     </div>
                 </div>
             </section>
 
+            <section class="desktop-grid">
+                <div class="desktop-about">
+                    <div class="desktop-about-top">
+                        <img class="desktop-about-img" src="images/about.png" alt="about">
+
+                        <div>
+                            <h2 class="desktop-about-title" id="aboutTitle-desktop"></h2>
+                            <p class="desktop-about-text" id="aboutText-desktop"></p>
+                        </div>
+                    </div>
+
+                    <button class="btn" id="aboutBtn-desktop" onclick="goAbout()"></button>
+                </div>
+
+                <div class="desktop-proof">
+                    <h2 class="desktop-proof-title" id="proofTitle-desktop"></h2>
+                    <p class="desktop-proof-text" id="proofText-desktop"></p>
+                </div>
+            </section>
+
             <section>
-                <h2 class="desktop-section-title" id="popularTitle"></h2>
+                <h2 class="desktop-section-title" id="popularTitle-desktop"></h2>
 
                 <div class="desktop-courses">
-
                     <article class="desktop-course-card" onclick="openCourse('smm')">
                         <div>
                             <div class="desktop-course-top">
@@ -731,10 +1087,10 @@ button{
                                 <h3>SMM</h3>
                             </div>
 
-                            <p class="desktop-course-desc" id="smmDesc"></p>
+                            <p class="desktop-course-desc" id="smmDesc-desktop"></p>
                         </div>
 
-                        <button class="btn desktop-course-btn" id="courseBtn1"></button>
+                        <button class="btn desktop-course-btn" id="courseBtn1-desktop"></button>
                     </article>
 
                     <article class="desktop-course-card" onclick="openCourse('target')">
@@ -746,10 +1102,10 @@ button{
                                 <h3>TARGET</h3>
                             </div>
 
-                            <p class="desktop-course-desc" id="targetDesc"></p>
+                            <p class="desktop-course-desc" id="targetDesc-desktop"></p>
                         </div>
 
-                        <button class="btn desktop-course-btn" id="courseBtn2"></button>
+                        <button class="btn desktop-course-btn" id="courseBtn2-desktop"></button>
                     </article>
 
                     <article class="desktop-course-card" onclick="openCourse('ai')">
@@ -761,12 +1117,11 @@ button{
                                 <h3 id="ai-desktop"></h3>
                             </div>
 
-                            <p class="desktop-course-desc" id="aiDesc"></p>
+                            <p class="desktop-course-desc" id="aiDesc-desktop"></p>
                         </div>
 
-                        <button class="btn desktop-course-btn" id="courseBtn3"></button>
+                        <button class="btn desktop-course-btn" id="courseBtn3-desktop"></button>
                     </article>
-
                 </div>
             </section>
         </main>
@@ -784,15 +1139,32 @@ const t = {
         m5:"Sharhlar",
         m6:"Profil",
 
-        title:"gaphub nima bu?",
-        text:"Kasbni noldan o‘rganing\nKuchli portfolio yig‘ing\nBirinchi buyurtmalarni oling\nBarqaror daromadga chiqing",
-        btn:"Batafsil",
-        ai:"Sun'iy intellekt",
+        kicker:"Ko‘nikmadan daromadga",
+        heroTitle:"Digitalga kirish uchun kuchli start nuqtasi",
+        heroText:"Kasbni noldan o‘rganing\nAmaliy portfolio yig‘ing\nBirinchi buyurtmalarga yaqinlashing\nDaromadga olib boradigan skill oling",
+
+        stat1Title:"Format",
+        stat1Value:"Qulay, sodda va amaliy",
+        stat2Title:"Yo‘nalishlar",
+        stat2Value:"SMM, Target, AI",
+        stat3Title:"Maqsad",
+        stat3Value:"Faqat bilim emas, natija",
+        stat4Title:"Auditoriya",
+        stat4Value:"Yoshlar va yangi boshlovchilar",
+
+        aboutTitle:"gaphub nima bu?",
+        aboutText:"Bu shunchaki kurslar to‘plami emas. gaphub bu amaliy skill-platforma, bu yerda maqsad odamni real bozorga yaqinlashtirish.",
+        aboutBtn:"Batafsil",
 
         popular:"Mashhur kurslar",
-        smmDesc:"Ijtimoiy tarmoqlarni o‘rganing va amaliy ko‘nikmalar orqali daromad qilishni boshlang",
-        targetDesc:"Target reklama, auditoriya tahlili va natijali kampaniyalarni o‘rganing",
-        aiDesc:"Sun'iy intellektdan ish, o‘qish va kundalik vazifalarda samarali foydalanishni o‘rganing",
+        smmDesc:"Ijtimoiy tarmoqlarni o‘rganing va amaliy ko‘nikmalar orqali daromad qilishni boshlang.",
+        targetDesc:"Target reklama, auditoriya tahlili va natijali kampaniyalarni o‘rganing.",
+        ai:"Sun'iy intellekt",
+        aiDesc:"Sun'iy intellektdan ish, o‘qish va kundalik vazifalarda samarali foydalanishni o‘rganing.",
+        courseBtn:"Kursni ko‘rish",
+
+        proofTitle:"Nega bu ishonch uyg‘otadi",
+        proofText:"gaphub ichida hamma narsa bir joyga yig‘ilgan: kurslar, profil, yordam, progress va kelajakdagi monetizatsiya yo‘li. Bu “tezda yig‘ilgan sahifa” emas, balki ichki mahsulot logikasiga ega platforma."
     },
 
     ru:{
@@ -802,15 +1174,32 @@ const t = {
         m5:"Отзывы",
         m6:"Профиль",
 
-        title:"Что такое gaphub?",
-        text:"Освой профессию с нуля\nСобери сильное портфолио\nПолучи первые заказы\nВыйди на стабильный доход",
-        btn:"Подробнее",
-        ai:"Искусственный интеллект",
+        kicker:"От навыка к доходу",
+        heroTitle:"Сильная точка входа в digital",
+        heroText:"Освой профессию с нуля\nСобери сильное портфолио\nПриблизься к первым заказам\nПолучи навык, который ведет к доходу",
+
+        stat1Title:"Формат",
+        stat1Value:"Удобно, просто и прикладно",
+        stat2Title:"Направления",
+        stat2Value:"SMM, Target, AI",
+        stat3Title:"Цель",
+        stat3Value:"Не только знания, а результат",
+        stat4Title:"Аудитория",
+        stat4Value:"Молодежь и новички",
+
+        aboutTitle:"Что такое gaphub?",
+        aboutText:"Это не просто набор курсов. gaphub это практическая skill-платформа, где задача не мотивация ради мотивации, а приближение человека к реальному рынку.",
+        aboutBtn:"Подробнее",
 
         popular:"Популярные курсы",
-        smmDesc:"Освой социальные медиа и начни зарабатывать на востребованных навыках",
-        targetDesc:"Обучение таргетированной рекламе, аналитике и запуску рабочих рекламных кампаний",
-        aiDesc:"Научись применять искусственный интеллект в работе, учебе и повседневных задачах",
+        smmDesc:"Освой социальные медиа и начни зарабатывать на востребованных навыках.",
+        targetDesc:"Обучение таргетированной рекламе, аналитике и запуску рабочих рекламных кампаний.",
+        ai:"Искусственный интеллект",
+        aiDesc:"Научись применять искусственный интеллект в работе, учебе и повседневных задачах.",
+        courseBtn:"Посмотреть курс",
+
+        proofTitle:"Почему это вызывает доверие",
+        proofText:"Внутри gaphub все собрано в одной логике: курсы, профиль, поддержка, прогресс и путь к монетизации. Это уже не “быстро собранная страница”, а платформа с понятной внутренней системой."
     }
 }
 
@@ -836,39 +1225,93 @@ function setLang(l){
 function update(){
     const d = t[lang]
 
-    // mobile
-    setText("home-desktop", d.home)
+    // mobile nav
     setText("m1-mobile", d.m1)
     setText("m4-mobile", d.m4)
     setText("m5-mobile", d.m5)
     setText("m6-mobile", d.m6)
-    setText("title-mobile", d.title)
-    setText("text-mobile", d.text)
-    setText("btn-mobile", d.btn)
-    setText("ai-mobile", d.ai)
 
-    // desktop
+    // mobile hero
+    setText("kicker-mobile", d.kicker)
+    setText("heroTitle-mobile", d.heroTitle)
+    setText("heroText-mobile", d.heroText)
+    setText("stat1Title-mobile", d.stat1Title)
+    setText("stat1Value-mobile", d.stat1Value)
+    setText("stat2Title-mobile", d.stat2Title)
+    setText("stat2Value-mobile", d.stat2Value)
+
+    // mobile about/courses
+    setText("aboutTitle-mobile", d.aboutTitle)
+    setText("aboutText-mobile", d.aboutText)
+    setText("aboutBtn-mobile", d.aboutBtn)
+    setText("popularTitle-mobile", d.popular)
+    setText("smmDesc-mobile", d.smmDesc)
+    setText("targetDesc-mobile", d.targetDesc)
+    setText("ai-mobile", d.ai)
+    setText("aiDesc-mobile", d.aiDesc)
+    setText("courseBtn1-mobile", d.courseBtn)
+    setText("courseBtn2-mobile", d.courseBtn)
+    setText("courseBtn3-mobile", d.courseBtn)
+    setText("proofTitle-mobile", d.proofTitle)
+    setText("proofText-mobile", d.proofText)
+
+    // desktop nav
+    setText("home-desktop", d.home)
     setText("m1-desktop", d.m1)
     setText("m4-desktop", d.m4)
     setText("m5-desktop", d.m5)
     setText("m6-desktop", d.m6)
-    setText("title-desktop", d.title)
-    setText("text-desktop", d.text)
-    setText("btn-desktop", d.btn)
+
+    // desktop hero
+    setText("kicker-desktop", d.kicker)
+    setText("heroTitle-desktop", d.heroTitle)
+    setText("heroText-desktop", d.heroText)
+    setText("stat1Title-desktop", d.stat1Title)
+    setText("stat1Value-desktop", d.stat1Value)
+    setText("stat2Title-desktop", d.stat2Title)
+    setText("stat2Value-desktop", d.stat2Value)
+    setText("stat3Title-desktop", d.stat3Title)
+    setText("stat3Value-desktop", d.stat3Value)
+    setText("stat4Title-desktop", d.stat4Title)
+    setText("stat4Value-desktop", d.stat4Value)
+
+    // desktop about/courses
+    setText("aboutTitle-desktop", d.aboutTitle)
+    setText("aboutText-desktop", d.aboutText)
+    setText("aboutBtn-desktop", d.aboutBtn)
+    setText("popularTitle-desktop", d.popular)
+    setText("smmDesc-desktop", d.smmDesc)
+    setText("targetDesc-desktop", d.targetDesc)
     setText("ai-desktop", d.ai)
-    setText("popularTitle", d.popular)
-    setText("smmDesc", d.smmDesc)
-    setText("targetDesc", d.targetDesc)
-    setText("aiDesc", d.aiDesc)
-    setText("courseBtn1", d.btn)
-    setText("courseBtn2", d.btn)
-    setText("courseBtn3", d.btn)
+    setText("aiDesc-desktop", d.aiDesc)
+    setText("courseBtn1-desktop", d.courseBtn)
+    setText("courseBtn2-desktop", d.courseBtn)
+    setText("courseBtn3-desktop", d.courseBtn)
+    setText("proofTitle-desktop", d.proofTitle)
+    setText("proofText-desktop", d.proofText)
 
     setActiveLang("uz-mobile", "ru-mobile")
     setActiveLang("uz-desktop", "ru-desktop")
 }
 
 function openCourse(name){
+    localStorage.setItem("lang", lang)
+
+    if(name === "smm"){
+        window.location.href = "smm.html"
+        return
+    }
+
+    if(name === "target"){
+        window.location.href = "target.html"
+        return
+    }
+
+    if(name === "ai"){
+        window.location.href = "ai.html"
+        return
+    }
+
     alert(name)
 }
 

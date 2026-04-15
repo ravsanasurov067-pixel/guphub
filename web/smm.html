@@ -1,0 +1,1149 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<script src="https://telegram.org/js/telegram-web-app.js"></script>
+<title>gaphub - SMM</title>
+
+<style>
+:root{
+    --accent:#cb6ce6;
+    --text:#ffffff;
+    --muted:#a8a8a8;
+    --bg:#0c0b14;
+    --card:#111111;
+    --card-soft:#17171f;
+    --line:rgba(255,255,255,.08);
+    --shadow:0 10px 35px rgba(0,0,0,.35);
+}
+
+*{
+    box-sizing:border-box;
+    -webkit-tap-highlight-color:transparent;
+}
+
+html, body{
+    margin:0;
+    padding:0;
+    min-height:100%;
+    font-family:Arial, sans-serif;
+    background:#000;
+    color:#fff;
+}
+
+body{
+    position:relative;
+}
+
+img{
+    display:block;
+    max-width:100%;
+}
+
+button{
+    font-family:inherit;
+    cursor:pointer;
+}
+
+.desktop-only{
+    display:none;
+}
+
+.btn-gradient{
+    border:none;
+    color:#fff;
+    background:linear-gradient(90deg,#cb6ce6,#a855f7);
+}
+
+/* =========================
+   MOBILE
+========================= */
+.mobile-shell{
+    display:block;
+}
+
+.mobile-page{
+    padding-bottom:160px;
+}
+
+.mobile-top{
+    padding:calc(env(safe-area-inset-top) + 14px) 16px 0;
+}
+
+.mobile-back{
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+    background:#1a1a1a;
+    color:#fff;
+    border:none;
+    border-radius:12px;
+    padding:10px 14px;
+    font-size:15px;
+    cursor:pointer;
+}
+
+.mobile-back svg{
+    width:16px;
+    height:16px;
+    flex-shrink:0;
+}
+
+.mobile-hero{
+    padding:14px 16px 0;
+    position:relative;
+}
+
+.mobile-hero-card{
+    background:#0f0f13;
+    border-radius:24px;
+    overflow:hidden;
+    box-shadow:var(--shadow);
+    border:1px solid rgba(255,255,255,.05);
+}
+
+.mobile-cover{
+    width:100%;
+    height:210px;
+    object-fit:cover;
+    background:#1a1a1a;
+}
+
+.mobile-hero-content{
+    padding:18px 16px 28px;
+}
+
+.mobile-title{
+    margin:0 0 10px;
+    font-size:34px;
+    font-weight:800;
+    line-height:1;
+}
+
+.mobile-subtitle{
+    margin:0 0 16px;
+    color:var(--muted);
+    font-size:14px;
+    line-height:1.45;
+}
+
+.mobile-stats{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:10px;
+}
+
+.mobile-stat{
+    background:#17171f;
+    border-radius:14px;
+    padding:12px;
+    min-height:68px;
+}
+
+.mobile-stat-label{
+    color:#9a9a9a;
+    font-size:12px;
+    margin-bottom:6px;
+}
+
+.mobile-stat-value{
+    font-size:15px;
+    font-weight:700;
+    line-height:1.3;
+}
+
+.mobile-peek{
+    margin-top:-18px;
+    padding:0 16px;
+    position:relative;
+    z-index:2;
+}
+
+.mobile-section-card{
+    background:#141419;
+    border-radius:22px;
+    padding:18px 14px;
+    border:1px solid rgba(255,255,255,.05);
+    box-shadow:var(--shadow);
+}
+
+.mobile-section{
+    padding:12px 16px 0;
+}
+
+.mobile-section-title{
+    margin:0 0 12px;
+    font-size:22px;
+    font-weight:800;
+    line-height:1.15;
+}
+
+.mobile-accordion{
+    display:flex;
+    flex-direction:column;
+    gap:10px;
+}
+
+.mobile-item{
+    background:#111;
+    border-radius:16px;
+    overflow:hidden;
+    border:1px solid rgba(255,255,255,.04);
+}
+
+.mobile-item-btn{
+    width:100%;
+    background:transparent;
+    border:none;
+    color:#fff;
+    padding:14px;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:12px;
+    text-align:left;
+}
+
+.mobile-item-left{
+    display:flex;
+    align-items:center;
+    gap:12px;
+    flex:1;
+}
+
+.mobile-item-icon{
+    width:38px;
+    height:38px;
+    object-fit:contain;
+    flex-shrink:0;
+    background:#1a1a1a;
+    border-radius:10px;
+    padding:7px;
+}
+
+.mobile-item-title{
+    font-size:15px;
+    font-weight:700;
+    line-height:1.35;
+}
+
+.mobile-arrow{
+    width:10px;
+    height:10px;
+    border-right:2px solid var(--accent);
+    border-bottom:2px solid var(--accent);
+    transform:rotate(45deg);
+    transition:transform .25s ease;
+    flex-shrink:0;
+    margin-right:4px;
+}
+
+.mobile-item.open .mobile-arrow{
+    transform:rotate(225deg);
+}
+
+.mobile-answer-wrap{
+    max-height:0;
+    overflow:hidden;
+    transition:max-height .28s ease;
+}
+
+.mobile-answer{
+    padding:0 14px 14px 62px;
+    color:#d0d0d0;
+    font-size:14px;
+    line-height:1.5;
+}
+
+.mobile-buy-bar{
+    position:fixed;
+    left:0;
+    right:0;
+    bottom:calc(76px + env(safe-area-inset-bottom));
+    padding:0 16px;
+    z-index:60;
+}
+
+.mobile-buy-btn{
+    width:100%;
+    height:56px;
+    border:none;
+    border-radius:18px;
+    font-size:17px;
+    font-weight:700;
+    box-shadow:0 14px 32px rgba(203,108,230,.28);
+}
+
+/* BOTTOM NAV */
+.bottom-nav{
+    position:fixed;
+    left:0;
+    bottom:0;
+    width:100%;
+    background:#000;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:8px 10px;
+    padding-bottom:calc(8px + env(safe-area-inset-bottom));
+    z-index:50;
+}
+
+.nav-item{
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    font-size:12px;
+    color:#fff;
+    width:20%;
+    text-align:center;
+    cursor:pointer;
+}
+
+.nav-item img{
+    width:27px;
+    margin-bottom:2px;
+}
+
+.nav-item span{
+    white-space:nowrap;
+    overflow:hidden;
+    text-overflow:ellipsis;
+}
+
+.nav-center{
+    position:relative;
+    top:-18px;
+    width:20%;
+    display:flex;
+    justify-content:center;
+}
+
+.circle{
+    width:60px;
+    height:60px;
+    background:#ffffff;
+    border-radius:50%;
+    border:4px solid var(--accent);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+}
+
+.circle img{
+    width:24px;
+    height:24px;
+    object-fit:contain;
+}
+
+/* =========================
+   DESKTOP
+========================= */
+@media (min-width:1024px){
+
+    html, body{
+        min-height:100vh;
+        background:
+            radial-gradient(circle at 15% 18%, rgba(203,108,230,.08), transparent 24%),
+            radial-gradient(circle at 85% 28%, rgba(203,108,230,.07), transparent 24%),
+            linear-gradient(180deg, #09080f 0%, #0c0b14 100%);
+        color:var(--text);
+    }
+
+    body{
+        overflow:hidden;
+    }
+
+    .mobile-shell{
+        display:none;
+    }
+
+    .desktop-only{
+        display:block;
+    }
+
+    .desktop-app{
+        min-height:100vh;
+        color:var(--text);
+    }
+
+    .desktop-layout{
+        display:grid;
+        grid-template-columns:280px 1fr;
+        min-height:100vh;
+    }
+
+    .desktop-sidebar{
+        padding:22px 22px;
+        border-right:1px solid rgba(255,255,255,.05);
+        background:linear-gradient(180deg, rgba(14,13,23,.70) 0%, rgba(12,11,20,.40) 100%);
+    }
+
+    .desktop-brand{
+        font-size:34px;
+        font-weight:800;
+        line-height:1;
+        margin:8px 0 56px;
+    }
+
+    .desktop-nav{
+        display:flex;
+        flex-direction:column;
+        gap:10px;
+        margin-top:4px;
+    }
+
+    .desktop-nav-item{
+        display:flex;
+        align-items:center;
+        gap:14px;
+        width:100%;
+        min-height:56px;
+        padding:0 18px;
+        border-radius:16px;
+        color:#f1f1f1;
+        background:transparent;
+        border:1px solid transparent;
+        font-size:16px;
+        font-weight:600;
+        transition:.2s ease;
+        cursor:pointer;
+        text-align:left;
+    }
+
+    .desktop-nav-item img{
+        width:28px;
+        height:28px;
+        object-fit:contain;
+        flex-shrink:0;
+    }
+
+    .desktop-nav-item.active-nav{
+        background:linear-gradient(180deg, rgba(255,255,255,.06) 0%, rgba(255,255,255,.03) 100%);
+        border-color:rgba(255,255,255,.06);
+        box-shadow:var(--shadow);
+    }
+
+    .desktop-main{
+        padding:26px 28px 110px;
+        height:100vh;
+        overflow:auto;
+    }
+
+    .desktop-back{
+        display:inline-flex;
+        align-items:center;
+        gap:14px;
+        font-size:24px;
+        color:#fff;
+        margin-bottom:18px;
+        cursor:pointer;
+        user-select:none;
+    }
+
+    .desktop-back-arrow{
+        font-size:42px;
+        line-height:1;
+        transform:translateY(-1px);
+    }
+
+    .desktop-hero{
+        background:#0f0f13;
+        border-radius:28px;
+        overflow:hidden;
+        border:1px solid rgba(255,255,255,.05);
+        box-shadow:var(--shadow);
+    }
+
+    .desktop-cover{
+        width:100%;
+        height:280px;
+        object-fit:cover;
+        background:#1a1a1a;
+    }
+
+    .desktop-hero-content{
+        padding:24px 26px 34px;
+    }
+
+    .desktop-title{
+        margin:0 0 10px;
+        font-size:56px;
+        line-height:1;
+        font-weight:800;
+    }
+
+    .desktop-subtitle{
+        margin:0 0 18px;
+        max-width:900px;
+        color:var(--muted);
+        font-size:19px;
+        line-height:1.45;
+    }
+
+    .desktop-stats{
+        display:grid;
+        grid-template-columns:repeat(4, minmax(0,1fr));
+        gap:12px;
+    }
+
+    .desktop-stat{
+        background:#17171f;
+        border-radius:16px;
+        padding:14px 16px;
+        min-height:84px;
+    }
+
+    .desktop-stat-label{
+        color:#9a9a9a;
+        font-size:13px;
+        margin-bottom:8px;
+    }
+
+    .desktop-stat-value{
+        font-size:17px;
+        font-weight:700;
+        line-height:1.35;
+    }
+
+    .desktop-peek{
+        margin-top:-22px;
+        padding:0 14px;
+        position:relative;
+        z-index:2;
+    }
+
+    .desktop-section-card{
+        background:#141419;
+        border-radius:24px;
+        padding:22px 18px;
+        border:1px solid rgba(255,255,255,.05);
+        box-shadow:var(--shadow);
+    }
+
+    .desktop-section{
+        padding-top:16px;
+    }
+
+    .desktop-section-title{
+        margin:0 0 14px;
+        font-size:30px;
+        line-height:1.1;
+        font-weight:800;
+    }
+
+    .desktop-accordion{
+        display:flex;
+        flex-direction:column;
+        gap:12px;
+    }
+
+    .desktop-item{
+        background:#111;
+        border-radius:18px;
+        overflow:hidden;
+        border:1px solid rgba(255,255,255,.04);
+    }
+
+    .desktop-item-btn{
+        width:100%;
+        background:transparent;
+        border:none;
+        color:#fff;
+        padding:18px 20px;
+        display:flex;
+        align-items:center;
+        justify-content:space-between;
+        gap:16px;
+        text-align:left;
+    }
+
+    .desktop-item-left{
+        display:flex;
+        align-items:center;
+        gap:14px;
+        flex:1;
+    }
+
+    .desktop-item-icon{
+        width:46px;
+        height:46px;
+        object-fit:contain;
+        flex-shrink:0;
+        background:#1a1a1a;
+        border-radius:12px;
+        padding:8px;
+    }
+
+    .desktop-item-title{
+        font-size:20px;
+        font-weight:700;
+        line-height:1.35;
+    }
+
+    .desktop-arrow{
+        width:12px;
+        height:12px;
+        border-right:3px solid var(--accent);
+        border-bottom:3px solid var(--accent);
+        transform:rotate(45deg);
+        transition:transform .25s ease;
+        flex-shrink:0;
+        margin-right:4px;
+    }
+
+    .desktop-item.open .desktop-arrow{
+        transform:rotate(225deg);
+    }
+
+    .desktop-answer-wrap{
+        max-height:0;
+        overflow:hidden;
+        transition:max-height .28s ease;
+    }
+
+    .desktop-answer{
+        padding:0 20px 20px 80px;
+        color:#d0d0d0;
+        font-size:17px;
+        line-height:1.55;
+    }
+
+    .desktop-buy-bar{
+        position:fixed;
+        right:28px;
+        bottom:28px;
+        left:calc(280px + 28px);
+        display:flex;
+        justify-content:center;
+        pointer-events:none;
+        z-index:70;
+    }
+
+    .desktop-buy-btn{
+        width:100%;
+        max-width:520px;
+        height:62px;
+        border:none;
+        border-radius:18px;
+        font-size:21px;
+        font-weight:700;
+        box-shadow:0 14px 32px rgba(203,108,230,.28);
+        pointer-events:auto;
+    }
+}
+
+@media (min-width:1024px) and (max-width:1400px){
+    .desktop-layout{
+        grid-template-columns:260px 1fr;
+    }
+
+    .desktop-main{
+        padding:22px 22px 100px;
+    }
+
+    .desktop-title{
+        font-size:44px;
+    }
+
+    .desktop-cover{
+        height:230px;
+    }
+
+    .desktop-subtitle{
+        font-size:17px;
+    }
+
+    .desktop-stats{
+        grid-template-columns:repeat(2, minmax(0,1fr));
+    }
+
+    .desktop-section-title{
+        font-size:25px;
+    }
+
+    .desktop-item-title{
+        font-size:17px;
+    }
+
+    .desktop-answer{
+        font-size:15px;
+        padding:0 18px 18px 72px;
+    }
+
+    .desktop-buy-bar{
+        left:calc(260px + 22px);
+        right:22px;
+        bottom:22px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<!-- =========================
+     MOBILE VERSION
+========================= -->
+<div class="mobile-shell">
+    <div class="mobile-page">
+
+        <div class="mobile-top">
+            <button class="mobile-back" onclick="goBack()">
+                <svg viewBox="0 0 24 24" fill="none">
+                    <path d="M15 5L8 12L15 19" stroke="white" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+                <span id="back-mobile"></span>
+            </button>
+        </div>
+
+        <section class="mobile-hero">
+            <div class="mobile-hero-card">
+                <img class="mobile-cover" src="images/smm-main-mobile.png" alt="SMM cover">
+
+                <div class="mobile-hero-content">
+                    <h1 class="mobile-title" id="title-mobile"></h1>
+                    <p class="mobile-subtitle" id="subtitle-mobile"></p>
+
+                    <div class="mobile-stats">
+                        <div class="mobile-stat">
+                            <div class="mobile-stat-label" id="stat1Label-mobile"></div>
+                            <div class="mobile-stat-value" id="stat1Value-mobile"></div>
+                        </div>
+
+                        <div class="mobile-stat">
+                            <div class="mobile-stat-label" id="stat2Label-mobile"></div>
+                            <div class="mobile-stat-value" id="stat2Value-mobile"></div>
+                        </div>
+
+                        <div class="mobile-stat">
+                            <div class="mobile-stat-label" id="stat3Label-mobile"></div>
+                            <div class="mobile-stat-value" id="stat3Value-mobile"></div>
+                        </div>
+
+                        <div class="mobile-stat">
+                            <div class="mobile-stat-label" id="stat4Label-mobile"></div>
+                            <div class="mobile-stat-value" id="stat4Value-mobile"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <div class="mobile-peek">
+            <div class="mobile-section-card">
+                <h2 class="mobile-section-title" id="fitTitle-mobile"></h2>
+                <div class="mobile-accordion" id="fitList-mobile"></div>
+            </div>
+        </div>
+
+        <section class="mobile-section">
+            <div class="mobile-section-card">
+                <h2 class="mobile-section-title" id="resultTitle-mobile"></h2>
+                <div class="mobile-accordion" id="resultList-mobile"></div>
+            </div>
+        </section>
+    </div>
+
+    <div class="mobile-buy-bar">
+        <button class="btn-gradient mobile-buy-btn" id="buyBtn-mobile"></button>
+    </div>
+
+    <div class="bottom-nav">
+        <div class="nav-item" onclick="goPage('mycourses.html')">
+            <img src="images/courses2.png" alt="">
+            <span id="m1-mobile"></span>
+        </div>
+
+        <div class="nav-item" onclick="goPage('support.html')">
+            <img src="images/support.png" alt="">
+            <span id="m4-mobile"></span>
+        </div>
+
+        <div class="nav-center" onclick="goHome()">
+            <div class="circle">
+                <img src="images/home2.png" alt="home">
+            </div>
+        </div>
+
+        <div class="nav-item" onclick="goPage('chat.html')">
+            <img src="images/chat2.png" alt="">
+            <span id="m5-mobile"></span>
+        </div>
+
+        <div class="nav-item" onclick="goPage('myprofile.html')">
+            <img src="images/profile2.png" alt="">
+            <span id="m6-mobile"></span>
+        </div>
+    </div>
+</div>
+
+<!-- =========================
+     DESKTOP VERSION
+========================= -->
+<div class="desktop-app desktop-only">
+    <div class="desktop-layout">
+
+        <aside class="desktop-sidebar">
+            <div class="desktop-brand">gaphub</div>
+
+            <nav class="desktop-nav">
+                <button class="desktop-nav-item" onclick="goHome()">
+                    <img src="images/home.png" alt="">
+                    <span id="home-desktop"></span>
+                </button>
+
+                <button class="desktop-nav-item" onclick="goPage('mycourses.html')">
+                    <img src="images/courses2.png" alt="">
+                    <span id="m1-desktop"></span>
+                </button>
+
+                <button class="desktop-nav-item" onclick="goPage('support.html')">
+                    <img src="images/support.png" alt="">
+                    <span id="m4-desktop"></span>
+                </button>
+
+                <button class="desktop-nav-item" onclick="goPage('chat.html')">
+                    <img src="images/chat2.png" alt="">
+                    <span id="m5-desktop"></span>
+                </button>
+
+                <button class="desktop-nav-item" onclick="goPage('myprofile.html')">
+                    <img src="images/profile2.png" alt="">
+                    <span id="m6-desktop"></span>
+                </button>
+            </nav>
+        </aside>
+
+        <main class="desktop-main">
+            <div class="desktop-back" onclick="goBack()">
+                <span class="desktop-back-arrow">←</span>
+                <span id="back-desktop"></span>
+            </div>
+
+            <section class="desktop-hero">
+                <img class="desktop-cover" src="images/smm-main-desktop.png" alt="SMM cover">
+
+                <div class="desktop-hero-content">
+                    <h1 class="desktop-title" id="title-desktop"></h1>
+                    <p class="desktop-subtitle" id="subtitle-desktop"></p>
+
+                    <div class="desktop-stats">
+                        <div class="desktop-stat">
+                            <div class="desktop-stat-label" id="stat1Label-desktop"></div>
+                            <div class="desktop-stat-value" id="stat1Value-desktop"></div>
+                        </div>
+
+                        <div class="desktop-stat">
+                            <div class="desktop-stat-label" id="stat2Label-desktop"></div>
+                            <div class="desktop-stat-value" id="stat2Value-desktop"></div>
+                        </div>
+
+                        <div class="desktop-stat">
+                            <div class="desktop-stat-label" id="stat3Label-desktop"></div>
+                            <div class="desktop-stat-value" id="stat3Value-desktop"></div>
+                        </div>
+
+                        <div class="desktop-stat">
+                            <div class="desktop-stat-label" id="stat4Label-desktop"></div>
+                            <div class="desktop-stat-value" id="stat4Value-desktop"></div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <div class="desktop-peek">
+                <div class="desktop-section-card">
+                    <h2 class="desktop-section-title" id="fitTitle-desktop"></h2>
+                    <div class="desktop-accordion" id="fitList-desktop"></div>
+                </div>
+            </div>
+
+            <section class="desktop-section">
+                <div class="desktop-section-card">
+                    <h2 class="desktop-section-title" id="resultTitle-desktop"></h2>
+                    <div class="desktop-accordion" id="resultList-desktop"></div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <div class="desktop-buy-bar">
+        <button class="btn-gradient desktop-buy-btn" id="buyBtn-desktop"></button>
+    </div>
+</div>
+
+<script>
+let lang = localStorage.getItem("lang") || "uz";
+
+const t = {
+    uz:{
+        home:"Bosh sahifa",
+        back:"Orqaga",
+        m1:"Kurslarim",
+        m4:"Aloqa",
+        m5:"Sharhlar",
+        m6:"Profil",
+
+        title:"SMM kursi",
+        subtitle:"Ijtimoiy tarmoqlarda ishlashni noldan o‘rganing. Kontent, vizual, post yozish, sahifa yuritish va mijoz bilan ishlashning asosiy ko‘nikmalarini bosqichma-bosqich oling.",
+
+        stat1Label:"Davomiyligi",
+        stat1Value:"1 oy",
+        stat2Label:"Darslar",
+        stat2Value:"12 ta dars",
+        stat3Label:"Videolar",
+        stat3Value:"20 ta video",
+        stat4Label:"Materiallar",
+        stat4Value:"30 ta prezentatsiya",
+
+        fitTitle:"Bu kurs kimlar uchun",
+        resultTitle:"Kursdan keyin nima olaman",
+        buyBtn:"Kursni sotib olish",
+
+        fit:[
+            {
+                title:"Boshlovchilar uchun",
+                text:"Agar SMM sohasiga endi kirayotgan bo‘lsangiz, bu kurs sizga bazani to‘g‘ri tushunishga yordam beradi. Hammasi sodda va bosqichma-bosqich beriladi."
+            },
+            {
+                title:"Qo‘shimcha daromad izlayotganlar uchun",
+                text:"Agar siz o‘qish yoki asosiy ish bilan birga qo‘shimcha daromad qilmoqchi bo‘lsangiz, SMM xizmatlarini o‘rganib mijozlar bilan ishlashni boshlashingiz mumkin."
+            },
+            {
+                title:"Sahifasini o‘zi yuritmoqchi bo‘lganlar uchun",
+                text:"O‘z biznesi, blogi yoki loyihasi uchun kontentni mustaqil va tartibli qilishni xohlaganlar ham bu kursdan foyda oladi."
+            }
+        ],
+
+        results:[
+            {
+                title:"SMM bo‘yicha aniq baza",
+                text:"Kontent, rubrika, post tuzilishi, vizual va sahifa yuritishning asosiy tamoyillarini tushunib olasiz."
+            },
+            {
+                title:"Portfolio uchun ishlar",
+                text:"Kurs davomida bajarilgan amaliy topshiriqlar keyinchalik portfolio sifatida ishlatilishi mumkin."
+            },
+            {
+                title:"Mijoz bilan ishlash tushunchasi",
+                text:"Brief olish, vazifa tushunish, kontent reja qilish va natijani taqdim etish bo‘yicha bazaviy ko‘nikma paydo bo‘ladi."
+            },
+            {
+                title:"Birinchi buyurtmalarga tayyorgarlik",
+                text:"Kursdan keyin siz xizmatni qanday ko‘rsatish, nimadan boshlash va qayerdan birinchi mijozlarni izlashni yaxshiroq tushunasiz."
+            }
+        ]
+    },
+
+    ru:{
+        home:"Главное меню",
+        back:"Назад",
+        m1:"Мои курсы",
+        m4:"Поддержка",
+        m5:"Отзывы",
+        m6:"Профиль",
+
+        title:"Курс SMM",
+        subtitle:"Освой работу с социальными сетями с нуля. Контент, визуал, тексты, ведение страницы и базовую логику работы с клиентом ты пройдешь по шагам.",
+
+        stat1Label:"Длительность",
+        stat1Value:"1 месяц",
+        stat2Label:"Уроки",
+        stat2Value:"12 уроков",
+        stat3Label:"Видео",
+        stat3Value:"20 видео",
+        stat4Label:"Материалы",
+        stat4Value:"30 презентаций",
+
+        fitTitle:"Кому подойдет этот курс",
+        resultTitle:"Что я получу после курса",
+        buyBtn:"Купить курс",
+
+        fit:[
+            {
+                title:"Новичкам",
+                text:"Если ты только заходишь в сферу SMM, курс поможет разобраться в базе без перегруза и хаоса. Все построено поэтапно и понятно."
+            },
+            {
+                title:"Тем, кто хочет доп. доход",
+                text:"Если ты хочешь совмещать учебу или основную работу с подработкой, SMM может стать понятной точкой входа для первых заказов."
+            },
+            {
+                title:"Тем, кто хочет вести свой проект сам",
+                text:"Если у тебя свой блог, бизнес или личный проект, курс поможет самому выстроить контент и вести страницу более профессионально."
+            }
+        ],
+
+        results:[
+            {
+                title:"Понятная база по SMM",
+                text:"Ты разберешься в контенте, рубриках, структуре постов, визуале и базовой системе ведения страницы."
+            },
+            {
+                title:"Работы для портфолио",
+                text:"Практические задания из курса можно использовать как основу для своего первого портфолио."
+            },
+            {
+                title:"Понимание работы с клиентом",
+                text:"Появится базовое понимание, как брать задачу, работать с запросом клиента, оформлять контент и показывать результат."
+            },
+            {
+                title:"Готовность к первым заказам",
+                text:"После курса ты будешь лучше понимать, как начать оказывать услугу, с чего стартовать и где искать первых клиентов."
+            }
+        ]
+    }
+};
+
+function setText(id, value){
+    const el = document.getElementById(id);
+    if(el) el.innerText = value;
+}
+
+function renderAccordion(listId, items, type){
+    const list = document.getElementById(listId);
+    if(!list) return;
+
+    list.innerHTML = items.map(item => `
+        <div class="${type}-item">
+            <button class="${type}-item-btn" onclick="toggleAccordion(this, '${type}')">
+                <div class="${type}-item-left">
+                    <img class="${type}-item-icon" src="images/placeholder-icon.png" alt="">
+                    <div class="${type}-item-title">${item.title}</div>
+                </div>
+                <span class="${type}-arrow"></span>
+            </button>
+            <div class="${type}-answer-wrap">
+                <div class="${type}-answer">${item.text}</div>
+            </div>
+        </div>
+    `).join("");
+}
+
+function toggleAccordion(button, type){
+    const item = button.parentElement;
+    const wrap = item.querySelector(`.${type}-answer-wrap`);
+    const isOpen = item.classList.contains("open");
+
+    document.querySelectorAll(`.${type}-item`).forEach(el => {
+        el.classList.remove("open");
+        const target = el.querySelector(`.${type}-answer-wrap`);
+        if(target) target.style.maxHeight = null;
+    });
+
+    if(!isOpen){
+        item.classList.add("open");
+        wrap.style.maxHeight = wrap.scrollHeight + "px";
+    }
+}
+
+function update(){
+    const d = t[lang];
+
+    document.documentElement.lang = lang === "uz" ? "uz" : "ru";
+
+    // mobile nav/back
+    setText("back-mobile", d.back);
+    setText("m1-mobile", d.m1);
+    setText("m4-mobile", d.m4);
+    setText("m5-mobile", d.m5);
+    setText("m6-mobile", d.m6);
+
+    // mobile content
+    setText("title-mobile", d.title);
+    setText("subtitle-mobile", d.subtitle);
+    setText("stat1Label-mobile", d.stat1Label);
+    setText("stat1Value-mobile", d.stat1Value);
+    setText("stat2Label-mobile", d.stat2Label);
+    setText("stat2Value-mobile", d.stat2Value);
+    setText("stat3Label-mobile", d.stat3Label);
+    setText("stat3Value-mobile", d.stat3Value);
+    setText("stat4Label-mobile", d.stat4Label);
+    setText("stat4Value-mobile", d.stat4Value);
+    setText("fitTitle-mobile", d.fitTitle);
+    setText("resultTitle-mobile", d.resultTitle);
+    setText("buyBtn-mobile", d.buyBtn);
+
+    // desktop nav/back
+    setText("home-desktop", d.home);
+    setText("back-desktop", d.back);
+    setText("m1-desktop", d.m1);
+    setText("m4-desktop", d.m4);
+    setText("m5-desktop", d.m5);
+    setText("m6-desktop", d.m6);
+
+    // desktop content
+    setText("title-desktop", d.title);
+    setText("subtitle-desktop", d.subtitle);
+    setText("stat1Label-desktop", d.stat1Label);
+    setText("stat1Value-desktop", d.stat1Value);
+    setText("stat2Label-desktop", d.stat2Label);
+    setText("stat2Value-desktop", d.stat2Value);
+    setText("stat3Label-desktop", d.stat3Label);
+    setText("stat3Value-desktop", d.stat3Value);
+    setText("stat4Label-desktop", d.stat4Label);
+    setText("stat4Value-desktop", d.stat4Value);
+    setText("fitTitle-desktop", d.fitTitle);
+    setText("resultTitle-desktop", d.resultTitle);
+    setText("buyBtn-desktop", d.buyBtn);
+
+    renderAccordion("fitList-mobile", d.fit, "mobile");
+    renderAccordion("resultList-mobile", d.results, "mobile");
+    renderAccordion("fitList-desktop", d.fit, "desktop");
+    renderAccordion("resultList-desktop", d.results, "desktop");
+}
+
+function goBack(){
+    if (window.history.length > 1) {
+        window.history.back();
+    } else {
+        window.location.href = "index.html";
+    }
+}
+
+function goHome(){
+    localStorage.setItem("lang", lang);
+    window.location.href = "index.html";
+}
+
+function goPage(page){
+    localStorage.setItem("lang", lang);
+    window.location.href = page;
+}
+
+function buyCourse(){
+    alert("buy smm");
+}
+
+function initButtons(){
+    const mobileBtn = document.getElementById("buyBtn-mobile");
+    const desktopBtn = document.getElementById("buyBtn-desktop");
+
+    if(mobileBtn) mobileBtn.onclick = buyCourse;
+    if(desktopBtn) desktopBtn.onclick = buyCourse;
+}
+
+function initTelegram(){
+    if(window.Telegram && Telegram.WebApp){
+        const tg = Telegram.WebApp;
+
+        tg.ready();
+        tg.expand();
+
+        try{
+            tg.requestFullscreen();
+        }catch(e){}
+
+        document.body.style.minHeight = tg.viewportHeight + "px";
+    }
+}
+
+update();
+initButtons();
+initTelegram();
+</script>
+
+</body>
+</html>

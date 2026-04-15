@@ -7,22 +7,20 @@
 <title>gaphub - about</title>
 
 <style>
-/* =========================
-   BASE
-========================= */
 :root{
     --accent:#cb6ce6;
     --text:#ffffff;
-    --muted:#9d93a9;
+    --muted:#a6a0b3;
     --bg:#0c0b14;
-    --panel:#111018;
-    --card:#07070b;
-    --line:rgba(203,108,230,.75);
+    --card:#111117;
+    --card-soft:#17171f;
+    --line:rgba(255,255,255,.08);
     --shadow:0 10px 35px rgba(0,0,0,.35);
 }
 
 *{
     box-sizing:border-box;
+    -webkit-tap-highlight-color:transparent;
 }
 
 html, body{
@@ -48,19 +46,14 @@ button{
     cursor:pointer;
 }
 
-.btn{
-    background:linear-gradient(90deg, #ba5ddd 0%, #cb6ce6 100%);
-    border:none;
-    color:#fff;
-    border-radius:12px;
-}
-
-.btn:active{
-    transform:scale(.99);
-}
-
 .desktop-only{
     display:none;
+}
+
+.btn-gradient{
+    border:none;
+    color:#fff;
+    background:linear-gradient(90deg,#cb6ce6,#a855f7);
 }
 
 /* =========================
@@ -70,95 +63,267 @@ button{
     display:block;
 }
 
-.header{
-    height:140px;
-    padding-top:env(safe-area-inset-top);
-    display:flex;
-    align-items:flex-end;
-    justify-content:space-between;
-    padding:0 16px 12px;
-    background:#000;
+.mobile-page{
+    padding:calc(env(safe-area-inset-top) + 14px) 16px calc(110px + env(safe-area-inset-bottom));
 }
 
-.logo{
-    font-size:32px;
-    font-weight:800;
-    line-height:1;
-}
-
-.wrap{
-    padding:16px;
-    padding-bottom:32px;
-}
-
-.back{
-    color:#ffffff;
-    margin-bottom:15px;
-    cursor:pointer;
-    font-size:18px;
-}
-
-.card{
-    background:#181818;
-    border-radius:14px;
-    padding:20px;
-}
-
-.top{
-    display:flex;
+.mobile-back{
+    display:inline-flex;
     align-items:center;
-    gap:12px;
-    margin-bottom:10px;
+    gap:8px;
+    background:#1a1a1a;
+    color:#fff;
+    border:none;
+    border-radius:12px;
+    padding:10px 14px;
+    font-size:15px;
+    margin-bottom:18px;
 }
 
-.top img{
-    width:120px;
+.mobile-back svg{
+    width:16px;
+    height:16px;
     flex-shrink:0;
 }
 
-.top h2{
+.mobile-hero{
+    position:relative;
+    overflow:hidden;
+    border-radius:28px;
+    background:
+        radial-gradient(circle at 80% 20%, rgba(203,108,230,.18), transparent 28%),
+        linear-gradient(180deg, #15141e 0%, #0d0c14 100%);
+    border:1px solid rgba(255,255,255,.05);
+    padding:24px 18px 22px;
+    box-shadow:var(--shadow);
+}
+
+.mobile-hero-top{
+    display:flex;
+    align-items:flex-start;
+    justify-content:space-between;
+    gap:14px;
+    margin-bottom:18px;
+}
+
+.mobile-kicker{
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+    background:rgba(255,255,255,.06);
+    border:1px solid rgba(255,255,255,.06);
+    border-radius:999px;
+    padding:8px 12px;
+    font-size:12px;
+    color:#e8e3f0;
+    margin-bottom:14px;
+}
+
+.mobile-title{
+    margin:0 0 10px;
+    font-size:36px;
+    line-height:.95;
+    font-weight:800;
+    letter-spacing:-0.8px;
+}
+
+.mobile-desc{
     margin:0;
-    font-size:35px;
-    line-height:1.05;
+    color:var(--muted);
+    font-size:15px;
+    line-height:1.5;
+    max-width:92%;
 }
 
-.desc{
-    color:#aaa;
-    margin-bottom:10px;
-    margin-top:0;
-    font-size:16px;
-    line-height:1.4;
+.mobile-hero-art{
+    width:96px;
+    height:96px;
+    flex-shrink:0;
+    object-fit:contain;
+    border-radius:18px;
+    background:#1a1a1a;
+    padding:10px;
 }
 
-.title{
-    color:#cb6ce6;
-    margin:18px 0 10px;
-    font-size:20px;
+.mobile-quote{
+    margin-top:18px;
+    background:rgba(255,255,255,.04);
+    border-radius:18px;
+    padding:14px;
+    color:#f0ebf8;
+    font-size:14px;
+    line-height:1.5;
+}
+
+.mobile-section{
+    margin-top:14px;
+    background:#121218;
+    border:1px solid rgba(255,255,255,.05);
+    border-radius:22px;
+    padding:18px 14px;
+    box-shadow:var(--shadow);
+}
+
+.mobile-section-title{
+    margin:0 0 12px;
+    font-size:22px;
+    line-height:1.1;
+    font-weight:800;
+}
+
+.mobile-grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:10px;
+}
+
+.mobile-card{
+    background:#181821;
+    border-radius:16px;
+    padding:14px 12px;
+    min-height:112px;
+}
+
+.mobile-card-number{
+    color:var(--accent);
+    font-size:12px;
+    font-weight:700;
+    margin-bottom:8px;
+}
+
+.mobile-card-title{
+    margin:0 0 8px;
+    font-size:15px;
+    line-height:1.25;
     font-weight:700;
 }
 
-.item{
-    display:flex;
-    align-items:center;
-    gap:10px;
-    margin-bottom:14px;
-    font-size:18px;
+.mobile-card-text{
+    margin:0;
+    color:var(--muted);
+    font-size:13px;
+    line-height:1.45;
 }
 
-.item img{
-    width:34px;
-    height:34px;
+.mobile-list{
+    display:flex;
+    flex-direction:column;
+    gap:10px;
+}
+
+.mobile-list-item{
+    display:flex;
+    gap:12px;
+    align-items:flex-start;
+    background:#181821;
+    border-radius:16px;
+    padding:14px;
+}
+
+.mobile-list-icon{
+    width:40px;
+    height:40px;
     object-fit:contain;
     flex-shrink:0;
+    border-radius:12px;
+    background:#22222d;
+    padding:8px;
 }
 
-.btn-mobile{
-    margin-top:18px;
+.mobile-list-title{
+    margin:0 0 4px;
+    font-size:15px;
+    line-height:1.3;
+    font-weight:700;
+}
+
+.mobile-list-text{
+    margin:0;
+    color:var(--muted);
+    font-size:13px;
+    line-height:1.45;
+}
+
+.mobile-wide{
+    background:
+        radial-gradient(circle at 85% 20%, rgba(203,108,230,.10), transparent 26%),
+        linear-gradient(180deg, #121218 0%, #101017 100%);
+}
+
+.mobile-cta-wrap{
+    margin-top:16px;
+}
+
+.mobile-cta{
     width:100%;
-    padding:14px;
-    font-size:18px;
+    height:56px;
     border:none;
-    border-radius:14px;
+    border-radius:18px;
+    font-size:17px;
+    font-weight:700;
+    box-shadow:0 14px 32px rgba(203,108,230,.25);
+}
+
+/* BOTTOM NAV */
+.bottom-nav{
+    position:fixed;
+    left:0;
+    bottom:0;
+    width:100%;
+    background:#000;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:8px 10px;
+    padding-bottom:calc(8px + env(safe-area-inset-bottom));
+    z-index:50;
+}
+
+.nav-item{
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    font-size:12px;
+    color:#fff;
+    width:20%;
+    text-align:center;
+    cursor:pointer;
+}
+
+.nav-item img{
+    width:27px;
+    margin-bottom:2px;
+}
+
+.nav-item span{
+    white-space:nowrap;
+    overflow:hidden;
+    text-overflow:ellipsis;
+}
+
+.nav-center{
+    position:relative;
+    top:-18px;
+    width:20%;
+    display:flex;
+    justify-content:center;
+}
+
+.circle{
+    width:60px;
+    height:60px;
+    background:#ffffff;
+    border-radius:50%;
+    border:4px solid var(--accent);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+}
+
+.circle img{
+    width:24px;
+    height:24px;
+    object-fit:contain;
 }
 
 /* =========================
@@ -193,15 +358,15 @@ button{
     }
 
     .desktop-layout{
-    display:grid;
-    grid-template-columns:280px 1fr;
-    min-height:100vh;
+        display:grid;
+        grid-template-columns:280px 1fr;
+        min-height:100vh;
     }
 
     .desktop-sidebar{
-    padding:22px 22px;
-    border-right:1px solid rgba(255,255,255,.05);
-    background:linear-gradient(180deg, rgba(14,13,23,.70) 0%, rgba(12,11,20,.40) 100%);
+        padding:22px 22px;
+        border-right:1px solid rgba(255,255,255,.05);
+        background:linear-gradient(180deg, rgba(14,13,23,.70) 0%, rgba(12,11,20,.40) 100%);
     }
 
     .desktop-brand{
@@ -212,45 +377,47 @@ button{
     }
 
     .desktop-nav{
-    display:flex;
-    flex-direction:column;
-    gap:10px;
-    margin-top:4px;
+        display:flex;
+        flex-direction:column;
+        gap:10px;
+        margin-top:4px;
     }
 
     .desktop-nav-item{
-    display:flex;
-    align-items:center;
-    gap:14px;
-    width:100%;
-    min-height:56px;
-    padding:0 18px;
-    border-radius:16px;
-    color:#f1f1f1;
-    background:transparent;
-    border:1px solid transparent;
-    font-size:16px;
-    font-weight:600;
-    transition:.2s ease;
-    cursor:pointer;
-    text-align:left;
+        display:flex;
+        align-items:center;
+        gap:14px;
+        width:100%;
+        min-height:56px;
+        padding:0 18px;
+        border-radius:16px;
+        color:#f1f1f1;
+        background:transparent;
+        border:1px solid transparent;
+        font-size:16px;
+        font-weight:600;
+        transition:.2s ease;
+        cursor:pointer;
+        text-align:left;
     }
 
     .desktop-nav-item img{
-    width:28px;
-    height:28px;
-    object-fit:contain;
-    flex-shrink:0;
+        width:28px;
+        height:28px;
+        object-fit:contain;
+        flex-shrink:0;
     }
 
     .desktop-nav-item.active-nav{
-    background:linear-gradient(180deg, rgba(255,255,255,.06) 0%, rgba(255,255,255,.03) 100%);
-    border-color:rgba(255,255,255,.06);
-    box-shadow:var(--shadow);
+        background:linear-gradient(180deg, rgba(255,255,255,.06) 0%, rgba(255,255,255,.03) 100%);
+        border-color:rgba(255,255,255,.06);
+        box-shadow:var(--shadow);
     }
 
     .desktop-main{
-        padding:42px 46px;
+        padding:26px 28px 40px;
+        height:100vh;
+        overflow:auto;
     }
 
     .desktop-back{
@@ -259,7 +426,7 @@ button{
         gap:14px;
         font-size:24px;
         color:#fff;
-        margin-bottom:22px;
+        margin-bottom:18px;
         cursor:pointer;
         user-select:none;
     }
@@ -270,157 +437,239 @@ button{
         transform:translateY(-1px);
     }
 
-    .desktop-card{
-        border:2px solid var(--line);
-        border-radius:28px;
-        padding:12px;
-        background:rgba(255,255,255,.015);
-        box-shadow:0 10px 40px rgba(0,0,0,.24);
+    .desktop-hero{
+        position:relative;
+        overflow:hidden;
+        border-radius:32px;
+        background:
+            radial-gradient(circle at 82% 18%, rgba(203,108,230,.20), transparent 24%),
+            radial-gradient(circle at 15% 85%, rgba(203,108,230,.08), transparent 26%),
+            linear-gradient(180deg, #15141e 0%, #0d0c14 100%);
+        border:1px solid rgba(255,255,255,.05);
+        box-shadow:var(--shadow);
+        padding:34px 32px 30px;
     }
 
-    .desktop-card-inner{
-    min-height:auto;
-    border-radius:22px;
-    background:
-        radial-gradient(circle at 80% 40%, rgba(203,108,230,.06), transparent 28%),
-        linear-gradient(180deg, rgba(7,7,11,.98) 0%, rgba(8,8,13,.96) 100%);
-    padding:38px 42px 24px;
-    display:flex;
-    flex-direction:column;
-    justify-content:space-between;
-    }
-
-    .desktop-top{
+    .desktop-hero-top{
         display:grid;
-        grid-template-columns:360px 1fr;
-        gap:44px;
-        align-items:start;
+        grid-template-columns:1.1fr .9fr;
+        gap:24px;
+        align-items:center;
     }
 
-    .desktop-top-left{
-        display:flex;
-        justify-content:center;
-        align-items:flex-start;
-        padding-top:8px;
+    .desktop-kicker{
+        display:inline-flex;
+        align-items:center;
+        gap:8px;
+        background:rgba(255,255,255,.06);
+        border:1px solid rgba(255,255,255,.06);
+        border-radius:999px;
+        padding:10px 14px;
+        font-size:13px;
+        color:#e8e3f0;
+        margin-bottom:18px;
     }
 
-    .desktop-top-left img{
-        width:300px;
-        max-width:100%;
-    }
-
-    .desktop-top-right h1{
-        margin:0;
-        font-size:86px;
-        line-height:.96;
-        letter-spacing:-1.5px;
+    .desktop-title{
+        margin:0 0 12px;
+        font-size:72px;
+        line-height:.94;
         font-weight:800;
+        letter-spacing:-1.2px;
+        max-width:760px;
     }
 
     .desktop-desc{
-        margin:24px 0 0;
+        margin:0;
         color:var(--muted);
-        font-size:28px;
-        line-height:1.35;
+        font-size:21px;
+        line-height:1.5;
+        max-width:760px;
     }
 
-    .desktop-bottom{
-    margin-top:12px;
-    display:grid;
-    grid-template-columns:1fr 1fr;
-    gap:72px;
-    align-items:start;
+    .desktop-art-wrap{
+        display:flex;
+        justify-content:flex-end;
+        align-items:center;
     }
 
-    .desktop-block-title{
-    margin:0 0 16px;
-    color:var(--accent);
-    font-size:24px;
-    font-weight:700;
+    .desktop-art{
+        width:260px;
+        height:260px;
+        object-fit:contain;
+        border-radius:28px;
+        background:#1a1a1a;
+        padding:18px;
     }
 
-    .desktop-item{
-    display:flex;
-    align-items:center;
-    gap:14px;
-    margin-bottom:14px;
-    font-size:22px;
-    color:#fff;
+    .desktop-quote{
+        margin-top:24px;
+        background:rgba(255,255,255,.04);
+        border-radius:22px;
+        padding:18px 20px;
+        color:#f0ebf8;
+        font-size:18px;
+        line-height:1.55;
+        max-width:920px;
     }
 
-    .desktop-item img{
-    width:42px;
-    height:42px;
-    object-fit:contain;
-    flex-shrink:0;
+    .desktop-grid-section{
+        margin-top:16px;
+        display:grid;
+        grid-template-columns:repeat(3, minmax(0,1fr));
+        gap:14px;
     }
 
-    .desktop-btn-wrap{
-    margin-top:14px;
+    .desktop-grid-card{
+        background:#141419;
+        border:1px solid rgba(255,255,255,.05);
+        border-radius:24px;
+        padding:20px 18px;
+        box-shadow:var(--shadow);
+        min-height:210px;
     }
 
-    .desktop-btn{
-    width:100%;
-    height:60px;
-    border-radius:18px;
-    font-size:22px;
-    font-weight:500;
-    border:none;
+    .desktop-grid-number{
+        color:var(--accent);
+        font-size:13px;
+        font-weight:700;
+        margin-bottom:10px;
+    }
+
+    .desktop-grid-title{
+        margin:0 0 10px;
+        font-size:22px;
+        line-height:1.2;
+        font-weight:800;
+    }
+
+    .desktop-grid-text{
+        margin:0;
+        color:var(--muted);
+        font-size:16px;
+        line-height:1.55;
+    }
+
+    .desktop-wide-section{
+        margin-top:16px;
+        background:
+            radial-gradient(circle at 85% 18%, rgba(203,108,230,.10), transparent 22%),
+            linear-gradient(180deg, #121218 0%, #101017 100%);
+        border:1px solid rgba(255,255,255,.05);
+        border-radius:28px;
+        padding:24px 22px 22px;
+        box-shadow:var(--shadow);
+    }
+
+    .desktop-section-title{
+        margin:0 0 14px;
+        font-size:34px;
+        line-height:1.05;
+        font-weight:800;
+    }
+
+    .desktop-list{
+        display:grid;
+        grid-template-columns:1fr 1fr;
+        gap:14px;
+    }
+
+    .desktop-list-item{
+        display:flex;
+        gap:14px;
+        align-items:flex-start;
+        background:#181821;
+        border-radius:20px;
+        padding:18px;
+        min-height:142px;
+    }
+
+    .desktop-list-icon{
+        width:50px;
+        height:50px;
+        object-fit:contain;
+        flex-shrink:0;
+        border-radius:14px;
+        background:#22222d;
+        padding:10px;
+    }
+
+    .desktop-list-title{
+        margin:0 0 6px;
+        font-size:18px;
+        line-height:1.3;
+        font-weight:700;
+    }
+
+    .desktop-list-text{
+        margin:0;
+        color:var(--muted);
+        font-size:15px;
+        line-height:1.5;
+    }
+
+    .desktop-cta-wrap{
+        margin-top:18px;
+        display:flex;
+        justify-content:center;
+    }
+
+    .desktop-cta{
+        width:100%;
+        max-width:560px;
+        height:62px;
+        border:none;
+        border-radius:18px;
+        font-size:21px;
+        font-weight:700;
+        box-shadow:0 14px 32px rgba(203,108,230,.25);
     }
 }
 
 @media (min-width:1024px) and (max-width:1400px){
     .desktop-layout{
-    grid-template-columns:260px 1fr;
+        grid-template-columns:260px 1fr;
     }
 
     .desktop-main{
-        padding:30px 28px;
+        padding:22px 22px 34px;
     }
 
-    .desktop-card-inner{
-        padding:40px 38px 30px;
+    .desktop-hero{
+        padding:26px 22px 22px;
     }
 
-    .desktop-top{
-        grid-template-columns:280px 1fr;
-        gap:28px;
-    }
-
-    .desktop-top-left img{
-        width:230px;
-    }
-
-    .desktop-top-right h1{
-        font-size:62px;
+    .desktop-title{
+        font-size:56px;
     }
 
     .desktop-desc{
-        font-size:22px;
+        font-size:18px;
     }
 
-    .desktop-bottom{
-        gap:50px;
+    .desktop-art{
+        width:210px;
+        height:210px;
     }
 
-    .desktop-block-title{
-        font-size:24px;
+    .desktop-quote{
+        font-size:16px;
     }
 
-    .desktop-item{
-        font-size:22px;
-        gap:16px;
+    .desktop-grid-section{
+        grid-template-columns:1fr;
     }
 
-    .desktop-item img{
-        width:44px;
-        height:44px;
+    .desktop-grid-card{
+        min-height:auto;
     }
 
-    .desktop-btn{
-        height:64px;
-        font-size:24px;
-        border-radius:18px;
+    .desktop-section-title{
+        font-size:28px;
+    }
+
+    .desktop-list{
+        grid-template-columns:1fr;
     }
 }
 </style>
@@ -432,66 +681,136 @@ button{
      MOBILE VERSION
 ========================= -->
 <div class="mobile-shell">
-    <div class="header">
-        <div class="logo">gaphub</div>
+    <div class="mobile-page">
+        <button class="mobile-back" onclick="goBack()">
+            <svg viewBox="0 0 24 24" fill="none">
+                <path d="M15 5L8 12L15 19" stroke="white" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+            <span id="back-mobile"></span>
+        </button>
+
+        <section class="mobile-hero">
+            <div class="mobile-kicker" id="kicker-mobile"></div>
+
+            <div class="mobile-hero-top">
+                <div>
+                    <h1 class="mobile-title" id="title-mobile"></h1>
+                    <p class="mobile-desc" id="desc-mobile"></p>
+                </div>
+
+                <img class="mobile-hero-art" src="images/about-new-mobile.png" alt="about">
+            </div>
+
+            <div class="mobile-quote" id="quote-mobile"></div>
+        </section>
+
+        <section class="mobile-section">
+            <h2 class="mobile-section-title" id="whyTitle-mobile"></h2>
+
+            <div class="mobile-grid">
+                <div class="mobile-card">
+                    <div class="mobile-card-number">01</div>
+                    <h3 class="mobile-card-title" id="why1Title-mobile"></h3>
+                    <p class="mobile-card-text" id="why1Text-mobile"></p>
+                </div>
+
+                <div class="mobile-card">
+                    <div class="mobile-card-number">02</div>
+                    <h3 class="mobile-card-title" id="why2Title-mobile"></h3>
+                    <p class="mobile-card-text" id="why2Text-mobile"></p>
+                </div>
+
+                <div class="mobile-card">
+                    <div class="mobile-card-number">03</div>
+                    <h3 class="mobile-card-title" id="why3Title-mobile"></h3>
+                    <p class="mobile-card-text" id="why3Text-mobile"></p>
+                </div>
+
+                <div class="mobile-card">
+                    <div class="mobile-card-number">04</div>
+                    <h3 class="mobile-card-title" id="why4Title-mobile"></h3>
+                    <p class="mobile-card-text" id="why4Text-mobile"></p>
+                </div>
+            </div>
+        </section>
+
+        <section class="mobile-section mobile-wide">
+            <h2 class="mobile-section-title" id="forWhoTitle-mobile"></h2>
+
+            <div class="mobile-list">
+                <div class="mobile-list-item">
+                    <img class="mobile-list-icon" src="images/about-icon-1.png" alt="">
+                    <div>
+                        <h3 class="mobile-list-title" id="for1Title-mobile"></h3>
+                        <p class="mobile-list-text" id="for1Text-mobile"></p>
+                    </div>
+                </div>
+
+                <div class="mobile-list-item">
+                    <img class="mobile-list-icon" src="images/about-icon-2.png" alt="">
+                    <div>
+                        <h3 class="mobile-list-title" id="for2Title-mobile"></h3>
+                        <p class="mobile-list-text" id="for2Text-mobile"></p>
+                    </div>
+                </div>
+
+                <div class="mobile-list-item">
+                    <img class="mobile-list-icon" src="images/about-icon-3.png" alt="">
+                    <div>
+                        <h3 class="mobile-list-title" id="for3Title-mobile"></h3>
+                        <p class="mobile-list-text" id="for3Text-mobile"></p>
+                    </div>
+                </div>
+
+                <div class="mobile-list-item">
+                    <img class="mobile-list-icon" src="images/about-icon-4.png" alt="">
+                    <div>
+                        <h3 class="mobile-list-title" id="for4Title-mobile"></h3>
+                        <p class="mobile-list-text" id="for4Text-mobile"></p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="mobile-cta-wrap">
+                <button class="btn-gradient mobile-cta" id="btn-mobile"></button>
+            </div>
+        </section>
     </div>
 
-    <div class="wrap">
-        <div class="back" onclick="goBack()" id="back-mobile"></div>
+    <div class="bottom-nav">
+        <div class="nav-item" onclick="goPage('mycourses.html')">
+            <img src="images/courses2.png" alt="">
+            <span id="m1-mobile"></span>
+        </div>
 
-        <div class="card">
-            <div class="top">
-                <img src="images/about2.png" alt="about">
-                <h2 id="title-mobile"></h2>
+        <div class="nav-item" onclick="goPage('support.html')">
+            <img src="images/support.png" alt="">
+            <span id="m4-mobile"></span>
+        </div>
+
+        <div class="nav-center" onclick="goHome()">
+            <div class="circle">
+                <img src="images/home2.png" alt="home">
             </div>
+        </div>
 
-            <p class="desc" id="desc-mobile"></p>
+        <div class="nav-item" onclick="goPage('chat.html')">
+            <img src="images/chat2.png" alt="">
+            <span id="m5-mobile"></span>
+        </div>
 
-            <div class="title" id="block1-mobile"></div>
-
-            <div class="item">
-                <img src="images/skills.png" alt="">
-                <span id="b1_1-mobile"></span>
-            </div>
-
-            <div class="item">
-                <img src="images/support.png" alt="">
-                <span id="b1_2-mobile"></span>
-            </div>
-
-            <div class="item">
-                <img src="images/money2.png" alt="">
-                <span id="b1_3-mobile"></span>
-            </div>
-
-            <div class="title" id="block2-mobile"></div>
-
-            <div class="item">
-                <img src="images/time.png" alt="">
-                <span id="b2_1-mobile"></span>
-            </div>
-
-            <div class="item">
-                <img src="images/brain.png" alt="">
-                <span id="b2_2-mobile"></span>
-            </div>
-
-            <div class="item">
-                <img src="images/rocket.png" alt="">
-                <span id="b2_3-mobile"></span>
-            </div>
-
-            <button class="btn btn-mobile" id="btn-mobile"></button>
+        <div class="nav-item" onclick="goPage('myprofile.html')">
+            <img src="images/profile2.png" alt="">
+            <span id="m6-mobile"></span>
         </div>
     </div>
-    </div>
+</div>
 
 <!-- =========================
      DESKTOP VERSION
 ========================= -->
 <div class="desktop-app desktop-only">
     <div class="desktop-layout">
-
         <aside class="desktop-sidebar">
             <div class="desktop-brand">gaphub</div>
 
@@ -529,68 +848,85 @@ button{
                 <span id="back-desktop"></span>
             </div>
 
-            <section class="desktop-card">
-                <div class="desktop-card-inner">
+            <section class="desktop-hero">
+                <div class="desktop-kicker" id="kicker-desktop"></div>
 
-                    <div class="desktop-top">
-                        <div class="desktop-top-left">
-                            <img src="images/about2.png" alt="about">
-                        </div>
+                <div class="desktop-hero-top">
+                    <div>
+                        <h1 class="desktop-title" id="title-desktop"></h1>
+                        <p class="desktop-desc" id="desc-desktop"></p>
+                    </div>
 
-                        <div class="desktop-top-right">
-                            <h1 id="title-desktop"></h1>
-                            <p class="desktop-desc" id="desc-desktop"></p>
+                    <div class="desktop-art-wrap">
+                        <img class="desktop-art" src="images/about-new-desktop.png" alt="about">
+                    </div>
+                </div>
+
+                <div class="desktop-quote" id="quote-desktop"></div>
+            </section>
+
+            <section class="desktop-grid-section">
+                <article class="desktop-grid-card">
+                    <div class="desktop-grid-number">01</div>
+                    <h3 class="desktop-grid-title" id="why1Title-desktop"></h3>
+                    <p class="desktop-grid-text" id="why1Text-desktop"></p>
+                </article>
+
+                <article class="desktop-grid-card">
+                    <div class="desktop-grid-number">02</div>
+                    <h3 class="desktop-grid-title" id="why2Title-desktop"></h3>
+                    <p class="desktop-grid-text" id="why2Text-desktop"></p>
+                </article>
+
+                <article class="desktop-grid-card">
+                    <div class="desktop-grid-number">03</div>
+                    <h3 class="desktop-grid-title" id="why3Title-desktop"></h3>
+                    <p class="desktop-grid-text" id="why3Text-desktop"></p>
+                </article>
+            </section>
+
+            <section class="desktop-wide-section">
+                <h2 class="desktop-section-title" id="forWhoTitle-desktop"></h2>
+
+                <div class="desktop-list">
+                    <div class="desktop-list-item">
+                        <img class="desktop-list-icon" src="images/about-icon-1.png" alt="">
+                        <div>
+                            <h3 class="desktop-list-title" id="for1Title-desktop"></h3>
+                            <p class="desktop-list-text" id="for1Text-desktop"></p>
                         </div>
                     </div>
 
-                    <div class="desktop-bottom">
-                        <div class="desktop-block">
-                            <h3 class="desktop-block-title" id="block1-desktop"></h3>
-
-                            <div class="desktop-item">
-                                <img src="images/skills.png" alt="">
-                                <span id="b1_1-desktop"></span>
-                            </div>
-
-                            <div class="desktop-item">
-                                <img src="images/support.png" alt="">
-                                <span id="b1_2-desktop"></span>
-                            </div>
-
-                            <div class="desktop-item">
-                                <img src="images/money2.png" alt="">
-                                <span id="b1_3-desktop"></span>
-                            </div>
-                        </div>
-
-                        <div class="desktop-block">
-                            <h3 class="desktop-block-title" id="block2-desktop"></h3>
-
-                            <div class="desktop-item">
-                                <img src="images/time.png" alt="">
-                                <span id="b2_1-desktop"></span>
-                            </div>
-
-                            <div class="desktop-item">
-                                <img src="images/brain.png" alt="">
-                                <span id="b2_2-desktop"></span>
-                            </div>
-
-                            <div class="desktop-item">
-                                <img src="images/rocket.png" alt="">
-                                <span id="b2_3-desktop"></span>
-                            </div>
+                    <div class="desktop-list-item">
+                        <img class="desktop-list-icon" src="images/about-icon-2.png" alt="">
+                        <div>
+                            <h3 class="desktop-list-title" id="for2Title-desktop"></h3>
+                            <p class="desktop-list-text" id="for2Text-desktop"></p>
                         </div>
                     </div>
 
-                    <div class="desktop-btn-wrap">
-                        <button class="btn desktop-btn" id="btn-desktop"></button>
+                    <div class="desktop-list-item">
+                        <img class="desktop-list-icon" src="images/about-icon-3.png" alt="">
+                        <div>
+                            <h3 class="desktop-list-title" id="for3Title-desktop"></h3>
+                            <p class="desktop-list-text" id="for3Text-desktop"></p>
+                        </div>
                     </div>
 
+                    <div class="desktop-list-item">
+                        <img class="desktop-list-icon" src="images/about-icon-4.png" alt="">
+                        <div>
+                            <h3 class="desktop-list-title" id="for4Title-desktop"></h3>
+                            <p class="desktop-list-text" id="for4Text-desktop"></p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="desktop-cta-wrap">
+                    <button class="btn-gradient desktop-cta" id="btn-desktop"></button>
                 </div>
             </section>
         </main>
-
     </div>
 </div>
 
@@ -600,50 +936,74 @@ let lang = localStorage.getItem("lang") || "uz"
 const t = {
     uz:{
         back:"Orqaga",
-        title:"gaphub nima bu?",
-        desc:"Ko'nikmalar va amaliyot platformasi",
-
-        block1:"Sen olasan",
-        b1_1:"Amaliy ko'nikmalar",
-        b1_2:"Qo'llab-quvvatlash",
-        b1_3:"Daromad",
-
-        block2:"Bizning maqsad",
-        b2_1:"Tez o'rgan",
-        b2_2:"Amalda qo'lla",
-        b2_3:"Pul top",
-
-        btn:"Kurs tanlash",
-
         home:"Bosh sahifa",
         m1:"Kurslarim",
         m4:"Aloqa",
         m5:"Sharhlar",
-        m6:"Profil"
+        m6:"Profil",
+
+        kicker:"Platforma haqida",
+        title:"gaphub bu shunchaki kurslar emas",
+        desc:"gaphub bu yoshlar uchun qurilgan amaliy skill-platforma. Bu yerda maqsad motivatsiya sotish emas, balki real ko‘nikma berish, uni amalda qo‘llash va daromadga yaqinlashtirish.",
+        quote:"Biz tez boyish haqidagi ertaklarga ishonmaymiz. Biz shuni qilamiz: odamga bozor kerak qiladigan ko‘nikma beramiz va uni ishlatishni o‘rgatamiz.",
+
+        whyTitle:"Nega aynan gaphub",
+        why1Title:"Sodda va tushunarli",
+        why1Text:"Murakkab terminlar va keraksiz suv o‘rniga, hammasi oddiy tilda va amaliy misollar bilan tushuntiriladi.",
+        why2Title:"Nazariya emas, amaliyot",
+        why2Text:"Maqsad shunchaki tomosha qilish emas. O‘rgangan narsani ishlatish, sinab ko‘rish va natijaga yaqinlashish muhim.",
+        why3Title:"Yoshlar ritmiga mos",
+        why3Text:"O‘qish, ish va kundalik hayot bilan birga olib borish mumkin bo‘lgan formatda qurilgan.",
+        why4Title:"Hamyonbop kirish nuqtasi",
+        why4Text:"Katta o‘quv markazlariga tonnalab pul to‘lamasdan, digital yo‘nalishga kirish uchun qulay format.",
+
+        forWhoTitle:"Bu kimlar uchun",
+        for1Title:"Noldan boshlayotganlar uchun",
+        for1Text:"Agar siz hali yo‘nalishni tanlayotgan bo‘lsangiz va nimadan boshlashni bilmasangiz, gaphub kirish nuqtasi bo‘la oladi.",
+        for2Title:"Qo‘shimcha daromad izlayotganlar uchun",
+        for2Text:"O‘qish yoki asosiy ish bilan birga qo‘shimcha skill olib, keyin uni daromadga aylantirmoqchi bo‘lganlar uchun.",
+        for3Title:"Digitalga kirishni istaganlar uchun",
+        for3Text:"SMM, target, AI va boshqa yo‘nalishlarni tushunib, zamonaviy bozor talab qilayotgan skilllarni olishni istaganlar uchun.",
+        for4Title:"Qimmat kurslardan charchaganlar uchun",
+        for4Text:"Ko‘p va’da berib, kam foyda beradigan kurslar o‘rniga amaliy va sodda platforma izlayotganlar uchun.",
+
+        btn:"Kurslarni ko‘rish"
     },
 
     ru:{
         back:"Назад",
-        title:"Что такое\ngaphub?",
-        desc:"Платформа навыков и практики",
-
-        block1:"Ты получишь",
-        b1_1:"Навыки",
-        b1_2:"Поддержку",
-        b1_3:"Доход",
-
-        block2:"Наша цель",
-        b2_1:"Учись быстро",
-        b2_2:"Применяй",
-        b2_3:"Зарабатывай",
-
-        btn:"Подобрать курс",
-
         home:"Главное меню",
         m1:"Мои курсы",
         m4:"Поддержка",
         m5:"Отзывы",
-        m6:"Профиль"
+        m6:"Профиль",
+
+        kicker:"О платформе",
+        title:"gaphub это не просто курсы",
+        desc:"gaphub это практическая skill-платформа для молодежи. Здесь цель не продавать мотивацию, а давать реальные навыки, помогать применять их на практике и приближать к заработку.",
+        quote:"Мы не верим в сказки про быстрые миллионы. Мы делаем другое: даем человеку навык, который нужен рынку, и учим его использовать.",
+
+        whyTitle:"Почему именно gaphub",
+        why1Title:"Просто и понятно",
+        why1Text:"Без перегруза сложными терминами и без воды. Все объясняется нормальным языком и на понятных примерах.",
+        why2Title:"Не теория ради теории",
+        why2Text:"Задача не просто посмотреть уроки. Важно понять, как применить навык на практике и приблизиться к реальному результату.",
+        why3Title:"Под ритм молодежи",
+        why3Text:"Формат сделан так, чтобы можно было совмещать обучение с учебой, работой и обычной жизнью.",
+        why4Title:"Нормальная точка входа",
+        why4Text:"Без необходимости платить огромные суммы за вход в digital. Платформа дает доступный старт и понятную структуру.",
+
+        forWhoTitle:"Для кого это",
+        for1Title:"Для тех, кто начинает с нуля",
+        for1Text:"Если ты пока только выбираешь направление и не понимаешь, с чего начать, gaphub может стать нормальной точкой входа.",
+        for2Title:"Для тех, кто хочет доп. доход",
+        for2Text:"Если ты хочешь получить полезный навык и со временем превратить его в деньги, платформа под это и строится.",
+        for3Title:"Для тех, кто хочет зайти в digital",
+        for3Text:"SMM, target, AI и другие направления собраны так, чтобы дать современный и понятный старт в digital-сфере.",
+        for4Title:"Для тех, кто устал от дорогих курсов",
+        for4Text:"Если надоели большие обещания, дорогие обучения и мало пользы на выходе, здесь акцент сделан на практике и доступности.",
+
+        btn:"Посмотреть курсы"
     }
 }
 
@@ -652,47 +1012,71 @@ function setText(id, value){
     if(el) el.innerText = value
 }
 
-function goHome(){
-    localStorage.setItem("lang", lang)
-    window.location.href = "index.html"
-}
-
 function update(){
     const d = t[lang]
 
     // mobile
-    setText("back-mobile", "← " + d.back)
-    setText("title-mobile", d.title.replace("\n", " "))
+    setText("back-mobile", d.back)
+    setText("kicker-mobile", d.kicker)
+    setText("title-mobile", d.title)
     setText("desc-mobile", d.desc)
-    setText("block1-mobile", d.block1)
-    setText("b1_1-mobile", d.b1_1)
-    setText("b1_2-mobile", d.b1_2)
-    setText("b1_3-mobile", d.b1_3)
-    setText("block2-mobile", d.block2)
-    setText("b2_1-mobile", d.b2_1)
-    setText("b2_2-mobile", d.b2_2)
-    setText("b2_3-mobile", d.b2_3)
+    setText("quote-mobile", d.quote)
+    setText("whyTitle-mobile", d.whyTitle)
+    setText("why1Title-mobile", d.why1Title)
+    setText("why1Text-mobile", d.why1Text)
+    setText("why2Title-mobile", d.why2Title)
+    setText("why2Text-mobile", d.why2Text)
+    setText("why3Title-mobile", d.why3Title)
+    setText("why3Text-mobile", d.why3Text)
+    setText("why4Title-mobile", d.why4Title)
+    setText("why4Text-mobile", d.why4Text)
+    setText("forWhoTitle-mobile", d.forWhoTitle)
+    setText("for1Title-mobile", d.for1Title)
+    setText("for1Text-mobile", d.for1Text)
+    setText("for2Title-mobile", d.for2Title)
+    setText("for2Text-mobile", d.for2Text)
+    setText("for3Title-mobile", d.for3Title)
+    setText("for3Text-mobile", d.for3Text)
+    setText("for4Title-mobile", d.for4Title)
+    setText("for4Text-mobile", d.for4Text)
     setText("btn-mobile", d.btn)
+    setText("m1-mobile", d.m1)
+    setText("m4-mobile", d.m4)
+    setText("m5-mobile", d.m5)
+    setText("m6-mobile", d.m6)
 
     // desktop
     setText("back-desktop", d.back)
-    setText("title-desktop", d.title)
-    setText("desc-desktop", d.desc)
-    setText("block1-desktop", d.block1)
-    setText("b1_1-desktop", d.b1_1)
-    setText("b1_2-desktop", d.b1_2)
-    setText("b1_3-desktop", d.b1_3)
-    setText("block2-desktop", d.block2)
-    setText("b2_1-desktop", d.b2_1)
-    setText("b2_2-desktop", d.b2_2)
-    setText("b2_3-desktop", d.b2_3)
-    setText("btn-desktop", d.btn)
-
     setText("home-desktop", d.home)
     setText("m1-desktop", d.m1)
     setText("m4-desktop", d.m4)
     setText("m5-desktop", d.m5)
     setText("m6-desktop", d.m6)
+    setText("kicker-desktop", d.kicker)
+    setText("title-desktop", d.title)
+    setText("desc-desktop", d.desc)
+    setText("quote-desktop", d.quote)
+    setText("why1Title-desktop", d.why1Title)
+    setText("why1Text-desktop", d.why1Text)
+    setText("why2Title-desktop", d.why2Title)
+    setText("why2Text-desktop", d.why2Text)
+    setText("why3Title-desktop", d.why3Title)
+    setText("why3Text-desktop", d.why3Text)
+    setText("forWhoTitle-desktop", d.forWhoTitle)
+    setText("for1Title-desktop", d.for1Title)
+    setText("for1Text-desktop", d.for1Text)
+    setText("for2Title-desktop", d.for2Title)
+    setText("for2Text-desktop", d.for2Text)
+    setText("for3Title-desktop", d.for3Title)
+    setText("for3Text-desktop", d.for3Text)
+    setText("for4Title-desktop", d.for4Title)
+    setText("for4Text-desktop", d.for4Text)
+    setText("btn-desktop", d.btn)
+}
+
+function goHome(){
+    localStorage.setItem("lang", lang)
+    window.location.href = "index.html"
 }
 
 function goBack(){
@@ -703,17 +1087,23 @@ function goBack(){
     }
 }
 
-function goBack(){
-    localStorage.setItem("lang", lang)
-    window.location.href = "index.html"
-}
-
 function goPage(page){
     localStorage.setItem("lang", lang)
     window.location.href = page
 }
 
-update()
+function goCourses(){
+    localStorage.setItem("lang", lang)
+    window.location.href = "index.html"
+}
+
+function initButtons(){
+    const mobileBtn = document.getElementById("btn-mobile")
+    const desktopBtn = document.getElementById("btn-desktop")
+
+    if(mobileBtn) mobileBtn.onclick = goCourses
+    if(desktopBtn) desktopBtn.onclick = goCourses
+}
 
 function initTelegram(){
     if(window.Telegram && Telegram.WebApp){
@@ -730,6 +1120,8 @@ function initTelegram(){
     }
 }
 
+update()
+initButtons()
 initTelegram()
 </script>
 

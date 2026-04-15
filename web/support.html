@@ -11,9 +11,10 @@
     --accent:#cb6ce6;
     --text:#ffffff;
     --muted:#aaa;
+    --muted-soft:#9f98aa;
     --bg:#0c0b14;
-    --card:#0b0b0b;
-    --panel:#1a1a1a;
+    --card:#111117;
+    --card-soft:#17171f;
     --line:rgba(255,255,255,.08);
     --shadow:0 10px 35px rgba(0,0,0,.35);
 }
@@ -50,6 +51,12 @@ button{
     display:none;
 }
 
+.btn-gradient{
+    border:none;
+    color:#fff;
+    background:linear-gradient(90deg,#cb6ce6,#a855f7);
+}
+
 /* =========================
    MOBILE
 ========================= */
@@ -57,21 +64,11 @@ button{
     display:block;
 }
 
-.page{
-    padding:calc(env(safe-area-inset-top) + 48px) 16px calc(110px + env(safe-area-inset-bottom));
-    max-width:480px;
-    margin:0 auto;
-    min-height:100vh;
-    display:flex;
-    flex-direction:column;
-    justify-content:center;
+.mobile-page{
+    padding:calc(env(safe-area-inset-top) + 14px) 16px calc(110px + env(safe-area-inset-bottom));
 }
 
-.back-wrap{
-    margin-bottom:18px;
-}
-
-.back-btn{
+.mobile-back{
     display:inline-flex;
     align-items:center;
     gap:8px;
@@ -81,52 +78,166 @@ button{
     border-radius:12px;
     padding:10px 14px;
     font-size:15px;
-    cursor:pointer;
+    margin-bottom:16px;
 }
 
-.back-btn svg{
+.mobile-back svg{
     width:16px;
     height:16px;
     flex-shrink:0;
 }
 
-.hero{
-    margin-bottom:16px;
+.mobile-hero{
+    position:relative;
+    overflow:hidden;
+    border-radius:26px;
+    background:
+        radial-gradient(circle at 85% 15%, rgba(203,108,230,.18), transparent 25%),
+        linear-gradient(180deg, #15141e 0%, #0f0e17 100%);
+    border:1px solid rgba(255,255,255,.05);
+    box-shadow:var(--shadow);
+    padding:20px 16px 18px;
 }
 
-.hero h1{
-    margin:0 0 6px;
-    font-size:32px;
-    line-height:1.05;
+.mobile-kicker{
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+    background:rgba(255,255,255,.06);
+    border:1px solid rgba(255,255,255,.06);
+    border-radius:999px;
+    padding:8px 12px;
+    font-size:12px;
+    color:#ebe4f5;
+    margin-bottom:14px;
+}
+
+.mobile-hero-row{
+    display:flex;
+    align-items:flex-start;
+    justify-content:space-between;
+    gap:14px;
+}
+
+.mobile-hero-art{
+    width:92px;
+    height:92px;
+    object-fit:contain;
+    border-radius:18px;
+    background:#1a1a1a;
+    padding:10px;
+    flex-shrink:0;
+}
+
+.mobile-title{
+    margin:0 0 10px;
+    font-size:34px;
+    line-height:.96;
     font-weight:800;
 }
 
-.hero p{
+.mobile-desc{
     margin:0;
+    color:var(--muted);
     font-size:14px;
-    line-height:1.4;
-    color:#bfbfbf;
+    line-height:1.5;
+    max-width:94%;
 }
 
-.faq-list{
+.mobile-note{
+    margin-top:16px;
+    background:rgba(255,255,255,.04);
+    border-radius:18px;
+    padding:14px;
+    color:#f0ebf8;
+    font-size:14px;
+    line-height:1.5;
+}
+
+.mobile-section{
+    margin-top:14px;
+    background:#121218;
+    border:1px solid rgba(255,255,255,.05);
+    border-radius:22px;
+    padding:16px 14px;
+    box-shadow:var(--shadow);
+}
+
+.mobile-section-title{
+    margin:0 0 12px;
+    font-size:20px;
+    font-weight:800;
+    line-height:1.15;
+}
+
+.mobile-contacts{
     display:flex;
     flex-direction:column;
-    gap:12px;
-    margin-top:18px;
+    gap:10px;
 }
 
-.faq-item{
-    background:#111;
-    border-radius:14px;
+.mobile-contact{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:12px;
+    background:#181821;
+    border-radius:16px;
+    padding:14px;
+}
+
+.mobile-contact-left{
+    display:flex;
+    align-items:center;
+    gap:12px;
+}
+
+.mobile-contact-icon{
+    width:40px;
+    height:40px;
+    object-fit:contain;
+    border-radius:12px;
+    background:#22222d;
+    padding:8px;
+    flex-shrink:0;
+}
+
+.mobile-contact-title{
+    font-size:15px;
+    font-weight:700;
+    line-height:1.3;
+}
+
+.mobile-contact-text{
+    font-size:13px;
+    color:var(--muted-soft);
+    margin-top:2px;
+}
+
+.mobile-contact-arrow{
+    font-size:18px;
+    color:#bfbfbf;
+    line-height:1;
+}
+
+.mobile-faq-list{
+    display:flex;
+    flex-direction:column;
+    gap:10px;
+}
+
+.mobile-faq-item{
+    background:#181821;
+    border-radius:16px;
     overflow:hidden;
 }
 
-.faq-question{
+.mobile-faq-question{
     width:100%;
     background:transparent;
     border:none;
     color:#fff;
-    padding:16px;
+    padding:14px;
     font-size:15px;
     line-height:1.35;
     font-weight:700;
@@ -135,59 +246,52 @@ button{
     justify-content:space-between;
     gap:12px;
     text-align:left;
-    cursor:pointer;
 }
 
-.faq-question-text{
+.mobile-faq-question-text{
     flex:1;
 }
 
-.faq-icon{
+.mobile-faq-icon{
     width:10px;
     height:10px;
     flex-shrink:0;
     border-right:2px solid var(--accent);
     border-bottom:2px solid var(--accent);
     transform:rotate(45deg);
-    transition:transform 0.25s ease;
-    margin-right:2px;
+    transition:transform .25s ease;
+    margin-right:4px;
 }
 
-.faq-item.open .faq-icon{
+.mobile-faq-item.open .mobile-faq-icon{
     transform:rotate(225deg);
 }
 
-.faq-answer-wrap{
+.mobile-faq-answer-wrap{
     max-height:0;
     overflow:hidden;
-    transition:max-height 0.28s ease;
+    transition:max-height .28s ease;
 }
 
-.faq-answer{
-    padding:0 16px 16px;
+.mobile-faq-answer{
+    padding:0 14px 14px;
     font-size:14px;
-    line-height:1.45;
+    line-height:1.5;
     color:#d3d3d3;
 }
 
-.note{
-    text-align:center;
-    color:#bfbfbf;
-    font-size:14px;
-    line-height:1.45;
-    margin:22px 0 14px;
+.mobile-cta-wrap{
+    margin-top:14px;
 }
 
-.support-btn{
-    background:linear-gradient(90deg,#cb6ce6,#a855f7);
-    border:none;
-    color:#fff;
-    padding:14px;
-    border-radius:12px;
+.mobile-cta{
     width:100%;
-    font-size:15px;
+    height:56px;
+    border:none;
+    border-radius:18px;
+    font-size:17px;
     font-weight:700;
-    cursor:pointer;
+    box-shadow:0 14px 32px rgba(203,108,230,.25);
 }
 
 /* BOTTOM NAV */
@@ -341,9 +445,9 @@ button{
     }
 
     .desktop-main{
-    padding:24px 28px;
-    height:100vh;
-    overflow:auto;
+        padding:26px 28px 34px;
+        height:100vh;
+        overflow:auto;
     }
 
     .desktop-back{
@@ -352,7 +456,7 @@ button{
         gap:14px;
         font-size:24px;
         color:#fff;
-        margin-bottom:22px;
+        margin-bottom:18px;
         cursor:pointer;
         user-select:none;
     }
@@ -363,70 +467,181 @@ button{
         transform:translateY(-1px);
     }
 
-    .desktop-card{
-        border:2px solid rgba(203,108,230,.6);
-        border-radius:28px;
-        padding:12px;
-        background:rgba(255,255,255,.015);
-        box-shadow:0 10px 40px rgba(0,0,0,.24);
-    }
-
-    .desktop-card-inner{
-    border-radius:22px;
-    background:
-        radial-gradient(circle at 80% 40%, rgba(203,108,230,.06), transparent 28%),
-        linear-gradient(180deg, rgba(7,7,11,.98) 0%, rgba(8,8,13,.96) 100%);
-    padding:24px 24px 22px;
-    }
-
     .desktop-hero{
-        margin-bottom:16px;
-    }
-
-    .desktop-hero h1{
-        margin:0 0 8px;
-        font-size:46px;
-        line-height:1;
-        font-weight:800;
-    }
-
-    .desktop-hero p{
-        margin:0;
-        color:#bfbfbf;
-        font-size:18px;
-        line-height:1.35;
-    }
-
-    .desktop-faq-list{
-    display:flex;
-    flex-direction:column;
-    gap:12px;
-    margin-top:20px;
-    }
-
-    .desktop-faq-item{
-        background:#17171e;
-        border-radius:22px;
+        position:relative;
         overflow:hidden;
+        border-radius:30px;
+        background:
+            radial-gradient(circle at 82% 18%, rgba(203,108,230,.18), transparent 24%),
+            radial-gradient(circle at 12% 85%, rgba(203,108,230,.08), transparent 24%),
+            linear-gradient(180deg, #15141e 0%, #0f0e17 100%);
+        border:1px solid rgba(255,255,255,.05);
+        box-shadow:var(--shadow);
+        padding:28px 26px 24px;
+    }
+
+    .desktop-kicker{
+        display:inline-flex;
+        align-items:center;
+        gap:8px;
+        background:rgba(255,255,255,.06);
+        border:1px solid rgba(255,255,255,.06);
+        border-radius:999px;
+        padding:10px 14px;
+        font-size:13px;
+        color:#ebe4f5;
+        margin-bottom:18px;
+    }
+
+    .desktop-hero-top{
+        display:grid;
+        grid-template-columns:1.05fr .95fr;
+        gap:26px;
+        align-items:center;
+    }
+
+    .desktop-title{
+        margin:0 0 12px;
+        font-size:64px;
+        line-height:.94;
+        font-weight:800;
+        letter-spacing:-1.2px;
+        max-width:760px;
+    }
+
+    .desktop-desc{
+        margin:0;
+        color:var(--muted);
+        font-size:19px;
+        line-height:1.6;
+        max-width:760px;
+    }
+
+    .desktop-art-wrap{
+        display:flex;
+        justify-content:flex-end;
+        align-items:center;
+    }
+
+    .desktop-art{
+        width:230px;
+        height:230px;
+        object-fit:contain;
+        border-radius:26px;
+        background:#1a1a1a;
+        padding:18px;
+    }
+
+    .desktop-note{
+        margin-top:22px;
+        background:rgba(255,255,255,.04);
+        border-radius:22px;
+        padding:18px 20px;
+        color:#f0ebf8;
+        font-size:18px;
+        line-height:1.55;
+        max-width:920px;
+    }
+
+    .desktop-grid{
+        margin-top:16px;
+        display:grid;
+        grid-template-columns:1fr 1fr;
+        gap:14px;
+    }
+
+    .desktop-contact-card{
+        display:flex;
+        align-items:center;
+        justify-content:space-between;
+        gap:14px;
+        background:#141419;
+        border:1px solid rgba(255,255,255,.05);
+        border-radius:24px;
+        padding:18px;
         box-shadow:var(--shadow);
     }
 
+    .desktop-contact-left{
+        display:flex;
+        align-items:center;
+        gap:14px;
+    }
+
+    .desktop-contact-icon{
+        width:48px;
+        height:48px;
+        object-fit:contain;
+        border-radius:14px;
+        background:#22222d;
+        padding:10px;
+        flex-shrink:0;
+    }
+
+    .desktop-contact-title{
+        font-size:18px;
+        font-weight:700;
+        line-height:1.25;
+    }
+
+    .desktop-contact-text{
+        font-size:14px;
+        color:var(--muted-soft);
+        margin-top:3px;
+    }
+
+    .desktop-contact-arrow{
+        font-size:24px;
+        color:#bfbfbf;
+        line-height:1;
+        flex-shrink:0;
+    }
+
+    .desktop-wide{
+        margin-top:16px;
+        background:
+            radial-gradient(circle at 88% 18%, rgba(203,108,230,.10), transparent 20%),
+            linear-gradient(180deg, #121218 0%, #101017 100%);
+        border:1px solid rgba(255,255,255,.05);
+        border-radius:28px;
+        padding:22px;
+        box-shadow:var(--shadow);
+    }
+
+    .desktop-section-title{
+        margin:0 0 14px;
+        font-size:30px;
+        line-height:1.1;
+        font-weight:800;
+    }
+
+    .desktop-faq-list{
+        display:flex;
+        flex-direction:column;
+        gap:12px;
+    }
+
+    .desktop-faq-item{
+        background:#181821;
+        border-radius:18px;
+        overflow:hidden;
+    }
+
     .desktop-faq-question{
-    width:100%;
-    min-height:74px;
-    background:transparent;
-    border:none;
-    color:#fff;
-    padding:0 24px;
-    font-size:18px;
-    line-height:1.3;
-    font-weight:700;
-    display:flex;
-    align-items:center;
-    justify-content:space-between;
-    gap:14px;
-    text-align:left;
-    cursor:pointer;
+        width:100%;
+        min-height:78px;
+        background:transparent;
+        border:none;
+        color:#fff;
+        padding:0 20px;
+        font-size:18px;
+        line-height:1.3;
+        font-weight:700;
+        display:flex;
+        align-items:center;
+        justify-content:space-between;
+        gap:14px;
+        text-align:left;
     }
 
     .desktop-faq-question-text{
@@ -434,14 +649,14 @@ button{
     }
 
     .desktop-faq-icon{
-        width:16px;
-        height:16px;
+        width:12px;
+        height:12px;
         flex-shrink:0;
-        border-right:4px solid var(--accent);
-        border-bottom:4px solid var(--accent);
+        border-right:3px solid var(--accent);
+        border-bottom:3px solid var(--accent);
         transform:rotate(45deg);
-        transition:transform 0.25s ease;
-        margin-right:8px;
+        transition:transform .25s ease;
+        margin-right:4px;
     }
 
     .desktop-faq-item.open .desktop-faq-icon{
@@ -451,40 +666,31 @@ button{
     .desktop-faq-answer-wrap{
         max-height:0;
         overflow:hidden;
-        transition:max-height 0.28s ease;
+        transition:max-height .28s ease;
     }
 
     .desktop-faq-answer{
-        padding:0 34px 24px;
-        font-size:20px;
+        padding:0 20px 18px;
+        font-size:16px;
         line-height:1.55;
         color:#d3d3d3;
     }
 
-    .desktop-note{
-        text-align:center;
-        color:#bfbfbf;
-        font-size:22px;
-        line-height:1.5;
-        margin:28px 0 24px;
-    }
-
-    .desktop-btn-wrap{
+    .desktop-cta-wrap{
+        margin-top:18px;
         display:flex;
         justify-content:center;
     }
 
-    .desktop-support-btn{
+    .desktop-cta{
         width:100%;
-        max-width:580px;
-        height:72px;
+        max-width:560px;
+        height:62px;
         border:none;
-        border-radius:20px;
-        background:linear-gradient(90deg,#cb6ce6,#a855f7);
-        color:#fff;
-        font-size:24px;
+        border-radius:18px;
+        font-size:21px;
         font-weight:700;
-        cursor:pointer;
+        box-shadow:0 14px 32px rgba(203,108,230,.25);
     }
 }
 
@@ -494,47 +700,32 @@ button{
     }
 
     .desktop-main{
-        padding:28px 28px;
+        padding:22px 22px 28px;
     }
 
-    .desktop-card-inner{
-        padding:26px 24px 24px;
+    .desktop-hero{
+        padding:22px 20px 20px;
     }
 
-    .desktop-hero h1{
-        font-size:48px;
+    .desktop-title{
+        font-size:50px;
     }
 
-    .desktop-hero p{
-        font-size:18px;
+    .desktop-desc{
+        font-size:17px;
     }
 
-    .desktop-faq-list{
-        gap:14px;
-        margin-top:22px;
-    }
-
-    .desktop-faq-question{
-        min-height:78px;
-        padding:0 24px;
-        font-size:20px;
-    }
-
-    .desktop-faq-answer{
-        padding:0 24px 18px;
-        font-size:16px;
+    .desktop-art{
+        width:190px;
+        height:190px;
     }
 
     .desktop-note{
-        font-size:18px;
-        margin:22px 0 18px;
+        font-size:16px;
     }
 
-    .desktop-support-btn{
-        max-width:520px;
-        height:62px;
-        font-size:21px;
-        border-radius:18px;
+    .desktop-grid{
+        grid-template-columns:1fr;
     }
 }
 </style>
@@ -546,27 +737,65 @@ button{
      MOBILE VERSION
 ========================= -->
 <div class="mobile-shell">
-    <div class="page">
+    <div class="mobile-page">
+        <button class="mobile-back" onclick="goBack()">
+            <svg viewBox="0 0 24 24" fill="none">
+                <path d="M15 5L8 12L15 19" stroke="white" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+            <span id="back-mobile"></span>
+        </button>
 
-        <div class="back-wrap">
-            <button class="back-btn" onclick="goBack()">
-                <svg viewBox="0 0 24 24" fill="none">
-                    <path d="M15 5L8 12L15 19" stroke="white" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
-                </svg>
-                <span id="backText-mobile"></span>
-            </button>
-        </div>
+        <section class="mobile-hero">
+            <div class="mobile-kicker" id="kicker-mobile"></div>
 
-        <div class="hero">
-            <h1 id="pageTitle-mobile"></h1>
-            <p id="pageSubtitle-mobile"></p>
-        </div>
+            <div class="mobile-hero-row">
+                <div>
+                    <h1 class="mobile-title" id="title-mobile"></h1>
+                    <p class="mobile-desc" id="desc-mobile"></p>
+                </div>
 
-        <div class="faq-list" id="faqList-mobile"></div>
+                <img class="mobile-hero-art" src="images/support-hero-mobile.png" alt="support">
+            </div>
 
-        <div class="note" id="bottomNote-mobile"></div>
+            <div class="mobile-note" id="note-mobile"></div>
+        </section>
 
-        <button class="support-btn" id="supportBtn-mobile" onclick="openSupport()"></button>
+        <section class="mobile-section">
+            <h2 class="mobile-section-title" id="contactTitle-mobile"></h2>
+
+            <div class="mobile-contacts">
+                <div class="mobile-contact" onclick="openSupport()">
+                    <div class="mobile-contact-left">
+                        <img class="mobile-contact-icon" src="images/support-contact-1.png" alt="">
+                        <div>
+                            <div class="mobile-contact-title" id="contact1Title-mobile"></div>
+                            <div class="mobile-contact-text" id="contact1Text-mobile"></div>
+                        </div>
+                    </div>
+                    <span class="mobile-contact-arrow">›</span>
+                </div>
+
+                <div class="mobile-contact" onclick="openSupport()">
+                    <div class="mobile-contact-left">
+                        <img class="mobile-contact-icon" src="images/support-contact-2.png" alt="">
+                        <div>
+                            <div class="mobile-contact-title" id="contact2Title-mobile"></div>
+                            <div class="mobile-contact-text" id="contact2Text-mobile"></div>
+                        </div>
+                    </div>
+                    <span class="mobile-contact-arrow">›</span>
+                </div>
+            </div>
+        </section>
+
+        <section class="mobile-section">
+            <h2 class="mobile-section-title" id="faqTitle-mobile"></h2>
+            <div class="mobile-faq-list" id="faqList-mobile"></div>
+
+            <div class="mobile-cta-wrap">
+                <button class="btn-gradient mobile-cta" id="supportBtn-mobile"></button>
+            </div>
+        </section>
     </div>
 
     <div class="bottom-nav">
@@ -603,7 +832,6 @@ button{
 ========================= -->
 <div class="desktop-app desktop-only">
     <div class="desktop-layout">
-
         <aside class="desktop-sidebar">
             <div class="desktop-brand">gaphub</div>
 
@@ -638,29 +866,60 @@ button{
         <main class="desktop-main">
             <div class="desktop-back" onclick="goBack()">
                 <span class="desktop-back-arrow">←</span>
-                <span id="backText-desktop"></span>
+                <span id="back-desktop"></span>
             </div>
 
-            <section class="desktop-card">
-                <div class="desktop-card-inner">
+            <section class="desktop-hero">
+                <div class="desktop-kicker" id="kicker-desktop"></div>
 
-                    <div class="desktop-hero">
-                        <h1 id="pageTitle-desktop"></h1>
-                        <p id="pageSubtitle-desktop"></p>
+                <div class="desktop-hero-top">
+                    <div>
+                        <h1 class="desktop-title" id="title-desktop"></h1>
+                        <p class="desktop-desc" id="desc-desktop"></p>
                     </div>
 
-                    <div class="desktop-faq-list" id="faqList-desktop"></div>
-
-                    <div class="desktop-note" id="bottomNote-desktop"></div>
-
-                    <div class="desktop-btn-wrap">
-                        <button class="desktop-support-btn" id="supportBtn-desktop" onclick="openSupport()"></button>
+                    <div class="desktop-art-wrap">
+                        <img class="desktop-art" src="images/support-hero-desktop.png" alt="support">
                     </div>
+                </div>
 
+                <div class="desktop-note" id="note-desktop"></div>
+            </section>
+
+            <section class="desktop-grid">
+                <article class="desktop-contact-card" onclick="openSupport()">
+                    <div class="desktop-contact-left">
+                        <img class="desktop-contact-icon" src="images/support-contact-1.png" alt="">
+                        <div>
+                            <div class="desktop-contact-title" id="contact1Title-desktop"></div>
+                            <div class="desktop-contact-text" id="contact1Text-desktop"></div>
+                        </div>
+                    </div>
+                    <span class="desktop-contact-arrow">›</span>
+                </article>
+
+                <article class="desktop-contact-card" onclick="openSupport()">
+                    <div class="desktop-contact-left">
+                        <img class="desktop-contact-icon" src="images/support-contact-2.png" alt="">
+                        <div>
+                            <div class="desktop-contact-title" id="contact2Title-desktop"></div>
+                            <div class="desktop-contact-text" id="contact2Text-desktop"></div>
+                        </div>
+                    </div>
+                    <span class="desktop-contact-arrow">›</span>
+                </article>
+            </section>
+
+            <section class="desktop-wide">
+                <h2 class="desktop-section-title" id="faqTitle-desktop"></h2>
+
+                <div class="desktop-faq-list" id="faqList-desktop"></div>
+
+                <div class="desktop-cta-wrap">
+                    <button class="btn-gradient desktop-cta" id="supportBtn-desktop"></button>
                 </div>
             </section>
         </main>
-
     </div>
 </div>
 
@@ -675,10 +934,21 @@ const t = {
         m5:"Sharhlar",
         m6:"Profil",
         back:"Orqaga",
-        pageTitle:"Yordam",
-        pageSubtitle:"Savollarga javoblar va qo‘llab-quvvatlash",
-        bottomNote:"Bu yerda tez boyish haqidagi ertaklar yo‘q. Faqat real ko‘nikma va ish.",
+
+        kicker:"Qo‘llab-quvvatlash",
+        title:"Savol bo‘lsa, yolg‘iz qolmaysan",
+        desc:"gaphub ichida yordam bo‘limi shunchaki FAQ emas. Bu yerda yo‘nalish, tushunmovchilik va texnik savollar bo‘yicha tayanch nuqta bor.",
+        note:"Agar nimadir tushunarsiz bo‘lsa, yozasan. Maqsad seni chalkashlikda qoldirish emas, tezroq yo‘lga qaytarish.",
+
+        contactTitle:"Bog‘lanish usullari",
+        contact1Title:"Tezkor aloqa",
+        contact1Text:"Savol bo‘lsa, to‘g‘ridan-to‘g‘ri yozish mumkin.",
+        contact2Title:"Qo‘llab-quvvatlash oynasi",
+        contact2Text:"Kurslar, kirish, platforma va boshqa savollar bo‘yicha.",
+
+        faqTitle:"Ko‘p beriladigan savollar",
         supportBtn:"Qo‘llab-quvvatlashga yozish",
+
         faq:[
             {
                 q:"Men boshlovchiman, menda chiqadimi?",
@@ -706,10 +976,21 @@ const t = {
         m5:"Отзывы",
         m6:"Профиль",
         back:"Назад",
-        pageTitle:"Помощь",
-        pageSubtitle:"Ответы на вопросы и поддержка",
-        bottomNote:"Здесь нет обещаний быстрых миллионов. Только реальные навыки и работа.",
+
+        kicker:"Поддержка",
+        title:"Если есть вопрос, ты не один",
+        desc:"Раздел поддержки в gaphub это не просто FAQ. Это точка опоры, где можно быстро разобраться с направлением, доступом, платформой и любыми непонятными моментами.",
+        note:"Если что-то непонятно, ты пишешь. Задача не оставить тебя в ступоре, а быстро вернуть в рабочий ритм.",
+
+        contactTitle:"Как можно связаться",
+        contact1Title:"Быстрая связь",
+        contact1Text:"Если есть вопрос, можно написать напрямую.",
+        contact2Title:"Окно поддержки",
+        contact2Text:"По курсам, доступам, платформе и другим вопросам.",
+
+        faqTitle:"Частые вопросы",
         supportBtn:"Написать в поддержку",
+
         faq:[
             {
                 q:"Я новичок, у меня получится?",
@@ -737,32 +1018,45 @@ function setText(id, value){
 }
 
 function update(){
-    let d = t[lang];
+    const d = t[lang];
 
     document.documentElement.lang = lang === "uz" ? "uz" : "ru";
 
     // mobile
+    setText("back-mobile", d.back);
+    setText("kicker-mobile", d.kicker);
+    setText("title-mobile", d.title);
+    setText("desc-mobile", d.desc);
+    setText("note-mobile", d.note);
+    setText("contactTitle-mobile", d.contactTitle);
+    setText("contact1Title-mobile", d.contact1Title);
+    setText("contact1Text-mobile", d.contact1Text);
+    setText("contact2Title-mobile", d.contact2Title);
+    setText("contact2Text-mobile", d.contact2Text);
+    setText("faqTitle-mobile", d.faqTitle);
+    setText("supportBtn-mobile", d.supportBtn);
     setText("m1-mobile", d.m1);
     setText("m4-mobile", d.m4);
     setText("m5-mobile", d.m5);
     setText("m6-mobile", d.m6);
-    setText("backText-mobile", d.back);
-    setText("pageTitle-mobile", d.pageTitle);
-    setText("pageSubtitle-mobile", d.pageSubtitle);
-    setText("bottomNote-mobile", d.bottomNote);
-    setText("supportBtn-mobile", d.supportBtn);
 
     // desktop
     setText("home-desktop", d.home);
+    setText("back-desktop", d.back);
+    setText("title-desktop", d.title);
+    setText("desc-desktop", d.desc);
+    setText("kicker-desktop", d.kicker);
+    setText("note-desktop", d.note);
+    setText("contact1Title-desktop", d.contact1Title);
+    setText("contact1Text-desktop", d.contact1Text);
+    setText("contact2Title-desktop", d.contact2Title);
+    setText("contact2Text-desktop", d.contact2Text);
+    setText("faqTitle-desktop", d.faqTitle);
+    setText("supportBtn-desktop", d.supportBtn);
     setText("m1-desktop", d.m1);
     setText("m4-desktop", d.m4);
     setText("m5-desktop", d.m5);
     setText("m6-desktop", d.m6);
-    setText("backText-desktop", d.back);
-    setText("pageTitle-desktop", d.pageTitle);
-    setText("pageSubtitle-desktop", d.pageSubtitle);
-    setText("bottomNote-desktop", d.bottomNote);
-    setText("supportBtn-desktop", d.supportBtn);
 
     renderFaqMobile();
     renderFaqDesktop();
@@ -773,13 +1067,13 @@ function renderFaqMobile(){
     const data = t[lang].faq;
 
     list.innerHTML = data.map(item => `
-        <div class="faq-item">
-            <button class="faq-question" onclick="toggleFaqMobile(this)">
-                <span class="faq-question-text">${item.q}</span>
-                <span class="faq-icon"></span>
+        <div class="mobile-faq-item">
+            <button class="mobile-faq-question" onclick="toggleFaqMobile(this)">
+                <span class="mobile-faq-question-text">${item.q}</span>
+                <span class="mobile-faq-icon"></span>
             </button>
-            <div class="faq-answer-wrap">
-                <div class="faq-answer">${item.a}</div>
+            <div class="mobile-faq-answer-wrap">
+                <div class="mobile-faq-answer">${item.a}</div>
             </div>
         </div>
     `).join("");
@@ -804,12 +1098,12 @@ function renderFaqDesktop(){
 
 function toggleFaqMobile(button){
     const item = button.parentElement;
-    const wrap = item.querySelector(".faq-answer-wrap");
+    const wrap = item.querySelector(".mobile-faq-answer-wrap");
     const isOpen = item.classList.contains("open");
 
-    document.querySelectorAll(".faq-item").forEach(el => {
+    document.querySelectorAll(".mobile-faq-item").forEach(el => {
         el.classList.remove("open");
-        const target = el.querySelector(".faq-answer-wrap");
+        const target = el.querySelector(".mobile-faq-answer-wrap");
         if(target) target.style.maxHeight = null;
     });
 

@@ -7,22 +7,21 @@
 <title>gaphub - my profile</title>
 
 <style>
-/* =========================
-   BASE
-========================= */
 :root{
     --accent:#cb6ce6;
     --text:#ffffff;
     --muted:#aaa;
+    --muted-soft:#9f98aa;
     --bg:#0c0b14;
-    --card:#0b0b0b;
-    --panel:#1a1a1a;
+    --card:#111117;
+    --card-soft:#17171f;
     --line:rgba(255,255,255,.08);
     --shadow:0 10px 35px rgba(0,0,0,.35);
 }
 
 *{
     box-sizing:border-box;
+    -webkit-tap-highlight-color:transparent;
 }
 
 html, body{
@@ -52,7 +51,7 @@ button{
     display:none;
 }
 
-.btn{
+.btn-gradient{
     border:none;
     color:#fff;
     background:linear-gradient(90deg,#cb6ce6,#a855f7);
@@ -65,111 +64,238 @@ button{
     display:block;
 }
 
-.wrap{
-    padding:16px;
-    padding-top:150px;
-    padding-bottom:90px;
+.mobile-page{
+    padding:calc(env(safe-area-inset-top) + 14px) 16px calc(110px + env(safe-area-inset-bottom));
 }
 
-.card{
-    background:#0B0B0B;
-    border-radius:20px;
-    padding:20px;
-    text-align:center;
-    position:relative;
-}
-
-.back{
-    position:absolute;
-    top:10px;
-    left:12px;
+.mobile-back{
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
     background:#1a1a1a;
-    padding:6px 10px;
-    border-radius:10px;
-    font-size:12px;
-    color:#aaa;
-    cursor:pointer;
+    color:#fff;
+    border:none;
+    border-radius:12px;
+    padding:10px 14px;
+    font-size:15px;
+    margin-bottom:16px;
 }
 
-.avatar{
-    width:90px;
-    height:90px;
+.mobile-back svg{
+    width:16px;
+    height:16px;
+    flex-shrink:0;
+}
+
+.mobile-hero{
+    position:relative;
+    overflow:hidden;
+    border-radius:26px;
+    background:
+        radial-gradient(circle at 85% 15%, rgba(203,108,230,.18), transparent 25%),
+        linear-gradient(180deg, #15141e 0%, #0f0e17 100%);
+    border:1px solid rgba(255,255,255,.05);
+    box-shadow:var(--shadow);
+    padding:20px 16px 18px;
+}
+
+.mobile-kicker{
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+    background:rgba(255,255,255,.06);
+    border:1px solid rgba(255,255,255,.06);
+    border-radius:999px;
+    padding:8px 12px;
+    font-size:12px;
+    color:#ebe4f5;
+    margin-bottom:14px;
+}
+
+.mobile-profile-row{
+    display:flex;
+    align-items:center;
+    gap:14px;
+    margin-bottom:16px;
+}
+
+.mobile-avatar{
+    width:86px;
+    height:86px;
     border-radius:50%;
-    border:3px solid #cb6ce6;
-    margin:0 auto 10px;
-    background:#ddd;
+    border:4px solid var(--accent);
+    background:linear-gradient(135deg,#f3bb63,#f7a35f);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    color:#fff;
+    font-size:34px;
+    font-weight:700;
     overflow:hidden;
     flex-shrink:0;
 }
 
-.avatar img{
+.mobile-avatar img{
     width:100%;
     height:100%;
     object-fit:cover;
 }
 
-.name{
-    font-size:20px;
-    font-weight:700;
+.mobile-name{
+    margin:0 0 4px;
+    font-size:26px;
+    line-height:1.05;
+    font-weight:800;
 }
 
-.username{
-    color:#aaa;
+.mobile-username{
+    color:var(--muted-soft);
+    font-size:14px;
     margin-bottom:10px;
 }
 
-.reg-btn{
-    background:#2a1933;
-    border:none;
-    padding:8px 16px;
-    border-radius:12px;
-    color:#d68cff;
-    margin-bottom:12px;
+.mobile-phone{
     display:inline-block;
-    min-width:120px;
+    background:#2a1933;
+    color:#d68cff;
+    border-radius:999px;
+    padding:8px 12px;
+    font-size:13px;
+    min-width:110px;
 }
 
-.desc{
+.mobile-desc{
+    margin:0;
+    color:var(--muted);
     font-size:14px;
-    color:#aaa;
-    margin-bottom:16px;
-    line-height:1.45;
+    line-height:1.5;
 }
 
-.buy{
+.mobile-stats{
+    margin-top:14px;
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:10px;
+}
+
+.mobile-stat{
+    background:#17171f;
+    border-radius:16px;
+    padding:12px;
+    min-height:78px;
+}
+
+.mobile-stat-label{
+    color:#9f98aa;
+    font-size:12px;
+    margin-bottom:6px;
+}
+
+.mobile-stat-value{
+    font-size:15px;
+    font-weight:700;
+    line-height:1.35;
+}
+
+.mobile-section{
+    margin-top:14px;
+    background:#121218;
+    border:1px solid rgba(255,255,255,.05);
+    border-radius:22px;
+    padding:16px 14px;
+    box-shadow:var(--shadow);
+}
+
+.mobile-section-title{
+    margin:0 0 12px;
+    font-size:20px;
+    font-weight:800;
+    line-height:1.15;
+}
+
+.mobile-actions{
+    display:flex;
+    flex-direction:column;
+    gap:10px;
+}
+
+.mobile-primary-btn{
     width:100%;
-    padding:14px;
+    height:54px;
     border:none;
     border-radius:16px;
-    background:linear-gradient(90deg,#cb6ce6,#a855f7);
-    color:#fff;
-    font-size:18px;
-    font-weight:600;
-    margin-bottom:16px;
-}
-
-.menu{
-    background:#1a1a1a;
-    border-radius:12px;
-    overflow:hidden;
-}
-
-.menu-item{
-    padding:14px;
-    border-bottom:1px solid #333;
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-    cursor:pointer;
     font-size:16px;
+    font-weight:700;
 }
 
-.menu-item:last-child{
-    border-bottom:none;
+.mobile-secondary-btn{
+    width:100%;
+    height:54px;
+    border:none;
+    border-radius:16px;
+    background:#1a1a22;
+    color:#fff;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    padding:0 16px;
+    font-size:15px;
+    font-weight:600;
 }
 
-.menu-item span{
-    color:#aaa;
+.mobile-secondary-btn span:last-child{
+    color:#cfcfcf;
+}
+
+.mobile-list{
+    display:flex;
+    flex-direction:column;
+    gap:10px;
+}
+
+.mobile-list-item{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:14px;
+    background:#181821;
+    border-radius:16px;
+    padding:14px;
+    cursor:pointer;
+}
+
+.mobile-list-left{
+    display:flex;
+    align-items:center;
+    gap:12px;
+}
+
+.mobile-list-icon{
+    width:40px;
+    height:40px;
+    object-fit:contain;
+    border-radius:12px;
+    background:#22222d;
+    padding:8px;
+    flex-shrink:0;
+}
+
+.mobile-list-title{
+    font-size:15px;
+    font-weight:700;
+    line-height:1.3;
+}
+
+.mobile-list-text{
+    font-size:13px;
+    color:var(--muted-soft);
+    margin-top:2px;
+}
+
+.mobile-list-arrow{
+    font-size:18px;
+    color:#bfbfbf;
+    line-height:1;
 }
 
 /* BOTTOM NAV */
@@ -323,7 +449,9 @@ button{
     }
 
     .desktop-main{
-        padding:34px 36px;
+        padding:26px 28px 34px;
+        height:100vh;
+        overflow:auto;
     }
 
     .desktop-back{
@@ -332,7 +460,7 @@ button{
         gap:14px;
         font-size:24px;
         color:#fff;
-        margin-bottom:22px;
+        margin-bottom:18px;
         cursor:pointer;
         user-select:none;
     }
@@ -343,32 +471,48 @@ button{
         transform:translateY(-1px);
     }
 
-    .desktop-card{
-        border:2px solid rgba(203,108,230,.6);
-        border-radius:28px;
-        padding:12px;
-        background:rgba(255,255,255,.015);
-        box-shadow:0 10px 40px rgba(0,0,0,.24);
-    }
-
-    .desktop-card-inner{
-        border-radius:22px;
+    .desktop-hero{
+        position:relative;
+        overflow:hidden;
+        border-radius:30px;
         background:
-            radial-gradient(circle at 80% 40%, rgba(203,108,230,.06), transparent 28%),
-            linear-gradient(180deg, rgba(7,7,11,.98) 0%, rgba(8,8,13,.96) 100%);
-        padding:32px 38px 30px;
+            radial-gradient(circle at 82% 18%, rgba(203,108,230,.18), transparent 24%),
+            radial-gradient(circle at 12% 85%, rgba(203,108,230,.08), transparent 24%),
+            linear-gradient(180deg, #15141e 0%, #0f0e17 100%);
+        border:1px solid rgba(255,255,255,.05);
+        box-shadow:var(--shadow);
+        padding:28px 26px 24px;
     }
 
-    .desktop-profile-top{
+    .desktop-kicker{
+        display:inline-flex;
+        align-items:center;
+        gap:8px;
+        background:rgba(255,255,255,.06);
+        border:1px solid rgba(255,255,255,.06);
+        border-radius:999px;
+        padding:10px 14px;
+        font-size:13px;
+        color:#ebe4f5;
+        margin-bottom:18px;
+    }
+
+    .desktop-hero-top{
+        display:grid;
+        grid-template-columns:1.05fr .95fr;
+        gap:26px;
+        align-items:center;
+    }
+
+    .desktop-profile-card{
         display:flex;
-        align-items:flex-start;
-        gap:28px;
-        margin-bottom:26px;
+        align-items:center;
+        gap:18px;
     }
 
     .desktop-avatar{
-        width:160px;
-        height:160px;
+        width:138px;
+        height:138px;
         border-radius:50%;
         border:6px solid var(--accent);
         background:linear-gradient(135deg,#f3bb63,#f7a35f);
@@ -376,7 +520,7 @@ button{
         align-items:center;
         justify-content:center;
         color:#fff;
-        font-size:72px;
+        font-size:60px;
         font-weight:700;
         overflow:hidden;
         flex-shrink:0;
@@ -388,102 +532,178 @@ button{
         object-fit:cover;
     }
 
-    .desktop-profile-info{
-        flex:1;
-        padding-top:16px;
-    }
-
     .desktop-name{
-        font-size:54px;
-        line-height:1;
-        font-weight:800;
         margin:0 0 8px;
+        font-size:54px;
+        line-height:.96;
+        font-weight:800;
+        letter-spacing:-1px;
     }
 
     .desktop-username{
-        font-size:28px;
-        color:#a9a1b1;
-        margin-bottom:22px;
+        font-size:23px;
+        color:var(--muted-soft);
+        margin-bottom:14px;
     }
 
     .desktop-phone{
         display:inline-block;
         background:#2a1933;
         color:#d68cff;
-        border-radius:18px;
-        padding:12px 22px;
-        font-size:24px;
-        margin-bottom:22px;
-        min-width:220px;
+        border-radius:999px;
+        padding:10px 16px;
+        font-size:18px;
+        min-width:170px;
         text-align:center;
     }
 
+    .desktop-desc-box{
+        background:rgba(255,255,255,.04);
+        border-radius:22px;
+        padding:18px 18px;
+        min-height:160px;
+        display:flex;
+        flex-direction:column;
+        justify-content:center;
+    }
+
     .desktop-desc{
-        max-width:760px;
-        color:#aaa;
+        margin:0;
+        color:#f0ebf8;
+        font-size:19px;
+        line-height:1.6;
+    }
+
+    .desktop-grid{
+        margin-top:16px;
+        display:grid;
+        grid-template-columns:repeat(3, minmax(0,1fr));
+        gap:14px;
+    }
+
+    .desktop-stat{
+        background:#141419;
+        border:1px solid rgba(255,255,255,.05);
+        border-radius:22px;
+        padding:18px 16px;
+        box-shadow:var(--shadow);
+        min-height:126px;
+    }
+
+    .desktop-stat-label{
+        color:#9f98aa;
+        font-size:13px;
+        margin-bottom:8px;
+    }
+
+    .desktop-stat-value{
         font-size:22px;
-        line-height:1.5;
-        margin-bottom:26px;
+        line-height:1.25;
+        font-weight:800;
+    }
+
+    .desktop-wide{
+        margin-top:16px;
+        background:
+            radial-gradient(circle at 88% 18%, rgba(203,108,230,.10), transparent 20%),
+            linear-gradient(180deg, #121218 0%, #101017 100%);
+        border:1px solid rgba(255,255,255,.05);
+        border-radius:28px;
+        padding:22px;
+        box-shadow:var(--shadow);
+    }
+
+    .desktop-section-title{
+        margin:0 0 14px;
+        font-size:30px;
+        line-height:1.1;
+        font-weight:800;
     }
 
     .desktop-actions{
         display:grid;
-        grid-template-columns:1fr 1.2fr;
+        grid-template-columns:1fr 1fr;
         gap:14px;
-        margin-bottom:24px;
+        margin-bottom:14px;
     }
 
-    .desktop-buy{
-        height:74px;
-        border-radius:22px;
-        font-size:26px;
+    .desktop-primary-btn{
+        height:62px;
+        border:none;
+        border-radius:18px;
+        font-size:20px;
         font-weight:700;
     }
 
     .desktop-lang-btn{
-        height:74px;
+        height:62px;
         border:none;
-        border-radius:22px;
+        border-radius:18px;
         background:#181820;
         color:#fff;
         display:flex;
         align-items:center;
         justify-content:space-between;
-        padding:0 28px;
-        font-size:24px;
+        padding:0 22px;
+        font-size:19px;
+        font-weight:600;
     }
 
     .desktop-lang-btn span:last-child{
         color:#cfcfcf;
     }
 
-    .desktop-menu{
-        background:#16161d;
-        border-radius:22px;
-        overflow:hidden;
-        box-shadow:var(--shadow);
+    .desktop-list{
+        display:grid;
+        grid-template-columns:1fr 1fr;
+        gap:14px;
     }
 
-    .desktop-menu-item{
-        min-height:92px;
-        padding:0 28px;
-        border-bottom:1px solid rgba(255,255,255,.08);
+    .desktop-list-item{
         display:flex;
         align-items:center;
         justify-content:space-between;
-        font-size:24px;
-        color:#fff;
+        gap:14px;
+        background:#181821;
+        border-radius:20px;
+        padding:18px;
+        min-height:96px;
         cursor:pointer;
     }
 
-    .desktop-menu-item:last-child{
-        border-bottom:none;
+    .desktop-list-left{
+        display:flex;
+        align-items:center;
+        gap:14px;
     }
 
-    .desktop-menu-arrow{
-        font-size:34px;
+    .desktop-list-icon{
+        width:46px;
+        height:46px;
+        object-fit:contain;
+        border-radius:14px;
+        background:#22222d;
+        padding:10px;
+        flex-shrink:0;
+    }
+
+    .desktop-list-title{
+        font-size:18px;
+        font-weight:700;
+        line-height:1.25;
+    }
+
+    .desktop-list-text{
+        font-size:14px;
+        color:var(--muted-soft);
+        margin-top:3px;
+    }
+
+    .desktop-list-arrow{
+        font-size:24px;
         color:#bfbfbf;
         line-height:1;
+        flex-shrink:0;
     }
 }
 
@@ -493,22 +713,11 @@ button{
     }
 
     .desktop-main{
-        padding:28px 28px;
+        padding:22px 22px 28px;
     }
 
-    .desktop-card-inner{
-        padding:26px 28px 24px;
-    }
-
-    .desktop-profile-top{
-        gap:22px;
-        margin-bottom:20px;
-    }
-
-    .desktop-avatar{
-        width:132px;
-        height:132px;
-        font-size:58px;
+    .desktop-hero{
+        padding:22px 20px 20px;
     }
 
     .desktop-name{
@@ -516,40 +725,29 @@ button{
     }
 
     .desktop-username{
-        font-size:22px;
-        margin-bottom:16px;
+        font-size:20px;
     }
 
-    .desktop-phone{
-        font-size:20px;
-        padding:10px 18px;
-        margin-bottom:16px;
+    .desktop-avatar{
+        width:116px;
+        height:116px;
+        font-size:48px;
     }
 
     .desktop-desc{
-        font-size:18px;
-        margin-bottom:20px;
+        font-size:17px;
+    }
+
+    .desktop-grid{
+        grid-template-columns:1fr;
+    }
+
+    .desktop-list{
+        grid-template-columns:1fr;
     }
 
     .desktop-actions{
-        margin-bottom:18px;
-    }
-
-    .desktop-buy,
-    .desktop-lang-btn{
-        height:62px;
-        font-size:22px;
-        border-radius:18px;
-    }
-
-    .desktop-lang-btn{
-        padding:0 20px;
-    }
-
-    .desktop-menu-item{
-        min-height:74px;
-        font-size:21px;
-        padding:0 22px;
+        grid-template-columns:1fr;
     }
 }
 </style>
@@ -561,46 +759,93 @@ button{
      MOBILE VERSION
 ========================= -->
 <div class="mobile-shell">
-    <div class="wrap">
+    <div class="mobile-page">
+        <button class="mobile-back" onclick="goBack()">
+            <svg viewBox="0 0 24 24" fill="none">
+                <path d="M15 5L8 12L15 19" stroke="white" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+            <span id="back-mobile"></span>
+        </button>
 
-        <div class="card">
-            <div class="back" onclick="goBack()" id="back-mobile"></div>
+        <section class="mobile-hero">
+            <div class="mobile-kicker" id="kicker-mobile"></div>
 
-            <div class="avatar">
-                <img id="avatar-mobile" src="" alt="">
+            <div class="mobile-profile-row">
+                <div class="mobile-avatar" id="avatarWrap-mobile">C</div>
+
+                <div>
+                    <h1 class="mobile-name" id="name-mobile">User</h1>
+                    <div class="mobile-username" id="username-mobile">@username</div>
+                    <div class="mobile-phone" id="phone-mobile"></div>
+                </div>
             </div>
 
-            <div class="name" id="name-mobile">User</div>
-            <div class="username" id="username-mobile">@username</div>
+            <p class="mobile-desc" id="desc-mobile"></p>
 
-            <div class="reg-btn" id="phone-mobile"></div>
+            <div class="mobile-stats">
+                <div class="mobile-stat">
+                    <div class="mobile-stat-label" id="stat1Label-mobile"></div>
+                    <div class="mobile-stat-value" id="stat1Value-mobile"></div>
+                </div>
 
-            <div class="desc" id="desc-mobile"></div>
+                <div class="mobile-stat">
+                    <div class="mobile-stat-label" id="stat2Label-mobile"></div>
+                    <div class="mobile-stat-value" id="stat2Value-mobile"></div>
+                </div>
+            </div>
+        </section>
 
-            <button class="buy" id="buyBtn-mobile"></button>
+        <section class="mobile-section">
+            <h2 class="mobile-section-title" id="actionTitle-mobile"></h2>
 
-            <div class="menu">
-                <div class="menu-item" onclick="toggleLang()">
-                    <div id="langText-mobile"></div>
+            <div class="mobile-actions">
+                <button class="btn-gradient mobile-primary-btn" id="buyBtn-mobile"></button>
+
+                <button class="mobile-secondary-btn" onclick="toggleLang()">
+                    <span id="langText-mobile"></span>
                     <span id="langValue-mobile"></span>
+                </button>
+            </div>
+        </section>
+
+        <section class="mobile-section">
+            <h2 class="mobile-section-title" id="menuTitle-mobile"></h2>
+
+            <div class="mobile-list">
+                <div class="mobile-list-item" onclick="goPage('mycourses.html')">
+                    <div class="mobile-list-left">
+                        <img class="mobile-list-icon" src="images/courses2.png" alt="">
+                        <div>
+                            <div class="mobile-list-title" id="courses-mobile"></div>
+                            <div class="mobile-list-text" id="coursesSub-mobile"></div>
+                        </div>
+                    </div>
+                    <span class="mobile-list-arrow">›</span>
                 </div>
 
-                <div class="menu-item" onclick="goPage('mycourses.html')">
-                    <div id="courses-mobile"></div>
-                    <span>›</span>
+                <div class="mobile-list-item" onclick="goPage('support.html')">
+                    <div class="mobile-list-left">
+                        <img class="mobile-list-icon" src="images/support.png" alt="">
+                        <div>
+                            <div class="mobile-list-title" id="support-mobile"></div>
+                            <div class="mobile-list-text" id="supportSub-mobile"></div>
+                        </div>
+                    </div>
+                    <span class="mobile-list-arrow">›</span>
                 </div>
 
-                <div class="menu-item" onclick="goPage('support.html')">
-                    <div id="support-mobile"></div>
-                    <span>›</span>
-                </div>
-
-                <div class="menu-item" onclick="goPage('progress.html')">
-                    <div id="progress-mobile"></div>
-                    <span>›</span>
+                <div class="mobile-list-item" onclick="goPage('progress.html')">
+                    <div class="mobile-list-left">
+                        <img class="mobile-list-icon" src="images/brain.png" alt="">
+                        <div>
+                            <div class="mobile-list-title" id="progress-mobile"></div>
+                            <div class="mobile-list-text" id="progressSub-mobile"></div>
+                        </div>
+                    </div>
+                    <span class="mobile-list-arrow">›</span>
                 </div>
             </div>
-        </div>
+        </section>
     </div>
 
     <div class="bottom-nav">
@@ -620,7 +865,7 @@ button{
             </div>
         </div>
 
-        <div class="nav-item">
+        <div class="nav-item" onclick="goPage('chat.html')">
             <img src="images/chat2.png" alt="">
             <span id="m5-mobile"></span>
         </div>
@@ -637,7 +882,6 @@ button{
 ========================= -->
 <div class="desktop-app desktop-only">
     <div class="desktop-layout">
-
         <aside class="desktop-sidebar">
             <div class="desktop-brand">gaphub</div>
 
@@ -675,50 +919,104 @@ button{
                 <span id="back-desktop"></span>
             </div>
 
-            <section class="desktop-card">
-                <div class="desktop-card-inner">
+            <section class="desktop-hero">
+                <div class="desktop-kicker" id="kicker-desktop"></div>
 
-                    <div class="desktop-profile-top">
+                <div class="desktop-hero-top">
+                    <div class="desktop-profile-card">
                         <div class="desktop-avatar" id="avatarWrap-desktop">C</div>
 
-                        <div class="desktop-profile-info">
-                            <div class="desktop-name" id="name-desktop">User</div>
+                        <div>
+                            <h1 class="desktop-name" id="name-desktop">User</h1>
                             <div class="desktop-username" id="username-desktop">@username</div>
                             <div class="desktop-phone" id="phone-desktop"></div>
-                            <div class="desktop-desc" id="desc-desktop"></div>
                         </div>
                     </div>
 
-                    <div class="desktop-actions">
-                        <button class="btn desktop-buy" id="buyBtn-desktop"></button>
+                    <div class="desktop-desc-box">
+                        <p class="desktop-desc" id="desc-desktop"></p>
+                    </div>
+                </div>
+            </section>
 
-                        <button class="desktop-lang-btn" onclick="toggleLang()">
-                            <span id="langText-desktop"></span>
-                            <span id="langValue-desktop"></span>
-                        </button>
+            <section class="desktop-grid">
+                <article class="desktop-stat">
+                    <div class="desktop-stat-label" id="stat1Label-desktop"></div>
+                    <div class="desktop-stat-value" id="stat1Value-desktop"></div>
+                </article>
+
+                <article class="desktop-stat">
+                    <div class="desktop-stat-label" id="stat2Label-desktop"></div>
+                    <div class="desktop-stat-value" id="stat2Value-desktop"></div>
+                </article>
+
+                <article class="desktop-stat">
+                    <div class="desktop-stat-label" id="stat3Label-desktop"></div>
+                    <div class="desktop-stat-value" id="stat3Value-desktop"></div>
+                </article>
+            </section>
+
+            <section class="desktop-wide">
+                <h2 class="desktop-section-title" id="actionTitle-desktop"></h2>
+
+                <div class="desktop-actions">
+                    <button class="btn-gradient desktop-primary-btn" id="buyBtn-desktop"></button>
+
+                    <button class="desktop-lang-btn" onclick="toggleLang()">
+                        <span id="langText-desktop"></span>
+                        <span id="langValue-desktop"></span>
+                    </button>
+                </div>
+
+                <h2 class="desktop-section-title" id="menuTitle-desktop"></h2>
+
+                <div class="desktop-list">
+                    <div class="desktop-list-item" onclick="goPage('mycourses.html')">
+                        <div class="desktop-list-left">
+                            <img class="desktop-list-icon" src="images/courses2.png" alt="">
+                            <div>
+                                <div class="desktop-list-title" id="courses-desktop"></div>
+                                <div class="desktop-list-text" id="coursesSub-desktop"></div>
+                            </div>
+                        </div>
+                        <span class="desktop-list-arrow">›</span>
                     </div>
 
-                    <div class="desktop-menu">
-                        <div class="desktop-menu-item" onclick="goPage('mycourses.html')">
-                            <span id="courses-desktop"></span>
-                            <span class="desktop-menu-arrow">›</span>
+                    <div class="desktop-list-item" onclick="goPage('support.html')">
+                        <div class="desktop-list-left">
+                            <img class="desktop-list-icon" src="images/support.png" alt="">
+                            <div>
+                                <div class="desktop-list-title" id="support-desktop"></div>
+                                <div class="desktop-list-text" id="supportSub-desktop"></div>
+                            </div>
                         </div>
-
-                        <div class="desktop-menu-item" onclick="goPage('support.html')">
-                            <span id="support-desktop"></span>
-                            <span class="desktop-menu-arrow">›</span>
-                        </div>
-
-                        <div class="desktop-menu-item" onclick="goPage('progress.html')">
-                            <span id="progress-desktop"></span>
-                            <span class="desktop-menu-arrow">›</span>
-                        </div>
+                        <span class="desktop-list-arrow">›</span>
                     </div>
 
+                    <div class="desktop-list-item" onclick="goPage('progress.html')">
+                        <div class="desktop-list-left">
+                            <img class="desktop-list-icon" src="images/brain.png" alt="">
+                            <div>
+                                <div class="desktop-list-title" id="progress-desktop"></div>
+                                <div class="desktop-list-text" id="progressSub-desktop"></div>
+                            </div>
+                        </div>
+                        <span class="desktop-list-arrow">›</span>
+                    </div>
+
+                    <div class="desktop-list-item" onclick="goPage('index.html')">
+                        <div class="desktop-list-left">
+                            <img class="desktop-list-icon" src="images/home.png" alt="">
+                            <div>
+                                <div class="desktop-list-title" id="homeCard-desktop"></div>
+                                <div class="desktop-list-text" id="homeCardSub-desktop"></div>
+                            </div>
+                        </div>
+                        <span class="desktop-list-arrow">›</span>
+                    </div>
                 </div>
             </section>
         </main>
-
     </div>
 </div>
 
@@ -728,33 +1026,80 @@ let lang = localStorage.getItem("lang") || "uz"
 const t = {
     uz:{
         back:"Orqaga",
-        desc:"Bu yerda ertaklar yo‘q. Faqat ish, tajriba va real daromad",
-        buy:"Kurs sotib olish",
-        lang:"Til",
-        courses:"Mening kurslarim",
-        support:"Yordam",
-        progress:"Mening progressim",
-        langVal:"O‘zbek",
         home:"Bosh sahifa",
         m1:"Kurslarim",
         m4:"Aloqa",
         m5:"Sharhlar",
-        m6:"Profil"
+        m6:"Profil",
+
+        kicker:"Shaxsiy kabinet",
+        desc:"Bu yer sening markazing. Kurslar, progress, til va keyingi qadamlar shu yerdan boshqariladi.",
+        buy:"Kurs sotib olish",
+        lang:"Til",
+        langVal:"O‘zbek",
+
+        actionTitle:"Tezkor amallar",
+        menuTitle:"Kabinet bo‘limlari",
+
+        courses:"Mening kurslarim",
+        coursesSub:"Sotib olingan kurslar va kirishlar",
+
+        support:"Yordam",
+        supportSub:"Savollar, aloqa va qo‘llab-quvvatlash",
+
+        progress:"Mening progressim",
+        progressSub:"Qayergacha borganingni kuzatish",
+
+        homeCard:"Bosh sahifa",
+        homeCardSub:"Kurslar va platforma bo‘limlariga qaytish",
+
+        stat1Label:"Holat",
+        stat1Value:"Faol foydalanuvchi",
+
+        stat2Label:"Platforma",
+        stat2Value:"gaphub ichida",
+
+        stat3Label:"Keyingi qadam",
+        stat3Value:"Kursni tanlash yoki davom ettirish"
     },
+
     ru:{
         back:"Назад",
-        desc:"Здесь нет сказок про миллионы. Только работа, опыт и реальные деньги",
-        buy:"Купить курс",
-        lang:"Язык",
-        courses:"Мои курсы",
-        support:"Поддержка",
-        progress:"Мой прогресс",
-        langVal:"Русский",
         home:"Главное меню",
         m1:"Мои курсы",
         m4:"Поддержка",
         m5:"Отзывы",
-        m6:"Профиль"
+        m6:"Профиль",
+
+        kicker:"Личный кабинет",
+        desc:"Это твоя центральная точка. Здесь ты управляешь курсами, прогрессом, языком и следующими шагами внутри платформы.",
+        buy:"Купить курс",
+        lang:"Язык",
+        langVal:"Русский",
+
+        actionTitle:"Быстрые действия",
+        menuTitle:"Разделы кабинета",
+
+        courses:"Мои курсы",
+        coursesSub:"Купленные курсы и доступы",
+
+        support:"Поддержка",
+        supportSub:"Вопросы, связь и помощь",
+
+        progress:"Мой прогресс",
+        progressSub:"Отслеживание того, где ты сейчас",
+
+        homeCard:"Главное меню",
+        homeCardSub:"Вернуться к курсам и основным разделам платформы",
+
+        stat1Label:"Статус",
+        stat1Value:"Активный пользователь",
+
+        stat2Label:"Платформа",
+        stat2Value:"Внутри gaphub",
+
+        stat3Label:"Следующий шаг",
+        stat3Value:"Выбрать курс или продолжить обучение"
     }
 }
 
@@ -767,14 +1112,24 @@ function update(){
     const d = t[lang]
 
     // mobile
-    setText("back-mobile", "← " + d.back)
+    setText("back-mobile", d.back)
+    setText("kicker-mobile", d.kicker)
     setText("desc-mobile", d.desc)
     setText("buyBtn-mobile", d.buy)
     setText("langText-mobile", d.lang)
     setText("langValue-mobile", d.langVal)
+    setText("actionTitle-mobile", d.actionTitle)
+    setText("menuTitle-mobile", d.menuTitle)
     setText("courses-mobile", d.courses)
+    setText("coursesSub-mobile", d.coursesSub)
     setText("support-mobile", d.support)
+    setText("supportSub-mobile", d.supportSub)
     setText("progress-mobile", d.progress)
+    setText("progressSub-mobile", d.progressSub)
+    setText("stat1Label-mobile", d.stat1Label)
+    setText("stat1Value-mobile", d.stat1Value)
+    setText("stat2Label-mobile", d.stat2Label)
+    setText("stat2Value-mobile", d.stat2Value)
     setText("m1-mobile", d.m1)
     setText("m4-mobile", d.m4)
     setText("m5-mobile", d.m5)
@@ -782,18 +1137,32 @@ function update(){
 
     // desktop
     setText("back-desktop", d.back)
-    setText("desc-desktop", d.desc)
-    setText("buyBtn-desktop", d.buy)
-    setText("langText-desktop", d.lang)
-    setText("langValue-desktop", d.langVal)
-    setText("courses-desktop", d.courses)
-    setText("support-desktop", d.support)
-    setText("progress-desktop", d.progress)
     setText("home-desktop", d.home)
     setText("m1-desktop", d.m1)
     setText("m4-desktop", d.m4)
     setText("m5-desktop", d.m5)
     setText("m6-desktop", d.m6)
+    setText("kicker-desktop", d.kicker)
+    setText("desc-desktop", d.desc)
+    setText("buyBtn-desktop", d.buy)
+    setText("langText-desktop", d.lang)
+    setText("langValue-desktop", d.langVal)
+    setText("actionTitle-desktop", d.actionTitle)
+    setText("menuTitle-desktop", d.menuTitle)
+    setText("courses-desktop", d.courses)
+    setText("coursesSub-desktop", d.coursesSub)
+    setText("support-desktop", d.support)
+    setText("supportSub-desktop", d.supportSub)
+    setText("progress-desktop", d.progress)
+    setText("progressSub-desktop", d.progressSub)
+    setText("homeCard-desktop", d.homeCard)
+    setText("homeCardSub-desktop", d.homeCardSub)
+    setText("stat1Label-desktop", d.stat1Label)
+    setText("stat1Value-desktop", d.stat1Value)
+    setText("stat2Label-desktop", d.stat2Label)
+    setText("stat2Value-desktop", d.stat2Value)
+    setText("stat3Label-desktop", d.stat3Label)
+    setText("stat3Value-desktop", d.stat3Value)
 }
 
 function toggleLang(){
@@ -824,8 +1193,10 @@ function setUserData(user){
     setText("username-desktop", username)
 
     if(user.photo_url){
-        const avatarMobile = document.getElementById("avatar-mobile")
-        if(avatarMobile) avatarMobile.src = user.photo_url
+        const avatarMobile = document.getElementById("avatarWrap-mobile")
+        if(avatarMobile){
+            avatarMobile.innerHTML = `<img src="${user.photo_url}" alt="avatar">`
+        }
 
         const avatarDesktop = document.getElementById("avatarWrap-desktop")
         if(avatarDesktop){
@@ -833,7 +1204,10 @@ function setUserData(user){
         }
     }else{
         const letter = fullName.trim().charAt(0).toUpperCase()
+        const avatarMobile = document.getElementById("avatarWrap-mobile")
         const avatarDesktop = document.getElementById("avatarWrap-desktop")
+
+        if(avatarMobile) avatarMobile.textContent = letter
         if(avatarDesktop) avatarDesktop.textContent = letter
     }
 }
@@ -852,6 +1226,18 @@ function goBack(){
     } else {
         window.location.href = "index.html"
     }
+}
+
+function buyCourse(){
+    window.location.href = "index.html"
+}
+
+function initButtons(){
+    const mobileBtn = document.getElementById("buyBtn-mobile")
+    const desktopBtn = document.getElementById("buyBtn-desktop")
+
+    if(mobileBtn) mobileBtn.onclick = buyCourse
+    if(desktopBtn) desktopBtn.onclick = buyCourse
 }
 
 function initTelegram(){
@@ -885,6 +1271,7 @@ function initTelegram(){
 }
 
 update()
+initButtons()
 initTelegram()
 </script>
 
