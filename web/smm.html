@@ -425,6 +425,22 @@ button{
         box-shadow:var(--shadow);
     }
 
+    .desktop-nav-item-accent{
+    background:linear-gradient(90deg, #b85bda 0%, #cb6ce6 100%);
+    border-color:transparent;
+    color:#fff;
+    box-shadow:0 12px 26px rgba(203,108,230,.28);
+    margin-top:8px;
+}
+
+    .desktop-nav-item-accent:hover{
+    transform:translateY(-1px);
+    }
+
+    .desktop-nav-item-accent img{
+    filter:brightness(0) invert(1);
+    }
+
     .desktop-main{
         padding:26px 28px 110px;
         height:100vh;
@@ -813,6 +829,11 @@ button{
                     <img src="images/profile2.png" alt="">
                     <span id="m6-desktop"></span>
                 </button>
+
+                <button class="desktop-nav-item desktop-nav-item-accent" onclick="goCourses()">
+                    <img src="images/courses-catalog.png" alt="">
+                    <span id="catalog-desktop"></span>
+                </button>
             </nav>
         </aside>
 
@@ -885,6 +906,7 @@ const t = {
         m4:"Aloqa",
         m5:"Sharhlar",
         m6:"Profil",
+        catalog:"Kurslar katalogi",
 
         title:"SMM kursi",
         subtitle:"Ijtimoiy tarmoqlarda ishlashni noldan o‘rganing. Kontent, vizual, post yozish, sahifa yuritish va mijoz bilan ishlashning asosiy ko‘nikmalarini bosqichma-bosqich oling.",
@@ -944,6 +966,7 @@ const t = {
         m4:"Поддержка",
         m5:"Отзывы",
         m6:"Профиль",
+        catalog:"Каталог курсов",
 
         title:"Курс SMM",
         subtitle:"Освой работу с социальными сетями с нуля. Контент, визуал, тексты, ведение страницы и базовую логику работы с клиентом ты пройдешь по шагам.",
@@ -1073,6 +1096,7 @@ function update(){
     setText("m4-desktop", d.m4);
     setText("m5-desktop", d.m5);
     setText("m6-desktop", d.m6);
+    setText("catalog-desktop", d.catalog);
 
     // desktop content
     setText("title-desktop", d.title);
@@ -1106,6 +1130,11 @@ function goBack(){
 function goHome(){
     localStorage.setItem("lang", lang);
     window.location.href = "index.html";
+}
+
+function goCourses(){
+    localStorage.setItem("lang", lang);
+    window.location.href = "courses.html";
 }
 
 function goPage(page){

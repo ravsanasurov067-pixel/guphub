@@ -191,6 +191,17 @@ button{
     gap:10px;
 }
 
+.mobile-hero-cta-wrap{
+    margin-top:14px;
+}
+
+.mobile-hero-cta{
+    width:100%;
+    height:52px;
+    font-size:15px;
+    border-radius:16px;
+}
+
 .mobile-mini-stat{
     background:rgba(255,255,255,.04);
     border-radius:16px;
@@ -521,6 +532,22 @@ button{
         flex-shrink:0;
     }
 
+    .desktop-nav-item-accent{
+        background:linear-gradient(90deg, #b85bda 0%, #cb6ce6 100%);
+        border-color:transparent;
+        color:#fff;
+        box-shadow:0 12px 26px rgba(203,108,230,.28);
+        margin-top:8px;
+    }
+
+    .desktop-nav-item-accent:hover{
+        transform:translateY(-1px);
+    }
+
+    .desktop-nav-item-accent img{
+        filter:brightness(0) invert(1);
+    }
+
     .desktop-nav-item.active-nav{
         background:linear-gradient(180deg, rgba(255,255,255,.06) 0%, rgba(255,255,255,.03) 100%);
         border-color:rgba(255,255,255,.06);
@@ -606,6 +633,22 @@ button{
         grid-template-columns:repeat(4, minmax(0,1fr));
         gap:12px;
     }
+
+    .desktop-hero-cta-wrap{
+    margin-top:22px;
+    display:flex;
+    justify-content:center;
+}
+
+.desktop-hero-cta{
+    height:60px;
+    padding:0 36px;
+    font-size:18px;
+    border-radius:18px;
+    min-width:280px;
+    max-width:420px;
+    width:100%;
+}
 
     .desktop-mini-stat{
         background:rgba(255,255,255,.04);
@@ -863,14 +906,18 @@ button{
 
                 <div class="mobile-hero-bottom">
                     <div class="mobile-mini-stat">
-                        <div class="mobile-mini-stat-title" id="stat1Title-mobile"></div>
-                        <div class="mobile-mini-stat-value" id="stat1Value-mobile"></div>
-                    </div>
+                    <div class="mobile-mini-stat-title" id="stat1Title-mobile"></div>
+                    <div class="mobile-mini-stat-value" id="stat1Value-mobile"></div>
+                </div>
 
-                    <div class="mobile-mini-stat">
-                        <div class="mobile-mini-stat-title" id="stat2Title-mobile"></div>
-                        <div class="mobile-mini-stat-value" id="stat2Value-mobile"></div>
-                    </div>
+                <div class="mobile-mini-stat">
+                    <div class="mobile-mini-stat-title" id="stat2Title-mobile"></div>
+                    <div class="mobile-mini-stat-value" id="stat2Value-mobile"></div>
+                </div>
+            </div>
+
+                <div class="mobile-hero-cta-wrap">
+                    <button class="btn mobile-hero-cta" onclick="goCourses()" id="heroBtn-mobile"></button>
                 </div>
             </section>
 
@@ -1013,6 +1060,11 @@ button{
                     <img src="images/profile2.png" alt="">
                     <span id="m6-desktop"></span>
                 </button>
+
+                <button class="desktop-nav-item desktop-nav-item-accent" onclick="goCourses()">
+                    <img src="images/courses-catalog.png" alt="">
+                    <span id="catalog-desktop"></span>
+                </button>
             </nav>
         </aside>
 
@@ -1052,6 +1104,10 @@ button{
                         <div class="desktop-mini-stat-value" id="stat4Value-desktop"></div>
                     </div>
                 </div>
+
+                    <div class="desktop-hero-cta-wrap">
+                        <button class="btn desktop-hero-cta" onclick="goCourses()" id="heroBtn-desktop"></button>
+                    </div>
             </section>
 
             <section class="desktop-grid">
@@ -1138,10 +1194,12 @@ const t = {
         m4:"Aloqa",
         m5:"Sharhlar",
         m6:"Profil",
+        catalog:"Kurslar katalogi",
 
         kicker:"Ko‘nikmadan daromadga",
         heroTitle:"Digitalga kirish uchun kuchli start nuqtasi",
         heroText:"Kasbni noldan o‘rganing\nAmaliy portfolio yig‘ing\nBirinchi buyurtmalarga yaqinlashing\nDaromadga olib boradigan skill oling",
+        heroBtn:"Kurs tanlash",
 
         stat1Title:"Format",
         stat1Value:"Qulay, sodda va amaliy",
@@ -1173,10 +1231,12 @@ const t = {
         m4:"Поддержка",
         m5:"Отзывы",
         m6:"Профиль",
+        catalog:"Каталог курсов",
 
         kicker:"От навыка к доходу",
         heroTitle:"Сильная точка входа в digital",
         heroText:"Освой профессию с нуля\nСобери сильное портфолио\nПриблизься к первым заказам\nПолучи навык, который ведет к доходу",
+        heroBtn:"Подобрать курс",
 
         stat1Title:"Формат",
         stat1Value:"Удобно, просто и прикладно",
@@ -1239,6 +1299,8 @@ function update(){
     setText("stat1Value-mobile", d.stat1Value)
     setText("stat2Title-mobile", d.stat2Title)
     setText("stat2Value-mobile", d.stat2Value)
+    setText("heroBtn-mobile", d.heroBtn)
+    setText("heroBtn-desktop", d.heroBtn)
 
     // mobile about/courses
     setText("aboutTitle-mobile", d.aboutTitle)
@@ -1261,6 +1323,7 @@ function update(){
     setText("m4-desktop", d.m4)
     setText("m5-desktop", d.m5)
     setText("m6-desktop", d.m6)
+    setText("catalog-desktop", d.catalog)
 
     // desktop hero
     setText("kicker-desktop", d.kicker)
@@ -1318,6 +1381,11 @@ function openCourse(name){
 function goHome(){
     localStorage.setItem("lang", lang)
     window.location.href = "index.html"
+}
+
+function goCourses(){
+    localStorage.setItem("lang", lang)
+    window.location.href = "courses.html"
 }
 
 function goAbout(){

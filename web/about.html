@@ -414,6 +414,22 @@ button{
         box-shadow:var(--shadow);
     }
 
+    .desktop-nav-item-accent{
+    background:linear-gradient(90deg, #b85bda 0%, #cb6ce6 100%);
+    border-color:transparent;
+    color:#fff;
+    box-shadow:0 12px 26px rgba(203,108,230,.28);
+    margin-top:8px;
+}
+
+    .desktop-nav-item-accent:hover{
+        transform:translateY(-1px);
+    }
+
+    .desktop-nav-item-accent img{
+        filter:brightness(0) invert(1);
+    }
+
     .desktop-main{
         padding:26px 28px 40px;
         height:100vh;
@@ -839,6 +855,11 @@ button{
                     <img src="images/profile2.png" alt="">
                     <span id="m6-desktop"></span>
                 </button>
+
+                <button class="desktop-nav-item desktop-nav-item-accent" onclick="goCourses()">
+                    <img src="images/courses-catalog.png" alt="">
+                    <span id="catalog-desktop"></span>
+                </button>
             </nav>
         </aside>
 
@@ -941,6 +962,7 @@ const t = {
         m4:"Aloqa",
         m5:"Sharhlar",
         m6:"Profil",
+        catalog:"Kurslar katalogi",
 
         kicker:"Platforma haqida",
         title:"gaphub bu shunchaki kurslar emas",
@@ -977,6 +999,7 @@ const t = {
         m4:"Поддержка",
         m5:"Отзывы",
         m6:"Профиль",
+        catalog:"Каталог курсов",
 
         kicker:"О платформе",
         title:"gaphub это не просто курсы",
@@ -1072,6 +1095,7 @@ function update(){
     setText("for4Title-desktop", d.for4Title)
     setText("for4Text-desktop", d.for4Text)
     setText("btn-desktop", d.btn)
+    setText("catalog-desktop", d.catalog)
 }
 
 function goHome(){
@@ -1094,7 +1118,7 @@ function goPage(page){
 
 function goCourses(){
     localStorage.setItem("lang", lang)
-    window.location.href = "index.html"
+    window.location.href = "courses.html"
 }
 
 function initButtons(){

@@ -444,6 +444,22 @@ button{
         box-shadow:var(--shadow);
     }
 
+    .desktop-nav-item-accent{
+    background:linear-gradient(90deg, #b85bda 0%, #cb6ce6 100%);
+    border-color:transparent;
+    color:#fff;
+    box-shadow:0 12px 26px rgba(203,108,230,.28);
+    margin-top:8px;
+    }
+
+    .desktop-nav-item-accent:hover{
+    transform:translateY(-1px);
+    }
+
+    .desktop-nav-item-accent img{
+    filter:brightness(0) invert(1);
+    }
+
     .desktop-main{
         padding:26px 28px 34px;
         height:100vh;
@@ -860,6 +876,11 @@ button{
                     <img src="images/profile2.png" alt="">
                     <span id="m6-desktop"></span>
                 </button>
+
+                <button class="desktop-nav-item desktop-nav-item-accent" onclick="goCourses()">
+                    <img src="images/courses-catalog.png" alt="">
+                    <span id="catalog-desktop"></span>
+                </button>
             </nav>
         </aside>
 
@@ -934,6 +955,7 @@ const t = {
         m5:"Sharhlar",
         m6:"Profil",
         back:"Orqaga",
+        catalog:"Kurslar katalogi",
 
         kicker:"Qo‘llab-quvvatlash",
         title:"Savol bo‘lsa, yolg‘iz qolmaysan",
@@ -976,6 +998,7 @@ const t = {
         m5:"Отзывы",
         m6:"Профиль",
         back:"Назад",
+        catalog:"Каталог курсов",
 
         kicker:"Поддержка",
         title:"Если есть вопрос, ты не один",
@@ -1057,6 +1080,7 @@ function update(){
     setText("m4-desktop", d.m4);
     setText("m5-desktop", d.m5);
     setText("m6-desktop", d.m6);
+    setText("catalog-desktop", d.catalog);
 
     renderFaqMobile();
     renderFaqDesktop();
@@ -1146,6 +1170,11 @@ function goHome(){
 function goPage(page){
     localStorage.setItem("lang", lang);
     window.location.href = page;
+}
+
+function goCourses(){
+    localStorage.setItem("lang", lang);
+    window.location.href = "courses.html";
 }
 
 function openSupport(){
