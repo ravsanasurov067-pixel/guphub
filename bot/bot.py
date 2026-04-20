@@ -10,37 +10,44 @@ from aiogram.types import (
 )
 from aiogram.fsm.storage.memory import MemoryStorage
 from dotenv import load_dotenv
-import psycopg2
 import asyncio
 import os
 
 load_dotenv()
 
 BOT_TOKEN = os.getenv("BOT_TOKEN")
-
-DB_NAME = os.getenv("DB_NAME")
-DB_USER = os.getenv("DB_USER")
-DB_PASSWORD = os.getenv("DB_PASSWORD")
-DB_HOST = os.getenv("DB_HOST")
-DB_PORT = os.getenv("DB_PORT")
-
-conn = psycopg2.connect(
-    dbname=DB_NAME,
-    user=DB_USER,
-    password=DB_PASSWORD,
-    host=DB_HOST,
-    port=DB_PORT
-)
-cursor = conn.cursor()
+MINI_APP_URL = os.getenv("MINI_APP_URL")
+LOCAL_MODE = os.getenv("LOCAL_MODE", "false").lower() == "true"
 
 bot = Bot(token=BOT_TOKEN)
 dp = Dispatcher(storage=MemoryStorage())
 
-# 🔥 прод ссылка
-MINI_APP_URL = "https://bot.gaphub.uz"
+conn = None
+cursor = None
+
+if not LOCAL_MODE:
+    import psycopg2
+
+    DB_NAME = os.getenv("DB_NAME")
+    DB_USER = os.getenv("DB_USER")
+    DB_PASSWORD = os.getenv("DB_PASSWORD")
+    DB_HOST = os.getenv("DB_HOST")
+    DB_PORT = os.getenv("DB_PORT")
+
+    conn = psycopg2.connect(
+        dbname=DB_NAME,
+        user=DB_USER,
+        password=DB_PASSWORD,
+        host=DB_HOST,
+        port=DB_PORT
+    )
+    cursor = conn.cursor()
 
 
 def save_user_to_db(user: types.User):
+    if LOCAL_MODE or cursor is None or conn is None:
+        return
+
     cursor.execute("""
         INSERT INTO users (
             telegram_id,
@@ -70,6 +77,9 @@ def save_user_to_db(user: types.User):
 
 
 def get_user_phone(telegram_id: int):
+    if LOCAL_MODE or cursor is None:
+        return None
+
     cursor.execute("""
         SELECT phone
         FROM users
@@ -80,6 +90,9 @@ def get_user_phone(telegram_id: int):
 
 
 def save_phone_to_db(telegram_id: int, phone: str):
+    if LOCAL_MODE or cursor is None or conn is None:
+        return
+
     cursor.execute("""
         UPDATE users
         SET phone = %s,
@@ -117,6 +130,13 @@ async def start(message: types.Message):
     user = message.from_user
     save_user_to_db(user)
 
+    if LOCAL_MODE:
+        await message.answer(
+            "Локальный режим. Открыть приложение:",
+            reply_markup=get_open_app_keyboard()
+        )
+        return
+
     phone = get_user_phone(user.id)
 
     if phone:
@@ -138,6 +158,13 @@ async def start(message: types.Message):
 
 @dp.message(lambda message: message.contact is not None)
 async def handle_contact(message: types.Message):
+    if LOCAL_MODE:
+        await message.answer(
+            "Локальный режим. Открыть приложение:",
+            reply_markup=get_open_app_keyboard()
+        )
+        return
+
     contact = message.contact
 
     if contact.user_id and contact.user_id != message.from_user.id:
@@ -167,8 +194,10 @@ async def main():
     try:
         await dp.start_polling(bot)
     finally:
-        cursor.close()
-        conn.close()
+        if cursor:
+            cursor.close()
+        if conn:
+            conn.close()
         await bot.session.close()
 
 
