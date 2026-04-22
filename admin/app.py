@@ -54,6 +54,27 @@ def get_user_courses(telegram_id):
 
     return [row[0] for row in cursor.fetchall()]
 
+def get_all_users():
+    cursor.execute("""
+        SELECT telegram_id, username, first_name, last_name, phone, created_at
+        FROM users
+        ORDER BY created_at DESC
+    """)
+
+    rows = cursor.fetchall()
+
+    users = []
+    for row in rows:
+        users.append({
+            "telegram_id": row[0],
+            "username": row[1],
+            "first_name": row[2],
+            "last_name": row[3],
+            "phone": row[4],
+            "created_at": row[5]
+        })
+
+    return users
 
 @app.route("/", methods=["GET", "POST"])
 def login():
@@ -76,20 +97,18 @@ def dashboard():
     telegram_id = request.args.get("telegram_id")
     message = request.args.get("message")
 
-    users = []
+    users = get_all_users()
     user_courses = []
 
     if telegram_id:
-        user = get_user(telegram_id)
-        if user:
-            users.append(user)
-            user_courses = get_user_courses(telegram_id)
+        user_courses = get_user_courses(telegram_id)
 
     return render_template(
         "dashboard.html",
         users=users,
         message=message,
-        user_courses=user_courses
+        user_courses=user_courses,
+        selected_telegram_id=telegram_id
     )
 
 

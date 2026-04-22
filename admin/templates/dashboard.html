@@ -28,7 +28,7 @@
             width: 200px;
             background: #111;
             color: #fff;
-            height: calc(100vh - 60px);
+            min-height: calc(100vh - 60px);
             padding: 20px;
         }
 
@@ -44,6 +44,13 @@
             padding: 20px;
         }
 
+        .card {
+            background: #fff;
+            padding: 16px;
+            margin-bottom: 20px;
+            border: 1px solid #ddd;
+        }
+
         table {
             width: 100%;
             background: #fff;
@@ -54,10 +61,26 @@
         th, td {
             padding: 10px;
             border: 1px solid #ddd;
+            text-align: left;
+            vertical-align: top;
         }
 
         th {
             background: #eee;
+        }
+
+        .courses {
+            margin: 0;
+            padding-left: 18px;
+        }
+
+        .muted {
+            color: #666;
+        }
+
+        input, select, button {
+            padding: 8px;
+            margin-right: 8px;
         }
     </style>
 </head>
@@ -83,56 +106,62 @@
         <h2>Пользователи</h2>
 
         {% if message %}
-            <p><b>{{ message }}</b></p>
+            <div class="card">
+                <b>{{ message }}</b>
+            </div>
         {% endif %}
 
-        <form method="GET">
-            <input type="text" name="telegram_id" placeholder="Введите Telegram ID">
-            <button type="submit">Найти</button>
-        </form>
+        <div class="card">
+            <form method="GET">
+                <input type="text" name="telegram_id" placeholder="Введите Telegram ID">
+                <button type="submit">Найти</button>
+            </form>
+        </div>
 
-        <br>
-
-        <h3>Выдать курс</h3>
-
-        <form method="POST" action="/give-access">
-            <input type="text" name="telegram_id" placeholder="Telegram ID" required>
-
-            <select name="course">
-                <option value="smm">SMM</option>
-                <option value="target">Target</option>
-                <option value="ai">AI</option>
-            </select>
-
-            <button type="submit">Выдать</button>
-        </form>
-
-        {% if user_courses %}
-            <h3>Доступные курсы</h3>
-            <ul>
-                {% for course in user_courses %}
-                    <li>{{ course }}</li>
-                {% endfor %}
-            </ul>
+        {% if selected_telegram_id and user_courses %}
+            <div class="card">
+                <h3>Курсы пользователя {{ selected_telegram_id }}</h3>
+                <ul class="courses">
+                    {% for course in user_courses %}
+                        <li>{{ course }}</li>
+                    {% endfor %}
+                </ul>
+            </div>
         {% endif %}
+
+        <div class="card">
+            <h3>Выдать курс</h3>
+
+            <form method="POST" action="/give-access">
+                <input type="text" name="telegram_id" placeholder="Telegram ID" required>
+
+                <select name="course">
+                    <option value="smm">SMM</option>
+                    <option value="target">Target</option>
+                    <option value="ai">AI</option>
+                </select>
+
+                <button type="submit">Выдать</button>
+            </form>
+        </div>
 
         <table>
             <tr>
-                <th>ID</th>
+                <th>Telegram ID</th>
                 <th>Username</th>
                 <th>Имя</th>
                 <th>Фамилия</th>
                 <th>Телефон</th>
-                <th>Дата</th>
+                <th>Дата регистрации</th>
             </tr>
 
             {% for user in users %}
             <tr>
                 <td>{{ user.telegram_id }}</td>
-                <td>{{ user.username }}</td>
-                <td>{{ user.first_name }}</td>
-                <td>{{ user.last_name }}</td>
-                <td>{{ user.phone }}</td>
+                <td>{{ user.username or "-" }}</td>
+                <td>{{ user.first_name or "-" }}</td>
+                <td>{{ user.last_name or "-" }}</td>
+                <td>{{ user.phone or "-" }}</td>
                 <td>{{ user.created_at }}</td>
             </tr>
             {% endfor %}
