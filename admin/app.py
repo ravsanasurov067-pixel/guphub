@@ -54,6 +54,7 @@ def get_user_courses(telegram_id):
 
     return [row[0] for row in cursor.fetchall()]
 
+
 def get_all_users():
     cursor.execute("""
         SELECT telegram_id, username, first_name, last_name, phone, created_at
@@ -76,19 +77,6 @@ def get_all_users():
 
     return users
 
-def remove_user_course(telegram_id, course_slug):
-    cursor.execute("SELECT id FROM courses WHERE slug = %s", (course_slug,))
-    course = cursor.fetchone()
-
-    if course:
-        course_id = course[0]
-
-        cursor.execute("""
-            DELETE FROM user_courses
-            WHERE telegram_id = %s AND course_id = %s
-        """, (telegram_id, course_id))
-
-        conn.commit()
 
 def remove_user_course(telegram_id, course_slug):
     cursor.execute("SELECT id FROM courses WHERE slug = %s", (course_slug,))
@@ -103,6 +91,7 @@ def remove_user_course(telegram_id, course_slug):
         """, (telegram_id, course_id))
 
         conn.commit()
+
 
 @app.route("/", methods=["GET", "POST"])
 def login():
@@ -126,9 +115,10 @@ def dashboard():
     message = request.args.get("message")
 
     users = get_all_users()
-    
+
     for user in users:
         user["courses"] = get_user_courses(user["telegram_id"])
+
     user_courses = []
 
     if telegram_id:
@@ -177,9 +167,6 @@ def give_access():
     return redirect(f"/dashboard?telegram_id={telegram_id}&message={message}")
 
 
-if __name__ == "__main__":
-    app.run(debug=True, host="0.0.0.0", port=8010)
-
 @app.route("/remove-access", methods=["POST"])
 def remove_access():
     if not session.get("admin"):
@@ -192,3 +179,7 @@ def remove_access():
 
     message = f"Курс {course_slug} удален у пользователя {telegram_id}"
     return redirect(f"/dashboard?telegram_id={telegram_id}&message={message}")
+
+
+if __name__ == "__main__":
+    app.run(debug=True, host="0.0.0.0", port=8010)
