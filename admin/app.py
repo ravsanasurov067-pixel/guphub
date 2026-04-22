@@ -126,6 +126,7 @@ def dashboard():
     message = request.args.get("message")
 
     users = get_all_users()
+    
     for user in users:
         user["courses"] = get_user_courses(user["telegram_id"])
     user_courses = []
