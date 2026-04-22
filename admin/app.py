@@ -1,14 +1,58 @@
+from flask import Flask, render_template, request, redirect, session
 from dotenv import load_dotenv
+import psycopg2
 import os
 
 load_dotenv()
-from flask import Flask, render_template, request, redirect, session
 
 app = Flask(__name__)
 app.secret_key = "supersecretkey"
 
 ADMIN_LOGIN = os.getenv("ADMIN_LOGIN")
 ADMIN_PASSWORD = os.getenv("ADMIN_PASSWORD")
+
+conn = psycopg2.connect(
+    dbname=os.getenv("DB_NAME"),
+    user=os.getenv("DB_USER"),
+    password=os.getenv("DB_PASSWORD"),
+    host=os.getenv("DB_HOST"),
+    port=os.getenv("DB_PORT")
+)
+
+cursor = conn.cursor()
+
+
+def get_user(telegram_id):
+    cursor.execute("""
+        SELECT telegram_id, username, first_name, last_name, phone, created_at
+        FROM users
+        WHERE telegram_id = %s
+    """, (telegram_id,))
+
+    result = cursor.fetchone()
+
+    if result:
+        return {
+            "telegram_id": result[0],
+            "username": result[1],
+            "first_name": result[2],
+            "last_name": result[3],
+            "phone": result[4],
+            "created_at": result[5]
+        }
+
+    return None
+
+
+def get_user_courses(telegram_id):
+    cursor.execute("""
+        SELECT c.slug
+        FROM user_courses uc
+        JOIN courses c ON uc.course_id = c.id
+        WHERE uc.telegram_id = %s
+    """, (telegram_id,))
+
+    return [row[0] for row in cursor.fetchall()]
 
 
 @app.route("/", methods=["GET", "POST"])
@@ -36,16 +80,10 @@ def dashboard():
     user_courses = []
 
     if telegram_id:
-        users.append({
-            "telegram_id": telegram_id,
-            "username": "test_user",
-            "first_name": "Test",
-            "last_name": "User",
-            "phone": "+998000000000",
-            "created_at": "2026"
-        })
-
-        user_courses = ["smm", "target"]
+        user = get_user(telegram_id)
+        if user:
+            users.append(user)
+            user_courses = get_user_courses(telegram_id)
 
     return render_template(
         "dashboard.html",
@@ -67,9 +105,24 @@ def give_access():
         return redirect("/")
 
     telegram_id = request.form.get("telegram_id")
-    course = request.form.get("course")
+    course_slug = request.form.get("course")
 
-    message = f"Курс {course} выдан пользователю {telegram_id}"
+    cursor.execute("SELECT id FROM courses WHERE slug = %s", (course_slug,))
+    course = cursor.fetchone()
+
+    if course:
+        course_id = course[0]
+
+        cursor.execute("""
+            INSERT INTO user_courses (telegram_id, course_id)
+            VALUES (%s, %s)
+            ON CONFLICT DO NOTHING
+        """, (telegram_id, course_id))
+
+        conn.commit()
+        message = f"Курс {course_slug} выдан пользователю {telegram_id}"
+    else:
+        message = "Курс не найден"
 
     return redirect(f"/dashboard?telegram_id={telegram_id}&message={message}")
 
