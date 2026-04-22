@@ -64,7 +64,7 @@ button{
 }
 
 .mobile-page{
-    padding:calc(env(safe-area-inset-top) + 14px) 16px calc(110px + env(safe-area-inset-bottom));
+    padding:calc(env(safe-area-inset-top) + 76px) 14px calc(110px + env(safe-area-inset-bottom));
     background:
         radial-gradient(circle at 18% 12%, rgba(203,108,230,.08), transparent 24%),
         linear-gradient(180deg, #09080f 0%, #0c0b14 100%);
@@ -120,6 +120,7 @@ button{
     color:var(--muted);
     font-size:14px;
     line-height:1.5;
+    max-width:96%;
 }
 
 .mobile-courses{
@@ -309,7 +310,7 @@ button{
 
     .desktop-layout{
         display:grid;
-        grid-template-columns:280px 1fr;
+        grid-template-columns:280px minmax(0,1fr);
         min-height:100vh;
     }
 
@@ -317,6 +318,7 @@ button{
         padding:22px 22px;
         border-right:1px solid rgba(255,255,255,.05);
         background:linear-gradient(180deg, rgba(14,13,23,.70) 0%, rgba(12,11,20,.40) 100%);
+        overflow:auto;
     }
 
     .desktop-brand{
@@ -422,16 +424,17 @@ button{
 
     .desktop-title{
         margin:0 0 8px;
-        font-size:60px;
+        font-size:clamp(42px,4vw,60px);
         line-height:.94;
         font-weight:800;
         letter-spacing:-1px;
+        max-width:900px;
     }
 
     .desktop-desc{
         margin:0;
         color:var(--muted);
-        font-size:18px;
+        font-size:clamp(16px,1.15vw,18px);
         line-height:1.55;
         max-width:900px;
     }
@@ -440,6 +443,7 @@ button{
         display:grid;
         grid-template-columns:repeat(3, minmax(0,1fr));
         gap:16px;
+        align-items:stretch;
     }
 
     .desktop-course-card{
@@ -536,7 +540,7 @@ button{
 
 @media (min-width:1024px) and (max-width:1360px){
     .desktop-layout{
-        grid-template-columns:260px 1fr;
+        grid-template-columns:260px minmax(0,1fr);
     }
 
     .desktop-main{
@@ -547,6 +551,12 @@ button{
         font-size:46px;
     }
 
+    .desktop-courses{
+        grid-template-columns:1fr 1fr;
+    }
+}
+
+@media (min-width:1024px) and (max-width:1120px){
     .desktop-courses{
         grid-template-columns:1fr;
     }
@@ -894,10 +904,8 @@ function setText(id, value){
 
 function update(){
     const d = t[lang]
-
     document.documentElement.lang = lang === "uz" ? "uz" : "ru"
 
-    // mobile
     setText("back-mobile", d.back)
     setText("kicker-mobile", d.kicker)
     setText("title-mobile", d.title)
@@ -926,7 +934,6 @@ function update(){
     setText("m5-mobile", d.m5)
     setText("m6-mobile", d.m6)
 
-    // desktop
     setText("back-desktop", d.back)
     setText("home-desktop", d.home)
     setText("m1-desktop", d.m1)

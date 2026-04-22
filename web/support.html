@@ -65,7 +65,11 @@ button{
 }
 
 .mobile-page{
-    padding:calc(env(safe-area-inset-top) + 14px) 16px calc(110px + env(safe-area-inset-bottom));
+    min-height:100vh;
+    padding:calc(env(safe-area-inset-top) + 76px) 14px calc(110px + env(safe-area-inset-bottom));
+    background:
+        radial-gradient(circle at 20% 10%, rgba(203,108,230,.10), transparent 24%),
+        linear-gradient(180deg, #09080f 0%, #0c0b14 100%);
 }
 
 .mobile-back{
@@ -119,6 +123,11 @@ button{
     gap:14px;
 }
 
+.mobile-hero-text{
+    min-width:0;
+    flex:1;
+}
+
 .mobile-hero-art{
     width:92px;
     height:92px;
@@ -134,6 +143,7 @@ button{
     font-size:34px;
     line-height:.96;
     font-weight:800;
+    letter-spacing:-0.8px;
 }
 
 .mobile-desc{
@@ -141,7 +151,7 @@ button{
     color:var(--muted);
     font-size:14px;
     line-height:1.5;
-    max-width:94%;
+    max-width:96%;
 }
 
 .mobile-note{
@@ -190,6 +200,7 @@ button{
     display:flex;
     align-items:center;
     gap:12px;
+    min-width:0;
 }
 
 .mobile-contact-icon{
@@ -212,12 +223,14 @@ button{
     font-size:13px;
     color:var(--muted-soft);
     margin-top:2px;
+    line-height:1.4;
 }
 
 .mobile-contact-arrow{
     font-size:18px;
     color:#bfbfbf;
     line-height:1;
+    flex-shrink:0;
 }
 
 .mobile-faq-list{
@@ -389,7 +402,7 @@ button{
 
     .desktop-layout{
         display:grid;
-        grid-template-columns:280px 1fr;
+        grid-template-columns:280px minmax(0,1fr);
         min-height:100vh;
     }
 
@@ -397,6 +410,7 @@ button{
         padding:22px 22px;
         border-right:1px solid rgba(255,255,255,.05);
         background:linear-gradient(180deg, rgba(14,13,23,.70) 0%, rgba(12,11,20,.40) 100%);
+        overflow:auto;
     }
 
     .desktop-brand{
@@ -445,19 +459,19 @@ button{
     }
 
     .desktop-nav-item-accent{
-    background:linear-gradient(90deg, #b85bda 0%, #cb6ce6 100%);
-    border-color:transparent;
-    color:#fff;
-    box-shadow:0 12px 26px rgba(203,108,230,.28);
-    margin-top:8px;
+        background:linear-gradient(90deg, #b85bda 0%, #cb6ce6 100%);
+        border-color:transparent;
+        color:#fff;
+        box-shadow:0 12px 26px rgba(203,108,230,.28);
+        margin-top:8px;
     }
 
     .desktop-nav-item-accent:hover{
-    transform:translateY(-1px);
+        transform:translateY(-1px);
     }
 
     .desktop-nav-item-accent img{
-    filter:brightness(0) invert(1);
+        filter:brightness(0) invert(1);
     }
 
     .desktop-main{
@@ -511,14 +525,18 @@ button{
 
     .desktop-hero-top{
         display:grid;
-        grid-template-columns:1.05fr .95fr;
+        grid-template-columns:minmax(0,1.05fr) minmax(220px,.95fr);
         gap:26px;
         align-items:center;
     }
 
+    .desktop-hero-text{
+        min-width:0;
+    }
+
     .desktop-title{
         margin:0 0 12px;
-        font-size:64px;
+        font-size:clamp(42px,4.2vw,64px);
         line-height:.94;
         font-weight:800;
         letter-spacing:-1.2px;
@@ -528,7 +546,7 @@ button{
     .desktop-desc{
         margin:0;
         color:var(--muted);
-        font-size:19px;
+        font-size:clamp(16px,1.15vw,19px);
         line-height:1.6;
         max-width:760px;
     }
@@ -540,8 +558,8 @@ button{
     }
 
     .desktop-art{
-        width:230px;
-        height:230px;
+        width:clamp(170px,18vw,230px);
+        height:clamp(170px,18vw,230px);
         object-fit:contain;
         border-radius:26px;
         background:#1a1a1a;
@@ -554,7 +572,7 @@ button{
         border-radius:22px;
         padding:18px 20px;
         color:#f0ebf8;
-        font-size:18px;
+        font-size:16px;
         line-height:1.55;
         max-width:920px;
     }
@@ -576,12 +594,14 @@ button{
         border-radius:24px;
         padding:18px;
         box-shadow:var(--shadow);
+        cursor:pointer;
     }
 
     .desktop-contact-left{
         display:flex;
         align-items:center;
         gap:14px;
+        min-width:0;
     }
 
     .desktop-contact-icon{
@@ -604,6 +624,7 @@ button{
         font-size:14px;
         color:var(--muted-soft);
         margin-top:3px;
+        line-height:1.45;
     }
 
     .desktop-contact-arrow{
@@ -712,7 +733,7 @@ button{
 
 @media (min-width:1024px) and (max-width:1400px){
     .desktop-layout{
-        grid-template-columns:260px 1fr;
+        grid-template-columns:260px minmax(0,1fr);
     }
 
     .desktop-main{
@@ -723,21 +744,18 @@ button{
         padding:22px 20px 20px;
     }
 
-    .desktop-title{
-        font-size:50px;
-    }
-
-    .desktop-desc{
-        font-size:17px;
-    }
-
-    .desktop-art{
-        width:190px;
-        height:190px;
-    }
-
     .desktop-note{
-        font-size:16px;
+        font-size:15px;
+    }
+}
+
+@media (min-width:1024px) and (max-width:1180px){
+    .desktop-hero-top{
+        grid-template-columns:1fr;
+    }
+
+    .desktop-art-wrap{
+        justify-content:flex-start;
     }
 
     .desktop-grid{
@@ -765,7 +783,7 @@ button{
             <div class="mobile-kicker" id="kicker-mobile"></div>
 
             <div class="mobile-hero-row">
-                <div>
+                <div class="mobile-hero-text">
                     <h1 class="mobile-title" id="title-mobile"></h1>
                     <p class="mobile-desc" id="desc-mobile"></p>
                 </div>
@@ -894,7 +912,7 @@ button{
                 <div class="desktop-kicker" id="kicker-desktop"></div>
 
                 <div class="desktop-hero-top">
-                    <div>
+                    <div class="desktop-hero-text">
                         <h1 class="desktop-title" id="title-desktop"></h1>
                         <p class="desktop-desc" id="desc-desktop"></p>
                     </div>
@@ -1045,7 +1063,6 @@ function update(){
 
     document.documentElement.lang = lang === "uz" ? "uz" : "ru";
 
-    // mobile
     setText("back-mobile", d.back);
     setText("kicker-mobile", d.kicker);
     setText("title-mobile", d.title);
@@ -1063,7 +1080,6 @@ function update(){
     setText("m5-mobile", d.m5);
     setText("m6-mobile", d.m6);
 
-    // desktop
     setText("home-desktop", d.home);
     setText("back-desktop", d.back);
     setText("title-desktop", d.title);
@@ -1182,6 +1198,14 @@ function openSupport(){
     window.location.href = "https://t.me/Yusuf_bayer";
 }
 
+function initButtons(){
+    const mobileBtn = document.getElementById("supportBtn-mobile");
+    const desktopBtn = document.getElementById("supportBtn-desktop");
+
+    if(mobileBtn) mobileBtn.onclick = openSupport;
+    if(desktopBtn) desktopBtn.onclick = openSupport;
+}
+
 function initTelegram(){
     if(window.Telegram && Telegram.WebApp){
         const tg = Telegram.WebApp;
@@ -1198,6 +1222,7 @@ function initTelegram(){
 }
 
 update();
+initButtons();
 initTelegram();
 </script>
 

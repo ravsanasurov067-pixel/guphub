@@ -9,14 +9,20 @@
 <style>
 :root{
     --accent:#cb6ce6;
+    --accent-2:#a855f7;
     --bg:#0c0b14;
-    --bg-soft:#14121f;
-    --card:#111117;
-    --card-soft:#17171f;
     --text:#ffffff;
     --muted:#a8a8b3;
-    --line:rgba(255,255,255,0.08);
+    --line:rgba(255,255,255,.08);
     --shadow:0 10px 35px rgba(0,0,0,.35);
+
+    --radius-xl:clamp(22px,2vw,30px);
+    --radius-lg:20px;
+    --radius-md:16px;
+
+    --hero-title:clamp(32px,4vw,58px);
+    --hero-text:clamp(14px,1.15vw,18px);
+    --section-title:clamp(22px,2vw,30px);
 }
 
 *{
@@ -53,14 +59,24 @@ button{
 
 .btn{
     border:none;
-    color:#fff;
-    background:linear-gradient(90deg,#cb6ce6,#a855f7);
     border-radius:16px;
     transition:.2s ease;
+    font-weight:700;
 }
 
 .btn:active{
     transform:scale(.99);
+}
+
+.btn-primary{
+    background:linear-gradient(90deg,var(--accent),var(--accent-2));
+    color:#fff;
+}
+
+.btn-secondary{
+    background:rgba(255,255,255,.04);
+    color:#fff;
+    border:1px solid rgba(255,255,255,.10);
 }
 
 .lang{
@@ -70,6 +86,7 @@ button{
     border-radius:999px;
     padding:3px;
     gap:3px;
+    flex-shrink:0;
 }
 
 .lang span{
@@ -87,6 +104,23 @@ button{
     background:var(--accent);
 }
 
+.glow-card{
+    background:
+        radial-gradient(circle at 84% 14%, rgba(203,108,230,.18), transparent 28%),
+        radial-gradient(circle at 16% 88%, rgba(203,108,230,.06), transparent 24%),
+        linear-gradient(180deg, #15141e 0%, #0f0e17 100%);
+    border:1px solid rgba(255,255,255,.05);
+    box-shadow:var(--shadow);
+}
+
+.soft-card{
+    background:
+        radial-gradient(circle at 88% 18%, rgba(203,108,230,.10), transparent 24%),
+        linear-gradient(180deg, #111117 0%, #0d0d12 100%);
+    border:1px solid rgba(255,255,255,.05);
+    box-shadow:var(--shadow);
+}
+
 /* =========================
    MOBILE
 ========================= */
@@ -95,15 +129,15 @@ button{
 }
 
 .mobile-page{
+    min-height:100vh;
     padding-bottom:110px;
     background:
         radial-gradient(circle at 20% 10%, rgba(203,108,230,.10), transparent 24%),
         linear-gradient(180deg, #09080f 0%, #0c0b14 100%);
-    min-height:100vh;
 }
 
 .mobile-header{
-    padding:calc(env(safe-area-inset-top) + 14px) 16px 0;
+    padding:calc(env(safe-area-inset-top) + 76px) 16px 0;
     display:flex;
     align-items:flex-start;
     justify-content:space-between;
@@ -111,10 +145,11 @@ button{
 }
 
 .mobile-logo{
-    font-size:42px;
+    font-size:clamp(34px,8vw,42px);
     font-weight:800;
     line-height:.95;
     letter-spacing:-1px;
+    max-width:56%;
 }
 
 .mobile-main{
@@ -124,14 +159,8 @@ button{
 .mobile-hero{
     position:relative;
     overflow:hidden;
-    border-radius:28px;
-    background:
-        radial-gradient(circle at 84% 14%, rgba(203,108,230,.18), transparent 24%),
-        radial-gradient(circle at 18% 85%, rgba(203,108,230,.08), transparent 22%),
-        linear-gradient(180deg, #15141e 0%, #0f0e17 100%);
-    border:1px solid rgba(255,255,255,.05);
-    box-shadow:var(--shadow);
-    padding:20px 16px 18px;
+    border-radius:var(--radius-xl);
+    padding:18px 16px 18px;
 }
 
 .mobile-kicker{
@@ -144,139 +173,80 @@ button{
     padding:8px 12px;
     font-size:12px;
     color:#ebe4f5;
-    margin-bottom:14px;
-}
-
-.mobile-hero-row{
-    display:flex;
-    align-items:flex-start;
-    justify-content:space-between;
-    gap:12px;
-}
-
-.mobile-hero-text{
-    flex:1;
+    margin-bottom:16px;
 }
 
 .mobile-hero-title{
-    margin:0 0 10px;
-    font-size:34px;
-    line-height:.96;
+    margin:0 0 14px;
+    font-size:clamp(30px,8vw,36px);
+    line-height:.95;
     font-weight:800;
-    letter-spacing:-0.8px;
+    letter-spacing:-.9px;
+    max-width:95%;
 }
 
-.mobile-hero-text p{
-    margin:0;
+.mobile-hero-title .accent-text{
+    color:#b85bda;
+}
+
+.mobile-points{
+    display:flex;
+    flex-direction:column;
+    gap:10px;
+    margin-bottom:18px;
+}
+
+.mobile-point{
+    display:flex;
+    align-items:flex-start;
+    gap:10px;
     color:var(--muted);
-    font-size:14px;
-    line-height:1.5;
-    white-space:pre-line;
+    font-size:clamp(14px,3.8vw,15px);
+    line-height:1.45;
 }
 
-.mobile-hero-art{
-    width:96px;
-    height:96px;
-    object-fit:contain;
-    border-radius:18px;
-    background:#1a1a1a;
-    padding:10px;
+.mobile-point-icon{
+    width:22px;
+    height:22px;
+    border:2px solid var(--accent);
+    border-radius:50%;
+    display:flex;
+    align-items:center;
+    justify-content:center;
     flex-shrink:0;
+    margin-top:1px;
 }
 
-.mobile-hero-bottom{
-    margin-top:16px;
+.mobile-point-icon::after{
+    content:"";
+    width:8px;
+    height:4px;
+    border-left:2px solid var(--accent);
+    border-bottom:2px solid var(--accent);
+    transform:rotate(-45deg);
+    margin-top:-1px;
+}
+
+.mobile-hero-actions{
     display:grid;
-    grid-template-columns:1fr 1fr;
+    grid-template-columns:1fr;
     gap:10px;
 }
 
-.mobile-hero-cta-wrap{
-    margin-top:14px;
-}
-
-.mobile-hero-cta{
+.mobile-hero-btn{
     width:100%;
-    height:52px;
+    height:56px;
     font-size:15px;
-    border-radius:16px;
-}
-
-.mobile-mini-stat{
-    background:rgba(255,255,255,.04);
-    border-radius:16px;
-    padding:12px;
-}
-
-.mobile-mini-stat-title{
-    font-size:12px;
-    color:#9f98aa;
-    margin-bottom:6px;
-}
-
-.mobile-mini-stat-value{
-    font-size:14px;
-    font-weight:700;
-    line-height:1.35;
-}
-
-.mobile-about-wrap{
-    margin-top:14px;
-}
-
-.mobile-about{
-    background:#121218;
-    border:1px solid rgba(255,255,255,.05);
-    border-radius:24px;
-    padding:16px;
-    box-shadow:var(--shadow);
-}
-
-.mobile-about-top{
-    display:flex;
-    gap:12px;
-    align-items:center;
-    margin-bottom:12px;
-}
-
-.mobile-about-img{
-    width:84px;
-    height:84px;
-    object-fit:contain;
     border-radius:18px;
-    background:#1a1a1a;
-    padding:8px;
-    flex-shrink:0;
-}
-
-.mobile-about-title{
-    margin:0 0 6px;
-    font-size:22px;
-    line-height:1.05;
-    font-weight:800;
-}
-
-.mobile-about-text{
-    margin:0;
-    font-size:14px;
-    line-height:1.45;
-    color:var(--muted);
-}
-
-.mobile-about .btn{
-    width:100%;
-    height:50px;
-    font-size:15px;
-    margin-top:14px;
 }
 
 .mobile-section{
-    margin-top:14px;
+    margin-top:16px;
 }
 
 .mobile-section-title{
-    margin:0 0 12px;
-    font-size:22px;
+    margin:0 0 14px;
+    font-size:clamp(22px,5.4vw,24px);
     line-height:1.1;
     font-weight:800;
 }
@@ -284,83 +254,68 @@ button{
 .mobile-courses{
     display:flex;
     flex-direction:column;
-    gap:12px;
+    gap:14px;
 }
 
 .mobile-course-card{
-    position:relative;
-    overflow:hidden;
-    background:
-        radial-gradient(circle at 88% 18%, rgba(203,108,230,.10), transparent 24%),
-        linear-gradient(180deg, #111117 0%, #0d0d12 100%);
-    border:1px solid rgba(255,255,255,.05);
-    border-radius:22px;
-    padding:16px;
-    box-shadow:var(--shadow);
+    border-radius:24px;
+    padding:14px;
     cursor:pointer;
 }
 
-.mobile-course-top{
-    display:flex;
+.mobile-course-inner{
+    display:grid;
+    grid-template-columns:92px minmax(0, 1fr) 52px;
+    gap:14px;
     align-items:center;
-    gap:12px;
-    margin-bottom:12px;
 }
 
-.mobile-course-icon{
-    width:64px;
-    height:64px;
-    object-fit:contain;
-    border-radius:16px;
+.mobile-course-cover{
+    width:92px;
+    height:92px;
+    border-radius:18px;
     background:#1a1a1a;
-    padding:8px;
-    flex-shrink:0;
+    object-fit:cover;
+}
+
+.mobile-course-info{
+    min-width:0;
 }
 
 .mobile-course-title{
-    margin:0;
-    font-size:24px;
+    margin:0 0 8px;
+    font-size:clamp(20px,5.6vw,22px);
     line-height:1.05;
     font-weight:800;
 }
 
 .mobile-course-desc{
-    margin:0 0 14px;
-    color:var(--muted);
-    font-size:14px;
-    line-height:1.5;
-}
-
-.mobile-course-btn{
-    width:100%;
-    height:48px;
-    font-size:15px;
-}
-
-.mobile-proof{
-    margin-top:14px;
-    background:#121218;
-    border:1px solid rgba(255,255,255,.05);
-    border-radius:24px;
-    padding:16px;
-    box-shadow:var(--shadow);
-}
-
-.mobile-proof-title{
-    margin:0 0 10px;
-    font-size:20px;
-    line-height:1.1;
-    font-weight:800;
-}
-
-.mobile-proof-text{
     margin:0;
-    font-size:14px;
-    line-height:1.5;
     color:var(--muted);
+    font-size:14px;
+    line-height:1.45;
 }
 
-/* BOTTOM NAV */
+.mobile-course-arrow{
+    width:52px;
+    height:52px;
+    border-radius:50%;
+    background:rgba(255,255,255,.07);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    flex-shrink:0;
+}
+
+.mobile-course-arrow::before{
+    content:"›";
+    font-size:34px;
+    line-height:1;
+    color:#fff;
+    transform:translateX(1px);
+}
+
+/* bottom nav */
 .bottom-nav{
     position:fixed;
     left:0;
@@ -426,7 +381,6 @@ button{
    DESKTOP
 ========================= */
 @media (min-width:1024px){
-
     html, body{
         min-height:100vh;
         background:
@@ -451,7 +405,6 @@ button{
 
     .desktop-app{
         min-height:100vh;
-        position:relative;
         color:var(--text);
     }
 
@@ -464,7 +417,7 @@ button{
         display:flex;
         align-items:center;
         justify-content:space-between;
-        padding:18px 120px 14px 34px;
+        padding:18px clamp(18px,4vw,44px) 14px clamp(18px,2.2vw,30px);
         background:linear-gradient(180deg, rgba(16,14,25,.94) 0%, rgba(16,14,25,.78) 100%);
         border-bottom:1px solid rgba(255,255,255,.04);
         z-index:30;
@@ -474,10 +427,10 @@ button{
     .desktop-brand{
         display:flex;
         align-items:center;
-        font-size:34px;
+        font-size:clamp(28px,2.2vw,34px);
         font-weight:800;
         line-height:1;
-        letter-spacing:-0.5px;
+        letter-spacing:-.5px;
     }
 
     .desktop-right{
@@ -488,16 +441,17 @@ button{
 
     .desktop-layout{
         display:grid;
-        grid-template-columns:280px 1fr;
+        grid-template-columns:270px minmax(0,1fr);
         height:100vh;
         padding-top:78px;
         overflow:hidden;
     }
 
     .desktop-sidebar{
-        padding:22px 22px;
+        padding:22px 20px;
         border-right:1px solid rgba(255,255,255,.05);
         background:linear-gradient(180deg, rgba(14,13,23,.70) 0%, rgba(12,11,20,.40) 100%);
+        overflow:auto;
     }
 
     .desktop-nav{
@@ -532,6 +486,12 @@ button{
         flex-shrink:0;
     }
 
+    .desktop-nav-item.active-nav{
+        background:linear-gradient(180deg, rgba(255,255,255,.06) 0%, rgba(255,255,255,.03) 100%);
+        border-color:rgba(255,255,255,.06);
+        box-shadow:var(--shadow);
+    }
+
     .desktop-nav-item-accent{
         background:linear-gradient(90deg, #b85bda 0%, #cb6ce6 100%);
         border-color:transparent;
@@ -548,14 +508,8 @@ button{
         filter:brightness(0) invert(1);
     }
 
-    .desktop-nav-item.active-nav{
-        background:linear-gradient(180deg, rgba(255,255,255,.06) 0%, rgba(255,255,255,.03) 100%);
-        border-color:rgba(255,255,255,.06);
-        box-shadow:var(--shadow);
-    }
-
     .desktop-main{
-        padding:24px 28px 28px;
+        padding:20px 22px 28px;
         height:100%;
         overflow:auto;
     }
@@ -563,15 +517,9 @@ button{
     .desktop-hero{
         position:relative;
         overflow:hidden;
-        border-radius:32px;
-        background:
-            radial-gradient(circle at 84% 16%, rgba(203,108,230,.20), transparent 24%),
-            radial-gradient(circle at 12% 85%, rgba(203,108,230,.08), transparent 22%),
-            linear-gradient(180deg, #15141e 0%, #0f0e17 100%);
-        border:1px solid rgba(255,255,255,.05);
-        box-shadow:var(--shadow);
-        padding:30px 28px 24px;
-        margin-bottom:16px;
+        border-radius:var(--radius-xl);
+        padding:22px 22px 20px;
+        margin-bottom:18px;
     }
 
     .desktop-kicker{
@@ -584,77 +532,101 @@ button{
         padding:10px 14px;
         font-size:13px;
         color:#ebe4f5;
-        margin-bottom:18px;
+        margin-bottom:16px;
     }
 
     .desktop-hero-top{
         display:grid;
-        grid-template-columns:1.05fr .95fr;
-        gap:26px;
-        align-items:center;
+        grid-template-columns:minmax(0,1fr) 220px;
+        gap:20px;
+        align-items:start;
+    }
+
+    .desktop-hero-text{
+        min-width:0;
     }
 
     .desktop-hero-title{
-        margin:0 0 12px;
-        font-size:68px;
+        margin:0 0 14px;
+        font-size:var(--hero-title);
         line-height:.94;
         font-weight:800;
-        letter-spacing:-1.2px;
-        max-width:760px;
+        letter-spacing:-1px;
+        max-width:660px;
     }
 
-    .desktop-hero-text p{
-        margin:0;
+    .desktop-hero-title .accent-text{
+        color:#b85bda;
+    }
+
+    .desktop-points{
+        display:flex;
+        flex-direction:column;
+        gap:10px;
+        margin-bottom:18px;
+        max-width:640px;
+    }
+
+    .desktop-point{
+        display:flex;
+        align-items:flex-start;
+        gap:10px;
         color:var(--muted);
-        font-size:19px;
-        line-height:1.6;
-        white-space:pre-line;
-        max-width:760px;
+        font-size:var(--hero-text);
+        line-height:1.45;
+    }
+
+    .desktop-point-icon{
+        width:22px;
+        height:22px;
+        border:2px solid var(--accent);
+        border-radius:50%;
+        display:flex;
+        align-items:center;
+        justify-content:center;
+        flex-shrink:0;
+        margin-top:1px;
+    }
+
+    .desktop-point-icon::after{
+    content:"";
+    width:8px;
+    height:4px;
+    border-left:2px solid var(--accent);
+    border-bottom:2px solid var(--accent);
+    transform:rotate(-45deg);
+    margin-top:-1px;
     }
 
     .desktop-hero-art-wrap{
         display:flex;
         justify-content:flex-end;
-        align-items:center;
+        align-items:flex-start;
     }
 
     .desktop-hero-art{
-        width:250px;
-        height:250px;
+        width:220px;
+        height:220px;
         object-fit:contain;
+        object-position:center;
         border-radius:26px;
         background:#1a1a1a;
         padding:18px;
+        flex-shrink:0;
     }
 
     .desktop-hero-bottom{
-        margin-top:22px;
+        margin-top:4px;
         display:grid;
         grid-template-columns:repeat(4, minmax(0,1fr));
         gap:12px;
     }
 
-    .desktop-hero-cta-wrap{
-    margin-top:22px;
-    display:flex;
-    justify-content:center;
-}
-
-.desktop-hero-cta{
-    height:60px;
-    padding:0 36px;
-    font-size:18px;
-    border-radius:18px;
-    min-width:280px;
-    max-width:420px;
-    width:100%;
-}
-
     .desktop-mini-stat{
         background:rgba(255,255,255,.04);
         border-radius:18px;
         padding:14px;
-        min-height:86px;
+        min-height:82px;
     }
 
     .desktop-mini-stat-title{
@@ -664,119 +636,55 @@ button{
     }
 
     .desktop-mini-stat-value{
-        font-size:16px;
-        font-weight:700;
-        line-height:1.4;
-    }
-
-    .desktop-grid{
-        display:grid;
-        grid-template-columns:1.1fr .9fr;
-        gap:16px;
-        margin-bottom:16px;
-    }
-
-    .desktop-about{
-        background:#121218;
-        border:1px solid rgba(255,255,255,.05);
-        border-radius:28px;
-        padding:20px;
-        box-shadow:var(--shadow);
-    }
-
-    .desktop-about-top{
-        display:flex;
-        gap:14px;
-        align-items:flex-start;
-        margin-bottom:14px;
-    }
-
-    .desktop-about-img{
-        width:108px;
-        height:108px;
-        object-fit:contain;
-        border-radius:22px;
-        background:#1a1a1a;
-        padding:10px;
-        flex-shrink:0;
-    }
-
-    .desktop-about-title{
-        margin:0 0 8px;
-        font-size:30px;
-        line-height:1.02;
-        font-weight:800;
-    }
-
-    .desktop-about-text{
-        margin:0;
-        color:var(--muted);
-        font-size:16px;
-        line-height:1.55;
-    }
-
-    .desktop-about .btn{
-        width:100%;
-        height:54px;
-        font-size:16px;
-        margin-top:14px;
-    }
-
-    .desktop-proof{
-        background:
-            radial-gradient(circle at 88% 18%, rgba(203,108,230,.10), transparent 20%),
-            linear-gradient(180deg, #121218 0%, #101017 100%);
-        border:1px solid rgba(255,255,255,.05);
-        border-radius:28px;
-        padding:20px;
-        box-shadow:var(--shadow);
-    }
-
-    .desktop-proof-title{
-        margin:0 0 10px;
-        font-size:24px;
-        line-height:1.1;
-        font-weight:800;
-    }
-
-    .desktop-proof-text{
-        margin:0;
-        color:var(--muted);
         font-size:15px;
-        line-height:1.6;
+        font-weight:700;
+        line-height:1.35;
+    }
+
+    .desktop-hero-actions{
+    margin-top:20px;
+    display:flex;
+    gap:14px;
+    flex-wrap:wrap;
+    justify-content:center;
+    }
+
+    .desktop-hero-btn{
+    min-width:280px;
+    height:60px;
+    padding:0 34px;
+    font-size:17px;
+    border-radius:18px;
+    }
+
+    .desktop-section{
+        margin-top:4px;
     }
 
     .desktop-section-title{
         margin:0 0 14px;
-        font-size:28px;
+        font-size:var(--section-title);
         font-weight:800;
         line-height:1.08;
-        letter-spacing:-0.2px;
+        letter-spacing:-.2px;
     }
 
     .desktop-courses{
         display:grid;
-        grid-template-columns:repeat(3, minmax(0, 1fr));
+        grid-template-columns:repeat(3, minmax(0,1fr));
         gap:16px;
     }
 
     .desktop-course-card{
-        position:relative;
-        overflow:hidden;
-        background:
-            radial-gradient(circle at 88% 18%, rgba(203,108,230,.10), transparent 24%),
-            linear-gradient(180deg, #111117 0%, #0d0d12 100%);
-        border:1px solid rgba(255,255,255,.05);
         border-radius:24px;
         padding:18px;
-        box-shadow:var(--shadow);
         display:flex;
         flex-direction:column;
         justify-content:space-between;
         gap:16px;
         cursor:pointer;
         transition:.2s ease;
-        min-height:300px;
+        min-height:270px;
     }
 
     .desktop-course-card:hover{
@@ -790,27 +698,18 @@ button{
         gap:14px;
     }
 
-    .desktop-course-icon{
-        width:72px;
-        height:72px;
-        display:flex;
-        align-items:center;
-        justify-content:center;
-        flex-shrink:0;
+    .desktop-course-cover{
+        width:88px;
+        height:88px;
+        object-fit:cover;
         border-radius:18px;
         background:#1a1a1a;
-        padding:8px;
+        flex-shrink:0;
     }
 
-    .desktop-course-icon img{
-        max-width:100%;
-        max-height:100%;
-        object-fit:contain;
-    }
-
-    .desktop-course-top h3{
-        margin:0;
-        font-size:24px;
+    .desktop-course-title{
+        margin:0 0 8px;
+        font-size:clamp(22px,1.7vw,24px);
         line-height:1.08;
         font-weight:800;
     }
@@ -820,24 +719,64 @@ button{
         font-size:15px;
         line-height:1.6;
         color:var(--muted);
-        min-height:96px;
     }
 
-    .desktop-course-btn{
-        width:100%;
+    .desktop-course-arrow{
+        width:52px;
         height:52px;
-        font-size:16px;
-        border-radius:14px;
+        border-radius:50%;
+        background:rgba(255,255,255,.07);
+        display:flex;
+        align-items:center;
+        justify-content:center;
+        flex-shrink:0;
+        margin-left:auto;
+        align-self:center;
+    }
+
+    .desktop-course-arrow::before{
+        content:"›";
+        font-size:34px;
+        line-height:1;
+        color:#fff;
+        transform:translateX(1px);
     }
 }
 
-@media (min-width:1024px) and (max-width:1320px){
-    .desktop-courses{
-        grid-template-columns:1fr;
+@media (max-width:1439px){
+    :root{
+        --hero-title: clamp(30px, 3.8vw, 52px);
     }
 
-    .desktop-grid{
-        grid-template-columns:1fr;
+    .desktop-layout{
+        grid-template-columns:250px minmax(0,1fr);
+    }
+
+    .desktop-hero-top{
+        grid-template-columns:minmax(0,1fr) 190px;
+    }
+
+    .desktop-hero-art{
+        width:190px;
+        height:190px;
+    }
+
+    .desktop-hero-bottom{
+        grid-template-columns:repeat(2, minmax(0,1fr));
+    }
+
+    .desktop-courses{
+        grid-template-columns:repeat(2, minmax(0,1fr));
+    }
+}
+
+@media (max-width:1180px){
+    .desktop-layout{
+        grid-template-columns:230px minmax(0,1fr);
+    }
+
+    .desktop-main{
+        padding:18px 18px 24px;
     }
 
     .desktop-hero-top{
@@ -847,28 +786,50 @@ button{
     .desktop-hero-art-wrap{
         justify-content:flex-start;
     }
+
+    .desktop-courses{
+        grid-template-columns:1fr;
+    }
 }
 
-@media (min-width:1024px) and (max-width:1160px){
-    .desktop-layout{
-        grid-template-columns:260px 1fr;
+@media (max-width:1023px){
+    .desktop-only{
+        display:none;
     }
 
-    .desktop-main{
-        padding:22px 22px 24px;
+    .mobile-shell{
+        display:block;
     }
 
-    .desktop-topbar{
-        padding-left:24px;
-        padding-right:120px;
+    body{
+        overflow:visible;
+    }
+}
+
+@media (max-width:420px){
+    .mobile-header{
+        padding:calc(env(safe-area-inset-top) + 76px) 14px 0;
+        gap:10px;
     }
 
-    .desktop-hero-title{
-        font-size:54px;
+    .mobile-main{
+        padding:12px 14px 0;
     }
 
-    .desktop-hero-bottom{
-        grid-template-columns:repeat(2, minmax(0,1fr));
+    .mobile-hero,
+    .mobile-course-card{
+        border-radius:20px;
+    }
+}
+
+@media (max-width:360px){
+    .mobile-header{
+        flex-direction:column;
+        align-items:flex-start;
+    }
+
+    .mobile-header .lang{
+        align-self:flex-end;
     }
 }
 </style>
@@ -892,98 +853,79 @@ button{
         </div>
 
         <div class="mobile-main">
-            <section class="mobile-hero">
+            <section class="mobile-hero glow-card">
                 <div class="mobile-kicker" id="kicker-mobile"></div>
 
-                <div class="mobile-hero-row">
-                    <div class="mobile-hero-text">
-                        <h1 class="mobile-hero-title" id="heroTitle-mobile"></h1>
-                        <p id="heroText-mobile"></p>
+                <h1 class="mobile-hero-title" id="heroTitle-mobile"></h1>
+
+                <div class="mobile-points">
+                    <div class="mobile-point">
+                        <span class="mobile-point-icon"></span>
+                        <span id="point1-mobile"></span>
                     </div>
-
-                    <img class="mobile-hero-art" src="images/home-hero-mobile.png" alt="hero">
+                    <div class="mobile-point">
+                        <span class="mobile-point-icon"></span>
+                        <span id="point2-mobile"></span>
+                    </div>
+                    <div class="mobile-point">
+                        <span class="mobile-point-icon"></span>
+                        <span id="point3-mobile"></span>
+                    </div>
+                    <div class="mobile-point">
+                        <span class="mobile-point-icon"></span>
+                        <span id="point4-mobile"></span>
+                    </div>
                 </div>
 
-                <div class="mobile-hero-bottom">
-                    <div class="mobile-mini-stat">
-                    <div class="mobile-mini-stat-title" id="stat1Title-mobile"></div>
-                    <div class="mobile-mini-stat-value" id="stat1Value-mobile"></div>
-                </div>
-
-                <div class="mobile-mini-stat">
-                    <div class="mobile-mini-stat-title" id="stat2Title-mobile"></div>
-                    <div class="mobile-mini-stat-value" id="stat2Value-mobile"></div>
-                </div>
-            </div>
-
-                <div class="mobile-hero-cta-wrap">
-                    <button class="btn mobile-hero-cta" onclick="goCourses()" id="heroBtn-mobile"></button>
+                <div class="mobile-hero-actions">
+                    <button class="btn btn-primary mobile-hero-btn" onclick="goCourses()" id="heroBuy-mobile"></button>
+                    <button class="btn btn-secondary mobile-hero-btn" onclick="goAbout()" id="heroAbout-mobile"></button>
                 </div>
             </section>
-
-            <div class="mobile-about-wrap">
-                <section class="mobile-about">
-                    <div class="mobile-about-top">
-                        <img class="mobile-about-img" src="images/about.png" alt="about">
-
-                        <div>
-                            <h2 class="mobile-about-title" id="aboutTitle-mobile"></h2>
-                            <p class="mobile-about-text" id="aboutText-mobile"></p>
-                        </div>
-                    </div>
-
-                    <button class="btn" id="aboutBtn-mobile" onclick="goAbout()"></button>
-                </section>
-            </div>
 
             <section class="mobile-section">
                 <h2 class="mobile-section-title" id="popularTitle-mobile"></h2>
 
                 <div class="mobile-courses">
-                    <article class="mobile-course-card" onclick="openCourse('smm')">
-                        <div>
-                            <div class="mobile-course-top">
-                                <img class="mobile-course-icon" src="images/smm2.png" alt="SMM">
+                    <article class="mobile-course-card soft-card" onclick="openCourse('smm')">
+                        <div class="mobile-course-inner">
+                            <img class="mobile-course-cover" src="images/smm-card-mobile.png" alt="SMM">
+
+                            <div class="mobile-course-info">
                                 <h3 class="mobile-course-title">SMM</h3>
+                                <p class="mobile-course-desc" id="smmDesc-mobile"></p>
                             </div>
 
-                            <p class="mobile-course-desc" id="smmDesc-mobile"></p>
+                            <div class="mobile-course-arrow"></div>
                         </div>
-
-                        <button class="btn mobile-course-btn" id="courseBtn1-mobile"></button>
                     </article>
 
-                    <article class="mobile-course-card" onclick="openCourse('target')">
-                        <div>
-                            <div class="mobile-course-top">
-                                <img class="mobile-course-icon" src="images/target2.png" alt="TARGET">
+                    <article class="mobile-course-card soft-card" onclick="openCourse('target')">
+                        <div class="mobile-course-inner">
+                            <img class="mobile-course-cover" src="images/target-card-mobile.png" alt="TARGET">
+
+                            <div class="mobile-course-info">
                                 <h3 class="mobile-course-title">TARGET</h3>
+                                <p class="mobile-course-desc" id="targetDesc-mobile"></p>
                             </div>
 
-                            <p class="mobile-course-desc" id="targetDesc-mobile"></p>
+                            <div class="mobile-course-arrow"></div>
                         </div>
-
-                        <button class="btn mobile-course-btn" id="courseBtn2-mobile"></button>
                     </article>
 
-                    <article class="mobile-course-card" onclick="openCourse('ai')">
-                        <div>
-                            <div class="mobile-course-top">
-                                <img class="mobile-course-icon" src="images/ai2.png" alt="AI">
+                    <article class="mobile-course-card soft-card" onclick="openCourse('ai')">
+                        <div class="mobile-course-inner">
+                            <img class="mobile-course-cover" src="images/ai-card-mobile.png" alt="AI">
+
+                            <div class="mobile-course-info">
                                 <h3 class="mobile-course-title" id="ai-mobile"></h3>
+                                <p class="mobile-course-desc" id="aiDesc-mobile"></p>
                             </div>
 
-                            <p class="mobile-course-desc" id="aiDesc-mobile"></p>
+                            <div class="mobile-course-arrow"></div>
                         </div>
-
-                        <button class="btn mobile-course-btn" id="courseBtn3-mobile"></button>
                     </article>
                 </div>
-            </section>
-
-            <section class="mobile-proof">
-                <h2 class="mobile-proof-title" id="proofTitle-mobile"></h2>
-                <p class="mobile-proof-text" id="proofText-mobile"></p>
             </section>
         </div>
     </div>
@@ -1069,13 +1011,31 @@ button{
         </aside>
 
         <main class="desktop-main">
-            <section class="desktop-hero">
+            <section class="desktop-hero glow-card">
                 <div class="desktop-kicker" id="kicker-desktop"></div>
 
                 <div class="desktop-hero-top">
                     <div class="desktop-hero-text">
                         <h1 class="desktop-hero-title" id="heroTitle-desktop"></h1>
-                        <p id="heroText-desktop"></p>
+
+                        <div class="desktop-points">
+                            <div class="desktop-point">
+                                <span class="desktop-point-icon"></span>
+                                <span id="point1-desktop"></span>
+                            </div>
+                            <div class="desktop-point">
+                                <span class="desktop-point-icon"></span>
+                                <span id="point2-desktop"></span>
+                            </div>
+                            <div class="desktop-point">
+                                <span class="desktop-point-icon"></span>
+                                <span id="point3-desktop"></span>
+                            </div>
+                            <div class="desktop-point">
+                                <span class="desktop-point-icon"></span>
+                                <span id="point4-desktop"></span>
+                            </div>
+                        </div>
                     </div>
 
                     <div class="desktop-hero-art-wrap">
@@ -1105,78 +1065,53 @@ button{
                     </div>
                 </div>
 
-                    <div class="desktop-hero-cta-wrap">
-                        <button class="btn desktop-hero-cta" onclick="goCourses()" id="heroBtn-desktop"></button>
-                    </div>
-            </section>
-
-            <section class="desktop-grid">
-                <div class="desktop-about">
-                    <div class="desktop-about-top">
-                        <img class="desktop-about-img" src="images/about.png" alt="about">
-
-                        <div>
-                            <h2 class="desktop-about-title" id="aboutTitle-desktop"></h2>
-                            <p class="desktop-about-text" id="aboutText-desktop"></p>
-                        </div>
-                    </div>
-
-                    <button class="btn" id="aboutBtn-desktop" onclick="goAbout()"></button>
-                </div>
-
-                <div class="desktop-proof">
-                    <h2 class="desktop-proof-title" id="proofTitle-desktop"></h2>
-                    <p class="desktop-proof-text" id="proofText-desktop"></p>
+                <div class="desktop-hero-actions">
+                    <button class="btn btn-primary desktop-hero-btn" onclick="goCourses()" id="heroBuy-desktop"></button>
+                    <button class="btn btn-secondary desktop-hero-btn" onclick="goAbout()" id="heroAbout-desktop"></button>
                 </div>
             </section>
 
-            <section>
+            <section class="desktop-section">
                 <h2 class="desktop-section-title" id="popularTitle-desktop"></h2>
 
                 <div class="desktop-courses">
-                    <article class="desktop-course-card" onclick="openCourse('smm')">
-                        <div>
-                            <div class="desktop-course-top">
-                                <div class="desktop-course-icon">
-                                    <img src="images/smm2.png" alt="SMM">
-                                </div>
-                                <h3>SMM</h3>
+                    <article class="desktop-course-card soft-card" onclick="openCourse('smm')">
+                        <div class="desktop-course-top">
+                            <img class="desktop-course-cover" src="images/smm-card-desktop.png" alt="SMM">
+
+                            <div>
+                                <h3 class="desktop-course-title">SMM</h3>
+                                <p class="desktop-course-desc" id="smmDesc-desktop"></p>
                             </div>
 
-                            <p class="desktop-course-desc" id="smmDesc-desktop"></p>
+                            <div class="desktop-course-arrow"></div>
                         </div>
-
-                        <button class="btn desktop-course-btn" id="courseBtn1-desktop"></button>
                     </article>
 
-                    <article class="desktop-course-card" onclick="openCourse('target')">
-                        <div>
-                            <div class="desktop-course-top">
-                                <div class="desktop-course-icon">
-                                    <img src="images/target2.png" alt="TARGET">
-                                </div>
-                                <h3>TARGET</h3>
+                    <article class="desktop-course-card soft-card" onclick="openCourse('target')">
+                        <div class="desktop-course-top">
+                            <img class="desktop-course-cover" src="images/target-card-desktop.png" alt="TARGET">
+
+                            <div>
+                                <h3 class="desktop-course-title">TARGET</h3>
+                                <p class="desktop-course-desc" id="targetDesc-desktop"></p>
                             </div>
 
-                            <p class="desktop-course-desc" id="targetDesc-desktop"></p>
+                            <div class="desktop-course-arrow"></div>
                         </div>
-
-                        <button class="btn desktop-course-btn" id="courseBtn2-desktop"></button>
                     </article>
 
-                    <article class="desktop-course-card" onclick="openCourse('ai')">
-                        <div>
-                            <div class="desktop-course-top">
-                                <div class="desktop-course-icon">
-                                    <img src="images/ai2.png" alt="AI">
-                                </div>
-                                <h3 id="ai-desktop"></h3>
+                    <article class="desktop-course-card soft-card" onclick="openCourse('ai')">
+                        <div class="desktop-course-top">
+                            <img class="desktop-course-cover" src="images/ai-card-desktop.png" alt="AI">
+
+                            <div>
+                                <h3 class="desktop-course-title" id="ai-desktop"></h3>
+                                <p class="desktop-course-desc" id="aiDesc-desktop"></p>
                             </div>
 
-                            <p class="desktop-course-desc" id="aiDesc-desktop"></p>
+                            <div class="desktop-course-arrow"></div>
                         </div>
-
-                        <button class="btn desktop-course-btn" id="courseBtn3-desktop"></button>
                     </article>
                 </div>
             </section>
@@ -1197,9 +1132,13 @@ const t = {
         catalog:"Kurslar katalogi",
 
         kicker:"Ko‘nikmadan daromadga",
-        heroTitle:"Digitalga kirish uchun kuchli start nuqtasi",
-        heroText:"Kasbni noldan o‘rganing\nAmaliy portfolio yig‘ing\nBirinchi buyurtmalarga yaqinlashing\nDaromadga olib boradigan skill oling",
-        heroBtn:"Kurs tanlash",
+        heroTitle:'Digitalga kirish uchun kuchli <span class="accent-text">start nuqtasi</span>',
+        point1:"Kasbni noldan o‘rganing",
+        point2:"Amaliy portfolio yig‘ing",
+        point3:"Birinchi buyurtmalarga yaqinlashing",
+        point4:"Daromadga olib boradigan skill oling",
+        heroBuy:"Kurs tanlash",
+        heroAbout:"Nima bu gaphub?",
 
         stat1Title:"Format",
         stat1Value:"Qulay, sodda va amaliy",
@@ -1210,19 +1149,11 @@ const t = {
         stat4Title:"Auditoriya",
         stat4Value:"Yoshlar va yangi boshlovchilar",
 
-        aboutTitle:"gaphub nima bu?",
-        aboutText:"Bu shunchaki kurslar to‘plami emas. gaphub bu amaliy skill-platforma, bu yerda maqsad odamni real bozorga yaqinlashtirish.",
-        aboutBtn:"Batafsil",
-
         popular:"Mashhur kurslar",
         smmDesc:"Ijtimoiy tarmoqlarni o‘rganing va amaliy ko‘nikmalar orqali daromad qilishni boshlang.",
         targetDesc:"Target reklama, auditoriya tahlili va natijali kampaniyalarni o‘rganing.",
         ai:"Sun'iy intellekt",
-        aiDesc:"Sun'iy intellektdan ish, o‘qish va kundalik vazifalarda samarali foydalanishni o‘rganing.",
-        courseBtn:"Kursni ko‘rish",
-
-        proofTitle:"Nega bu ishonch uyg‘otadi",
-        proofText:"gaphub ichida hamma narsa bir joyga yig‘ilgan: kurslar, profil, yordam, progress va kelajakdagi monetizatsiya yo‘li. Bu “tezda yig‘ilgan sahifa” emas, balki ichki mahsulot logikasiga ega platforma."
+        aiDesc:"Sun'iy intellektdan ish, o‘qish va kundalik vazifalarda samarali foydalanishni o‘rganing."
     },
 
     ru:{
@@ -1234,9 +1165,13 @@ const t = {
         catalog:"Каталог курсов",
 
         kicker:"От навыка к доходу",
-        heroTitle:"Сильная точка входа в digital",
-        heroText:"Освой профессию с нуля\nСобери сильное портфолио\nПриблизься к первым заказам\nПолучи навык, который ведет к доходу",
-        heroBtn:"Подобрать курс",
+        heroTitle:'Сильная точка входа в <span class="accent-text">digital</span>',
+        point1:"Освой профессию с нуля",
+        point2:"Собери сильное портфолио",
+        point3:"Приблизься к первым заказам",
+        point4:"Получи навык, который ведет к доходу",
+        heroBuy:"Подобрать курс",
+        heroAbout:"Что такое gaphub?",
 
         stat1Title:"Формат",
         stat1Value:"Удобно, просто и прикладно",
@@ -1247,25 +1182,22 @@ const t = {
         stat4Title:"Аудитория",
         stat4Value:"Молодежь и новички",
 
-        aboutTitle:"Что такое gaphub?",
-        aboutText:"Это не просто набор курсов. gaphub это практическая skill-платформа, где задача не мотивация ради мотивации, а приближение человека к реальному рынку.",
-        aboutBtn:"Подробнее",
-
         popular:"Популярные курсы",
         smmDesc:"Освой социальные медиа и начни зарабатывать на востребованных навыках.",
         targetDesc:"Обучение таргетированной рекламе, аналитике и запуску рабочих рекламных кампаний.",
         ai:"Искусственный интеллект",
-        aiDesc:"Научись применять искусственный интеллект в работе, учебе и повседневных задачах.",
-        courseBtn:"Посмотреть курс",
-
-        proofTitle:"Почему это вызывает доверие",
-        proofText:"Внутри gaphub все собрано в одной логике: курсы, профиль, поддержка, прогресс и путь к монетизации. Это уже не “быстро собранная страница”, а платформа с понятной внутренней системой."
+        aiDesc:"Научись применять искусственный интеллект в работе, учебе и повседневных задачах."
     }
 }
 
 function setText(id, value){
     const el = document.getElementById(id)
     if(el) el.innerText = value
+}
+
+function setHTML(id, value){
+    const el = document.getElementById(id)
+    if(el) el.innerHTML = value
 }
 
 function setActiveLang(idUz, idRu){
@@ -1285,39 +1217,26 @@ function setLang(l){
 function update(){
     const d = t[lang]
 
-    // mobile nav
     setText("m1-mobile", d.m1)
     setText("m4-mobile", d.m4)
     setText("m5-mobile", d.m5)
     setText("m6-mobile", d.m6)
 
-    // mobile hero
     setText("kicker-mobile", d.kicker)
-    setText("heroTitle-mobile", d.heroTitle)
-    setText("heroText-mobile", d.heroText)
-    setText("stat1Title-mobile", d.stat1Title)
-    setText("stat1Value-mobile", d.stat1Value)
-    setText("stat2Title-mobile", d.stat2Title)
-    setText("stat2Value-mobile", d.stat2Value)
-    setText("heroBtn-mobile", d.heroBtn)
-    setText("heroBtn-desktop", d.heroBtn)
+    setHTML("heroTitle-mobile", d.heroTitle)
+    setText("point1-mobile", d.point1)
+    setText("point2-mobile", d.point2)
+    setText("point3-mobile", d.point3)
+    setText("point4-mobile", d.point4)
+    setText("heroBuy-mobile", d.heroBuy)
+    setText("heroAbout-mobile", d.heroAbout)
 
-    // mobile about/courses
-    setText("aboutTitle-mobile", d.aboutTitle)
-    setText("aboutText-mobile", d.aboutText)
-    setText("aboutBtn-mobile", d.aboutBtn)
     setText("popularTitle-mobile", d.popular)
     setText("smmDesc-mobile", d.smmDesc)
     setText("targetDesc-mobile", d.targetDesc)
     setText("ai-mobile", d.ai)
     setText("aiDesc-mobile", d.aiDesc)
-    setText("courseBtn1-mobile", d.courseBtn)
-    setText("courseBtn2-mobile", d.courseBtn)
-    setText("courseBtn3-mobile", d.courseBtn)
-    setText("proofTitle-mobile", d.proofTitle)
-    setText("proofText-mobile", d.proofText)
 
-    // desktop nav
     setText("home-desktop", d.home)
     setText("m1-desktop", d.m1)
     setText("m4-desktop", d.m4)
@@ -1325,10 +1244,14 @@ function update(){
     setText("m6-desktop", d.m6)
     setText("catalog-desktop", d.catalog)
 
-    // desktop hero
     setText("kicker-desktop", d.kicker)
-    setText("heroTitle-desktop", d.heroTitle)
-    setText("heroText-desktop", d.heroText)
+    setHTML("heroTitle-desktop", d.heroTitle)
+    setText("point1-desktop", d.point1)
+    setText("point2-desktop", d.point2)
+    setText("point3-desktop", d.point3)
+    setText("point4-desktop", d.point4)
+    setText("heroBuy-desktop", d.heroBuy)
+    setText("heroAbout-desktop", d.heroAbout)
     setText("stat1Title-desktop", d.stat1Title)
     setText("stat1Value-desktop", d.stat1Value)
     setText("stat2Title-desktop", d.stat2Title)
@@ -1338,20 +1261,11 @@ function update(){
     setText("stat4Title-desktop", d.stat4Title)
     setText("stat4Value-desktop", d.stat4Value)
 
-    // desktop about/courses
-    setText("aboutTitle-desktop", d.aboutTitle)
-    setText("aboutText-desktop", d.aboutText)
-    setText("aboutBtn-desktop", d.aboutBtn)
     setText("popularTitle-desktop", d.popular)
     setText("smmDesc-desktop", d.smmDesc)
     setText("targetDesc-desktop", d.targetDesc)
     setText("ai-desktop", d.ai)
     setText("aiDesc-desktop", d.aiDesc)
-    setText("courseBtn1-desktop", d.courseBtn)
-    setText("courseBtn2-desktop", d.courseBtn)
-    setText("courseBtn3-desktop", d.courseBtn)
-    setText("proofTitle-desktop", d.proofTitle)
-    setText("proofText-desktop", d.proofText)
 
     setActiveLang("uz-mobile", "ru-mobile")
     setActiveLang("uz-desktop", "ru-desktop")
@@ -1374,8 +1288,6 @@ function openCourse(name){
         window.location.href = "ai.html"
         return
     }
-
-    alert(name)
 }
 
 function goHome(){
@@ -1401,7 +1313,6 @@ function goPage(page){
 function initTelegram(){
     if(window.Telegram && Telegram.WebApp){
         const tg = Telegram.WebApp
-
         tg.ready()
         tg.expand()
 
