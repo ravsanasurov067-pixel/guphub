@@ -82,6 +82,10 @@
             padding: 8px;
             margin-right: 8px;
         }
+
+        .action-form {
+            margin-bottom: 6px;
+        }
     </style>
 </head>
 
@@ -153,6 +157,8 @@
                 <th>Фамилия</th>
                 <th>Телефон</th>
                 <th>Дата регистрации</th>
+                <th>Курсы</th>
+                <th>Действия</th>
             </tr>
 
             {% for user in users %}
@@ -163,6 +169,32 @@
                 <td>{{ user.last_name or "-" }}</td>
                 <td>{{ user.phone or "-" }}</td>
                 <td>{{ user.created_at }}</td>
+
+                <td>
+                    {% if user.courses %}
+                        <ul class="courses">
+                            {% for course in user.courses %}
+                                <li>{{ course }}</li>
+                            {% endfor %}
+                        </ul>
+                    {% else %}
+                        <span class="muted">нет</span>
+                    {% endif %}
+                </td>
+
+                <td>
+                    {% if user.courses %}
+                        {% for course in user.courses %}
+                            <form method="POST" action="/remove-access" class="action-form">
+                                <input type="hidden" name="telegram_id" value="{{ user.telegram_id }}">
+                                <input type="hidden" name="course" value="{{ course }}">
+                                <button type="submit">Удалить {{ course }}</button>
+                            </form>
+                        {% endfor %}
+                    {% else %}
+                        <span class="muted">-</span>
+                    {% endif %}
+                </td>
             </tr>
             {% endfor %}
         </table>
