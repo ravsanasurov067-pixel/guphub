@@ -64,11 +64,16 @@ button{
 }
 
 .mobile-page{
-    padding-bottom:160px;
+    min-height:100vh;
+    padding:calc(env(safe-area-inset-top) + 76px) 14px calc(154px + env(safe-area-inset-bottom));
+    background:
+        radial-gradient(circle at 20% 10%, rgba(203,108,230,.10), transparent 24%),
+        linear-gradient(180deg, #09080f 0%, #0c0b14 100%);
 }
 
 .mobile-top{
-    padding:calc(env(safe-area-inset-top) + 14px) 16px 0;
+    padding:0;
+    margin-bottom:14px;
 }
 
 .mobile-back{
@@ -91,7 +96,7 @@ button{
 }
 
 .mobile-hero{
-    padding:14px 16px 0;
+    padding:0;
     position:relative;
 }
 
@@ -155,7 +160,7 @@ button{
 
 .mobile-peek{
     margin-top:-18px;
-    padding:0 16px;
+    padding:0;
     position:relative;
     z-index:2;
 }
@@ -169,7 +174,7 @@ button{
 }
 
 .mobile-section{
-    padding:12px 16px 0;
+    padding:12px 0 0;
 }
 
 .mobile-section-title{
@@ -260,7 +265,7 @@ button{
     position:fixed;
     left:0;
     right:0;
-    bottom:calc(76px + env(safe-area-inset-bottom));
+    bottom:calc(92px + env(safe-area-inset-bottom));
     padding:0 16px;
     z-index:60;
 }
@@ -370,7 +375,7 @@ button{
 
     .desktop-layout{
         display:grid;
-        grid-template-columns:280px 1fr;
+        grid-template-columns:280px minmax(0, 1fr);
         min-height:100vh;
     }
 
@@ -378,6 +383,7 @@ button{
         padding:22px 22px;
         border-right:1px solid rgba(255,255,255,.05);
         background:linear-gradient(180deg, rgba(14,13,23,.70) 0%, rgba(12,11,20,.40) 100%);
+        overflow:auto;
     }
 
     .desktop-brand{
@@ -426,19 +432,19 @@ button{
     }
 
     .desktop-nav-item-accent{
-    background:linear-gradient(90deg, #b85bda 0%, #cb6ce6 100%);
-    border-color:transparent;
-    color:#fff;
-    box-shadow:0 12px 26px rgba(203,108,230,.28);
-    margin-top:8px;
-}
+        background:linear-gradient(90deg, #b85bda 0%, #cb6ce6 100%);
+        border-color:transparent;
+        color:#fff;
+        box-shadow:0 12px 26px rgba(203,108,230,.28);
+        margin-top:8px;
+    }
 
     .desktop-nav-item-accent:hover{
-    transform:translateY(-1px);
+        transform:translateY(-1px);
     }
 
     .desktop-nav-item-accent img{
-    filter:brightness(0) invert(1);
+        filter:brightness(0) invert(1);
     }
 
     .desktop-main{
@@ -652,7 +658,7 @@ button{
 
 @media (min-width:1024px) and (max-width:1400px){
     .desktop-layout{
-        grid-template-columns:260px 1fr;
+        grid-template-columns:260px minmax(0, 1fr);
     }
 
     .desktop-main{
@@ -694,6 +700,49 @@ button{
         bottom:22px;
     }
 }
+
+@media (max-width:430px){
+    .mobile-cover{
+        height:196px;
+    }
+
+    .mobile-title{
+        font-size:31px;
+    }
+}
+
+@media (max-width:380px){
+    .mobile-page{
+        padding-top:calc(env(safe-area-inset-top) + 72px);
+        padding-bottom:calc(146px + env(safe-area-inset-bottom));
+    }
+
+    .mobile-cover{
+        height:178px;
+    }
+
+    .mobile-title{
+        font-size:28px;
+    }
+
+    .mobile-subtitle{
+        font-size:13px;
+    }
+
+    .mobile-stat{
+        padding:10px;
+        min-height:62px;
+    }
+
+    .mobile-stat-value{
+        font-size:14px;
+    }
+
+    .mobile-buy-btn{
+        height:52px;
+        font-size:16px;
+    }
+}
 </style>
 </head>
 
@@ -716,7 +765,7 @@ button{
 
         <section class="mobile-hero">
             <div class="mobile-hero-card">
-                <img class="mobile-cover" src="images/smm-main-mobile.png" alt="SMM cover">
+                <img class="mobile-cover" src="images/smmcourse/mindset.png" alt="SMM cover">
 
                 <div class="mobile-hero-content">
                     <h1 class="mobile-title" id="title-mobile"></h1>
@@ -768,28 +817,28 @@ button{
 
     <div class="bottom-nav">
         <div class="nav-item" onclick="goPage('mycourses.html')">
-            <img src="images/courses2.png" alt="">
+            <img src="images/icon/courses2.png" alt="">
             <span id="m1-mobile"></span>
         </div>
 
         <div class="nav-item" onclick="goPage('support.html')">
-            <img src="images/support.png" alt="">
+            <img src="images/icon/support.png" alt="">
             <span id="m4-mobile"></span>
         </div>
 
         <div class="nav-center" onclick="goHome()">
             <div class="circle">
-                <img src="images/home2.png" alt="home">
+                <img src="images/icon/home2.png" alt="home">
             </div>
         </div>
 
         <div class="nav-item" onclick="goPage('chat.html')">
-            <img src="images/chat2.png" alt="">
+            <img src="images/icon/feedback.png" alt="">
             <span id="m5-mobile"></span>
         </div>
 
         <div class="nav-item" onclick="goPage('myprofile.html')">
-            <img src="images/profile2.png" alt="">
+            <img src="images/icon/profile2.png" alt="">
             <span id="m6-mobile"></span>
         </div>
     </div>
@@ -806,32 +855,32 @@ button{
 
             <nav class="desktop-nav">
                 <button class="desktop-nav-item" onclick="goHome()">
-                    <img src="images/home.png" alt="">
+                    <img src="images/icon/home.png" alt="">
                     <span id="home-desktop"></span>
                 </button>
 
                 <button class="desktop-nav-item" onclick="goPage('mycourses.html')">
-                    <img src="images/courses2.png" alt="">
+                    <img src="images/icon/courses2.png" alt="">
                     <span id="m1-desktop"></span>
                 </button>
 
                 <button class="desktop-nav-item" onclick="goPage('support.html')">
-                    <img src="images/support.png" alt="">
+                    <img src="images/icon/support.png" alt="">
                     <span id="m4-desktop"></span>
                 </button>
 
                 <button class="desktop-nav-item" onclick="goPage('chat.html')">
-                    <img src="images/chat2.png" alt="">
+                    <img src="images/icon/feedback.png" alt="">
                     <span id="m5-desktop"></span>
                 </button>
 
                 <button class="desktop-nav-item" onclick="goPage('myprofile.html')">
-                    <img src="images/profile2.png" alt="">
+                    <img src="images/icon/profile2.png" alt="">
                     <span id="m6-desktop"></span>
                 </button>
 
                 <button class="desktop-nav-item desktop-nav-item-accent" onclick="goCourses()">
-                    <img src="images/courses-catalog.png" alt="">
+                    <img src="images/icon/catalog.png" alt="">
                     <span id="catalog-desktop"></span>
                 </button>
             </nav>
@@ -844,7 +893,7 @@ button{
             </div>
 
             <section class="desktop-hero">
-                <img class="desktop-cover" src="images/smm-main-desktop.png" alt="SMM cover">
+                <img class="desktop-cover" src="images/smmcourse/mindset.png" alt="SMM cover">
 
                 <div class="desktop-hero-content">
                     <h1 class="desktop-title" id="title-desktop"></h1>
@@ -927,34 +976,41 @@ const t = {
         fit:[
             {
                 title:"Boshlovchilar uchun",
-                text:"Agar SMM sohasiga endi kirayotgan bo‘lsangiz, bu kurs sizga bazani to‘g‘ri tushunishga yordam beradi. Hammasi sodda va bosqichma-bosqich beriladi."
+                text:"Agar SMM sohasiga endi kirayotgan bo‘lsangiz, bu kurs sizga bazani to‘g‘ri tushunishga yordam beradi. Hammasi sodda va bosqichma-bosqich beriladi.",
+                icon:"images/smmcourse/new.png"
             },
             {
                 title:"Qo‘shimcha daromad izlayotganlar uchun",
-                text:"Agar siz o‘qish yoki asosiy ish bilan birga qo‘shimcha daromad qilmoqchi bo‘lsangiz, SMM xizmatlarini o‘rganib mijozlar bilan ishlashni boshlashingiz mumkin."
+                text:"Agar siz o‘qish yoki asosiy ish bilan birga qo‘shimcha daromad qilmoqchi bo‘lsangiz, SMM xizmatlarini o‘rganib mijozlar bilan ishlashni boshlashingiz mumkin.",
+                icon:"images/smmcourse/smmmoney.png"
             },
             {
                 title:"Sahifasini o‘zi yuritmoqchi bo‘lganlar uchun",
-                text:"O‘z biznesi, blogi yoki loyihasi uchun kontentni mustaqil va tartibli qilishni xohlaganlar ham bu kursdan foyda oladi."
+                text:"O‘z biznesi, blogi yoki loyihasi uchun kontentni mustaqil va tartibli qilishni xohlaganlar ham bu kursdan foyda oladi.",
+                icon:"images/smmcourse/bagsmm.png"
             }
         ],
 
         results:[
             {
                 title:"SMM bo‘yicha aniq baza",
-                text:"Kontent, rubrika, post tuzilishi, vizual va sahifa yuritishning asosiy tamoyillarini tushunib olasiz."
+                text:"Kontent, rubrika, post tuzilishi, vizual va sahifa yuritishning asosiy tamoyillarini tushunib olasiz.",
+                icon:"images/smmcourse/smmbrain.png"
             },
             {
                 title:"Portfolio uchun ishlar",
-                text:"Kurs davomida bajarilgan amaliy topshiriqlar keyinchalik portfolio sifatida ishlatilishi mumkin."
+                text:"Kurs davomida bajarilgan amaliy topshiriqlar keyinchalik portfolio sifatida ishlatilishi mumkin.",
+                icon:"images/smmcourse/papkasmm.png"
             },
             {
                 title:"Mijoz bilan ishlash tushunchasi",
-                text:"Brief olish, vazifa tushunish, kontent reja qilish va natijani taqdim etish bo‘yicha bazaviy ko‘nikma paydo bo‘ladi."
+                text:"Brief olish, vazifa tushunish, kontent reja qilish va natijani taqdim etish bo‘yicha bazaviy ko‘nikma paydo bo‘ladi.",
+                icon:"images/smmcourse/shakesmm.png"
             },
             {
                 title:"Birinchi buyurtmalarga tayyorgarlik",
-                text:"Kursdan keyin siz xizmatni qanday ko‘rsatish, nimadan boshlash va qayerdan birinchi mijozlarni izlashni yaxshiroq tushunasiz."
+                text:"Kursdan keyin siz xizmatni qanday ko‘rsatish, nimadan boshlash va qayerdan birinchi mijozlarni izlashni yaxshiroq tushunasiz.",
+                icon:"images/smmcourse/firstsmm.png"
             }
         ]
     },
@@ -987,34 +1043,41 @@ const t = {
         fit:[
             {
                 title:"Новичкам",
-                text:"Если ты только заходишь в сферу SMM, курс поможет разобраться в базе без перегруза и хаоса. Все построено поэтапно и понятно."
+                text:"Если ты только заходишь в сферу SMM, курс поможет разобраться в базе без перегруза и хаоса. Все построено поэтапно и понятно.",
+                icon:"images/smmcourse/new.png"
             },
             {
                 title:"Тем, кто хочет доп. доход",
-                text:"Если ты хочешь совмещать учебу или основную работу с подработкой, SMM может стать понятной точкой входа для первых заказов."
+                text:"Если ты хочешь совмещать учебу или основную работу с подработкой, SMM может стать понятной точкой входа для первых заказов.",
+                icon:"images/smmcourse/smmmoney.png"
             },
             {
                 title:"Тем, кто хочет вести свой проект сам",
-                text:"Если у тебя свой блог, бизнес или личный проект, курс поможет самому выстроить контент и вести страницу более профессионально."
+                text:"Если у тебя свой блог, бизнес или личный проект, курс поможет самому выстроить контент и вести страницу более профессионально.",
+                icon:"images/smmcourse/bagsmm.png"
             }
         ],
 
         results:[
             {
                 title:"Понятная база по SMM",
-                text:"Ты разберешься в контенте, рубриках, структуре постов, визуале и базовой системе ведения страницы."
+                text:"Ты разберешься в контенте, рубриках, структуре постов, визуале и базовой системе ведения страницы.",
+                icon:"images/smmcourse/smmbrain.png"
             },
             {
                 title:"Работы для портфолио",
-                text:"Практические задания из курса можно использовать как основу для своего первого портфолио."
+                text:"Практические задания из курса можно использовать как основу для своего первого портфолио.",
+                icon:"images/smmcourse/papkasmm.png"
             },
             {
                 title:"Понимание работы с клиентом",
-                text:"Появится базовое понимание, как брать задачу, работать с запросом клиента, оформлять контент и показывать результат."
+                text:"Появится базовое понимание, как брать задачу, работать с запросом клиента, оформлять контент и показывать результат.",
+                icon:"images/smmcourse/shakesmm.png"
             },
             {
                 title:"Готовность к первым заказам",
-                text:"После курса ты будешь лучше понимать, как начать оказывать услугу, с чего стартовать и где искать первых клиентов."
+                text:"После курса ты будешь лучше понимать, как начать оказывать услугу, с чего стартовать и где искать первых клиентов.",
+                icon:"images/smmcourse/firstsmm.png"
             }
         ]
     }
@@ -1033,7 +1096,7 @@ function renderAccordion(listId, items, type){
         <div class="${type}-item">
             <button class="${type}-item-btn" onclick="toggleAccordion(this, '${type}')">
                 <div class="${type}-item-left">
-                    <img class="${type}-item-icon" src="images/placeholder-icon.png" alt="">
+                    <img class="${type}-item-icon" src="${item.icon}" alt="">
                     <div class="${type}-item-title">${item.title}</div>
                 </div>
                 <span class="${type}-arrow"></span>
@@ -1067,14 +1130,12 @@ function update(){
 
     document.documentElement.lang = lang === "uz" ? "uz" : "ru";
 
-    // mobile nav/back
     setText("back-mobile", d.back);
     setText("m1-mobile", d.m1);
     setText("m4-mobile", d.m4);
     setText("m5-mobile", d.m5);
     setText("m6-mobile", d.m6);
 
-    // mobile content
     setText("title-mobile", d.title);
     setText("subtitle-mobile", d.subtitle);
     setText("stat1Label-mobile", d.stat1Label);
@@ -1089,7 +1150,6 @@ function update(){
     setText("resultTitle-mobile", d.resultTitle);
     setText("buyBtn-mobile", d.buyBtn);
 
-    // desktop nav/back
     setText("home-desktop", d.home);
     setText("back-desktop", d.back);
     setText("m1-desktop", d.m1);
@@ -1098,7 +1158,6 @@ function update(){
     setText("m6-desktop", d.m6);
     setText("catalog-desktop", d.catalog);
 
-    // desktop content
     setText("title-desktop", d.title);
     setText("subtitle-desktop", d.subtitle);
     setText("stat1Label-desktop", d.stat1Label);

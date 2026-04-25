@@ -116,28 +116,6 @@ button{
     margin-bottom:14px;
 }
 
-.mobile-hero-row{
-    display:flex;
-    align-items:flex-start;
-    justify-content:space-between;
-    gap:14px;
-}
-
-.mobile-hero-text{
-    min-width:0;
-    flex:1;
-}
-
-.mobile-hero-art{
-    width:92px;
-    height:92px;
-    object-fit:contain;
-    border-radius:18px;
-    background:#1a1a1a;
-    padding:10px;
-    flex-shrink:0;
-}
-
 .mobile-title{
     margin:0 0 10px;
     font-size:34px;
@@ -204,13 +182,21 @@ button{
 }
 
 .mobile-contact-icon{
-    width:40px;
-    height:40px;
-    object-fit:contain;
+    width:50px;
+    height:50px;
     border-radius:12px;
     background:#22222d;
-    padding:8px;
     flex-shrink:0;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    overflow:hidden;
+}
+
+.mobile-contact-icon img{
+    width:50px;
+    height:50px;
+    object-fit:contain;
 }
 
 .mobile-contact-title{
@@ -523,17 +509,6 @@ button{
         margin-bottom:18px;
     }
 
-    .desktop-hero-top{
-        display:grid;
-        grid-template-columns:minmax(0,1.05fr) minmax(220px,.95fr);
-        gap:26px;
-        align-items:center;
-    }
-
-    .desktop-hero-text{
-        min-width:0;
-    }
-
     .desktop-title{
         margin:0 0 12px;
         font-size:clamp(42px,4.2vw,64px);
@@ -549,21 +524,6 @@ button{
         font-size:clamp(16px,1.15vw,19px);
         line-height:1.6;
         max-width:760px;
-    }
-
-    .desktop-art-wrap{
-        display:flex;
-        justify-content:flex-end;
-        align-items:center;
-    }
-
-    .desktop-art{
-        width:clamp(170px,18vw,230px);
-        height:clamp(170px,18vw,230px);
-        object-fit:contain;
-        border-radius:26px;
-        background:#1a1a1a;
-        padding:18px;
     }
 
     .desktop-note{
@@ -607,11 +567,19 @@ button{
     .desktop-contact-icon{
         width:48px;
         height:48px;
-        object-fit:contain;
         border-radius:14px;
         background:#22222d;
-        padding:10px;
         flex-shrink:0;
+        display:flex;
+        align-items:center;
+        justify-content:center;
+        overflow:hidden;
+    }
+
+    .desktop-contact-icon img{
+        width:48px;
+        height:48px;
+        object-fit:contain;
     }
 
     .desktop-contact-title{
@@ -750,14 +718,6 @@ button{
 }
 
 @media (min-width:1024px) and (max-width:1180px){
-    .desktop-hero-top{
-        grid-template-columns:1fr;
-    }
-
-    .desktop-art-wrap{
-        justify-content:flex-start;
-    }
-
     .desktop-grid{
         grid-template-columns:1fr;
     }
@@ -767,9 +727,7 @@ button{
 
 <body>
 
-<!-- =========================
-     MOBILE VERSION
-========================= -->
+<!-- MOBILE VERSION -->
 <div class="mobile-shell">
     <div class="mobile-page">
         <button class="mobile-back" onclick="goBack()">
@@ -782,14 +740,8 @@ button{
         <section class="mobile-hero">
             <div class="mobile-kicker" id="kicker-mobile"></div>
 
-            <div class="mobile-hero-row">
-                <div class="mobile-hero-text">
-                    <h1 class="mobile-title" id="title-mobile"></h1>
-                    <p class="mobile-desc" id="desc-mobile"></p>
-                </div>
-
-                <img class="mobile-hero-art" src="images/support-hero-mobile.png" alt="support">
-            </div>
+            <h1 class="mobile-title" id="title-mobile"></h1>
+            <p class="mobile-desc" id="desc-mobile"></p>
 
             <div class="mobile-note" id="note-mobile"></div>
         </section>
@@ -800,7 +752,9 @@ button{
             <div class="mobile-contacts">
                 <div class="mobile-contact" onclick="openSupport()">
                     <div class="mobile-contact-left">
-                        <img class="mobile-contact-icon" src="images/support-contact-1.png" alt="">
+                        <div class="mobile-contact-icon">
+                            <img src="images/support/fast.png" alt="">
+                        </div>
                         <div>
                             <div class="mobile-contact-title" id="contact1Title-mobile"></div>
                             <div class="mobile-contact-text" id="contact1Text-mobile"></div>
@@ -811,7 +765,9 @@ button{
 
                 <div class="mobile-contact" onclick="openSupport()">
                     <div class="mobile-contact-left">
-                        <img class="mobile-contact-icon" src="images/support-contact-2.png" alt="">
+                        <div class="mobile-contact-icon">
+                            <img src="images/support/supportwindow.png" alt="">
+                        </div>
                         <div>
                             <div class="mobile-contact-title" id="contact2Title-mobile"></div>
                             <div class="mobile-contact-text" id="contact2Text-mobile"></div>
@@ -834,36 +790,34 @@ button{
 
     <div class="bottom-nav">
         <div class="nav-item" onclick="goPage('mycourses.html')">
-            <img src="images/courses2.png" alt="">
+            <img src="images/icon/courses2.png" alt="">
             <span id="m1-mobile"></span>
         </div>
 
         <div class="nav-item" onclick="goPage('support.html')">
-            <img src="images/support.png" alt="">
+            <img src="images/icon/support.png" alt="">
             <span id="m4-mobile"></span>
         </div>
 
         <div class="nav-center" onclick="goHome()">
             <div class="circle">
-                <img src="images/home2.png" alt="home">
+                <img src="images/icon/home2.png" alt="home">
             </div>
         </div>
 
         <div class="nav-item" onclick="goPage('chat.html')">
-            <img src="images/chat2.png" alt="">
+            <img src="images/icon/feedback.png" alt="">
             <span id="m5-mobile"></span>
         </div>
 
         <div class="nav-item" onclick="goPage('myprofile.html')">
-            <img src="images/profile2.png" alt="">
+            <img src="images/icon/profile2.png" alt="">
             <span id="m6-mobile"></span>
         </div>
     </div>
 </div>
 
-<!-- =========================
-     DESKTOP VERSION
-========================= -->
+<!-- DESKTOP VERSION -->
 <div class="desktop-app desktop-only">
     <div class="desktop-layout">
         <aside class="desktop-sidebar">
@@ -871,32 +825,32 @@ button{
 
             <nav class="desktop-nav">
                 <button class="desktop-nav-item" onclick="goHome()">
-                    <img src="images/home.png" alt="">
+                    <img src="images/icon/home.png" alt="">
                     <span id="home-desktop"></span>
                 </button>
 
                 <button class="desktop-nav-item" onclick="goPage('mycourses.html')">
-                    <img src="images/courses2.png" alt="">
+                    <img src="images/icon/courses2.png" alt="">
                     <span id="m1-desktop"></span>
                 </button>
 
                 <button class="desktop-nav-item active-nav" onclick="goPage('support.html')">
-                    <img src="images/support.png" alt="">
+                    <img src="images/icon/support.png" alt="">
                     <span id="m4-desktop"></span>
                 </button>
 
                 <button class="desktop-nav-item" onclick="goPage('chat.html')">
-                    <img src="images/chat2.png" alt="">
+                    <img src="images/icon/feedback.png" alt="">
                     <span id="m5-desktop"></span>
                 </button>
 
                 <button class="desktop-nav-item" onclick="goPage('myprofile.html')">
-                    <img src="images/profile2.png" alt="">
+                    <img src="images/icon/profile2.png" alt="">
                     <span id="m6-desktop"></span>
                 </button>
 
                 <button class="desktop-nav-item desktop-nav-item-accent" onclick="goCourses()">
-                    <img src="images/courses-catalog.png" alt="">
+                    <img src="images/icon/catalog.png" alt="">
                     <span id="catalog-desktop"></span>
                 </button>
             </nav>
@@ -911,16 +865,8 @@ button{
             <section class="desktop-hero">
                 <div class="desktop-kicker" id="kicker-desktop"></div>
 
-                <div class="desktop-hero-top">
-                    <div class="desktop-hero-text">
-                        <h1 class="desktop-title" id="title-desktop"></h1>
-                        <p class="desktop-desc" id="desc-desktop"></p>
-                    </div>
-
-                    <div class="desktop-art-wrap">
-                        <img class="desktop-art" src="images/support-hero-desktop.png" alt="support">
-                    </div>
-                </div>
+                <h1 class="desktop-title" id="title-desktop"></h1>
+                <p class="desktop-desc" id="desc-desktop"></p>
 
                 <div class="desktop-note" id="note-desktop"></div>
             </section>
@@ -928,7 +874,9 @@ button{
             <section class="desktop-grid">
                 <article class="desktop-contact-card" onclick="openSupport()">
                     <div class="desktop-contact-left">
-                        <img class="desktop-contact-icon" src="images/support-contact-1.png" alt="">
+                        <div class="desktop-contact-icon">
+                            <img src="images/support/fast.png" alt="">
+                        </div>
                         <div>
                             <div class="desktop-contact-title" id="contact1Title-desktop"></div>
                             <div class="desktop-contact-text" id="contact1Text-desktop"></div>
@@ -939,7 +887,9 @@ button{
 
                 <article class="desktop-contact-card" onclick="openSupport()">
                     <div class="desktop-contact-left">
-                        <img class="desktop-contact-icon" src="images/support-contact-2.png" alt="">
+                        <div class="desktop-contact-icon">
+                            <img src="images/support/supportwindow.png" alt="">
+                        </div>
                         <div>
                             <div class="desktop-contact-title" id="contact2Title-desktop"></div>
                             <div class="desktop-contact-text" id="contact2Text-desktop"></div>
@@ -990,22 +940,10 @@ const t = {
         supportBtn:"Qo‘llab-quvvatlashga yozish",
 
         faq:[
-            {
-                q:"Men boshlovchiman, menda chiqadimi?",
-                a:"Ha. Kurslar noldan tuzilgan. Hammasi bosqichma-bosqich, ortiqcha qiyin terminlarsiz tushuntiriladi."
-            },
-            {
-                q:"Kuniga qancha vaqt kerak bo‘ladi?",
-                a:"O‘rtacha kuniga 1-2 soat yetadi. O‘qish yoki boshqa ishlar bilan birga olib borish mumkin."
-            },
-            {
-                q:"Kompyuter shartmi?",
-                a:"Yo‘q. Boshlash uchun telefonning o‘zi ham yetadi. Keyinroq qulaylik uchun kompyuter bo‘lsa yaxshi."
-            },
-            {
-                q:"Birinchi pulni qachon topsa bo‘ladi?",
-                a:"Bu odamning harakatiga bog‘liq. Kimdadir o‘qish vaqtidayoq chiqadi, kimdadir keyinroq. Tez million va’da qilinmaydi."
-            }
+            {q:"Men boshlovchiman, menda chiqadimi?", a:"Ha. Kurslar noldan tuzilgan. Hammasi bosqichma-bosqich, ortiqcha qiyin terminlarsiz tushuntiriladi."},
+            {q:"Kuniga qancha vaqt kerak bo‘ladi?", a:"O‘rtacha kuniga 1-2 soat yetadi. O‘qish yoki boshqa ishlar bilan birga olib borish mumkin."},
+            {q:"Kompyuter shartmi?", a:"Yo‘q. Boshlash uchun telefonning o‘zi ham yetadi. Keyinroq qulaylik uchun kompyuter bo‘lsa yaxshi."},
+            {q:"Birinchi pulni qachon topsa bo‘ladi?", a:"Bu odamning harakatiga bog‘liq. Kimdadir o‘qish vaqtidayoq chiqadi, kimdadir keyinroq. Tez million va’da qilinmaydi."}
         ]
     },
 
@@ -1033,22 +971,10 @@ const t = {
         supportBtn:"Написать в поддержку",
 
         faq:[
-            {
-                q:"Я новичок, у меня получится?",
-                a:"Да. Курсы сделаны с нуля. Все объясняется пошагово, без перегруза и сложных терминов."
-            },
-            {
-                q:"Сколько времени нужно?",
-                a:"В среднем 1-2 часа в день. Можно спокойно совмещать с учебой или другими делами."
-            },
-            {
-                q:"Нужен ли компьютер?",
-                a:"Нет. Начать можно и с телефона. Позже компьютер просто даст больше удобства."
-            },
-            {
-                q:"Когда будут первые деньги?",
-                a:"Это зависит от человека и от того, как он внедряет материал. У кого-то получается уже в процессе, у кого-то позже. Сказок про быстрые миллионы здесь нет."
-            }
+            {q:"Я новичок, у меня получится?", a:"Да. Курсы сделаны с нуля. Все объясняется пошагово, без перегруза и сложных терминов."},
+            {q:"Сколько времени нужно?", a:"В среднем 1-2 часа в день. Можно спокойно совмещать с учебой или другими делами."},
+            {q:"Нужен ли компьютер?", a:"Нет. Начать можно и с телефона. Позже компьютер просто даст больше удобства."},
+            {q:"Когда будут первые деньги?", a:"Это зависит от человека и от того, как он внедряет материал. У кого-то получается уже в процессе, у кого-то позже. Сказок про быстрые миллионы здесь нет."}
         ]
     }
 };

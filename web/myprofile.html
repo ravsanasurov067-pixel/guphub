@@ -295,11 +295,19 @@ button{
 .mobile-action-icon{
     width:44px;
     height:44px;
-    object-fit:contain;
     border-radius:14px;
     background:#22222d;
-    padding:9px;
     flex-shrink:0;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    overflow:hidden;
+}
+
+.mobile-action-icon img{
+    width:26px;
+    height:26px;
+    object-fit:contain;
 }
 
 .mobile-action-title{
@@ -690,11 +698,19 @@ button{
     .desktop-action-icon{
         width:50px;
         height:50px;
-        object-fit:contain;
         border-radius:14px;
         background:#22222d;
-        padding:10px;
         flex-shrink:0;
+        display:flex;
+        align-items:center;
+        justify-content:center;
+        overflow:hidden;
+    }
+
+    .desktop-action-icon img{
+        width:30px;
+        height:30px;
+        object-fit:contain;
     }
 
     .desktop-action-title{
@@ -801,7 +817,9 @@ button{
             <div class="mobile-actions-grid">
                 <div class="mobile-action-card soft-card" onclick="goPage('mycourses.html')">
                     <div class="mobile-action-left">
-                        <img class="mobile-action-icon" src="images/courses2.png" alt="">
+                        <div class="mobile-action-icon">
+                            <img src="images/icon/courses2.png" alt="">
+                        </div>
                         <div>
                             <div class="mobile-action-title" id="courses-mobile"></div>
                             <div class="mobile-action-sub" id="coursesSub-mobile"></div>
@@ -812,7 +830,9 @@ button{
 
                 <div class="mobile-action-card soft-card" onclick="goPage('progress.html')">
                     <div class="mobile-action-left">
-                        <img class="mobile-action-icon" src="images/brain.png" alt="">
+                        <div class="mobile-action-icon">
+                            <img src="images/icon/progress.png" alt="">
+                        </div>
                         <div>
                             <div class="mobile-action-title" id="progress-mobile"></div>
                             <div class="mobile-action-sub" id="progressSub-mobile"></div>
@@ -823,7 +843,9 @@ button{
 
                 <div class="mobile-action-card soft-card" onclick="goPage('support.html')">
                     <div class="mobile-action-left">
-                        <img class="mobile-action-icon" src="images/support.png" alt="">
+                        <div class="mobile-action-icon">
+                            <img src="images/icon/support.png" alt="">
+                        </div>
                         <div>
                             <div class="mobile-action-title" id="support-mobile"></div>
                             <div class="mobile-action-sub" id="supportSub-mobile"></div>
@@ -837,28 +859,28 @@ button{
 
     <div class="bottom-nav">
         <div class="nav-item" onclick="goPage('mycourses.html')">
-            <img src="images/courses2.png" alt="">
+            <img src="images/icon/courses2.png" alt="">
             <span id="m1-mobile"></span>
         </div>
 
         <div class="nav-item" onclick="goPage('support.html')">
-            <img src="images/support.png" alt="">
+            <img src="images/icon/support.png" alt="">
             <span id="m4-mobile"></span>
         </div>
 
         <div class="nav-center" onclick="goHome()">
             <div class="circle">
-                <img src="images/home2.png" alt="home">
+                <img src="images/icon/home2.png" alt="home">
             </div>
         </div>
 
         <div class="nav-item" onclick="goPage('chat.html')">
-            <img src="images/chat2.png" alt="">
+            <img src="images/icon/feedback.png" alt="">
             <span id="m5-mobile"></span>
         </div>
 
         <div class="nav-item" onclick="goPage('myprofile.html')">
-            <img src="images/profile2.png" alt="">
+            <img src="images/icon/profile2.png" alt="">
             <span id="m6-mobile"></span>
         </div>
     </div>
@@ -872,32 +894,32 @@ button{
 
             <nav class="desktop-nav">
                 <button class="desktop-nav-item" onclick="goHome()">
-                    <img src="images/home.png" alt="">
+                    <img src="images/icon/home.png" alt="">
                     <span id="home-desktop"></span>
                 </button>
 
                 <button class="desktop-nav-item" onclick="goPage('mycourses.html')">
-                    <img src="images/courses2.png" alt="">
+                    <img src="images/icon/courses2.png" alt="">
                     <span id="m1-desktop"></span>
                 </button>
 
                 <button class="desktop-nav-item" onclick="goPage('support.html')">
-                    <img src="images/support.png" alt="">
+                    <img src="images/icon/support.png" alt="">
                     <span id="m4-desktop"></span>
                 </button>
 
                 <button class="desktop-nav-item" onclick="goPage('chat.html')">
-                    <img src="images/chat2.png" alt="">
+                    <img src="images/icon/feedback.png" alt="">
                     <span id="m5-desktop"></span>
                 </button>
 
                 <button class="desktop-nav-item active-nav" onclick="goPage('myprofile.html')">
-                    <img src="images/profile2.png" alt="">
+                    <img src="images/icon/profile2.png" alt="">
                     <span id="m6-desktop"></span>
                 </button>
 
                 <button class="desktop-nav-item desktop-nav-item-accent" onclick="goCourses()">
-                    <img src="images/courses-catalog.png" alt="">
+                    <img src="images/icon/catalog.png" alt="">
                     <span id="catalog-desktop"></span>
                 </button>
             </nav>
@@ -954,7 +976,9 @@ button{
                 <div class="desktop-actions-grid">
                     <div class="desktop-action-card soft-card" onclick="goPage('mycourses.html')">
                         <div class="desktop-action-left">
-                            <img class="desktop-action-icon" src="images/courses2.png" alt="">
+                            <div class="desktop-action-icon">
+                                <img src="images/icon/courses2.png" alt="">
+                            </div>
                             <div>
                                 <div class="desktop-action-title" id="courses-desktop"></div>
                                 <div class="desktop-action-sub" id="coursesSub-desktop"></div>
@@ -965,7 +989,9 @@ button{
 
                     <div class="desktop-action-card soft-card" onclick="goPage('progress.html')">
                         <div class="desktop-action-left">
-                            <img class="desktop-action-icon" src="images/brain.png" alt="">
+                            <div class="desktop-action-icon">
+                                <img src="images/icon/progress.png" alt="">
+                            </div>
                             <div>
                                 <div class="desktop-action-title" id="progress-desktop"></div>
                                 <div class="desktop-action-sub" id="progressSub-desktop"></div>
@@ -976,7 +1002,9 @@ button{
 
                     <div class="desktop-action-card soft-card" onclick="goPage('support.html')">
                         <div class="desktop-action-left">
-                            <img class="desktop-action-icon" src="images/support.png" alt="">
+                            <div class="desktop-action-icon">
+                                <img src="images/icon/support.png" alt="">
+                            </div>
                             <div>
                                 <div class="desktop-action-title" id="support-desktop"></div>
                                 <div class="desktop-action-sub" id="supportSub-desktop"></div>

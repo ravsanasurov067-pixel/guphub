@@ -64,11 +64,16 @@ button{
 }
 
 .mobile-page{
-    padding-bottom:160px;
+    min-height:100vh;
+    padding:calc(env(safe-area-inset-top) + 76px) 14px calc(154px + env(safe-area-inset-bottom));
+    background:
+        radial-gradient(circle at 20% 10%, rgba(203,108,230,.10), transparent 24%),
+        linear-gradient(180deg, #09080f 0%, #0c0b14 100%);
 }
 
 .mobile-top{
-    padding:calc(env(safe-area-inset-top) + 14px) 16px 0;
+    padding:0;
+    margin-bottom:14px;
 }
 
 .mobile-back{
@@ -91,7 +96,7 @@ button{
 }
 
 .mobile-hero{
-    padding:14px 16px 0;
+    padding:0;
     position:relative;
 }
 
@@ -155,7 +160,7 @@ button{
 
 .mobile-peek{
     margin-top:-18px;
-    padding:0 16px;
+    padding:0;
     position:relative;
     z-index:2;
 }
@@ -169,7 +174,7 @@ button{
 }
 
 .mobile-section{
-    padding:12px 16px 0;
+    padding:12px 0 0;
 }
 
 .mobile-section-title{
@@ -260,7 +265,7 @@ button{
     position:fixed;
     left:0;
     right:0;
-    bottom:calc(76px + env(safe-area-inset-bottom));
+    bottom:calc(92px + env(safe-area-inset-bottom));
     padding:0 16px;
     z-index:60;
 }
@@ -370,7 +375,7 @@ button{
 
     .desktop-layout{
         display:grid;
-        grid-template-columns:280px 1fr;
+        grid-template-columns:280px minmax(0, 1fr);
         min-height:100vh;
     }
 
@@ -378,6 +383,7 @@ button{
         padding:22px 22px;
         border-right:1px solid rgba(255,255,255,.05);
         background:linear-gradient(180deg, rgba(14,13,23,.70) 0%, rgba(12,11,20,.40) 100%);
+        overflow:auto;
     }
 
     .desktop-brand{
@@ -426,19 +432,19 @@ button{
     }
 
     .desktop-nav-item-accent{
-    background:linear-gradient(90deg, #b85bda 0%, #cb6ce6 100%);
-    border-color:transparent;
-    color:#fff;
-    box-shadow:0 12px 26px rgba(203,108,230,.28);
-    margin-top:8px;
+        background:linear-gradient(90deg, #b85bda 0%, #cb6ce6 100%);
+        border-color:transparent;
+        color:#fff;
+        box-shadow:0 12px 26px rgba(203,108,230,.28);
+        margin-top:8px;
     }
 
     .desktop-nav-item-accent:hover{
-    transform:translateY(-1px);
+        transform:translateY(-1px);
     }
 
     .desktop-nav-item-accent img{
-    filter:brightness(0) invert(1);
+        filter:brightness(0) invert(1);
     }
 
     .desktop-main{
@@ -652,7 +658,7 @@ button{
 
 @media (min-width:1024px) and (max-width:1400px){
     .desktop-layout{
-        grid-template-columns:260px 1fr;
+        grid-template-columns:260px minmax(0,1fr);
     }
 
     .desktop-main{
@@ -694,14 +700,54 @@ button{
         bottom:22px;
     }
 }
+
+@media (max-width:430px){
+    .mobile-cover{
+        height:196px;
+    }
+
+    .mobile-title{
+        font-size:31px;
+    }
+}
+
+@media (max-width:380px){
+    .mobile-page{
+        padding-top:calc(env(safe-area-inset-top) + 72px);
+        padding-bottom:calc(146px + env(safe-area-inset-bottom));
+    }
+
+    .mobile-cover{
+        height:178px;
+    }
+
+    .mobile-title{
+        font-size:28px;
+    }
+
+    .mobile-subtitle{
+        font-size:13px;
+    }
+
+    .mobile-stat{
+        padding:10px;
+        min-height:62px;
+    }
+
+    .mobile-stat-value{
+        font-size:14px;
+    }
+
+    .mobile-buy-btn{
+        height:52px;
+        font-size:16px;
+    }
+}
 </style>
 </head>
 
 <body>
 
-<!-- =========================
-     MOBILE VERSION
-========================= -->
 <div class="mobile-shell">
     <div class="mobile-page">
 
@@ -716,7 +762,7 @@ button{
 
         <section class="mobile-hero">
             <div class="mobile-hero-card">
-                <img class="mobile-cover" src="images/ai-cover-mobile.png" alt="AI cover">
+                <img class="mobile-cover" src="images/ai/ailogic.png" alt="AI cover">
 
                 <div class="mobile-hero-content">
                     <h1 class="mobile-title" id="title-mobile"></h1>
@@ -768,36 +814,33 @@ button{
 
     <div class="bottom-nav">
         <div class="nav-item" onclick="goPage('mycourses.html')">
-            <img src="images/courses2.png" alt="">
+            <img src="images/icon/courses2.png" alt="">
             <span id="m1-mobile"></span>
         </div>
 
         <div class="nav-item" onclick="goPage('support.html')">
-            <img src="images/support.png" alt="">
+            <img src="images/icon/support.png" alt="">
             <span id="m4-mobile"></span>
         </div>
 
         <div class="nav-center" onclick="goHome()">
             <div class="circle">
-                <img src="images/home2.png" alt="home">
+                <img src="images/icon/home2.png" alt="home">
             </div>
         </div>
 
         <div class="nav-item" onclick="goPage('chat.html')">
-            <img src="images/chat2.png" alt="">
+            <img src="images/icon/feedback.png" alt="">
             <span id="m5-mobile"></span>
         </div>
 
         <div class="nav-item" onclick="goPage('myprofile.html')">
-            <img src="images/profile2.png" alt="">
+            <img src="images/icon/profile2.png" alt="">
             <span id="m6-mobile"></span>
         </div>
     </div>
 </div>
 
-<!-- =========================
-     DESKTOP VERSION
-========================= -->
 <div class="desktop-app desktop-only">
     <div class="desktop-layout">
 
@@ -806,32 +849,32 @@ button{
 
             <nav class="desktop-nav">
                 <button class="desktop-nav-item" onclick="goHome()">
-                    <img src="images/home.png" alt="">
+                    <img src="images/icon/home.png" alt="">
                     <span id="home-desktop"></span>
                 </button>
 
                 <button class="desktop-nav-item" onclick="goPage('mycourses.html')">
-                    <img src="images/courses2.png" alt="">
+                    <img src="images/icon/courses2.png" alt="">
                     <span id="m1-desktop"></span>
                 </button>
 
                 <button class="desktop-nav-item" onclick="goPage('support.html')">
-                    <img src="images/support.png" alt="">
+                    <img src="images/icon/support.png" alt="">
                     <span id="m4-desktop"></span>
                 </button>
 
                 <button class="desktop-nav-item" onclick="goPage('chat.html')">
-                    <img src="images/chat2.png" alt="">
+                    <img src="images/icon/feedback.png" alt="">
                     <span id="m5-desktop"></span>
                 </button>
 
                 <button class="desktop-nav-item" onclick="goPage('myprofile.html')">
-                    <img src="images/profile2.png" alt="">
+                    <img src="images/icon/profile2.png" alt="">
                     <span id="m6-desktop"></span>
                 </button>
 
                 <button class="desktop-nav-item desktop-nav-item-accent" onclick="goCourses()">
-                    <img src="images/courses-catalog.png" alt="">
+                    <img src="images/icon/catalog.png" alt="">
                     <span id="catalog-desktop"></span>
                 </button>
             </nav>
@@ -844,7 +887,7 @@ button{
             </div>
 
             <section class="desktop-hero">
-                <img class="desktop-cover" src="images/ai-cover-desktop.png" alt="AI cover">
+                <img class="desktop-cover" src="images/ai/ailogic.png" alt="AI cover">
 
                 <div class="desktop-hero-content">
                     <h1 class="desktop-title" id="title-desktop"></h1>
@@ -909,16 +952,16 @@ const t = {
         catalog:"Kurslar katalogi",
 
         title:"AI kursi",
-        subtitle:"Sun’iy intellektdan ishda, o‘qishda va kundalik hayotda qanday foyda olishni o‘rganing. Prompt yozish, ChatGPT bilan ishlash va AI vositalardan samarali foydalanish bosqichma-bosqich tushuntiriladi.",
+        subtitle:"Sun’iy intellekt vositalaridan o‘qish, ish, kontent va kundalik vazifalarda foydali foydalanishni bosqichma-bosqich o‘rganing.",
 
         stat1Label:"Davomiyligi",
         stat1Value:"1 oy",
         stat2Label:"Darslar",
-        stat2Value:"10 ta dars",
+        stat2Value:"12 ta dars",
         stat3Label:"Videolar",
-        stat3Value:"18 ta video",
+        stat3Value:"20 ta video",
         stat4Label:"Materiallar",
-        stat4Value:"22 ta prezentatsiya",
+        stat4Value:"25 ta prezentatsiya",
 
         fitTitle:"Bu kurs kimlar uchun",
         resultTitle:"Kursdan keyin nima olaman",
@@ -927,34 +970,41 @@ const t = {
         fit:[
             {
                 title:"AI bilan endi tanishayotganlar uchun",
-                text:"Agar sun’iy intellektni endi tushunishni boshlayotgan bo‘lsangiz, kurs sizga bazani sodda va foydali tarzda beradi."
+                text:"Agar sun’iy intellekt vositalarini qanday ishlatishni bilmasangiz, kurs sizga noldan tushunishga yordam beradi.",
+                icon:"images/ai/ainew.png"
             },
             {
-                title:"Ishini tezlashtirmoqchi bo‘lganlar uchun",
-                text:"Agar siz matn, g‘oya, reja, tarjima yoki boshqa vazifalarni tezroq qilishni xohlasangiz, bu kurs sizga AI vositalarni amalda ishlatishni o‘rgatadi."
+                title:"O‘qish va ishni tezlashtirmoqchi bo‘lganlar uchun",
+                text:"Matn yozish, reja qilish, tahlil, g‘oya topish va vazifalarni tezroq bajarishni o‘rganasiz.",
+                icon:"images/ai/aifast.png"
             },
             {
-                title:"Digital ko‘nikmalarini kuchaytirmoqchi bo‘lganlar uchun",
-                text:"Marketing, SMM, kontent yoki boshqa online yo‘nalishda ishlayotganlar uchun AI bilim bugungi kunda kuchli ustunlik beradi."
+                title:"Digital yo‘nalishda kuchliroq bo‘lmoqchi bo‘lganlar uchun",
+                text:"AI vositalari kontent, marketing, dizayn va boshqa digital vazifalarda sizni kuchliroq qiladi.",
+                icon:"images/ai/aistrong.png"
             }
         ],
 
         results:[
             {
-                title:"AI bilan ishlash bo‘yicha baza",
-                text:"Siz ChatGPT va shunga o‘xshash vositalardan qanday foydalanish, nimani qanday so‘rash va qanday natija olishni tushunib olasiz."
+                title:"AI vositalari bo‘yicha baza",
+                text:"Qaysi vosita nima uchun kerakligini va ulardan qanday vazifalarda foydalanishni tushunib olasiz.",
+                icon:"images/ai/aibrain.png"
             },
             {
                 title:"Prompt yozish ko‘nikmasi",
-                text:"Savolni to‘g‘ri berish, aniq vazifa qo‘yish va sun’iy intellektdan sifatli javob olish bo‘yicha asosiy ko‘nikma shakllanadi."
+                text:"AI’dan yaxshi javob olish uchun vazifani qanday tushuntirish kerakligini o‘rganasiz.",
+                icon:"images/ai/aiskill.png"
             },
             {
-                title:"Ishni tezlashtirish usullari",
-                text:"Matn, reja, kontent, g‘oya va kundalik vazifalarni tezroq bajarish uchun AI’dan qanday foydalanishni bilib olasiz."
+                title:"Ish va o‘qishda qo‘llash",
+                text:"Matn, prezentatsiya, reja, kontent va kundalik vazifalarda AI’dan foydalanishni bilasiz.",
+                icon:"images/ai/aiwork.png"
             },
             {
-                title:"Amaliy foyda",
-                text:"Kursdan keyin AI siz uchun shunchaki trend emas, balki real yordamchi vositaga aylanadi."
+                title:"Zamonaviy digital skill",
+                text:"Kursdan keyin AI siz uchun shunchaki trend emas, real ish quroliga aylanadi.",
+                icon:"images/ai/aidigital.png"
             }
         ]
     },
@@ -969,16 +1019,16 @@ const t = {
         catalog:"Каталог курсов",
 
         title:"Курс AI",
-        subtitle:"Изучи, как использовать искусственный интеллект в работе, учебе и повседневной жизни. Промпты, работа с ChatGPT и прикладное использование AI-инструментов разбираются по шагам.",
+        subtitle:"Научись использовать искусственный интеллект в учебе, работе, контенте и повседневных задачах без хаоса и сложных терминов.",
 
         stat1Label:"Длительность",
         stat1Value:"1 месяц",
         stat2Label:"Уроки",
-        stat2Value:"10 уроков",
+        stat2Value:"12 уроков",
         stat3Label:"Видео",
-        stat3Value:"18 видео",
+        stat3Value:"20 видео",
         stat4Label:"Материалы",
-        stat4Value:"22 презентации",
+        stat4Value:"25 презентаций",
 
         fitTitle:"Кому подойдет этот курс",
         resultTitle:"Что я получу после курса",
@@ -987,34 +1037,41 @@ const t = {
         fit:[
             {
                 title:"Тем, кто только знакомится с AI",
-                text:"Если ты только начинаешь разбираться в искусственном интеллекте, курс даст понятную и полезную базу без перегруза."
+                text:"Если ты пока не понимаешь, как пользоваться искусственным интеллектом, курс поможет зайти с нуля и без перегруза.",
+                icon:"images/ai/ainew.png"
             },
             {
-                title:"Тем, кто хочет ускорить свою работу",
-                text:"Если тебе нужно быстрее делать тексты, идеи, планы, переводы или другие задачи, курс покажет, как использовать AI на практике."
+                title:"Тем, кто хочет ускорить учебу и работу",
+                text:"Ты научишься быстрее писать тексты, строить планы, искать идеи, анализировать информацию и закрывать задачи.",
+                icon:"images/ai/aifast.png"
             },
             {
-                title:"Тем, кто хочет усилить свои digital-навыки",
-                text:"Для тех, кто работает в маркетинге, SMM, контенте или других онлайн-направлениях, знание AI уже становится сильным преимуществом."
+                title:"Тем, кто хочет стать сильнее в digital",
+                text:"AI помогает в контенте, маркетинге, дизайне, учебе и рабочих процессах. Это навык, который усиливает почти любую digital-сферу.",
+                icon:"images/ai/aistrong.png"
             }
         ],
 
         results:[
             {
-                title:"База по работе с AI",
-                text:"Ты поймешь, как использовать ChatGPT и похожие инструменты, что и как спрашивать и как получать полезный результат."
+                title:"База по AI-инструментам",
+                text:"Ты поймешь, какие инструменты для чего нужны и как использовать их под разные задачи.",
+                icon:"images/ai/aibrain.png"
             },
             {
-                title:"Навык писать промпты",
-                text:"Сформируется базовое понимание, как правильно ставить задачу, формулировать запрос и получать более качественные ответы."
+                title:"Навык написания промптов",
+                text:"Научишься правильно ставить задачу AI, чтобы получать не мусор, а полезный результат.",
+                icon:"images/ai/aiskill.png"
             },
             {
-                title:"Способы ускорить работу",
-                text:"Ты научишься использовать AI для текстов, планов, идей, контента и повседневных задач, чтобы делать все быстрее."
+                title:"Применение в учебе и работе",
+                text:"Сможешь использовать AI для текстов, презентаций, планов, контента и обычных ежедневных задач.",
+                icon:"images/ai/aiwork.png"
             },
             {
-                title:"Практическая польза",
-                text:"После курса AI станет для тебя не просто модной темой, а реальным рабочим инструментом."
+                title:"Современный digital-навык",
+                text:"После курса AI станет для тебя не модным словом, а нормальным рабочим инструментом.",
+                icon:"images/ai/aidigital.png"
             }
         ]
     }
@@ -1033,7 +1090,7 @@ function renderAccordion(listId, items, type){
         <div class="${type}-item">
             <button class="${type}-item-btn" onclick="toggleAccordion(this, '${type}')">
                 <div class="${type}-item-left">
-                    <img class="${type}-item-icon" src="images/placeholder-icon.png" alt="">
+                    <img class="${type}-item-icon" src="${item.icon}" alt="">
                     <div class="${type}-item-title">${item.title}</div>
                 </div>
                 <span class="${type}-arrow"></span>
@@ -1067,14 +1124,12 @@ function update(){
 
     document.documentElement.lang = lang === "uz" ? "uz" : "ru";
 
-    // mobile nav/back
     setText("back-mobile", d.back);
     setText("m1-mobile", d.m1);
     setText("m4-mobile", d.m4);
     setText("m5-mobile", d.m5);
     setText("m6-mobile", d.m6);
 
-    // mobile content
     setText("title-mobile", d.title);
     setText("subtitle-mobile", d.subtitle);
     setText("stat1Label-mobile", d.stat1Label);
@@ -1089,7 +1144,6 @@ function update(){
     setText("resultTitle-mobile", d.resultTitle);
     setText("buyBtn-mobile", d.buyBtn);
 
-    // desktop nav/back
     setText("home-desktop", d.home);
     setText("back-desktop", d.back);
     setText("m1-desktop", d.m1);
@@ -1098,7 +1152,6 @@ function update(){
     setText("m6-desktop", d.m6);
     setText("catalog-desktop", d.catalog);
 
-    // desktop content
     setText("title-desktop", d.title);
     setText("subtitle-desktop", d.subtitle);
     setText("stat1Label-desktop", d.stat1Label);

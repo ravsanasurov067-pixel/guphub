@@ -275,7 +275,16 @@ button{
     height:92px;
     border-radius:18px;
     background:#1a1a1a;
-    object-fit:cover;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    overflow:hidden;
+}
+
+.mobile-course-cover-img{
+    width:72px;
+    height:72px;
+    object-fit:contain;
 }
 
 .mobile-course-info{
@@ -536,11 +545,11 @@ button{
     }
 
     .desktop-hero-top{
-        display:grid;
-        grid-template-columns:minmax(0,1fr) 220px;
-        gap:20px;
-        align-items:start;
-    }
+    display:grid;
+    grid-template-columns:minmax(0,1fr) 260px;
+    gap:20px;
+    align-items:center;
+}
 
     .desktop-hero-text{
         min-width:0;
@@ -589,31 +598,36 @@ button{
     }
 
     .desktop-point-icon::after{
-    content:"";
-    width:8px;
-    height:4px;
-    border-left:2px solid var(--accent);
-    border-bottom:2px solid var(--accent);
-    transform:rotate(-45deg);
-    margin-top:-1px;
+        content:"";
+        width:8px;
+        height:4px;
+        border-left:2px solid var(--accent);
+        border-bottom:2px solid var(--accent);
+        transform:rotate(-45deg);
+        margin-top:-1px;
     }
 
     .desktop-hero-art-wrap{
-        display:flex;
-        justify-content:flex-end;
-        align-items:flex-start;
-    }
+    display:flex;
+    justify-content:flex-start;
+    align-items:center;
+    min-height:100%;
+    overflow:visible;
+}
 
-    .desktop-hero-art{
-        width:220px;
-        height:220px;
-        object-fit:contain;
-        object-position:center;
-        border-radius:26px;
-        background:#1a1a1a;
-        padding:18px;
-        flex-shrink:0;
-    }
+.desktop-hero-art{
+    width:420px;
+    max-width:none;
+    height:auto;
+    object-fit:contain;
+    object-position:center;
+    background:transparent;
+    padding:0;
+    border-radius:0;
+    flex-shrink:0;
+    filter:drop-shadow(0 20px 60px rgba(203,108,230,.25));
+    margin-left:-50px;
+}
 
     .desktop-hero-bottom{
         margin-top:4px;
@@ -642,19 +656,19 @@ button{
     }
 
     .desktop-hero-actions{
-    margin-top:20px;
-    display:flex;
-    gap:14px;
-    flex-wrap:wrap;
-    justify-content:center;
+        margin-top:20px;
+        display:flex;
+        gap:14px;
+        flex-wrap:wrap;
+        justify-content:center;
     }
 
     .desktop-hero-btn{
-    min-width:280px;
-    height:60px;
-    padding:0 34px;
-    font-size:17px;
-    border-radius:18px;
+        min-width:280px;
+        height:60px;
+        padding:0 34px;
+        font-size:17px;
+        border-radius:18px;
     }
 
     .desktop-section{
@@ -699,12 +713,21 @@ button{
     }
 
     .desktop-course-cover{
-        width:88px;
-        height:88px;
-        object-fit:cover;
-        border-radius:18px;
-        background:#1a1a1a;
-        flex-shrink:0;
+    width:88px;
+    height:88px;
+    border-radius:18px;
+    background:#1a1a1a;
+    flex-shrink:0;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    overflow:hidden;
+    }
+
+    .desktop-course-cover-img{
+    width:72px;
+    height:72px;
+    object-fit:contain;
     }
 
     .desktop-course-title{
@@ -753,12 +776,18 @@ button{
     }
 
     .desktop-hero-top{
-        grid-template-columns:minmax(0,1fr) 190px;
+        grid-template-columns:minmax(0,1fr) 280px;
+    }
+
+    .desktop-hero-art-wrap{
+        width:280px;
+        height:240px;
     }
 
     .desktop-hero-art{
-        width:190px;
-        height:190px;
+        right:-15px;
+        top:8px;
+        width:305px;
     }
 
     .desktop-hero-bottom{
@@ -785,6 +814,11 @@ button{
 
     .desktop-hero-art-wrap{
         justify-content:flex-start;
+    }
+
+    .desktop-hero-art{
+        width:clamp(240px, 34vw, 340px);
+        transform:none;
     }
 
     .desktop-courses{
@@ -889,7 +923,9 @@ button{
                 <div class="mobile-courses">
                     <article class="mobile-course-card soft-card" onclick="openCourse('smm')">
                         <div class="mobile-course-inner">
-                            <img class="mobile-course-cover" src="images/smm-card-mobile.png" alt="SMM">
+                            <div class="mobile-course-cover">
+                                <img class="mobile-course-cover-img" src="images/home/smm2.webp" alt="SMM">
+                            </div>
 
                             <div class="mobile-course-info">
                                 <h3 class="mobile-course-title">SMM</h3>
@@ -902,7 +938,9 @@ button{
 
                     <article class="mobile-course-card soft-card" onclick="openCourse('target')">
                         <div class="mobile-course-inner">
-                            <img class="mobile-course-cover" src="images/target-card-mobile.png" alt="TARGET">
+                            <div class="mobile-course-cover">
+                                <img class="mobile-course-cover-img" src="images/home/target2.webp" alt="SMM">
+                            </div>
 
                             <div class="mobile-course-info">
                                 <h3 class="mobile-course-title">TARGET</h3>
@@ -915,7 +953,9 @@ button{
 
                     <article class="mobile-course-card soft-card" onclick="openCourse('ai')">
                         <div class="mobile-course-inner">
-                            <img class="mobile-course-cover" src="images/ai-card-mobile.png" alt="AI">
+                            <div class="mobile-course-cover">
+                                <img class="mobile-course-cover-img" src="images/home/ai2.webp" alt="SMM">
+                            </div>
 
                             <div class="mobile-course-info">
                                 <h3 class="mobile-course-title" id="ai-mobile"></h3>
@@ -932,28 +972,28 @@ button{
 
     <div class="bottom-nav">
         <div class="nav-item" onclick="goPage('mycourses.html')">
-            <img src="images/courses2.png" alt="">
+            <img src="images/icon/courses2.png" alt="">
             <span id="m1-mobile"></span>
         </div>
 
         <div class="nav-item" onclick="goPage('support.html')">
-            <img src="images/support.png" alt="">
+            <img src="images/icon/support.png" alt="">
             <span id="m4-mobile"></span>
         </div>
 
         <div class="nav-center" onclick="goHome()">
             <div class="circle">
-                <img src="images/home2.png" alt="home">
+                <img src="images/icon/home2.png" alt="home">
             </div>
         </div>
 
         <div class="nav-item" onclick="goPage('chat.html')">
-            <img src="images/chat2.png" alt="">
+            <img src="images/icon/feedback.png" alt="">
             <span id="m5-mobile"></span>
         </div>
 
         <div class="nav-item" onclick="goPage('myprofile.html')">
-            <img src="images/profile2.png" alt="">
+            <img src="images/icon/profile2.png" alt="">
             <span id="m6-mobile"></span>
         </div>
     </div>
@@ -979,32 +1019,32 @@ button{
         <aside class="desktop-sidebar">
             <nav class="desktop-nav">
                 <button class="desktop-nav-item active-nav" onclick="goHome()">
-                    <img src="images/home.png" alt="">
+                    <img src="images/icon/home.png" alt="">
                     <span id="home-desktop"></span>
                 </button>
 
                 <button class="desktop-nav-item" onclick="goPage('mycourses.html')">
-                    <img src="images/courses2.png" alt="">
+                    <img src="images/icon/courses2.png" alt="">
                     <span id="m1-desktop"></span>
                 </button>
 
                 <button class="desktop-nav-item" onclick="goPage('support.html')">
-                    <img src="images/support.png" alt="">
+                    <img src="images/icon/support.png" alt="">
                     <span id="m4-desktop"></span>
                 </button>
 
                 <button class="desktop-nav-item" onclick="goPage('chat.html')">
-                    <img src="images/chat2.png" alt="">
+                    <img src="images/icon/feedback.png" alt="">
                     <span id="m5-desktop"></span>
                 </button>
 
                 <button class="desktop-nav-item" onclick="goPage('myprofile.html')">
-                    <img src="images/profile2.png" alt="">
+                    <img src="images/icon/profile2.png" alt="">
                     <span id="m6-desktop"></span>
                 </button>
 
                 <button class="desktop-nav-item desktop-nav-item-accent" onclick="goCourses()">
-                    <img src="images/courses-catalog.png" alt="">
+                    <img src="images/icon/catalog.png" alt="">
                     <span id="catalog-desktop"></span>
                 </button>
             </nav>
@@ -1039,7 +1079,7 @@ button{
                     </div>
 
                     <div class="desktop-hero-art-wrap">
-                        <img class="desktop-hero-art" src="images/home-hero-desktop.png" alt="hero">
+                        <img class="desktop-hero-art" src="images/home/about2.webp" alt="hero">
                     </div>
                 </div>
 
@@ -1077,7 +1117,9 @@ button{
                 <div class="desktop-courses">
                     <article class="desktop-course-card soft-card" onclick="openCourse('smm')">
                         <div class="desktop-course-top">
-                            <img class="desktop-course-cover" src="images/smm-card-desktop.png" alt="SMM">
+                           <div class="desktop-course-cover">
+                                <img class="desktop-course-cover-img" src="images/home/smm2.webp" alt="SMM">
+                            </div>
 
                             <div>
                                 <h3 class="desktop-course-title">SMM</h3>
@@ -1090,7 +1132,9 @@ button{
 
                     <article class="desktop-course-card soft-card" onclick="openCourse('target')">
                         <div class="desktop-course-top">
-                            <img class="desktop-course-cover" src="images/target-card-desktop.png" alt="TARGET">
+                            <div class="desktop-course-cover">
+                                <img class="desktop-course-cover-img" src="images/home/target2.webp" alt="SMM">
+                            </div>
 
                             <div>
                                 <h3 class="desktop-course-title">TARGET</h3>
@@ -1103,7 +1147,9 @@ button{
 
                     <article class="desktop-course-card soft-card" onclick="openCourse('ai')">
                         <div class="desktop-course-top">
-                            <img class="desktop-course-cover" src="images/ai-card-desktop.png" alt="AI">
+                            <div class="desktop-course-cover">
+                                <img class="desktop-course-cover-img" src="images/home/ai2.webp" alt="SMM">
+                            </div>
 
                             <div>
                                 <h3 class="desktop-course-title" id="ai-desktop"></h3>
@@ -1328,4 +1374,4 @@ update()
 initTelegram()
 </script>
 </body>
-</html>
+</html>    

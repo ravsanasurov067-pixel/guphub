@@ -64,11 +64,16 @@ button{
 }
 
 .mobile-page{
-    padding-bottom:160px;
+    min-height:100vh;
+    padding:calc(env(safe-area-inset-top) + 76px) 14px calc(154px + env(safe-area-inset-bottom));
+    background:
+        radial-gradient(circle at 20% 10%, rgba(203,108,230,.10), transparent 24%),
+        linear-gradient(180deg, #09080f 0%, #0c0b14 100%);
 }
 
 .mobile-top{
-    padding:calc(env(safe-area-inset-top) + 14px) 16px 0;
+    padding:0;
+    margin-bottom:14px;
 }
 
 .mobile-back{
@@ -91,7 +96,7 @@ button{
 }
 
 .mobile-hero{
-    padding:14px 16px 0;
+    padding:0;
     position:relative;
 }
 
@@ -155,7 +160,7 @@ button{
 
 .mobile-peek{
     margin-top:-18px;
-    padding:0 16px;
+    padding:0;
     position:relative;
     z-index:2;
 }
@@ -169,7 +174,7 @@ button{
 }
 
 .mobile-section{
-    padding:12px 16px 0;
+    padding:12px 0 0;
 }
 
 .mobile-section-title{
@@ -260,7 +265,7 @@ button{
     position:fixed;
     left:0;
     right:0;
-    bottom:calc(76px + env(safe-area-inset-bottom));
+    bottom:calc(92px + env(safe-area-inset-bottom));
     padding:0 16px;
     z-index:60;
 }
@@ -370,7 +375,7 @@ button{
 
     .desktop-layout{
         display:grid;
-        grid-template-columns:280px 1fr;
+        grid-template-columns:280px minmax(0, 1fr);
         min-height:100vh;
     }
 
@@ -378,6 +383,7 @@ button{
         padding:22px 22px;
         border-right:1px solid rgba(255,255,255,.05);
         background:linear-gradient(180deg, rgba(14,13,23,.70) 0%, rgba(12,11,20,.40) 100%);
+        overflow:auto;
     }
 
     .desktop-brand{
@@ -426,19 +432,19 @@ button{
     }
 
     .desktop-nav-item-accent{
-    background:linear-gradient(90deg, #b85bda 0%, #cb6ce6 100%);
-    border-color:transparent;
-    color:#fff;
-    box-shadow:0 12px 26px rgba(203,108,230,.28);
-    margin-top:8px;
+        background:linear-gradient(90deg, #b85bda 0%, #cb6ce6 100%);
+        border-color:transparent;
+        color:#fff;
+        box-shadow:0 12px 26px rgba(203,108,230,.28);
+        margin-top:8px;
     }
 
     .desktop-nav-item-accent:hover{
-    transform:translateY(-1px);
+        transform:translateY(-1px);
     }
 
     .desktop-nav-item-accent img{
-    filter:brightness(0) invert(1);
+        filter:brightness(0) invert(1);
     }
 
     .desktop-main{
@@ -652,7 +658,7 @@ button{
 
 @media (min-width:1024px) and (max-width:1400px){
     .desktop-layout{
-        grid-template-columns:260px 1fr;
+        grid-template-columns:260px minmax(0, 1fr);
     }
 
     .desktop-main{
@@ -694,6 +700,49 @@ button{
         bottom:22px;
     }
 }
+
+@media (max-width:430px){
+    .mobile-cover{
+        height:196px;
+    }
+
+    .mobile-title{
+        font-size:31px;
+    }
+}
+
+@media (max-width:380px){
+    .mobile-page{
+        padding-top:calc(env(safe-area-inset-top) + 72px);
+        padding-bottom:calc(146px + env(safe-area-inset-bottom));
+    }
+
+    .mobile-cover{
+        height:178px;
+    }
+
+    .mobile-title{
+        font-size:28px;
+    }
+
+    .mobile-subtitle{
+        font-size:13px;
+    }
+
+    .mobile-stat{
+        padding:10px;
+        min-height:62px;
+    }
+
+    .mobile-stat-value{
+        font-size:14px;
+    }
+
+    .mobile-buy-btn{
+        height:52px;
+        font-size:16px;
+    }
+}
 </style>
 </head>
 
@@ -716,7 +765,7 @@ button{
 
         <section class="mobile-hero">
             <div class="mobile-hero-card">
-                <img class="mobile-cover" src="images/target-cover-mobile.png" alt="Target cover">
+                <img class="mobile-cover" src="images/target/clarity.png" alt="Target cover">
 
                 <div class="mobile-hero-content">
                     <h1 class="mobile-title" id="title-mobile"></h1>
@@ -768,28 +817,28 @@ button{
 
     <div class="bottom-nav">
         <div class="nav-item" onclick="goPage('mycourses.html')">
-            <img src="images/courses2.png" alt="">
+            <img src="images/icon/courses2.png" alt="">
             <span id="m1-mobile"></span>
         </div>
 
         <div class="nav-item" onclick="goPage('support.html')">
-            <img src="images/support.png" alt="">
+            <img src="images/icon/support.png" alt="">
             <span id="m4-mobile"></span>
         </div>
 
         <div class="nav-center" onclick="goHome()">
             <div class="circle">
-                <img src="images/home2.png" alt="home">
+                <img src="images/icon/home2.png" alt="home">
             </div>
         </div>
 
         <div class="nav-item" onclick="goPage('chat.html')">
-            <img src="images/chat2.png" alt="">
+            <img src="images/icon/feedback.png" alt="">
             <span id="m5-mobile"></span>
         </div>
 
         <div class="nav-item" onclick="goPage('myprofile.html')">
-            <img src="images/profile2.png" alt="">
+            <img src="images/icon/profile2.png" alt="">
             <span id="m6-mobile"></span>
         </div>
     </div>
@@ -806,32 +855,32 @@ button{
 
             <nav class="desktop-nav">
                 <button class="desktop-nav-item" onclick="goHome()">
-                    <img src="images/home.png" alt="">
+                    <img src="images/icon/home.png" alt="">
                     <span id="home-desktop"></span>
                 </button>
 
                 <button class="desktop-nav-item" onclick="goPage('mycourses.html')">
-                    <img src="images/courses2.png" alt="">
+                    <img src="images/icon/courses2.png" alt="">
                     <span id="m1-desktop"></span>
                 </button>
 
                 <button class="desktop-nav-item" onclick="goPage('support.html')">
-                    <img src="images/support.png" alt="">
+                    <img src="images/icon/support.png" alt="">
                     <span id="m4-desktop"></span>
                 </button>
 
                 <button class="desktop-nav-item" onclick="goPage('chat.html')">
-                    <img src="images/chat2.png" alt="">
+                    <img src="images/icon/feedback.png" alt="">
                     <span id="m5-desktop"></span>
                 </button>
 
                 <button class="desktop-nav-item" onclick="goPage('myprofile.html')">
-                    <img src="images/profile2.png" alt="">
+                    <img src="images/icon/profile2.png" alt="">
                     <span id="m6-desktop"></span>
                 </button>
 
                 <button class="desktop-nav-item desktop-nav-item-accent" onclick="goCourses()">
-                    <img src="images/courses-catalog.png" alt="">
+                    <img src="images/icon/catalog.png" alt="">
                     <span id="catalog-desktop"></span>
                 </button>
             </nav>
@@ -844,7 +893,7 @@ button{
             </div>
 
             <section class="desktop-hero">
-                <img class="desktop-cover" src="images/target-cover-desktop.png" alt="Target cover">
+                <img class="desktop-cover" src="images/target/clarity.png" alt="Target cover">
 
                 <div class="desktop-hero-content">
                     <h1 class="desktop-title" id="title-desktop"></h1>
@@ -925,39 +974,46 @@ const t = {
         buyBtn:"Kursni sotib olish",
 
         fit:[
-            {
-                title:"Reklamani noldan o‘rganmoqchi bo‘lganlar uchun",
-                text:"Agar target sohasiga endi kirayotgan bo‘lsangiz, kurs sizga reklamani tushunish, asosiy atamalar va logikani o‘rganishda yordam beradi."
-            },
-            {
-                title:"Biznesiga reklama yoqmoqchi bo‘lganlar uchun",
-                text:"O‘z mahsuloti yoki xizmatiga mijoz olib kelish uchun reklamani mustaqil tushunib ishlatmoqchi bo‘lganlar uchun ham kurs foydali bo‘ladi."
-            },
-            {
-                title:"Digital yo‘nalishda kuchliroq bo‘lmoqchi bo‘lganlar uchun",
-                text:"Agar siz kontent, SMM yoki boshqa yo‘nalishda ishlasangiz, target bo‘yicha bilim sizni bozorda kuchliroq mutaxassis qiladi."
-            }
-        ],
-
-        results:[
-            {
-                title:"Reklama kabineti bo‘yicha baza",
-                text:"Siz reklama kampaniyasi qanday quriladi, auditoriya qanday tanlanadi va reklamani qanday yoqish kerakligini tushunib olasiz."
-            },
-            {
-                title:"Kreativ va test logikasi",
-                text:"Qaysi reklama ishlashi, qanday test qilish va natijaga qarab qaror qabul qilish bo‘yicha bazaviy tushuncha paydo bo‘ladi."
-            },
-            {
-                title:"Amaliy tushuncha",
-                text:"Faqat nazariya emas, balki target mutaxassis sifatida qaysi nuqtalarga e’tibor berish kerakligini tushunasiz."
-            },
-            {
-                title:"Birinchi natijaga yaqinlashish",
-                text:"Kursdan keyin reklama yoqishdan qo‘rqmaysiz va birinchi real kampaniyalarni ishga tushirishga tayyorroq bo‘lasiz."
-            }
-        ]
+    {
+        title:"Reklamani noldan o‘rganmoqchi bo‘lganlar uchun",
+        text:"Agar target sohasiga endi kirayotgan bo‘lsangiz, kurs sizga reklamani tushunish, asosiy atamalar va logikani o‘rganishda yordam beradi.",
+        icon:"images/target/targetnew.png"
     },
+    {
+        title:"Biznesiga reklama yoqmoqchi bo‘lganlar uchun",
+        text:"O‘z mahsuloti yoki xizmatiga mijoz olib kelish uchun reklamani mustaqil tushunib ishlatmoqchi bo‘lganlar uchun ham kurs foydali bo‘ladi.",
+        icon:"images/target/moretarget.png"
+    },
+    {
+        title:"Digital yo‘nalishda kuchliroq bo‘lmoqchi bo‘lganlar uchun",
+        text:"Agar siz kontent, SMM yoki boshqa yo‘nalishda ishlasangiz, target bo‘yicha bilim sizni bozorda kuchliroq mutaxassis qiladi.",
+        icon:"images/target/strongtarget.png"
+    }
+],
+
+results:[
+    {
+        title:"Reklama kabineti bo‘yicha baza",
+        text:"Siz reklama kampaniyasi qanday quriladi, auditoriya qanday tanlanadi va reklamani qanday yoqish kerakligini tushunib olasiz.",
+        icon:"images/target/targetbrain.png"
+    },
+    {
+        title:"Kreativ va test logikasi",
+        text:"Qaysi reklama ishlashi, qanday test qilish va natijaga qarab qaror qabul qilish bo‘yicha bazaviy tushuncha paydo bo‘ladi.",
+        icon:"images/target/ideatarget.png"
+    },
+    {
+        title:"Amaliy tushuncha",
+        text:"Faqat nazariya emas, balki target mutaxassis sifatida qaysi nuqtalarga e’tibor berish kerakligini tushunasiz.",
+        icon:"images/target/adstarget.png"
+    },
+    {
+        title:"Birinchi natijaga yaqinlashish",
+        text:"Kursdan keyin reklama yoqishdan qo‘rqmaysiz va birinchi real kampaniyalarni ishga tushirishga tayyorroq bo‘lasiz.",
+        icon:"images/target/starttarget.png"
+    }
+    ]
+},
 
     ru:{
         home:"Главное меню",
@@ -985,38 +1041,45 @@ const t = {
         buyBtn:"Купить курс",
 
         fit:[
-            {
-                title:"Тем, кто хочет изучить рекламу с нуля",
-                text:"Если ты только заходишь в сферу таргета, курс поможет разобраться в базе, основных терминах и самой логике рекламных запусков."
-            },
-            {
-                title:"Тем, кто хочет продвигать свой бизнес",
-                text:"Если тебе нужно приводить клиентов на свой товар или услугу, курс поможет понять, как запускать рекламу осознанно, а не вслепую."
-            },
-            {
-                title:"Тем, кто хочет стать сильнее в digital",
-                text:"Если ты уже работаешь с контентом, SMM или смежными задачами, знание таргета усилит тебя как специалиста."
-            }
-        ],
+    {
+        title:"Тем, кто хочет изучить рекламу с нуля",
+        text:"Если ты только заходишь в сферу таргета, курс поможет разобраться в базе, основных терминах и самой логике рекламных запусков.",
+        icon:"images/target/targetnew.png"
+    },
+    {
+        title:"Тем, кто хочет продвигать свой бизнес",
+        text:"Если тебе нужно приводить клиентов на свой товар или услугу, курс поможет понять, как запускать рекламу осознанно, а не вслепую.",
+        icon:"images/target/moretarget.png"
+    },
+    {
+        title:"Тем, кто хочет стать сильнее в digital",
+        text:"Если ты уже работаешь с контентом, SMM или смежными задачами, знание таргета усилит тебя как специалиста.",
+        icon:"images/target/strongtarget.png"
+    }
+],
 
-        results:[
-            {
-                title:"База по рекламному кабинету",
-                text:"Ты поймешь, как строится рекламная кампания, как выбирать аудиторию и с чего вообще начинается запуск."
-            },
-            {
-                title:"Понимание креативов и тестов",
-                text:"Появится базовая логика, как тестировать рекламу, оценивать результаты и принимать решения не наугад."
-            },
-            {
-                title:"Прикладное понимание таргета",
-                text:"Не только теория, но и общее понимание, на что реально должен смотреть таргетолог в работе."
-            },
-            {
-                title:"Готовность к первым запускам",
-                text:"После курса ты уже не будешь бояться кабинета и будешь намного ближе к своим первым реальным рекламным кампаниям."
-            }
-        ]
+results:[
+    {
+        title:"База по рекламному кабинету",
+        text:"Ты поймешь, как строится рекламная кампания, как выбирать аудиторию и с чего вообще начинается запуск.",
+        icon:"images/target/targetbrain.png"
+    },
+    {
+        title:"Понимание креативов и тестов",
+        text:"Появится базовая логика, как тестировать рекламу, оценивать результаты и принимать решения не наугад.",
+        icon:"images/target/ideatarget.png"
+    },
+    {
+        title:"Прикладное понимание таргета",
+        text:"Не только теория, но и общее понимание, на что реально должен смотреть таргетолог в работе.",
+        icon:"images/target/adstarget.png"
+    },
+    {
+        title:"Готовность к первым запускам",
+        text:"После курса ты уже не будешь бояться кабинета и будешь намного ближе к своим первым реальным рекламным кампаниям.",
+        icon:"images/target/starttarget.png"
+    }
+    ]
     }
 };
 
@@ -1033,7 +1096,7 @@ function renderAccordion(listId, items, type){
         <div class="${type}-item">
             <button class="${type}-item-btn" onclick="toggleAccordion(this, '${type}')">
                 <div class="${type}-item-left">
-                    <img class="${type}-item-icon" src="images/placeholder-icon.png" alt="">
+                    <img class="${type}-item-icon" src="${item.icon}" alt="">
                     <div class="${type}-item-title">${item.title}</div>
                 </div>
                 <span class="${type}-arrow"></span>
@@ -1067,14 +1130,12 @@ function update(){
 
     document.documentElement.lang = lang === "uz" ? "uz" : "ru";
 
-    // mobile nav/back
     setText("back-mobile", d.back);
     setText("m1-mobile", d.m1);
     setText("m4-mobile", d.m4);
     setText("m5-mobile", d.m5);
     setText("m6-mobile", d.m6);
 
-    // mobile content
     setText("title-mobile", d.title);
     setText("subtitle-mobile", d.subtitle);
     setText("stat1Label-mobile", d.stat1Label);
@@ -1089,7 +1150,6 @@ function update(){
     setText("resultTitle-mobile", d.resultTitle);
     setText("buyBtn-mobile", d.buyBtn);
 
-    // desktop nav/back
     setText("home-desktop", d.home);
     setText("back-desktop", d.back);
     setText("m1-desktop", d.m1);
@@ -1098,7 +1158,6 @@ function update(){
     setText("m6-desktop", d.m6);
     setText("catalog-desktop", d.catalog);
 
-    // desktop content
     setText("title-desktop", d.title);
     setText("subtitle-desktop", d.subtitle);
     setText("stat1Label-desktop", d.stat1Label);
