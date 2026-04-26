@@ -1,0 +1,1534 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<script src="https://telegram.org/js/telegram-web-app.js"></script>
+<title>gaphub - my courses</title>
+
+<style>
+:root{
+    --accent:#cb6ce6;
+    --accent-2:#a855f7;
+    --bg:#0c0b14;
+    --bg-soft:#15141e;
+    --card:#111117;
+    --card-2:#17171f;
+    --text:#ffffff;
+    --muted:#a8a4b5;
+    --muted-soft:#8f8a9e;
+    --line:rgba(255,255,255,.07);
+    --shadow:0 12px 38px rgba(0,0,0,.35);
+
+    --radius-xl:28px;
+    --radius-lg:22px;
+    --radius-md:16px;
+}
+
+*{
+    box-sizing:border-box;
+    -webkit-tap-highlight-color:transparent;
+}
+
+html, body{
+    margin:0;
+    padding:0;
+    min-height:100%;
+    font-family:Arial, sans-serif;
+    background:#000;
+    color:#fff;
+}
+
+body{
+    position:relative;
+}
+
+img{
+    display:block;
+    max-width:100%;
+}
+
+button{
+    font-family:inherit;
+    cursor:pointer;
+}
+
+.desktop-only{
+    display:none;
+}
+
+.btn{
+    border:none;
+    border-radius:18px;
+    transition:.2s ease;
+    font-weight:700;
+}
+
+.btn:active{
+    transform:scale(.99);
+}
+
+.btn-primary{
+    color:#fff;
+    background:linear-gradient(90deg,var(--accent),var(--accent-2));
+    box-shadow:0 14px 32px rgba(203,108,230,.22);
+}
+
+.btn-secondary{
+    color:#fff;
+    background:rgba(255,255,255,.05);
+    border:1px solid rgba(255,255,255,.10);
+}
+
+.glow-card{
+    background:
+        radial-gradient(circle at 86% 14%, rgba(203,108,230,.18), transparent 26%),
+        radial-gradient(circle at 15% 88%, rgba(203,108,230,.08), transparent 22%),
+        linear-gradient(180deg, #171621 0%, #0f0e17 100%);
+    border:1px solid rgba(255,255,255,.05);
+    box-shadow:var(--shadow);
+}
+
+.soft-card{
+    background:
+        radial-gradient(circle at 88% 18%, rgba(203,108,230,.10), transparent 24%),
+        linear-gradient(180deg, #121219 0%, #0d0d12 100%);
+    border:1px solid rgba(255,255,255,.05);
+    box-shadow:var(--shadow);
+}
+
+/* =========================
+   MOBILE
+========================= */
+.mobile-shell{
+    display:block;
+}
+
+.mobile-page{
+    min-height:100vh;
+    padding:calc(env(safe-area-inset-top) + 76px) 14px calc(110px + env(safe-area-inset-bottom));
+    background:
+        radial-gradient(circle at 20% 10%, rgba(203,108,230,.10), transparent 24%),
+        linear-gradient(180deg, #09080f 0%, #0c0b14 100%);
+}
+
+.mobile-back{
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+    background:#1a1a1a;
+    color:#fff;
+    border:none;
+    border-radius:12px;
+    padding:10px 14px;
+    font-size:15px;
+    margin-bottom:16px;
+}
+
+.mobile-back svg{
+    width:16px;
+    height:16px;
+    flex-shrink:0;
+}
+
+.mobile-hero{
+    position:relative;
+    overflow:hidden;
+    border-radius:var(--radius-xl);
+    padding:18px 16px 16px;
+}
+
+.mobile-badge{
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+    background:rgba(255,255,255,.06);
+    border:1px solid rgba(255,255,255,.06);
+    border-radius:999px;
+    padding:8px 12px;
+    font-size:12px;
+    color:#ebe4f5;
+    margin-bottom:14px;
+}
+
+.mobile-hero-title{
+    margin:0 0 10px;
+    font-size:32px;
+    line-height:1;
+    font-weight:800;
+    letter-spacing:-.4px;
+}
+
+.mobile-hero-text{
+    margin:0;
+    color:var(--muted);
+    font-size:14px;
+    line-height:1.5;
+}
+
+.mobile-mini-grid{
+    margin-top:14px;
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:10px;
+}
+
+.mobile-mini-card{
+    background:rgba(255,255,255,.04);
+    border-radius:16px;
+    padding:12px;
+    min-height:78px;
+}
+
+.mobile-mini-label{
+    color:var(--muted-soft);
+    font-size:12px;
+    margin-bottom:6px;
+}
+
+.mobile-mini-value{
+    font-size:14px;
+    font-weight:700;
+    line-height:1.35;
+}
+
+.mobile-top-actions{
+    margin-top:14px;
+    display:grid;
+    grid-template-columns:1fr;
+    gap:10px;
+}
+
+.mobile-top-btn{
+    width:100%;
+    height:54px;
+    font-size:16px;
+}
+
+.mobile-section{
+    margin-top:14px;
+}
+
+.mobile-section-title{
+    margin:0 0 12px;
+    font-size:21px;
+    line-height:1.1;
+    font-weight:800;
+}
+
+.mobile-loading{
+    border-radius:22px;
+    padding:20px;
+    color:var(--muted);
+    text-align:center;
+}
+
+.mobile-empty{
+    border-radius:24px;
+    padding:24px 16px;
+    text-align:center;
+}
+
+.mobile-empty-icon{
+    width:74px;
+    height:74px;
+    margin:0 auto 14px;
+    border-radius:22px;
+    background:rgba(255,255,255,.05);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+}
+
+.mobile-empty-icon img{
+    width:42px;
+    height:42px;
+    object-fit:contain;
+}
+
+.mobile-empty-title{
+    margin:0 0 8px;
+    font-size:22px;
+    font-weight:800;
+    line-height:1.15;
+}
+
+.mobile-empty-text{
+    margin:0 auto 16px;
+    max-width:310px;
+    color:var(--muted);
+    font-size:14px;
+    line-height:1.5;
+}
+
+.mobile-course-list{
+    display:flex;
+    flex-direction:column;
+    gap:12px;
+}
+
+.mobile-course-card{
+    display:flex;
+    gap:12px;
+    border-radius:22px;
+    padding:12px;
+    cursor:pointer;
+    overflow:hidden;
+}
+
+.mobile-course-cover{
+    width:92px;
+    height:92px;
+    border-radius:18px;
+    background:#1a1a1a;
+    object-fit:cover;
+    flex-shrink:0;
+}
+
+.mobile-course-body{
+    min-width:0;
+    flex:1;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+}
+
+.mobile-course-label{
+    display:inline-flex;
+    align-items:center;
+    width:max-content;
+    max-width:100%;
+    background:#2a1933;
+    color:#d68cff;
+    border-radius:999px;
+    padding:6px 9px;
+    font-size:11px;
+    margin-bottom:8px;
+}
+
+.mobile-course-title{
+    margin:0 0 6px;
+    font-size:17px;
+    font-weight:800;
+    line-height:1.18;
+}
+
+.mobile-course-sub{
+    color:var(--muted-soft);
+    font-size:13px;
+    line-height:1.35;
+    margin-bottom:10px;
+}
+
+.mobile-progress-line{
+    height:7px;
+    border-radius:999px;
+    background:rgba(255,255,255,.08);
+    overflow:hidden;
+}
+
+.mobile-progress-fill{
+    height:100%;
+    border-radius:999px;
+    background:linear-gradient(90deg,var(--accent),var(--accent-2));
+    width:0%;
+}
+
+.mobile-progress-row{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:8px;
+    margin-top:7px;
+    color:var(--muted-soft);
+    font-size:12px;
+}
+
+.mobile-action-card{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:14px;
+    border-radius:20px;
+    padding:14px;
+    cursor:pointer;
+}
+
+.mobile-action-left{
+    display:flex;
+    align-items:center;
+    gap:12px;
+    min-width:0;
+}
+
+.mobile-action-icon{
+    width:44px;
+    height:44px;
+    border-radius:14px;
+    background:#22222d;
+    flex-shrink:0;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    overflow:hidden;
+}
+
+.mobile-action-icon img{
+    width:26px;
+    height:26px;
+    object-fit:contain;
+}
+
+.mobile-action-title{
+    font-size:15px;
+    font-weight:700;
+    line-height:1.3;
+}
+
+.mobile-action-sub{
+    margin-top:3px;
+    font-size:13px;
+    color:var(--muted-soft);
+}
+
+.mobile-action-arrow{
+    font-size:22px;
+    color:#bfbfbf;
+    line-height:1;
+    flex-shrink:0;
+}
+
+/* BOTTOM NAV */
+.bottom-nav{
+    position:fixed;
+    left:0;
+    bottom:0;
+    width:100%;
+    background:#000;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:8px 10px;
+    padding-bottom:calc(8px + env(safe-area-inset-bottom));
+    z-index:50;
+}
+
+.nav-item{
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    font-size:12px;
+    color:#fff;
+    width:20%;
+    text-align:center;
+    cursor:pointer;
+}
+
+.nav-item img{
+    width:27px;
+    margin-bottom:2px;
+}
+
+.nav-item span{
+    white-space:nowrap;
+    overflow:hidden;
+    text-overflow:ellipsis;
+}
+
+.nav-item.active-mobile-nav span{
+    color:#d68cff;
+}
+
+.nav-center{
+    position:relative;
+    top:-18px;
+    width:20%;
+    display:flex;
+    justify-content:center;
+}
+
+.circle{
+    width:60px;
+    height:60px;
+    background:#ffffff;
+    border-radius:50%;
+    border:4px solid var(--accent);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+}
+
+.circle img{
+    width:24px;
+    height:24px;
+    object-fit:contain;
+}
+
+/* =========================
+   DESKTOP
+========================= */
+@media (min-width:1024px){
+    html, body{
+        min-height:100vh;
+        background:
+            radial-gradient(circle at 15% 18%, rgba(203,108,230,.08), transparent 24%),
+            radial-gradient(circle at 85% 28%, rgba(203,108,230,.07), transparent 24%),
+            linear-gradient(180deg, #09080f 0%, #0c0b14 100%);
+        color:var(--text);
+    }
+
+    body{
+        overflow:hidden;
+    }
+
+    .mobile-shell{
+        display:none;
+    }
+
+    .desktop-only{
+        display:block;
+    }
+
+    .desktop-app{
+        min-height:100vh;
+        color:var(--text);
+    }
+
+    .desktop-layout{
+        display:grid;
+        grid-template-columns:270px minmax(0,1fr);
+        min-height:100vh;
+    }
+
+    .desktop-sidebar{
+        padding:22px 20px;
+        border-right:1px solid rgba(255,255,255,.05);
+        background:linear-gradient(180deg, rgba(14,13,23,.70) 0%, rgba(12,11,20,.40) 100%);
+        overflow:auto;
+    }
+
+    .desktop-brand{
+        font-size:34px;
+        font-weight:800;
+        line-height:1;
+        margin:8px 0 56px;
+    }
+
+    .desktop-nav{
+        display:flex;
+        flex-direction:column;
+        gap:10px;
+        margin-top:4px;
+    }
+
+    .desktop-nav-item{
+        display:flex;
+        align-items:center;
+        gap:14px;
+        width:100%;
+        min-height:56px;
+        padding:0 18px;
+        border-radius:16px;
+        color:#f1f1f1;
+        background:transparent;
+        border:1px solid transparent;
+        font-size:16px;
+        font-weight:600;
+        transition:.2s ease;
+        cursor:pointer;
+        text-align:left;
+    }
+
+    .desktop-nav-item img{
+        width:28px;
+        height:28px;
+        object-fit:contain;
+        flex-shrink:0;
+    }
+
+    .desktop-nav-item.active-nav{
+        background:linear-gradient(180deg, rgba(255,255,255,.06) 0%, rgba(255,255,255,.03) 100%);
+        border-color:rgba(255,255,255,.06);
+        box-shadow:var(--shadow);
+    }
+
+    .desktop-nav-item-accent{
+        background:linear-gradient(90deg, #b85bda 0%, #cb6ce6 100%);
+        border-color:transparent;
+        color:#fff;
+        box-shadow:0 12px 26px rgba(203,108,230,.28);
+        margin-top:8px;
+    }
+
+    .desktop-nav-item-accent:hover{
+        transform:translateY(-1px);
+    }
+
+    .desktop-nav-item-accent img{
+        filter:brightness(0) invert(1);
+    }
+
+    .desktop-main{
+        padding:24px 22px 30px;
+        height:100vh;
+        overflow:auto;
+    }
+
+    .desktop-back{
+        display:inline-flex;
+        align-items:center;
+        gap:14px;
+        font-size:24px;
+        color:#fff;
+        margin-bottom:18px;
+        cursor:pointer;
+        user-select:none;
+    }
+
+    .desktop-back-arrow{
+        font-size:42px;
+        line-height:1;
+        transform:translateY(-1px);
+    }
+
+    .desktop-hero{
+        position:relative;
+        overflow:hidden;
+        border-radius:30px;
+        padding:24px 22px 22px;
+    }
+
+    .desktop-badge{
+        display:inline-flex;
+        align-items:center;
+        gap:8px;
+        background:rgba(255,255,255,.06);
+        border:1px solid rgba(255,255,255,.06);
+        border-radius:999px;
+        padding:10px 14px;
+        font-size:13px;
+        color:#ebe4f5;
+        margin-bottom:18px;
+    }
+
+    .desktop-hero-grid{
+        display:grid;
+        grid-template-columns:minmax(0,1.15fr) minmax(320px,.85fr);
+        gap:18px;
+        align-items:stretch;
+    }
+
+    .desktop-hero-title{
+        margin:0 0 10px;
+        font-size:clamp(38px,3.2vw,56px);
+        line-height:.96;
+        font-weight:800;
+        letter-spacing:-1px;
+    }
+
+    .desktop-hero-text{
+        margin:0;
+        color:var(--muted);
+        font-size:17px;
+        line-height:1.52;
+        max-width:680px;
+    }
+
+    .desktop-side-panel{
+        display:flex;
+        flex-direction:column;
+        gap:12px;
+        min-width:0;
+    }
+
+    .desktop-mini-grid{
+        display:grid;
+        grid-template-columns:1fr 1fr;
+        gap:12px;
+    }
+
+    .desktop-mini-card{
+        background:rgba(255,255,255,.04);
+        border-radius:18px;
+        padding:14px;
+        min-height:92px;
+    }
+
+    .desktop-mini-label{
+        color:var(--muted-soft);
+        font-size:12px;
+        margin-bottom:8px;
+    }
+
+    .desktop-mini-value{
+        font-size:16px;
+        font-weight:700;
+        line-height:1.35;
+    }
+
+    .desktop-top-actions{
+        display:grid;
+        grid-template-columns:1fr 1fr;
+        gap:12px;
+    }
+
+    .desktop-top-btn{
+        width:100%;
+        height:58px;
+        font-size:16px;
+    }
+
+    .desktop-section{
+        margin-top:16px;
+    }
+
+    .desktop-section-title{
+        margin:0 0 14px;
+        font-size:28px;
+        line-height:1.1;
+        font-weight:800;
+    }
+
+    .desktop-loading{
+        border-radius:24px;
+        padding:28px;
+        color:var(--muted);
+        text-align:center;
+    }
+
+    .desktop-empty{
+        border-radius:28px;
+        padding:38px 24px;
+        text-align:center;
+    }
+
+    .desktop-empty-icon{
+        width:96px;
+        height:96px;
+        margin:0 auto 16px;
+        border-radius:28px;
+        background:rgba(255,255,255,.05);
+        display:flex;
+        align-items:center;
+        justify-content:center;
+    }
+
+    .desktop-empty-icon img{
+        width:54px;
+        height:54px;
+        object-fit:contain;
+    }
+
+    .desktop-empty-title{
+        margin:0 0 10px;
+        font-size:30px;
+        font-weight:800;
+        line-height:1.1;
+    }
+
+    .desktop-empty-text{
+        margin:0 auto 18px;
+        max-width:520px;
+        color:var(--muted);
+        font-size:16px;
+        line-height:1.55;
+    }
+
+    .desktop-course-grid{
+        display:grid;
+        grid-template-columns:repeat(3, minmax(0,1fr));
+        gap:14px;
+    }
+
+    .desktop-course-card{
+        border-radius:24px;
+        overflow:hidden;
+        cursor:pointer;
+        min-height:100%;
+    }
+
+    .desktop-course-cover{
+        width:100%;
+        height:168px;
+        background:#1a1a1a;
+        object-fit:cover;
+    }
+
+    .desktop-course-body{
+        padding:16px;
+    }
+
+    .desktop-course-label{
+        display:inline-flex;
+        align-items:center;
+        max-width:100%;
+        background:#2a1933;
+        color:#d68cff;
+        border-radius:999px;
+        padding:7px 10px;
+        font-size:12px;
+        margin-bottom:10px;
+    }
+
+    .desktop-course-title{
+        margin:0 0 8px;
+        font-size:20px;
+        font-weight:800;
+        line-height:1.18;
+    }
+
+    .desktop-course-sub{
+        color:var(--muted-soft);
+        font-size:14px;
+        line-height:1.45;
+        margin-bottom:14px;
+    }
+
+    .desktop-progress-line{
+        height:8px;
+        border-radius:999px;
+        background:rgba(255,255,255,.08);
+        overflow:hidden;
+    }
+
+    .desktop-progress-fill{
+        height:100%;
+        border-radius:999px;
+        background:linear-gradient(90deg,var(--accent),var(--accent-2));
+        width:0%;
+    }
+
+    .desktop-progress-row{
+        display:flex;
+        align-items:center;
+        justify-content:space-between;
+        gap:8px;
+        margin-top:8px;
+        color:var(--muted-soft);
+        font-size:13px;
+    }
+
+    .desktop-actions-grid{
+        display:grid;
+        grid-template-columns:repeat(3, minmax(0,1fr));
+        gap:14px;
+    }
+
+    .desktop-action-card{
+        display:flex;
+        align-items:center;
+        justify-content:space-between;
+        gap:14px;
+        border-radius:22px;
+        padding:18px;
+        min-height:124px;
+        cursor:pointer;
+    }
+
+    .desktop-action-left{
+        display:flex;
+        align-items:center;
+        gap:14px;
+        min-width:0;
+    }
+
+    .desktop-action-icon{
+        width:50px;
+        height:50px;
+        border-radius:14px;
+        background:#22222d;
+        flex-shrink:0;
+        display:flex;
+        align-items:center;
+        justify-content:center;
+        overflow:hidden;
+    }
+
+    .desktop-action-icon img{
+        width:30px;
+        height:30px;
+        object-fit:contain;
+    }
+
+    .desktop-action-title{
+        font-size:18px;
+        font-weight:700;
+        line-height:1.25;
+    }
+
+    .desktop-action-sub{
+        margin-top:4px;
+        font-size:14px;
+        color:var(--muted-soft);
+    }
+
+    .desktop-action-arrow{
+        font-size:24px;
+        color:#bfbfbf;
+        line-height:1;
+        flex-shrink:0;
+    }
+}
+
+@media (max-width:1360px) and (min-width:1024px){
+    .desktop-layout{
+        grid-template-columns:245px minmax(0,1fr);
+    }
+
+    .desktop-main{
+        padding:22px 18px 26px;
+    }
+
+    .desktop-hero-grid{
+        grid-template-columns:1fr;
+    }
+
+    .desktop-course-grid{
+        grid-template-columns:repeat(2, minmax(0,1fr));
+    }
+
+    .desktop-actions-grid{
+        grid-template-columns:1fr;
+    }
+}
+
+@media (max-width:760px){
+    .mobile-mini-grid{
+        grid-template-columns:1fr 1fr;
+    }
+}
+
+@media (max-width:420px){
+    .mobile-hero{
+        border-radius:22px;
+    }
+
+    .mobile-mini-grid{
+        grid-template-columns:1fr;
+    }
+
+    .mobile-course-cover{
+        width:82px;
+        height:82px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<!-- MOBILE -->
+<div class="mobile-shell">
+    <div class="mobile-page">
+        <button class="mobile-back" onclick="goBack()">
+            <svg viewBox="0 0 24 24" fill="none">
+                <path d="M15 5L8 12L15 19" stroke="white" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+            <span id="back-mobile"></span>
+        </button>
+
+        <section class="mobile-hero glow-card">
+            <div class="mobile-badge" id="badge-mobile"></div>
+
+            <h1 class="mobile-hero-title" id="heroTitle-mobile"></h1>
+            <p class="mobile-hero-text" id="heroText-mobile"></p>
+
+            <div class="mobile-mini-grid">
+                <div class="mobile-mini-card">
+                    <div class="mobile-mini-label" id="mini1Label-mobile"></div>
+                    <div class="mobile-mini-value" id="mini1Value-mobile"></div>
+                </div>
+                <div class="mobile-mini-card">
+                    <div class="mobile-mini-label" id="mini2Label-mobile"></div>
+                    <div class="mobile-mini-value" id="mini2Value-mobile"></div>
+                </div>
+            </div>
+
+            <div class="mobile-top-actions">
+                <button class="btn btn-primary mobile-top-btn" id="catalogBtn-mobile" onclick="goCourses()"></button>
+            </div>
+        </section>
+
+        <section class="mobile-section">
+            <h2 class="mobile-section-title" id="sectionTitle-mobile"></h2>
+            <div id="mobile-content"></div>
+        </section>
+
+    </div>
+
+    <div class="bottom-nav">
+        <div class="nav-item active-mobile-nav" onclick="goPage('mycourses.html')">
+            <img src="images/icon/courses2.png" alt="">
+            <span id="m1-mobile"></span>
+        </div>
+
+        <div class="nav-item" onclick="goPage('support.html')">
+            <img src="images/icon/support.png" alt="">
+            <span id="m4-mobile"></span>
+        </div>
+
+        <div class="nav-center" onclick="goHome()">
+            <div class="circle">
+                <img src="images/icon/home2.png" alt="home">
+            </div>
+        </div>
+
+        <div class="nav-item" onclick="goPage('chat.html')">
+            <img src="images/icon/feedback.png" alt="">
+            <span id="m5-mobile"></span>
+        </div>
+
+        <div class="nav-item" onclick="goPage('myprofile.html')">
+            <img src="images/icon/profile2.png" alt="">
+            <span id="m6-mobile"></span>
+        </div>
+    </div>
+</div>
+
+<!-- DESKTOP -->
+<div class="desktop-app desktop-only">
+    <div class="desktop-layout">
+        <aside class="desktop-sidebar">
+            <div class="desktop-brand">gaphub</div>
+
+            <nav class="desktop-nav">
+                <button class="desktop-nav-item" onclick="goHome()">
+                    <img src="images/icon/home.png" alt="">
+                    <span id="home-desktop"></span>
+                </button>
+
+                <button class="desktop-nav-item active-nav" onclick="goPage('mycourses.html')">
+                    <img src="images/icon/courses2.png" alt="">
+                    <span id="m1-desktop"></span>
+                </button>
+
+                <button class="desktop-nav-item" onclick="goPage('support.html')">
+                    <img src="images/icon/support.png" alt="">
+                    <span id="m4-desktop"></span>
+                </button>
+
+                <button class="desktop-nav-item" onclick="goPage('chat.html')">
+                    <img src="images/icon/feedback.png" alt="">
+                    <span id="m5-desktop"></span>
+                </button>
+
+                <button class="desktop-nav-item" onclick="goPage('myprofile.html')">
+                    <img src="images/icon/profile2.png" alt="">
+                    <span id="m6-desktop"></span>
+                </button>
+
+                <button class="desktop-nav-item desktop-nav-item-accent" onclick="goCourses()">
+                    <img src="images/icon/catalog.png" alt="">
+                    <span id="catalog-desktop"></span>
+                </button>
+            </nav>
+        </aside>
+
+        <main class="desktop-main">
+            <div class="desktop-back" onclick="goBack()">
+                <span class="desktop-back-arrow">←</span>
+                <span id="back-desktop"></span>
+            </div>
+
+            <section class="desktop-hero glow-card">
+                <div class="desktop-badge" id="badge-desktop"></div>
+
+                <div class="desktop-hero-grid">
+                    <div>
+                        <h1 class="desktop-hero-title" id="heroTitle-desktop"></h1>
+                        <p class="desktop-hero-text" id="heroText-desktop"></p>
+                    </div>
+
+                    <div class="desktop-side-panel">
+                        <div class="desktop-mini-grid">
+                            <div class="desktop-mini-card">
+                                <div class="desktop-mini-label" id="mini1Label-desktop"></div>
+                                <div class="desktop-mini-value" id="mini1Value-desktop"></div>
+                            </div>
+                            <div class="desktop-mini-card">
+                                <div class="desktop-mini-label" id="mini2Label-desktop"></div>
+                                <div class="desktop-mini-value" id="mini2Value-desktop"></div>
+                            </div>
+                        </div>
+
+                        <div class="desktop-top-actions">
+                            <button class="btn btn-primary desktop-top-btn" id="catalogBtn-desktop" onclick="goCourses()"></button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="desktop-section">
+                <h2 class="desktop-section-title" id="sectionTitle-desktop"></h2>
+                <div id="desktop-content"></div>
+            </section>
+
+        </main>
+    </div>
+</div>
+
+<script>
+let lang = localStorage.getItem("lang") || "uz";
+
+let currentCourses = [];
+
+const defaultCourses = {
+    smm:{
+        slug:"smm",
+        titleRu:"Курс SMM",
+        titleUz:"SMM kursi",
+        image:"images/smmcourse/mindset.png",
+        progress:0
+    },
+    target:{
+        slug:"target",
+        titleRu:"Курс Target",
+        titleUz:"Target kursi",
+        image:"images/target-cover-mobile.png",
+        progress:0
+    },
+    ai:{
+        slug:"ai",
+        titleRu:"Курс AI",
+        titleUz:"AI kursi",
+        image:"images/ai/ailogic.png",
+        progress:0
+    }
+};
+
+const t = {
+    uz:{
+        back:"Orqaga",
+        home:"Bosh sahifa",
+        m1:"Kurslarim",
+        m4:"Aloqa",
+        m5:"Sharhlar",
+        m6:"Profil",
+        catalog:"Kurslar katalogi",
+
+        badge:"Shaxsiy ta’lim kabineti",
+        heroTitle:"Mening kurslarim",
+        heroText:"Bu yerda sotib olingan kurslaringiz, darslarga kirish va o‘qish progressi ko‘rinadi. Hozircha kurs bo‘lmasa, katalogdan keraklisini tanlashingiz mumkin.",
+
+        mini1Label:"Kurslar soni",
+        mini2Label:"Holat",
+        statusEmpty:"Kurs yo‘q",
+        statusActive:"O‘qish faol",
+
+        catalogBtn:"Katalogga o‘tish",
+        lang:"Til",
+        langVal:"O‘zbek",
+
+        sectionTitleEmpty:"Kurslar hali yo‘q",
+        sectionTitleCourses:"Sizning kurslaringiz",
+
+        emptyTitle:"Ups, sizda hali kurslar yo‘q",
+        emptyText:"Kurs sotib olganingizdan keyin u shu yerda paydo bo‘ladi. Siz darslarga tez kirib, o‘qishni davom ettira olasiz.",
+        emptyBtn:"Kurs tanlash",
+
+        continue:"O‘qishni davom ettirish",
+        progress:"Progress",
+        lessons:"Darslar",
+
+        extraTitle:"Yordamchi bo‘limlar",
+        support:"Yordam kerakmi?",
+        supportSub:"Savollar va qo‘llab-quvvatlash",
+        catalogCard:"Katalog",
+        catalogCardSub:"Yangi kurs tanlash",
+        homeCard:"Bosh sahifa",
+        homeCardSub:"Asosiy menyuga qaytish",
+
+        loading:"Kurslar yuklanmoqda..."
+    },
+
+    ru:{
+        back:"Назад",
+        home:"Главное меню",
+        m1:"Мои курсы",
+        m4:"Поддержка",
+        m5:"Отзывы",
+        m6:"Профиль",
+        catalog:"Каталог курсов",
+
+        badge:"Личный кабинет обучения",
+        heroTitle:"Мои курсы",
+        heroText:"Здесь будут отображаться купленные курсы, доступ к урокам и прогресс обучения. Если курсов пока нет, можно перейти в каталог и выбрать подходящий.",
+
+        mini1Label:"Количество курсов",
+        mini2Label:"Состояние",
+        statusEmpty:"Курсов нет",
+        statusActive:"Обучение активно",
+
+        catalogBtn:"Перейти в каталог",
+        lang:"Язык",
+        langVal:"Русский",
+
+        sectionTitleEmpty:"Курсов пока нет",
+        sectionTitleCourses:"Ваши курсы",
+
+        emptyTitle:"Упс, у вас пока нет курсов",
+        emptyText:"После покупки курс появится здесь. Вы сможете быстро открыть уроки, продолжить обучение и следить за прогрессом.",
+        emptyBtn:"Выбрать курс",
+
+        continue:"Продолжить обучение",
+        progress:"Прогресс",
+        lessons:"Уроки",
+
+        extraTitle:"Полезные разделы",
+        support:"Нужна помощь?",
+        supportSub:"Вопросы и поддержка",
+        catalogCard:"Каталог",
+        catalogCardSub:"Выбрать новый курс",
+        homeCard:"Главное меню",
+        homeCardSub:"Вернуться на главную",
+
+        loading:"Загружаем курсы..."
+    }
+};
+
+function setText(id, value){
+    const el = document.getElementById(id);
+    if(el) el.innerText = value;
+}
+
+function getCourseTitle(course){
+    if(lang === "uz"){
+        return course.title_uz || course.titleUz || course.title || course.name || "Kurs";
+    }
+
+    return course.title_ru || course.titleRu || course.title || course.name || "Курс";
+}
+
+function normalizeCourse(course){
+    if(typeof course === "string"){
+        return defaultCourses[course] || {
+            slug:course,
+            titleRu:course,
+            titleUz:course,
+            image:"images/icon/courses2.png",
+            progress:0
+        };
+    }
+
+    const slug = course.slug || course.code || course.course_slug || course.id || "course";
+    const preset = defaultCourses[slug] || {};
+
+    return {
+        slug:slug,
+        title:course.title || course.name || preset.titleRu || "Курс",
+        titleRu:course.title_ru || course.titleRu || course.title || course.name || preset.titleRu || "Курс",
+        titleUz:course.title_uz || course.titleUz || course.title || course.name || preset.titleUz || "Kurs",
+        image:course.image || course.cover || course.cover_url || preset.image || "images/icon/courses2.png",
+        progress:Number(course.progress || course.progress_percent || preset.progress || 0),
+        lessons:course.lessons || course.lessons_count || "",
+        nextLesson:course.next_lesson || course.nextLesson || ""
+    };
+}
+
+function getCoursesArray(data){
+    if(Array.isArray(data)) return data.map(normalizeCourse);
+
+    if(data && Array.isArray(data.courses)) return data.courses.map(normalizeCourse);
+
+    if(data && Array.isArray(data.my_courses)) return data.my_courses.map(normalizeCourse);
+
+    if(data && data.courses && typeof data.courses === "object"){
+        return Object.keys(data.courses)
+            .filter(key => data.courses[key])
+            .map(key => normalizeCourse(key));
+    }
+
+    return [];
+}
+
+function updateStaticText(){
+    const d = t[lang];
+
+    document.documentElement.lang = lang === "uz" ? "uz" : "ru";
+
+    setText("back-mobile", d.back);
+    setText("badge-mobile", d.badge);
+    setText("heroTitle-mobile", d.heroTitle);
+    setText("heroText-mobile", d.heroText);
+    setText("mini1Label-mobile", d.mini1Label);
+    setText("mini2Label-mobile", d.mini2Label);
+    setText("catalogBtn-mobile", d.catalogBtn);
+    setText("langText-mobile", d.lang);
+    setText("langValue-mobile", d.langVal);
+    setText("extraTitle-mobile", d.extraTitle);
+    setText("support-mobile", d.support);
+    setText("supportSub-mobile", d.supportSub);
+    setText("m1-mobile", d.m1);
+    setText("m4-mobile", d.m4);
+    setText("m5-mobile", d.m5);
+    setText("m6-mobile", d.m6);
+
+    setText("back-desktop", d.back);
+    setText("home-desktop", d.home);
+    setText("m1-desktop", d.m1);
+    setText("m4-desktop", d.m4);
+    setText("m5-desktop", d.m5);
+    setText("m6-desktop", d.m6);
+    setText("catalog-desktop", d.catalog);
+    setText("badge-desktop", d.badge);
+    setText("heroTitle-desktop", d.heroTitle);
+    setText("heroText-desktop", d.heroText);
+    setText("mini1Label-desktop", d.mini1Label);
+    setText("mini2Label-desktop", d.mini2Label);
+    setText("catalogBtn-desktop", d.catalogBtn);
+    setText("langText-desktop", d.lang);
+    setText("langValue-desktop", d.langVal);
+    setText("extraTitle-desktop", d.extraTitle);
+    setText("support-desktop", d.support);
+    setText("supportSub-desktop", d.supportSub);
+    setText("catalogCard-desktop", d.catalogCard);
+    setText("catalogCardSub-desktop", d.catalogCardSub);
+    setText("homeCard-desktop", d.homeCard);
+    setText("homeCardSub-desktop", d.homeCardSub);
+
+    renderCoursesState(currentCourses);
+}
+
+function renderLoading(){
+    const d = t[lang];
+
+    setText("sectionTitle-mobile", d.sectionTitleCourses);
+    setText("sectionTitle-desktop", d.sectionTitleCourses);
+    setText("mini1Value-mobile", "...");
+    setText("mini2Value-mobile", d.loading);
+    setText("mini1Value-desktop", "...");
+    setText("mini2Value-desktop", d.loading);
+
+    const mobile = document.getElementById("mobile-content");
+    const desktop = document.getElementById("desktop-content");
+
+    if(mobile){
+        mobile.innerHTML = `<div class="mobile-loading soft-card">${d.loading}</div>`;
+    }
+
+    if(desktop){
+        desktop.innerHTML = `<div class="desktop-loading soft-card">${d.loading}</div>`;
+    }
+}
+
+function renderEmpty(){
+    const d = t[lang];
+
+    setText("sectionTitle-mobile", d.sectionTitleEmpty);
+    setText("sectionTitle-desktop", d.sectionTitleEmpty);
+    setText("mini1Value-mobile", "0");
+    setText("mini2Value-mobile", d.statusEmpty);
+    setText("mini1Value-desktop", "0");
+    setText("mini2Value-desktop", d.statusEmpty);
+
+    const mobile = document.getElementById("mobile-content");
+    const desktop = document.getElementById("desktop-content");
+
+    if(mobile){
+        mobile.innerHTML = `
+            <div class="mobile-empty soft-card">
+                <div class="mobile-empty-icon">
+                    <img src="images/icon/courses2.png" alt="">
+                </div>
+                <h3 class="mobile-empty-title">${d.emptyTitle}</h3>
+                <p class="mobile-empty-text">${d.emptyText}</p>
+                <button class="btn btn-primary mobile-top-btn" onclick="goCourses()">${d.emptyBtn}</button>
+            </div>
+        `;
+    }
+
+    if(desktop){
+        desktop.innerHTML = `
+            <div class="desktop-empty soft-card">
+                <div class="desktop-empty-icon">
+                    <img src="images/icon/courses2.png" alt="">
+                </div>
+                <h3 class="desktop-empty-title">${d.emptyTitle}</h3>
+                <p class="desktop-empty-text">${d.emptyText}</p>
+                <button class="btn btn-primary desktop-top-btn" style="max-width:280px" onclick="goCourses()">${d.emptyBtn}</button>
+            </div>
+        `;
+    }
+}
+
+function renderCourses(courses){
+    const d = t[lang];
+
+    setText("sectionTitle-mobile", d.sectionTitleCourses);
+    setText("sectionTitle-desktop", d.sectionTitleCourses);
+    setText("mini1Value-mobile", String(courses.length));
+    setText("mini2Value-mobile", d.statusActive);
+    setText("mini1Value-desktop", String(courses.length));
+    setText("mini2Value-desktop", d.statusActive);
+
+    const mobile = document.getElementById("mobile-content");
+    const desktop = document.getElementById("desktop-content");
+
+    if(mobile){
+        mobile.innerHTML = `
+            <div class="mobile-course-list">
+                ${courses.map(course => {
+                    const progress = Math.max(0, Math.min(100, Number(course.progress || 0)));
+                    const lessonsText = course.lessons ? `${d.lessons}: ${course.lessons}` : d.continue;
+
+                    return `
+                        <div class="mobile-course-card soft-card" onclick="openCourse('${course.slug}')">
+                            <img class="mobile-course-cover" src="${course.image}" alt="">
+                            <div class="mobile-course-body">
+                                <div class="mobile-course-label">${lessonsText}</div>
+                                <h3 class="mobile-course-title">${getCourseTitle(course)}</h3>
+                                <div class="mobile-course-sub">${d.continue}</div>
+                                <div class="mobile-progress-line">
+                                    <div class="mobile-progress-fill" style="width:${progress}%"></div>
+                                </div>
+                                <div class="mobile-progress-row">
+                                    <span>${d.progress}</span>
+                                    <span>${progress}%</span>
+                                </div>
+                            </div>
+                        </div>
+                    `;
+                }).join("")}
+            </div>
+        `;
+    }
+
+    if(desktop){
+        desktop.innerHTML = `
+            <div class="desktop-course-grid">
+                ${courses.map(course => {
+                    const progress = Math.max(0, Math.min(100, Number(course.progress || 0)));
+                    const lessonsText = course.lessons ? `${d.lessons}: ${course.lessons}` : d.continue;
+
+                    return `
+                        <div class="desktop-course-card soft-card" onclick="openCourse('${course.slug}')">
+                            <img class="desktop-course-cover" src="${course.image}" alt="">
+                            <div class="desktop-course-body">
+                                <div class="desktop-course-label">${lessonsText}</div>
+                                <h3 class="desktop-course-title">${getCourseTitle(course)}</h3>
+                                <div class="desktop-course-sub">${d.continue}</div>
+                                <div class="desktop-progress-line">
+                                    <div class="desktop-progress-fill" style="width:${progress}%"></div>
+                                </div>
+                                <div class="desktop-progress-row">
+                                    <span>${d.progress}</span>
+                                    <span>${progress}%</span>
+                                </div>
+                            </div>
+                        </div>
+                    `;
+                }).join("")}
+            </div>
+        `;
+    }
+}
+
+function renderCoursesState(courses){
+    if(!courses || courses.length === 0){
+        renderEmpty();
+    }else{
+        renderCourses(courses);
+    }
+}
+
+function loadCourses(userId){
+    renderLoading();
+
+    fetch(`https://api.gaphub.uz/mycourses/${userId}`)
+        .then(res => res.json())
+        .then(data => {
+            currentCourses = getCoursesArray(data);
+            renderCoursesState(currentCourses);
+        })
+        .catch(err => {
+            console.log("Courses fetch error:", err);
+            currentCourses = [];
+            renderCoursesState(currentCourses);
+        });
+}
+
+function openCourse(slug){
+    localStorage.setItem("lang", lang);
+
+    const safeSlug = String(slug || "").trim();
+
+    if(safeSlug === "smm"){
+        window.location.href = "smm.html";
+        return;
+    }
+
+    if(safeSlug === "target"){
+        window.location.href = "target.html";
+        return;
+    }
+
+    if(safeSlug === "ai"){
+        window.location.href = "ai.html";
+        return;
+    }
+
+    window.location.href = safeSlug + ".html";
+}
+
+function toggleLang(){
+    lang = lang === "uz" ? "ru" : "uz";
+    localStorage.setItem("lang", lang);
+    updateStaticText();
+}
+
+function goHome(){
+    localStorage.setItem("lang", lang);
+    window.location.href = "index.html";
+}
+
+function goPage(page){
+    localStorage.setItem("lang", lang);
+    window.location.href = page;
+}
+
+function goCourses(){
+    localStorage.setItem("lang", lang);
+    window.location.href = "courses.html";
+}
+
+function goBack(){
+    if (window.history.length > 1) {
+        window.history.back();
+    } else {
+        window.location.href = "index.html";
+    }
+}
+
+function initTelegram(){
+    if(window.Telegram && Telegram.WebApp){
+        const tg = Telegram.WebApp;
+
+        tg.ready();
+        tg.expand();
+
+        try{
+            tg.requestFullscreen();
+        }catch(e){}
+
+        document.body.style.minHeight = tg.viewportHeight + "px";
+
+        const user = tg.initDataUnsafe?.user;
+
+        if(user && user.id){
+            loadCourses(user.id);
+        }else{
+            currentCourses = [];
+            renderCoursesState(currentCourses);
+        }
+    }else{
+        currentCourses = [];
+        renderCoursesState(currentCourses);
+    }
+}
+
+updateStaticText();
+initTelegram();
+</script>
+
+</body>
+</html>
