@@ -1,0 +1,1308 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<script src="https://telegram.org/js/telegram-web-app.js"></script>
+<title>gaphub - reviews</title>
+
+<style>
+:root{
+    --accent:#cb6ce6;
+    --accent-2:#a855f7;
+    --bg:#0c0b14;
+    --bg-soft:#15141e;
+    --card:#111117;
+    --card-2:#17171f;
+    --text:#ffffff;
+    --muted:#a8a4b5;
+    --muted-soft:#8f8a9e;
+    --line:rgba(255,255,255,.07);
+    --shadow:0 12px 38px rgba(0,0,0,.35);
+
+    --radius-xl:28px;
+    --radius-lg:22px;
+    --radius-md:16px;
+}
+
+*{
+    box-sizing:border-box;
+    -webkit-tap-highlight-color:transparent;
+}
+
+html, body{
+    margin:0;
+    padding:0;
+    min-height:100%;
+    font-family:Arial, sans-serif;
+    background:#000;
+    color:#fff;
+}
+
+body{
+    position:relative;
+}
+
+img{
+    display:block;
+    max-width:100%;
+}
+
+button{
+    font-family:inherit;
+    cursor:pointer;
+}
+
+.desktop-only{
+    display:none;
+}
+
+.btn{
+    border:none;
+    border-radius:18px;
+    transition:.2s ease;
+    font-weight:700;
+}
+
+.btn:active{
+    transform:scale(.99);
+}
+
+.btn-primary{
+    color:#fff;
+    background:linear-gradient(90deg,var(--accent),var(--accent-2));
+    box-shadow:0 14px 32px rgba(203,108,230,.22);
+}
+
+.btn-secondary{
+    color:#fff;
+    background:rgba(255,255,255,.05);
+    border:1px solid rgba(255,255,255,.10);
+}
+
+.glow-card{
+    background:
+        radial-gradient(circle at 86% 14%, rgba(203,108,230,.18), transparent 26%),
+        radial-gradient(circle at 15% 88%, rgba(203,108,230,.08), transparent 22%),
+        linear-gradient(180deg, #171621 0%, #0f0e17 100%);
+    border:1px solid rgba(255,255,255,.05);
+    box-shadow:var(--shadow);
+}
+
+.soft-card{
+    background:
+        radial-gradient(circle at 88% 18%, rgba(203,108,230,.10), transparent 24%),
+        linear-gradient(180deg, #121219 0%, #0d0d12 100%);
+    border:1px solid rgba(255,255,255,.05);
+    box-shadow:var(--shadow);
+}
+
+/* =========================
+   MOBILE
+========================= */
+.mobile-shell{
+    display:block;
+}
+
+.mobile-page{
+    min-height:100vh;
+    padding:calc(env(safe-area-inset-top) + 76px) 14px calc(110px + env(safe-area-inset-bottom));
+    background:
+        radial-gradient(circle at 20% 10%, rgba(203,108,230,.10), transparent 24%),
+        linear-gradient(180deg, #09080f 0%, #0c0b14 100%);
+}
+
+.mobile-back{
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+    background:#1a1a1a;
+    color:#fff;
+    border:none;
+    border-radius:12px;
+    padding:10px 14px;
+    font-size:15px;
+    margin-bottom:16px;
+}
+
+.mobile-back svg{
+    width:16px;
+    height:16px;
+    flex-shrink:0;
+}
+
+.mobile-hero{
+    position:relative;
+    overflow:hidden;
+    border-radius:var(--radius-xl);
+    padding:18px 16px 16px;
+}
+
+.mobile-badge{
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+    background:rgba(255,255,255,.06);
+    border:1px solid rgba(255,255,255,.06);
+    border-radius:999px;
+    padding:8px 12px;
+    font-size:12px;
+    color:#ebe4f5;
+    margin-bottom:14px;
+}
+
+.mobile-hero-title{
+    margin:0 0 10px;
+    font-size:32px;
+    line-height:1;
+    font-weight:800;
+    letter-spacing:-.4px;
+}
+
+.mobile-hero-text{
+    margin:0;
+    color:var(--muted);
+    font-size:14px;
+    line-height:1.5;
+}
+
+.mobile-hero-actions{
+    margin-top:16px;
+    display:grid;
+    grid-template-columns:1fr;
+    gap:10px;
+}
+
+.mobile-hero-btn{
+    width:100%;
+    height:54px;
+    font-size:16px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    text-decoration:none;
+}
+
+.mobile-section{
+    margin-top:16px;
+}
+
+.mobile-section-title{
+    margin:0 0 12px;
+    font-size:21px;
+    line-height:1.1;
+    font-weight:800;
+}
+
+.mobile-featured-list{
+    display:flex;
+    flex-direction:column;
+    gap:12px;
+}
+
+.mobile-featured-card{
+    border-radius:22px;
+    overflow:hidden;
+}
+
+.mobile-featured-photo{
+    height:160px;
+    background:
+        radial-gradient(circle at 50% 40%, rgba(203,108,230,.20), transparent 28%),
+        linear-gradient(135deg,#1b1b24,#101015);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    color:#d6c5df;
+    font-size:13px;
+}
+
+.mobile-featured-body{
+    padding:14px;
+}
+
+.mobile-featured-name{
+    margin:0 0 4px;
+    font-size:17px;
+    font-weight:800;
+    line-height:1.2;
+}
+
+.mobile-featured-role{
+    color:var(--muted-soft);
+    font-size:13px;
+    margin-bottom:10px;
+}
+
+.mobile-featured-text{
+    margin:0;
+    color:#e4e0eb;
+    font-size:14px;
+    line-height:1.55;
+}
+
+.mobile-slider-card{
+    border-radius:24px;
+    padding:18px 16px;
+    text-align:center;
+    position:relative;
+    overflow:hidden;
+}
+
+.mobile-slider-avatar{
+    width:82px;
+    height:82px;
+    margin:0 auto 12px;
+    border-radius:50%;
+    border:4px solid var(--accent);
+    background:
+        radial-gradient(circle at 50% 38%, rgba(255,255,255,.12), transparent 28%),
+        linear-gradient(135deg,#232330,#111117);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    color:#d6c5df;
+    font-size:12px;
+    overflow:hidden;
+}
+
+.mobile-slider-name{
+    margin:0 0 4px;
+    font-size:18px;
+    font-weight:800;
+}
+
+.mobile-slider-role{
+    color:var(--muted-soft);
+    font-size:13px;
+    margin-bottom:12px;
+}
+
+.mobile-slider-text{
+    min-height:88px;
+    margin:0;
+    color:#e4e0eb;
+    font-size:14px;
+    line-height:1.55;
+}
+
+.mobile-slider-controls{
+    margin-top:16px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    gap:12px;
+}
+
+.mobile-slider-btn{
+    width:42px;
+    height:42px;
+    border-radius:14px;
+    background:rgba(255,255,255,.06);
+    border:1px solid rgba(255,255,255,.08);
+    color:#fff;
+    font-size:22px;
+    line-height:1;
+}
+
+.mobile-dots{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    gap:7px;
+}
+
+.mobile-dot{
+    width:7px;
+    height:7px;
+    border-radius:999px;
+    background:rgba(255,255,255,.25);
+}
+
+.mobile-dot.active{
+    width:22px;
+    background:var(--accent);
+}
+
+/* BOTTOM NAV */
+.bottom-nav{
+    position:fixed;
+    left:0;
+    bottom:0;
+    width:100%;
+    background:#000;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:8px 10px;
+    padding-bottom:calc(8px + env(safe-area-inset-bottom));
+    z-index:50;
+}
+
+.nav-item{
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    font-size:12px;
+    color:#fff;
+    width:20%;
+    text-align:center;
+    cursor:pointer;
+}
+
+.nav-item img{
+    width:27px;
+    margin-bottom:2px;
+}
+
+.nav-item span{
+    white-space:nowrap;
+    overflow:hidden;
+    text-overflow:ellipsis;
+}
+
+.nav-item.active-mobile-nav span{
+    color:#d68cff;
+}
+
+.nav-center{
+    position:relative;
+    top:-18px;
+    width:20%;
+    display:flex;
+    justify-content:center;
+}
+
+.circle{
+    width:60px;
+    height:60px;
+    background:#ffffff;
+    border-radius:50%;
+    border:4px solid var(--accent);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+}
+
+.circle img{
+    width:24px;
+    height:24px;
+    object-fit:contain;
+}
+
+/* =========================
+   DESKTOP
+========================= */
+@media (min-width:1024px){
+    html, body{
+        min-height:100vh;
+        background:
+            radial-gradient(circle at 15% 18%, rgba(203,108,230,.08), transparent 24%),
+            radial-gradient(circle at 85% 28%, rgba(203,108,230,.07), transparent 24%),
+            linear-gradient(180deg, #09080f 0%, #0c0b14 100%);
+        color:var(--text);
+    }
+
+    body{
+        overflow:hidden;
+    }
+
+    .mobile-shell{
+        display:none;
+    }
+
+    .desktop-only{
+        display:block;
+    }
+
+    .desktop-app{
+        min-height:100vh;
+        color:var(--text);
+    }
+
+    .desktop-layout{
+        display:grid;
+        grid-template-columns:270px minmax(0,1fr);
+        min-height:100vh;
+    }
+
+    .desktop-sidebar{
+        padding:22px 20px;
+        border-right:1px solid rgba(255,255,255,.05);
+        background:linear-gradient(180deg, rgba(14,13,23,.70) 0%, rgba(12,11,20,.40) 100%);
+        overflow:auto;
+    }
+
+    .desktop-brand{
+        font-size:34px;
+        font-weight:800;
+        line-height:1;
+        margin:8px 0 56px;
+    }
+
+    .desktop-nav{
+        display:flex;
+        flex-direction:column;
+        gap:10px;
+        margin-top:4px;
+    }
+
+    .desktop-nav-item{
+        display:flex;
+        align-items:center;
+        gap:14px;
+        width:100%;
+        min-height:56px;
+        padding:0 18px;
+        border-radius:16px;
+        color:#f1f1f1;
+        background:transparent;
+        border:1px solid transparent;
+        font-size:16px;
+        font-weight:600;
+        transition:.2s ease;
+        cursor:pointer;
+        text-align:left;
+    }
+
+    .desktop-nav-item img{
+        width:28px;
+        height:28px;
+        object-fit:contain;
+        flex-shrink:0;
+    }
+
+    .desktop-nav-item.active-nav{
+        background:linear-gradient(180deg, rgba(255,255,255,.06) 0%, rgba(255,255,255,.03) 100%);
+        border-color:rgba(255,255,255,.06);
+        box-shadow:var(--shadow);
+    }
+
+    .desktop-nav-item-accent{
+        background:linear-gradient(90deg, #b85bda 0%, #cb6ce6 100%);
+        border-color:transparent;
+        color:#fff;
+        box-shadow:0 12px 26px rgba(203,108,230,.28);
+        margin-top:8px;
+    }
+
+    .desktop-nav-item-accent:hover{
+        transform:translateY(-1px);
+    }
+
+    .desktop-nav-item-accent img{
+        filter:brightness(0) invert(1);
+    }
+
+    .desktop-main{
+        padding:24px 22px 30px;
+        height:100vh;
+        overflow:auto;
+    }
+
+    .desktop-back{
+        display:inline-flex;
+        align-items:center;
+        gap:14px;
+        font-size:24px;
+        color:#fff;
+        margin-bottom:18px;
+        cursor:pointer;
+        user-select:none;
+    }
+
+    .desktop-back-arrow{
+        font-size:42px;
+        line-height:1;
+        transform:translateY(-1px);
+    }
+
+    .desktop-hero{
+        position:relative;
+        overflow:hidden;
+        border-radius:30px;
+        padding:24px 22px 22px;
+    }
+
+    .desktop-badge{
+        display:inline-flex;
+        align-items:center;
+        gap:8px;
+        background:rgba(255,255,255,.06);
+        border:1px solid rgba(255,255,255,.06);
+        border-radius:999px;
+        padding:10px 14px;
+        font-size:13px;
+        color:#ebe4f5;
+        margin-bottom:18px;
+    }
+
+    .desktop-hero-grid{
+        display:grid;
+        grid-template-columns:minmax(0,1.1fr) minmax(320px,.9fr);
+        gap:18px;
+        align-items:stretch;
+    }
+
+    .desktop-hero-title{
+        margin:0 0 10px;
+        font-size:clamp(38px,3.2vw,56px);
+        line-height:.96;
+        font-weight:800;
+        letter-spacing:-1px;
+    }
+
+    .desktop-hero-text{
+        margin:0;
+        color:var(--muted);
+        font-size:17px;
+        line-height:1.52;
+        max-width:720px;
+    }
+
+    .desktop-hero-actions{
+        display:grid;
+        grid-template-columns:1fr;
+        gap:12px;
+        align-content:end;
+    }
+
+    .desktop-hero-btn{
+        width:100%;
+        height:58px;
+        font-size:16px;
+        display:flex;
+        align-items:center;
+        justify-content:center;
+        text-decoration:none;
+    }
+
+    .desktop-section{
+        margin-top:16px;
+    }
+
+    .desktop-section-title{
+        margin:0 0 14px;
+        font-size:28px;
+        line-height:1.1;
+        font-weight:800;
+    }
+
+    .desktop-featured-grid{
+        display:grid;
+        grid-template-columns:repeat(3, minmax(0,1fr));
+        gap:14px;
+    }
+
+    .desktop-featured-card{
+        border-radius:24px;
+        overflow:hidden;
+    }
+
+    .desktop-featured-photo{
+        height:180px;
+        background:
+            radial-gradient(circle at 50% 40%, rgba(203,108,230,.20), transparent 28%),
+            linear-gradient(135deg,#1b1b24,#101015);
+        display:flex;
+        align-items:center;
+        justify-content:center;
+        color:#d6c5df;
+        font-size:13px;
+    }
+
+    .desktop-featured-body{
+        padding:16px;
+    }
+
+    .desktop-featured-name{
+        margin:0 0 4px;
+        font-size:20px;
+        font-weight:800;
+        line-height:1.2;
+    }
+
+    .desktop-featured-role{
+        color:var(--muted-soft);
+        font-size:14px;
+        margin-bottom:10px;
+    }
+
+    .desktop-featured-text{
+        margin:0;
+        color:#e4e0eb;
+        font-size:15px;
+        line-height:1.55;
+    }
+
+    .desktop-slider-card{
+        border-radius:28px;
+        padding:24px;
+        position:relative;
+        overflow:hidden;
+    }
+
+    .desktop-slider-inner{
+        display:grid;
+        grid-template-columns:130px minmax(0,1fr);
+        gap:22px;
+        align-items:center;
+    }
+
+    .desktop-slider-avatar{
+        width:118px;
+        height:118px;
+        border-radius:50%;
+        border:5px solid var(--accent);
+        background:
+            radial-gradient(circle at 50% 38%, rgba(255,255,255,.12), transparent 28%),
+            linear-gradient(135deg,#232330,#111117);
+        display:flex;
+        align-items:center;
+        justify-content:center;
+        color:#d6c5df;
+        font-size:13px;
+        overflow:hidden;
+    }
+
+    .desktop-slider-name{
+        margin:0 0 5px;
+        font-size:24px;
+        font-weight:800;
+    }
+
+    .desktop-slider-role{
+        color:var(--muted-soft);
+        font-size:14px;
+        margin-bottom:12px;
+    }
+
+    .desktop-slider-text{
+        min-height:72px;
+        margin:0;
+        color:#e4e0eb;
+        font-size:17px;
+        line-height:1.55;
+        max-width:920px;
+    }
+
+    .desktop-slider-footer{
+        margin-top:18px;
+        display:flex;
+        align-items:center;
+        justify-content:space-between;
+        gap:16px;
+    }
+
+    .desktop-slider-controls{
+        display:flex;
+        align-items:center;
+        gap:10px;
+    }
+
+    .desktop-slider-btn{
+        width:46px;
+        height:46px;
+        border-radius:15px;
+        background:rgba(255,255,255,.06);
+        border:1px solid rgba(255,255,255,.08);
+        color:#fff;
+        font-size:24px;
+        line-height:1;
+    }
+
+    .desktop-dots{
+        display:flex;
+        align-items:center;
+        justify-content:center;
+        gap:8px;
+    }
+
+    .desktop-dot{
+        width:8px;
+        height:8px;
+        border-radius:999px;
+        background:rgba(255,255,255,.25);
+    }
+
+    .desktop-dot.active{
+        width:26px;
+        background:var(--accent);
+    }
+}
+
+@media (max-width:1360px) and (min-width:1024px){
+    .desktop-layout{
+        grid-template-columns:245px minmax(0,1fr);
+    }
+
+    .desktop-main{
+        padding:22px 18px 26px;
+    }
+
+    .desktop-hero-grid{
+        grid-template-columns:1fr;
+    }
+
+    .desktop-featured-grid{
+        grid-template-columns:1fr;
+    }
+
+    .desktop-featured-card{
+        display:grid;
+        grid-template-columns:220px minmax(0,1fr);
+    }
+
+    .desktop-featured-photo{
+        height:100%;
+        min-height:180px;
+    }
+}
+
+@media (max-width:760px){
+    .mobile-hero-title{
+        font-size:30px;
+    }
+}
+
+@media (max-width:420px){
+    .mobile-hero{
+        border-radius:22px;
+    }
+
+    .mobile-featured-photo{
+        height:140px;
+    }
+
+    .mobile-slider-text{
+        min-height:110px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<!-- MOBILE -->
+<div class="mobile-shell">
+    <div class="mobile-page">
+        <button class="mobile-back" onclick="goBack()">
+            <svg viewBox="0 0 24 24" fill="none">
+                <path d="M15 5L8 12L15 19" stroke="white" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+            <span id="back-mobile"></span>
+        </button>
+
+        <section class="mobile-hero glow-card">
+            <div class="mobile-badge" id="badge-mobile"></div>
+
+            <h1 class="mobile-hero-title" id="heroTitle-mobile"></h1>
+            <p class="mobile-hero-text" id="heroText-mobile"></p>
+
+            <div class="mobile-hero-actions">
+                <a class="btn btn-primary mobile-hero-btn" id="writeReviewBtn-mobile" href="https://t.me/username" target="_blank"></a>
+                <button class="btn btn-secondary mobile-hero-btn" id="moreReviewsBtn-mobile" onclick="openReviewsChannel()"></button>
+            </div>
+        </section>
+
+        <section class="mobile-section">
+            <h2 class="mobile-section-title" id="featuredTitle-mobile"></h2>
+
+            <div class="mobile-featured-list" id="featuredList-mobile"></div>
+        </section>
+
+        <section class="mobile-section">
+            <h2 class="mobile-section-title" id="sliderTitle-mobile"></h2>
+
+            <div class="mobile-slider-card soft-card">
+                <div class="mobile-slider-avatar" id="sliderAvatar-mobile"></div>
+                <h3 class="mobile-slider-name" id="sliderName-mobile"></h3>
+                <div class="mobile-slider-role" id="sliderRole-mobile"></div>
+                <p class="mobile-slider-text" id="sliderText-mobile"></p>
+
+                <div class="mobile-slider-controls">
+                    <button class="mobile-slider-btn" onclick="prevSlide()">‹</button>
+                    <div class="mobile-dots" id="mobileDots"></div>
+                    <button class="mobile-slider-btn" onclick="nextSlide()">›</button>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <div class="bottom-nav">
+        <div class="nav-item" onclick="goPage('mycourses.html')">
+            <img src="images/icon/courses2.png" alt="">
+            <span id="m1-mobile"></span>
+        </div>
+
+        <div class="nav-item" onclick="goPage('support.html')">
+            <img src="images/icon/support.png" alt="">
+            <span id="m4-mobile"></span>
+        </div>
+
+        <div class="nav-center" onclick="goHome()">
+            <div class="circle">
+                <img src="images/icon/home2.png" alt="home">
+            </div>
+        </div>
+
+        <div class="nav-item active-mobile-nav" onclick="goPage('chat.html')">
+            <img src="images/icon/feedback.png" alt="">
+            <span id="m5-mobile"></span>
+        </div>
+
+        <div class="nav-item" onclick="goPage('myprofile.html')">
+            <img src="images/icon/profile2.png" alt="">
+            <span id="m6-mobile"></span>
+        </div>
+    </div>
+</div>
+
+<!-- DESKTOP -->
+<div class="desktop-app desktop-only">
+    <div class="desktop-layout">
+        <aside class="desktop-sidebar">
+            <div class="desktop-brand">gaphub</div>
+
+            <nav class="desktop-nav">
+                <button class="desktop-nav-item" onclick="goHome()">
+                    <img src="images/icon/home.png" alt="">
+                    <span id="home-desktop"></span>
+                </button>
+
+                <button class="desktop-nav-item" onclick="goPage('mycourses.html')">
+                    <img src="images/icon/courses2.png" alt="">
+                    <span id="m1-desktop"></span>
+                </button>
+
+                <button class="desktop-nav-item" onclick="goPage('support.html')">
+                    <img src="images/icon/support.png" alt="">
+                    <span id="m4-desktop"></span>
+                </button>
+
+                <button class="desktop-nav-item active-nav" onclick="goPage('chat.html')">
+                    <img src="images/icon/feedback.png" alt="">
+                    <span id="m5-desktop"></span>
+                </button>
+
+                <button class="desktop-nav-item" onclick="goPage('myprofile.html')">
+                    <img src="images/icon/profile2.png" alt="">
+                    <span id="m6-desktop"></span>
+                </button>
+
+                <button class="desktop-nav-item desktop-nav-item-accent" onclick="goCourses()">
+                    <img src="images/icon/catalog.png" alt="">
+                    <span id="catalog-desktop"></span>
+                </button>
+            </nav>
+        </aside>
+
+        <main class="desktop-main">
+            <div class="desktop-back" onclick="goBack()">
+                <span class="desktop-back-arrow">←</span>
+                <span id="back-desktop"></span>
+            </div>
+
+            <section class="desktop-hero glow-card">
+                <div class="desktop-badge" id="badge-desktop"></div>
+
+                <div class="desktop-hero-grid">
+                    <div>
+                        <h1 class="desktop-hero-title" id="heroTitle-desktop"></h1>
+                        <p class="desktop-hero-text" id="heroText-desktop"></p>
+                    </div>
+
+                    <div class="desktop-hero-actions">
+                        <a class="btn btn-primary desktop-hero-btn" id="writeReviewBtn-desktop" href="https://t.me/username" target="_blank"></a>
+                        <button class="btn btn-secondary desktop-hero-btn" id="moreReviewsBtn-desktop" onclick="openReviewsChannel()"></button>
+                    </div>
+                </div>
+            </section>
+
+            <section class="desktop-section">
+                <h2 class="desktop-section-title" id="featuredTitle-desktop"></h2>
+
+                <div class="desktop-featured-grid" id="featuredList-desktop"></div>
+            </section>
+
+            <section class="desktop-section">
+                <h2 class="desktop-section-title" id="sliderTitle-desktop"></h2>
+
+                <div class="desktop-slider-card soft-card">
+                    <div class="desktop-slider-inner">
+                        <div class="desktop-slider-avatar" id="sliderAvatar-desktop"></div>
+
+                        <div>
+                            <h3 class="desktop-slider-name" id="sliderName-desktop"></h3>
+                            <div class="desktop-slider-role" id="sliderRole-desktop"></div>
+                            <p class="desktop-slider-text" id="sliderText-desktop"></p>
+
+                            <div class="desktop-slider-footer">
+                                <div class="desktop-dots" id="desktopDots"></div>
+
+                                <div class="desktop-slider-controls">
+                                    <button class="desktop-slider-btn" onclick="prevSlide()">‹</button>
+                                    <button class="desktop-slider-btn" onclick="nextSlide()">›</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+</div>
+
+<script>
+let lang = localStorage.getItem("lang") || "uz";
+let currentSlide = 0;
+let sliderTimer = null;
+
+const ADMIN_LINK = "https://t.me/username";
+const REVIEWS_CHANNEL_LINK = "#";
+
+const t = {
+    uz:{
+        back:"Orqaga",
+        home:"Bosh sahifa",
+        m1:"Kurslarim",
+        m4:"Aloqa",
+        m5:"Sharhlar",
+        m6:"Profil",
+        catalog:"Kurslar katalogi",
+
+        badge:"Fikrlar va tavsiyalar",
+        heroTitle:"O‘quvchilar fikrlari",
+        heroText:"Kurslar haqida fikringiz, takliflaringiz yoki natijangiz bo‘lsa, bizga yozib qoldiring. Bu sahifada o‘quvchilar va tanilgan mutaxassislarning fikrlari jamlanadi.",
+        writeReview:"O‘z fikrimni qoldirish",
+        moreReviews:"Ko‘proq fikrlarni ko‘rish",
+
+        featuredTitle:"Tavsiya qilganlar",
+        sliderTitle:"O‘quvchilar fikrlari",
+
+        photoPlaceholder:"Rasm uchun joy",
+
+        featured:[
+            {
+                name:"Aziz Rahimov",
+                role:"Digital mutaxassis",
+                text:"gaphub’dagi kurslar juda sodda va amaliy tilda berilgan. Ayniqsa yangi boshlayotganlar uchun keraksiz murakkablik yo‘q, hammasi tushunarli."
+            },
+            {
+                name:"Malika Karimova",
+                role:"SMM manager",
+                text:"Kurslarda nazariya bilan amaliyot orasidagi bog‘liqlik yaxshi. O‘quvchi faqat eshitib qolmaydi, darhol ishga qo‘llashi mumkin bo‘lgan narsalarni oladi."
+            },
+            {
+                name:"Jasur Tursunov",
+                role:"Tadbirkor",
+                text:"O‘z biznesini internetda rivojlantirmoqchi bo‘lganlar uchun foydali loyiha. SMM, reklama va AI bo‘yicha boshlang‘ich baza yaxshi yig‘ilgan."
+            }
+        ],
+
+        slider:[
+            {
+                name:"Dilshod",
+                role:"Boshlovchi SMM mutaxassis",
+                text:"Avval SMM deganda faqat post qo‘yish deb o‘ylardim. Kursdan keyin kontent reja, vizual va mijoz bilan ishlashni ancha yaxshiroq tushundim."
+            },
+            {
+                name:"Madina",
+                role:"Talaba",
+                text:"Menga eng yoqqani darslar juda og‘ir tilda emas. Oddiy qilib tushuntirilgan, shuning uchun yangi mavzularni ham qo‘rqmasdan o‘rgandim."
+            },
+            {
+                name:"Bekzod",
+                role:"Kichik biznes egasi",
+                text:"Target va SMM haqida umumiy tasavvur paydo bo‘ldi. Endi reklama yoki kontent bo‘yicha mutaxassis bilan gaplashsam, nima so‘rash kerakligini bilaman."
+            },
+            {
+                name:"Sevara",
+                role:"Kontent yaratuvchi",
+                text:"AI kursi ishlarimni tezlashtirishga yordam berdi. Matn, reja va g‘oya topishda endi vaqtim ancha kam ketadi."
+            },
+            {
+                name:"Otabek",
+                role:"Freelance boshlayotgan o‘quvchi",
+                text:"Kursdan keyin portfolio uchun nima qilish kerakligini tushundim. Oldin qayerdan boshlashni bilmasdim, endi aniqroq yo‘l bor."
+            }
+        ]
+    },
+
+    ru:{
+        back:"Назад",
+        home:"Главное меню",
+        m1:"Мои курсы",
+        m4:"Поддержка",
+        m5:"Отзывы",
+        m6:"Профиль",
+        catalog:"Каталог курсов",
+
+        badge:"Отзывы и рекомендации",
+        heroTitle:"Отзывы учеников",
+        heroText:"Если у тебя есть отзыв, пожелание или результат после курса, оставь его нам. Здесь будут собираться мнения учеников и авторитетных людей, которые оценили gaphub.",
+        writeReview:"Оставить свой отзыв",
+        moreReviews:"Посмотреть больше отзывов",
+
+        featuredTitle:"Отзывы авторитетных пользователей",
+        sliderTitle:"Что говорят ученики",
+
+        photoPlaceholder:"Место для фото",
+
+        featured:[
+            {
+                name:"Азиз Рахимов",
+                role:"Digital-специалист",
+                text:"Курсы gaphub сделаны простым и практичным языком. Для новичков это особенно важно: без перегруза, без лишней теории, с понятной логикой."
+            },
+            {
+                name:"Малика Каримова",
+                role:"SMM-менеджер",
+                text:"В курсах хорошо связаны теория и практика. Ученик не просто слушает, а получает вещи, которые можно сразу применять в контенте и продвижении."
+            },
+            {
+                name:"Жасур Турсунов",
+                role:"Предприниматель",
+                text:"Полезный проект для тех, кто хочет развивать себя или бизнес в интернете. SMM, реклама и AI собраны в понятную стартовую систему."
+            }
+        ],
+
+        slider:[
+            {
+                name:"Дильшод",
+                role:"Начинающий SMM-специалист",
+                text:"Раньше я думал, что SMM это просто выкладывать посты. После курса стало понятнее, как работает контент-план, визуал и общение с клиентом."
+            },
+            {
+                name:"Мадина",
+                role:"Студентка",
+                text:"Больше всего понравилось, что уроки объясняются без сложных слов. Даже новые темы заходят спокойно, потому что всё разложено по шагам."
+            },
+            {
+                name:"Бекзод",
+                role:"Владелец небольшого бизнеса",
+                text:"Появилось нормальное понимание SMM и рекламы. Теперь, когда общаюсь со специалистами, хотя бы понимаю, что спрашивать и на что смотреть."
+            },
+            {
+                name:"Севара",
+                role:"Контент-мейкер",
+                text:"Курс по AI реально ускорил работу. Тексты, идеи, планы и подготовка материалов теперь занимают меньше времени."
+            },
+            {
+                name:"Отабек",
+                role:"Начинающий фрилансер",
+                text:"После курса стало понятно, что делать для первого портфолио. Раньше не знал, с чего начать, теперь есть более конкретный путь."
+            }
+        ]
+    }
+};
+
+function setText(id, value){
+    const el = document.getElementById(id);
+    if(el) el.innerText = value;
+}
+
+function updateStaticText(){
+    const d = t[lang];
+
+    document.documentElement.lang = lang === "uz" ? "uz" : "ru";
+
+    setText("back-mobile", d.back);
+    setText("badge-mobile", d.badge);
+    setText("heroTitle-mobile", d.heroTitle);
+    setText("heroText-mobile", d.heroText);
+    setText("writeReviewBtn-mobile", d.writeReview);
+    setText("moreReviewsBtn-mobile", d.moreReviews);
+    setText("featuredTitle-mobile", d.featuredTitle);
+    setText("sliderTitle-mobile", d.sliderTitle);
+    setText("m1-mobile", d.m1);
+    setText("m4-mobile", d.m4);
+    setText("m5-mobile", d.m5);
+    setText("m6-mobile", d.m6);
+
+    setText("back-desktop", d.back);
+    setText("home-desktop", d.home);
+    setText("m1-desktop", d.m1);
+    setText("m4-desktop", d.m4);
+    setText("m5-desktop", d.m5);
+    setText("m6-desktop", d.m6);
+    setText("catalog-desktop", d.catalog);
+    setText("badge-desktop", d.badge);
+    setText("heroTitle-desktop", d.heroTitle);
+    setText("heroText-desktop", d.heroText);
+    setText("writeReviewBtn-desktop", d.writeReview);
+    setText("moreReviewsBtn-desktop", d.moreReviews);
+    setText("featuredTitle-desktop", d.featuredTitle);
+    setText("sliderTitle-desktop", d.sliderTitle);
+
+    const mobileReviewBtn = document.getElementById("writeReviewBtn-mobile");
+    const desktopReviewBtn = document.getElementById("writeReviewBtn-desktop");
+
+    if(mobileReviewBtn) mobileReviewBtn.href = ADMIN_LINK;
+    if(desktopReviewBtn) desktopReviewBtn.href = ADMIN_LINK;
+
+    renderFeatured();
+    renderSlide();
+}
+
+function renderFeatured(){
+    const d = t[lang];
+
+    const mobile = document.getElementById("featuredList-mobile");
+    const desktop = document.getElementById("featuredList-desktop");
+
+    const mobileHtml = d.featured.map(item => `
+        <div class="mobile-featured-card soft-card">
+            <div class="mobile-featured-photo">${d.photoPlaceholder}</div>
+            <div class="mobile-featured-body">
+                <h3 class="mobile-featured-name">${item.name}</h3>
+                <div class="mobile-featured-role">${item.role}</div>
+                <p class="mobile-featured-text">${item.text}</p>
+            </div>
+        </div>
+    `).join("");
+
+    const desktopHtml = d.featured.map(item => `
+        <div class="desktop-featured-card soft-card">
+            <div class="desktop-featured-photo">${d.photoPlaceholder}</div>
+            <div class="desktop-featured-body">
+                <h3 class="desktop-featured-name">${item.name}</h3>
+                <div class="desktop-featured-role">${item.role}</div>
+                <p class="desktop-featured-text">${item.text}</p>
+            </div>
+        </div>
+    `).join("");
+
+    if(mobile) mobile.innerHTML = mobileHtml;
+    if(desktop) desktop.innerHTML = desktopHtml;
+}
+
+function renderSlide(){
+    const d = t[lang];
+    const items = d.slider;
+    const item = items[currentSlide];
+
+    setText("sliderName-mobile", item.name);
+    setText("sliderRole-mobile", item.role);
+    setText("sliderText-mobile", item.text);
+    setText("sliderName-desktop", item.name);
+    setText("sliderRole-desktop", item.role);
+    setText("sliderText-desktop", item.text);
+
+    const mobileAvatar = document.getElementById("sliderAvatar-mobile");
+    const desktopAvatar = document.getElementById("sliderAvatar-desktop");
+
+    if(mobileAvatar) mobileAvatar.innerText = d.photoPlaceholder;
+    if(desktopAvatar) desktopAvatar.innerText = d.photoPlaceholder;
+
+    renderDots();
+}
+
+function renderDots(){
+    const d = t[lang];
+    const items = d.slider;
+
+    const dotsHtml = items.map((_, index) => `
+        <span class="${index === currentSlide ? 'mobile-dot active' : 'mobile-dot'}" onclick="setSlide(${index})"></span>
+    `).join("");
+
+    const desktopDotsHtml = items.map((_, index) => `
+        <span class="${index === currentSlide ? 'desktop-dot active' : 'desktop-dot'}" onclick="setSlide(${index})"></span>
+    `).join("");
+
+    const mobileDots = document.getElementById("mobileDots");
+    const desktopDots = document.getElementById("desktopDots");
+
+    if(mobileDots) mobileDots.innerHTML = dotsHtml;
+    if(desktopDots) desktopDots.innerHTML = desktopDotsHtml;
+}
+
+function setSlide(index){
+    const items = t[lang].slider;
+    currentSlide = (index + items.length) % items.length;
+    renderSlide();
+    restartSlider();
+}
+
+function nextSlide(){
+    setSlide(currentSlide + 1);
+}
+
+function prevSlide(){
+    setSlide(currentSlide - 1);
+}
+
+function startSlider(){
+    stopSlider();
+    sliderTimer = setInterval(() => {
+        const items = t[lang].slider;
+        currentSlide = (currentSlide + 1) % items.length;
+        renderSlide();
+    }, 10000);
+}
+
+function stopSlider(){
+    if(sliderTimer){
+        clearInterval(sliderTimer);
+        sliderTimer = null;
+    }
+}
+
+function restartSlider(){
+    startSlider();
+}
+
+function openReviewsChannel(){
+    if(REVIEWS_CHANNEL_LINK === "#"){
+        alert(lang === "uz" ? "Tez orada fikrlar kanali qo‘shiladi" : "Скоро здесь будет канал с отзывами");
+        return;
+    }
+
+    window.open(REVIEWS_CHANNEL_LINK, "_blank");
+}
+
+function goHome(){
+    localStorage.setItem("lang", lang);
+    window.location.href = "index.html";
+}
+
+function goPage(page){
+    localStorage.setItem("lang", lang);
+    window.location.href = page;
+}
+
+function goCourses(){
+    localStorage.setItem("lang", lang);
+    window.location.href = "courses.html";
+}
+
+function goBack(){
+    if (window.history.length > 1) {
+        window.history.back();
+    } else {
+        window.location.href = "index.html";
+    }
+}
+
+function initTelegram(){
+    if(window.Telegram && Telegram.WebApp){
+        const tg = Telegram.WebApp;
+
+        tg.ready();
+        tg.expand();
+
+        try{
+            tg.requestFullscreen();
+        }catch(e){}
+
+        document.body.style.minHeight = tg.viewportHeight + "px";
+    }
+}
+
+updateStaticText();
+initTelegram();
+startSlider();
+</script>
+
+</body>
+</html>
