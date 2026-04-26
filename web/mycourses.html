@@ -1071,6 +1071,8 @@ button{
 let lang = localStorage.getItem("lang") || "uz";
 
 let currentCourses = [];
+let currentUserId = null;
+let coursesRefreshTimer = null;
 
 const defaultCourses = {
     smm:{
@@ -1431,10 +1433,14 @@ function renderCoursesState(courses){
     }
 }
 
-function loadCourses(userId){
-    renderLoading();
+function loadCourses(userId, silent = false){
+    currentUserId = userId;
 
-    fetch(`https://api.gaphub.uz/mycourses/${userId}`)
+    if(!silent){
+        renderLoading();
+    }
+
+    fetch(`https://api.gaphub.uz/mycourses/${userId}?t=${Date.now()}`)
         .then(res => res.json())
         .then(data => {
             currentCourses = getCoursesArray(data);
@@ -1442,9 +1448,18 @@ function loadCourses(userId){
         })
         .catch(err => {
             console.log("Courses fetch error:", err);
-            currentCourses = [];
-            renderCoursesState(currentCourses);
+
+            if(!silent){
+                currentCourses = [];
+                renderCoursesState(currentCourses);
+            }
         });
+}
+
+function refreshCourses(){
+    if(currentUserId){
+        loadCourses(currentUserId, true);
+    }
 }
 
 function openCourse(slug){
@@ -1516,6 +1531,14 @@ function initTelegram(){
 
         if(user && user.id){
             loadCourses(user.id);
+
+            if(coursesRefreshTimer){
+                clearInterval(coursesRefreshTimer);
+            }
+
+            coursesRefreshTimer = setInterval(() => {
+                refreshCourses();
+            }, 10000);
         }else{
             currentCourses = [];
             renderCoursesState(currentCourses);
