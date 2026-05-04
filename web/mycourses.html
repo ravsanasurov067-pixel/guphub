@@ -1468,21 +1468,21 @@ function openCourse(slug){
     const safeSlug = String(slug || "").trim();
 
     if(safeSlug === "smm"){
-        window.location.href = "smm.html";
+        window.location.href = "learn-smm.html";
         return;
     }
 
     if(safeSlug === "target"){
-        window.location.href = "target.html";
+        window.location.href = "learn-target.html";
         return;
     }
 
     if(safeSlug === "ai"){
-        window.location.href = "ai.html";
+        window.location.href = "learn-ai.html";
         return;
     }
 
-    window.location.href = safeSlug + ".html";
+    window.location.href = "learn-" + safeSlug + ".html";
 }
 
 function toggleLang(){
