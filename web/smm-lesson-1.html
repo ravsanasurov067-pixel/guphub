@@ -1381,7 +1381,10 @@ const LESSON_ID = 1;
 const NEXT_LESSON_ID = 2;
 
 const VIDEO_PATH = "videos/smm/lesson-1.mp4";
-const MATERIAL_PATH = "materials/smm/lesson-1.pdf";
+const MATERIAL_PATHS = {
+    ru:"materials/smm/lesson-1-ru.pdf",
+    uz:"materials/smm/lesson-1-uz.pdf"
+};
 
 let currentQuestionIndex = 0;
 let score = 0;
@@ -1605,13 +1608,10 @@ function toggleQa(button){
 
 function openMaterial(){
     const d = t[lang];
-
-    const testLink = document.createElement("a");
-    testLink.href = MATERIAL_PATH;
-    testLink.target = "_blank";
+    const materialPath = MATERIAL_PATHS[lang] || MATERIAL_PATHS.ru;
 
     try{
-        window.open(MATERIAL_PATH, "_blank");
+        window.open(materialPath, "_blank");
     }catch(e){
         alert(d.materialMissing);
     }
