@@ -1210,7 +1210,7 @@ function openLesson(lessonId){
     localStorage.setItem("current_course", COURSE_SLUG);
     localStorage.setItem("current_lesson", String(lessonId));
 
-    window.location.href = `/web/${COURSE_SLUG}-lesson-${lessonId}.html`;
+    window.location.href = `${COURSE_SLUG}-lesson-${lessonId}.html`;
 }
 
 function continueCourse(){
