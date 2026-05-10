@@ -4,20 +4,26 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 <script src="https://telegram.org/js/telegram-web-app.js"></script>
+
 <title>gaphub - SMM lesson 1</title>
 
 <style>
 :root{
     --accent:#cb6ce6;
     --accent-2:#a855f7;
+
     --bg:#0c0b14;
     --bg-soft:#15141e;
+
     --card:#111117;
     --card-2:#17171f;
+
     --text:#ffffff;
     --muted:#a8a4b5;
     --muted-soft:#8f8a9e;
+
     --line:rgba(255,255,255,.07);
+
     --shadow:0 12px 38px rgba(0,0,0,.35);
 
     --radius-xl:28px;
@@ -30,17 +36,19 @@
     -webkit-tap-highlight-color:transparent;
 }
 
-html, body{
+html,
+body{
     margin:0;
     padding:0;
     min-height:100%;
-    font-family:Arial, sans-serif;
+    font-family:Arial,sans-serif;
     background:#000;
     color:#fff;
 }
 
 body{
     position:relative;
+    overflow-x:hidden;
 }
 
 img{
@@ -53,11 +61,6 @@ button{
     cursor:pointer;
 }
 
-a{
-    color:inherit;
-    text-decoration:none;
-}
-
 .desktop-only{
     display:none;
 }
@@ -65,12 +68,12 @@ a{
 .btn{
     border:none;
     border-radius:18px;
-    transition:.2s ease;
+    transition:.18s ease;
     font-weight:700;
 }
 
 .btn:active{
-    transform:scale(.99);
+    transform:scale(.985);
 }
 
 .btn-primary{
@@ -89,7 +92,7 @@ a{
     background:
         radial-gradient(circle at 86% 14%, rgba(203,108,230,.18), transparent 26%),
         radial-gradient(circle at 15% 88%, rgba(203,108,230,.08), transparent 22%),
-        linear-gradient(180deg, #171621 0%, #0f0e17 100%);
+        linear-gradient(180deg,#171621 0%,#0f0e17 100%);
     border:1px solid rgba(255,255,255,.05);
     box-shadow:var(--shadow);
 }
@@ -97,91 +100,152 @@ a{
 .soft-card{
     background:
         radial-gradient(circle at 88% 18%, rgba(203,108,230,.10), transparent 24%),
-        linear-gradient(180deg, #121219 0%, #0d0d12 100%);
+        linear-gradient(180deg,#121219 0%,#0d0d12 100%);
     border:1px solid rgba(255,255,255,.05);
     box-shadow:var(--shadow);
+}
+
+.lesson-step{
+    display:none;
+}
+
+.lesson-step.active{
+    display:block;
 }
 
 /* =========================
    MOBILE
 ========================= */
+
 .mobile-shell{
     display:block;
 }
 
 .mobile-page{
     min-height:100vh;
-    padding:calc(env(safe-area-inset-top) + 76px) 14px calc(182px + env(safe-area-inset-bottom));
+
+    padding:
+        calc(env(safe-area-inset-top) + 76px)
+        14px
+        calc(178px + env(safe-area-inset-bottom));
+
     background:
         radial-gradient(circle at 20% 10%, rgba(203,108,230,.10), transparent 24%),
-        linear-gradient(180deg, #09080f 0%, #0c0b14 100%);
+        linear-gradient(180deg,#09080f 0%,#0c0b14 100%);
+}
+
+/* TOP */
+
+.mobile-top{
+    margin-bottom:16px;
 }
 
 .mobile-back{
     display:inline-flex;
     align-items:center;
-    gap:8px;
-    background:#1a1a1a;
+    justify-content:center;
+
+    width:46px;
+    height:34px;
+
+    padding:0;
+
+    border-radius:999px;
+
+    background:rgba(255,255,255,.04);
+
+    border:1px solid rgba(203,108,230,.55);
+
     color:#fff;
-    border:none;
-    border-radius:12px;
-    padding:10px 14px;
-    font-size:15px;
-    margin-bottom:14px;
+
+    font-size:16px;
+    font-weight:800;
+
+    margin-bottom:16px;
+
+    backdrop-filter:blur(12px);
+
+    transition:transform .18s ease, opacity .18s ease;
 }
 
-.mobile-back svg{
-    width:16px;
-    height:16px;
-    flex-shrink:0;
+.mobile-back:active{
+    transform:scale(.94);
+    opacity:.9;
 }
 
-.mobile-lesson-head{
-    margin-bottom:14px;
+.mobile-back-arrow{
+    font-size:20px;
+    line-height:1;
+    transform:translateY(-1px);
 }
 
 .mobile-badge{
     display:inline-flex;
     align-items:center;
     gap:8px;
+
     background:rgba(255,255,255,.06);
+
     border:1px solid rgba(255,255,255,.06);
+
     border-radius:999px;
-    padding:8px 12px;
+
+    padding:9px 13px;
+
     font-size:12px;
+
     color:#ebe4f5;
-    margin-bottom:10px;
+
+    margin-bottom:12px;
 }
 
 .mobile-title{
-    margin:0 0 8px;
-    font-size:30px;
-    line-height:1.02;
+    margin:0 0 10px;
+
+    font-size:32px;
+    line-height:.98;
+
     font-weight:800;
-    letter-spacing:-.4px;
+
+    letter-spacing:-.6px;
 }
 
 .mobile-subtitle{
     margin:0;
+
     color:var(--muted);
+
     font-size:14px;
-    line-height:1.45;
+
+    line-height:1.5;
+
+    max-width:330px;
 }
 
+/* VIDEO STEP */
+
 .mobile-video-card{
-    border-radius:24px;
+    border-radius:26px;
+
     overflow:hidden;
+
     position:relative;
+
     background:#0d0d12;
+
     border:1px solid rgba(255,255,255,.05);
+
     box-shadow:var(--shadow);
 }
 
 .mobile-video-frame{
     width:100%;
     aspect-ratio:16/9;
+
     position:relative;
+
     overflow:hidden;
+
     background:
         radial-gradient(circle at 50% 38%, rgba(203,108,230,.18), transparent 28%),
         linear-gradient(135deg,#171621,#0b0b10);
@@ -191,166 +255,379 @@ a{
     width:100%;
     height:100%;
     object-fit:cover;
-    display:none;
 }
 
-.mobile-video-placeholder{
-    position:absolute;
-    inset:0;
-    display:flex;
-    flex-direction:column;
-    align-items:center;
-    justify-content:center;
-    text-align:center;
-    padding:18px;
-}
-
-.mobile-play-circle{
-    width:68px;
-    height:68px;
-    border-radius:24px;
-    background:rgba(255,255,255,.07);
-    border:1px solid rgba(255,255,255,.08);
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    font-size:28px;
-    margin-bottom:14px;
+.mobile-video-bottom{
+    padding:16px;
 }
 
 .mobile-video-title{
-    font-size:17px;
+    margin:0 0 8px;
+
+    font-size:18px;
+
     font-weight:800;
-    margin-bottom:6px;
+
+    line-height:1.2;
 }
 
 .mobile-video-text{
+    margin:0;
+
     color:var(--muted);
-    font-size:13px;
-    line-height:1.45;
-    max-width:280px;
+
+    font-size:14px;
+
+    line-height:1.55;
 }
 
-.mobile-section{
+.mobile-video-action{
     margin-top:16px;
 }
 
-.mobile-section-title{
-    margin:0 0 12px;
-    font-size:22px;
-    line-height:1.1;
+.mobile-main-btn{
+    width:100%;
+
+    min-height:56px;
+
+    border:none;
+
+    border-radius:18px;
+
+    color:#fff;
+
+    background:linear-gradient(90deg,var(--accent),var(--accent-2));
+
+    box-shadow:0 14px 32px rgba(203,108,230,.25);
+
+    font-size:16px;
+
     font-weight:800;
 }
 
-.lesson-note{
-    margin:0 0 12px;
-    color:var(--muted-soft);
-    font-size:13px;
-    line-height:1.45;
+/* SUMMARY STEP */
+
+.mobile-summary-head{
+    margin-bottom:16px;
 }
 
-.qa-list{
+.mobile-section-title{
+    margin:0 0 10px;
+
+    font-size:24px;
+
+    line-height:1.08;
+
+    font-weight:800;
+}
+
+.mobile-note{
+    margin:0;
+
+    color:var(--muted-soft);
+
+    font-size:13px;
+
+    line-height:1.5;
+}
+
+.summary-list{
     display:flex;
     flex-direction:column;
-    gap:10px;
+    gap:12px;
 }
 
-.qa-card{
-    border-radius:20px;
+.summary-card{
+    border-radius:22px;
     overflow:hidden;
 }
 
-.qa-question{
+.summary-question{
     width:100%;
+
+    min-height:66px;
+
     background:transparent;
+
     border:none;
+
     color:#fff;
-    padding:15px 14px;
+
+    padding:0 16px;
+
     display:flex;
+
     align-items:center;
+
     justify-content:space-between;
+
     gap:12px;
+
     text-align:left;
 }
 
-.qa-question-text{
+.summary-question-text{
     font-size:15px;
-    line-height:1.3;
+
+    line-height:1.35;
+
     font-weight:800;
 }
 
-.qa-arrow{
+.summary-arrow{
     width:11px;
     height:11px;
+
     border-right:2px solid var(--accent);
     border-bottom:2px solid var(--accent);
+
     transform:rotate(45deg);
+
     transition:.25s ease;
+
     flex-shrink:0;
+
     margin-right:4px;
 }
 
-.qa-card.open .qa-arrow{
+.summary-card.open .summary-arrow{
     transform:rotate(225deg);
 }
 
-.qa-answer-wrap{
+.summary-answer-wrap{
     max-height:0;
     overflow:hidden;
     transition:max-height .28s ease;
 }
 
-.qa-answer{
-    padding:0 14px 15px;
+.summary-answer{
+    padding:0 16px 16px;
+
     color:#d8d2e3;
+
     font-size:14px;
+
     line-height:1.58;
 }
 
-.qa-answer ul{
+.summary-answer ul{
     margin:8px 0 0;
     padding-left:18px;
 }
 
-.qa-answer li{
+.summary-answer li{
     margin:5px 0;
 }
 
-.mobile-fixed-actions{
+.mobile-summary-action{
+    margin-top:18px;
+}
+
+/* DEEP MODAL */
+
+.deep-overlay{
     position:fixed;
-    left:0;
-    right:0;
-    bottom:calc(82px + env(safe-area-inset-bottom));
-    padding:0 14px;
-    z-index:70;
-    pointer-events:none;
+    inset:0;
+
+    background:rgba(0,0,0,.74);
+
+    backdrop-filter:blur(12px);
+
+    display:none;
+
+    align-items:center;
+    justify-content:center;
+
+    padding:16px;
+
+    z-index:999;
 }
 
-.mobile-fixed-actions-inner{
+.deep-overlay.active{
+    display:flex;
+}
+
+.deep-modal{
+    width:100%;
+    max-width:420px;
+
+    border-radius:28px;
+
+    padding:22px;
+}
+
+.deep-icon{
+    width:78px;
+    height:78px;
+
+    margin:0 auto 16px;
+
+    border-radius:26px;
+
+    background:rgba(203,108,230,.14);
+
+    display:flex;
+
+    align-items:center;
+    justify-content:center;
+
+    font-size:34px;
+}
+
+.deep-title{
+    margin:0 0 10px;
+
+    text-align:center;
+
+    font-size:28px;
+
+    line-height:1.08;
+
+    font-weight:800;
+}
+
+.deep-text{
+    margin:0 auto 18px;
+
+    max-width:320px;
+
+    text-align:center;
+
+    color:var(--muted);
+
+    font-size:15px;
+
+    line-height:1.55;
+}
+
+.deep-actions{
     display:grid;
-    grid-template-columns:1fr 1fr;
+    grid-template-columns:1fr;
     gap:10px;
-    pointer-events:auto;
 }
 
-.mobile-action-btn{
-    height:54px;
-    font-size:14px;
+.deep-btn{
+    width:100%;
+    height:56px;
+    font-size:15px;
+}
+
+/* TEST STEP */
+
+.mobile-test-head{
+    margin-bottom:16px;
+}
+
+.test-progress-line{
+    height:7px;
+
+    border-radius:999px;
+
+    background:rgba(255,255,255,.08);
+
+    overflow:hidden;
+
+    margin-top:14px;
+}
+
+.test-progress-fill{
+    height:100%;
+
+    border-radius:999px;
+
+    background:linear-gradient(90deg,var(--accent),var(--accent-2));
+
+    width:0%;
+
+    transition:width .25s ease;
+}
+
+.test-question{
+    margin:0 0 16px;
+
+    font-size:26px;
+
+    line-height:1.15;
+
+    font-weight:800;
+}
+
+.test-answers{
+    display:flex;
+    flex-direction:column;
+    gap:10px;
+}
+
+.test-answer{
+    width:100%;
+
+    min-height:56px;
+
+    border:none;
+
     border-radius:18px;
+
+    background:rgba(255,255,255,.05);
+
+    border:1px solid rgba(255,255,255,.07);
+
+    color:#fff;
+
+    padding:15px;
+
+    text-align:left;
+
+    font-size:15px;
+
+    line-height:1.35;
+
+    transition:.2s ease;
+}
+
+.test-answer.correct{
+    background:rgba(57,145,84,.28);
+    border-color:rgba(93,210,128,.35);
+}
+
+.test-answer.wrong{
+    background:rgba(170,45,66,.30);
+    border-color:rgba(255,90,112,.35);
+}
+
+.test-next{
+    width:100%;
+
+    height:56px;
+
+    margin-top:16px;
+
+    display:none;
+
+    font-size:16px;
 }
 
 /* BOTTOM NAV */
+
 .bottom-nav{
     position:fixed;
+
     left:0;
     bottom:0;
+
     width:100%;
+
     background:#000;
+
     display:flex;
+
     justify-content:space-between;
+
     align-items:center;
+
     padding:8px 10px;
+
     padding-bottom:calc(8px + env(safe-area-inset-bottom));
+
     z-index:50;
 }
 
@@ -358,10 +635,15 @@ a{
     display:flex;
     flex-direction:column;
     align-items:center;
+
     font-size:12px;
+
     color:#fff;
+
     width:20%;
+
     text-align:center;
+
     cursor:pointer;
 }
 
@@ -383,18 +665,26 @@ a{
 .nav-center{
     position:relative;
     top:-18px;
+
     width:20%;
+
     display:flex;
+
     justify-content:center;
 }
 
 .circle{
     width:60px;
     height:60px;
+
     background:#ffffff;
+
     border-radius:50%;
+
     border:4px solid var(--accent);
+
     display:flex;
+
     align-items:center;
     justify-content:center;
 }
@@ -405,173 +695,17 @@ a{
     object-fit:contain;
 }
 
-/* =========================
-   TEST MODAL
-========================= */
-.test-overlay{
-    position:fixed;
-    inset:0;
-    background:rgba(0,0,0,.72);
-    backdrop-filter:blur(10px);
-    display:none;
-    align-items:center;
-    justify-content:center;
-    padding:16px;
-    z-index:999;
-}
-
-.test-overlay.active{
-    display:flex;
-}
-
-.test-modal{
-    width:100%;
-    max-width:520px;
-    border-radius:28px;
-    padding:22px;
-    max-height:calc(100vh - 32px);
-    overflow:auto;
-}
-
-.test-top{
-    display:flex;
-    align-items:center;
-    justify-content:space-between;
-    gap:12px;
-    margin-bottom:16px;
-}
-
-.test-counter{
-    display:inline-flex;
-    align-items:center;
-    background:rgba(255,255,255,.06);
-    border:1px solid rgba(255,255,255,.06);
-    border-radius:999px;
-    padding:8px 12px;
-    color:#ebe4f5;
-    font-size:12px;
-}
-
-.test-close{
-    width:38px;
-    height:38px;
-    border-radius:14px;
-    background:rgba(255,255,255,.06);
-    border:1px solid rgba(255,255,255,.08);
-    color:#fff;
-    font-size:20px;
-    line-height:1;
-}
-
-.test-progress-line{
-    height:7px;
-    border-radius:999px;
-    background:rgba(255,255,255,.08);
-    overflow:hidden;
-    margin-bottom:16px;
-}
-
-.test-progress-fill{
-    height:100%;
-    border-radius:999px;
-    background:linear-gradient(90deg,var(--accent),var(--accent-2));
-    transition:width .25s ease;
-}
-
-.test-question{
-    margin:0 0 16px;
-    font-size:23px;
-    line-height:1.18;
-    font-weight:800;
-}
-
-.test-answers{
-    display:flex;
-    flex-direction:column;
-    gap:10px;
-}
-
-.test-answer{
-    width:100%;
-    min-height:54px;
-    border:none;
-    border-radius:17px;
-    background:rgba(255,255,255,.05);
-    border:1px solid rgba(255,255,255,.07);
-    color:#fff;
-    padding:14px 14px;
-    text-align:left;
-    font-size:15px;
-    line-height:1.35;
-    transition:.2s ease;
-}
-
-.test-answer.correct{
-    background:rgba(57,145,84,.28);
-    border-color:rgba(93,210,128,.35);
-}
-
-.test-answer.wrong{
-    background:rgba(170,45,66,.30);
-    border-color:rgba(255,90,112,.35);
-}
-
-.test-next{
-    width:100%;
-    height:54px;
-    margin-top:16px;
-    display:none;
-    font-size:16px;
-}
-
-.test-finish{
-    text-align:center;
-    padding:12px 0 4px;
-}
-
-.test-finish-icon{
-    width:84px;
-    height:84px;
-    border-radius:28px;
-    margin:0 auto 16px;
-    background:rgba(203,108,230,.14);
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    font-size:36px;
-}
-
-.test-finish-title{
-    margin:0 0 10px;
-    font-size:30px;
-    font-weight:800;
-    line-height:1.1;
-}
-
-.test-finish-text{
-    margin:0 auto 18px;
-    max-width:360px;
-    color:var(--muted);
-    font-size:15px;
-    line-height:1.55;
-}
-
-.test-finish-actions{
-    display:grid;
-    grid-template-columns:1fr;
-    gap:10px;
-}
-
-/* =========================
-   DESKTOP
-========================= */
 @media (min-width:1024px){
-    html, body{
+
+    html,
+    body{
         min-height:100vh;
+
         background:
             radial-gradient(circle at 15% 18%, rgba(203,108,230,.08), transparent 24%),
             radial-gradient(circle at 85% 28%, rgba(203,108,230,.07), transparent 24%),
-            linear-gradient(180deg, #09080f 0%, #0c0b14 100%);
+            linear-gradient(180deg,#09080f 0%,#0c0b14 100%);
+
         color:var(--text);
     }
 
@@ -600,8 +734,16 @@ a{
 
     .desktop-sidebar{
         padding:22px 20px;
+
         border-right:1px solid rgba(255,255,255,.05);
-        background:linear-gradient(180deg, rgba(14,13,23,.70) 0%, rgba(12,11,20,.40) 100%);
+
+        background:
+            linear-gradient(
+                180deg,
+                rgba(14,13,23,.70) 0%,
+                rgba(12,11,20,.40) 100%
+            );
+
         overflow:auto;
     }
 
@@ -609,6 +751,7 @@ a{
         font-size:34px;
         font-weight:800;
         line-height:1;
+
         margin:8px 0 56px;
     }
 
@@ -616,6 +759,7 @@ a{
         display:flex;
         flex-direction:column;
         gap:10px;
+
         margin-top:4px;
     }
 
@@ -623,43 +767,67 @@ a{
         display:flex;
         align-items:center;
         gap:14px;
+
         width:100%;
         min-height:56px;
+
         padding:0 18px;
+
         border-radius:16px;
+
         color:#f1f1f1;
+
         background:transparent;
+
         border:1px solid transparent;
+
         font-size:16px;
         font-weight:600;
+
         transition:.2s ease;
+
         cursor:pointer;
+
         text-align:left;
     }
 
     .desktop-nav-item img{
         width:28px;
         height:28px;
+
         object-fit:contain;
+
         flex-shrink:0;
     }
 
     .desktop-nav-item.active-nav{
-        background:linear-gradient(180deg, rgba(255,255,255,.06) 0%, rgba(255,255,255,.03) 100%);
+        background:
+            linear-gradient(
+                180deg,
+                rgba(255,255,255,.06) 0%,
+                rgba(255,255,255,.03) 100%
+            );
+
         border-color:rgba(255,255,255,.06);
+
         box-shadow:var(--shadow);
     }
 
     .desktop-nav-item-accent{
-        background:linear-gradient(90deg, #b85bda 0%, #cb6ce6 100%);
-        border-color:transparent;
-        color:#fff;
-        box-shadow:0 12px 26px rgba(203,108,230,.28);
-        margin-top:8px;
-    }
+        background:
+            linear-gradient(
+                90deg,
+                #b85bda 0%,
+                #cb6ce6 100%
+            );
 
-    .desktop-nav-item-accent:hover{
-        transform:translateY(-1px);
+        border-color:transparent;
+
+        color:#fff;
+
+        box-shadow:0 12px 26px rgba(203,108,230,.28);
+
+        margin-top:8px;
     }
 
     .desktop-nav-item-accent img{
@@ -667,8 +835,10 @@ a{
     }
 
     .desktop-main{
-        padding:24px 22px 30px;
+        padding:24px 22px 34px;
+
         height:100vh;
+
         overflow:auto;
     }
 
@@ -676,23 +846,31 @@ a{
         display:inline-flex;
         align-items:center;
         gap:14px;
+
         font-size:24px;
+
         color:#fff;
-        margin-bottom:16px;
+
+        margin-bottom:18px;
+
         cursor:pointer;
+
         user-select:none;
     }
 
     .desktop-back-arrow{
         font-size:42px;
+
         line-height:1;
+
         transform:translateY(-1px);
     }
 
     .desktop-content-grid{
         display:grid;
-        grid-template-columns:minmax(0,1fr) 300px;
-        gap:16px;
+        grid-template-columns:minmax(0,1fr) 320px;
+        gap:18px;
+
         align-items:start;
     }
 
@@ -703,58 +881,84 @@ a{
     .desktop-side-column{
         position:sticky;
         top:0;
+
         display:flex;
         flex-direction:column;
         gap:14px;
     }
 
-    .desktop-lesson-head{
-        margin-bottom:14px;
+    .desktop-head{
+        margin-bottom:16px;
     }
 
     .desktop-badge{
         display:inline-flex;
         align-items:center;
         gap:8px;
+
         background:rgba(255,255,255,.06);
+
         border:1px solid rgba(255,255,255,.06);
+
         border-radius:999px;
+
         padding:10px 14px;
+
         font-size:13px;
+
         color:#ebe4f5;
+
         margin-bottom:14px;
     }
 
     .desktop-title{
         margin:0 0 10px;
+
         font-size:clamp(38px,3.2vw,56px);
+
         line-height:.96;
+
         font-weight:800;
+
         letter-spacing:-1px;
     }
 
     .desktop-subtitle{
         margin:0;
+
         color:var(--muted);
+
         font-size:17px;
-        line-height:1.52;
+
+        line-height:1.55;
+
         max-width:760px;
     }
 
+    /* VIDEO STEP */
+
     .desktop-video-card{
-        border-radius:28px;
+        border-radius:30px;
+
         overflow:hidden;
+
         position:relative;
+
         background:#0d0d12;
+
         border:1px solid rgba(255,255,255,.05);
+
         box-shadow:var(--shadow);
     }
 
     .desktop-video-frame{
         width:100%;
         aspect-ratio:16/9;
+
         position:relative;
+
         overflow:hidden;
+
         background:
             radial-gradient(circle at 50% 38%, rgba(203,108,230,.18), transparent 28%),
             linear-gradient(135deg,#171621,#0b0b10);
@@ -763,108 +967,482 @@ a{
     .desktop-video-frame video{
         width:100%;
         height:100%;
+
         object-fit:cover;
-        display:none;
     }
 
-    .desktop-video-placeholder{
-        position:absolute;
-        inset:0;
-        display:flex;
-        flex-direction:column;
-        align-items:center;
-        justify-content:center;
-        text-align:center;
-        padding:24px;
-    }
-
-    .desktop-play-circle{
-        width:86px;
-        height:86px;
-        border-radius:28px;
-        background:rgba(255,255,255,.07);
-        border:1px solid rgba(255,255,255,.08);
-        display:flex;
-        align-items:center;
-        justify-content:center;
-        font-size:34px;
-        margin-bottom:16px;
+    .desktop-video-bottom{
+        padding:20px;
     }
 
     .desktop-video-title{
+        margin:0 0 10px;
+
         font-size:22px;
+
         font-weight:800;
-        margin-bottom:8px;
+
+        line-height:1.2;
     }
 
     .desktop-video-text{
+        margin:0;
+
         color:var(--muted);
+
         font-size:15px;
-        line-height:1.5;
-        max-width:360px;
+
+        line-height:1.6;
+
+        max-width:760px;
     }
 
-    .desktop-section{
+    .desktop-video-action{
         margin-top:18px;
     }
 
-    .desktop-section-title{
-        margin:0 0 14px;
-        font-size:28px;
-        line-height:1.1;
+    .desktop-main-btn{
+        width:100%;
+        max-width:360px;
+
+        min-height:58px;
+
+        border:none;
+
+        border-radius:18px;
+
+        color:#fff;
+
+        background:
+            linear-gradient(
+                90deg,
+                var(--accent),
+                var(--accent-2)
+            );
+
+        box-shadow:0 14px 32px rgba(203,108,230,.25);
+
+        font-size:16px;
+
         font-weight:800;
     }
 
-    .desktop-action-card{
+    /* SUMMARY STEP */
+
+    .desktop-summary-top{
+        margin-bottom:16px;
+    }
+
+    .desktop-section-title{
+        margin:0 0 10px;
+
+        font-size:30px;
+
+        line-height:1.08;
+
+        font-weight:800;
+    }
+
+    .desktop-note{
+        margin:0;
+
+        color:var(--muted-soft);
+
+        font-size:14px;
+
+        line-height:1.55;
+    }
+
+    .desktop-summary-grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:12px;
+    align-items:start;
+    }
+
+    .summary-list{
+        display:flex;
+        flex-direction:column;
+        gap:12px;
+    }
+
+    .summary-card{
+        border-radius:22px;
+        overflow:hidden;
+    }
+
+    .summary-question{
+        width:100%;
+
+        min-height:72px;
+
+        background:transparent;
+
+        border:none;
+
+        color:#fff;
+
+        padding:0 18px;
+
+        display:flex;
+
+        align-items:center;
+
+        justify-content:space-between;
+
+        gap:14px;
+
+        text-align:left;
+    }
+
+    .summary-question-text{
+        font-size:16px;
+
+        line-height:1.35;
+
+        font-weight:800;
+    }
+
+    .summary-arrow{
+        width:11px;
+        height:11px;
+
+        border-right:2px solid var(--accent);
+        border-bottom:2px solid var(--accent);
+
+        transform:rotate(45deg);
+
+        transition:.25s ease;
+
+        flex-shrink:0;
+
+        margin-right:4px;
+    }
+
+    .summary-card.open .summary-arrow{
+        transform:rotate(225deg);
+    }
+
+    .summary-answer-wrap{
+        max-height:0;
+        overflow:hidden;
+        transition:max-height .28s ease;
+    }
+
+    .summary-answer{
+        padding:0 18px 18px;
+
+        color:#d8d2e3;
+
+        font-size:15px;
+
+        line-height:1.62;
+    }
+
+    .summary-answer ul{
+        margin:8px 0 0;
+        padding-left:18px;
+    }
+
+    .summary-answer li{
+        margin:5px 0;
+    }
+
+    .desktop-summary-action{
+        margin-top:18px;
+    }
+
+    /* RIGHT PANEL */
+
+    .desktop-side-card{
         border-radius:24px;
         padding:18px;
     }
 
-    .desktop-action-title{
+    .desktop-side-title{
         margin:0 0 8px;
-        font-size:20px;
-        line-height:1.18;
+
+        font-size:21px;
+
+        line-height:1.2;
+
         font-weight:800;
     }
 
-    .desktop-action-text{
-        margin:0 0 14px;
+    .desktop-side-text{
+        margin:0 0 16px;
+
         color:var(--muted);
+
         font-size:14px;
-        line-height:1.5;
+
+        line-height:1.55;
     }
 
-    .desktop-action-buttons{
+    .desktop-side-buttons{
         display:grid;
         grid-template-columns:1fr;
         gap:10px;
     }
 
-    .desktop-action-btn{
+    .desktop-side-btn{
         width:100%;
         height:54px;
         font-size:15px;
     }
 
-    .desktop-next-card{
+    .desktop-steps-card{
         border-radius:24px;
         padding:18px;
     }
 
-    .desktop-next-label{
+    .desktop-steps-label{
         color:var(--muted-soft);
+
         font-size:12px;
-        margin-bottom:6px;
+
+        margin-bottom:10px;
     }
 
-    .desktop-next-title{
-        font-size:18px;
+    .desktop-steps-list{
+        display:flex;
+        flex-direction:column;
+        gap:10px;
+    }
+
+    .desktop-step-item{
+        display:flex;
+        align-items:center;
+        gap:10px;
+
+        min-height:44px;
+
+        border-radius:14px;
+
+        padding:0 12px;
+
+        background:rgba(255,255,255,.04);
+
+        color:#e9e2f1;
+
+        font-size:14px;
+
+        font-weight:700;
+    }
+
+    .desktop-step-dot{
+        width:10px;
+        height:10px;
+
+        border-radius:50%;
+
+        background:rgba(255,255,255,.22);
+
+        flex-shrink:0;
+    }
+
+    .desktop-step-item.active .desktop-step-dot{
+        background:var(--accent);
+        box-shadow:0 0 12px rgba(203,108,230,.55);
+    }
+
+    /* DEEP MODAL */
+
+    .deep-overlay{
+        position:fixed;
+        inset:0;
+
+        background:rgba(0,0,0,.74);
+
+        backdrop-filter:blur(12px);
+
+        display:none;
+
+        align-items:center;
+        justify-content:center;
+
+        padding:16px;
+
+        z-index:999;
+    }
+
+    .deep-overlay.active{
+        display:flex;
+    }
+
+    .deep-modal{
+        width:100%;
+        max-width:520px;
+
+        border-radius:30px;
+
+        padding:28px;
+    }
+
+    .deep-icon{
+        width:92px;
+        height:92px;
+
+        margin:0 auto 18px;
+
+        border-radius:28px;
+
+        background:rgba(203,108,230,.14);
+
+        display:flex;
+
+        align-items:center;
+        justify-content:center;
+
+        font-size:40px;
+    }
+
+    .deep-title{
+        margin:0 0 12px;
+
+        text-align:center;
+
+        font-size:34px;
+
+        line-height:1.08;
+
         font-weight:800;
-        line-height:1.25;
+    }
+
+    .deep-text{
+        margin:0 auto 20px;
+
+        max-width:380px;
+
+        text-align:center;
+
+        color:var(--muted);
+
+        font-size:16px;
+
+        line-height:1.62;
+    }
+
+    .deep-actions{
+        display:grid;
+        grid-template-columns:1fr;
+        gap:10px;
+    }
+
+    .deep-btn{
+        width:100%;
+        height:58px;
+        font-size:16px;
+    }
+
+    /* TEST */
+
+    .desktop-test-top{
+        margin-bottom:18px;
+    }
+
+    .test-progress-line{
+        height:8px;
+
+        border-radius:999px;
+
+        background:rgba(255,255,255,.08);
+
+        overflow:hidden;
+
+        margin-top:16px;
+    }
+
+    .test-progress-fill{
+        height:100%;
+
+        border-radius:999px;
+
+        background:
+            linear-gradient(
+                90deg,
+                var(--accent),
+                var(--accent-2)
+            );
+
+        width:0%;
+
+        transition:width .25s ease;
+    }
+
+    .test-question{
+        margin:0 0 18px;
+
+        font-size:34px;
+
+        line-height:1.12;
+
+        font-weight:800;
+    }
+
+    .test-answers{
+        display:flex;
+        flex-direction:column;
+        gap:12px;
+    }
+
+    .test-answer{
+        width:100%;
+
+        min-height:62px;
+
+        border:none;
+
+        border-radius:18px;
+
+        background:rgba(255,255,255,.05);
+
+        border:1px solid rgba(255,255,255,.07);
+
+        color:#fff;
+
+        padding:18px;
+
+        text-align:left;
+
+        font-size:16px;
+
+        line-height:1.42;
+
+        transition:.2s ease;
+    }
+
+    .test-answer.correct{
+        background:rgba(57,145,84,.28);
+        border-color:rgba(93,210,128,.35);
+    }
+
+    .test-answer.wrong{
+        background:rgba(170,45,66,.30);
+        border-color:rgba(255,90,112,.35);
+    }
+
+    .test-next{
+        width:100%;
+
+        max-width:340px;
+
+        height:58px;
+
+        margin-top:18px;
+
+        display:none;
+
+        font-size:16px;
     }
 }
 
+/* =========================
+   ADAPTIVE
+========================= */
+
 @media (max-width:1360px) and (min-width:1024px){
+
     .desktop-layout{
         grid-template-columns:245px minmax(0,1fr);
     }
@@ -874,37 +1452,45 @@ a{
     }
 
     .desktop-content-grid{
-        grid-template-columns:minmax(0,1fr) 270px;
+        grid-template-columns:minmax(0,1fr) 280px;
     }
 
     .desktop-title{
-        font-size:40px;
+        font-size:42px;
     }
 }
 
 @media (max-width:1120px) and (min-width:1024px){
+
     .desktop-content-grid{
         grid-template-columns:1fr;
     }
 
     .desktop-side-column{
         position:static;
+
         display:grid;
         grid-template-columns:1fr 1fr;
+    }
+
+    .desktop-summary-grid{
+        grid-template-columns:1fr;
     }
 }
 
 @media (max-width:420px){
-    .mobile-title{
-        font-size:27px;
-    }
 
-    .mobile-action-btn{
-        font-size:13px;
+    .mobile-title{
+        font-size:28px;
     }
 
     .mobile-page{
-        padding-bottom:calc(176px + env(safe-area-inset-bottom));
+        padding-bottom:
+            calc(176px + env(safe-area-inset-bottom));
+    }
+
+    .mobile-main-btn{
+        font-size:15px;
     }
 }
 
@@ -913,921 +1499,1514 @@ a{
 
 <body>
 
-<!-- MOBILE -->
+<!-- =========================
+     MOBILE
+========================= -->
+
 <div class="mobile-shell">
+
     <div class="mobile-page">
 
-        <button class="mobile-back" onclick="goBack()">
-            <svg viewBox="0 0 24 24" fill="none">
-                <path d="M15 5L8 12L15 19" stroke="white" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
-            </svg>
-            <span id="back-mobile"></span>
-        </button>
+        <!-- TOP -->
 
-        <div class="mobile-lesson-head">
+        <div class="mobile-top">
+
+            <button class="mobile-back" onclick="goBack()">
+                <span class="mobile-back-arrow">←</span>
+            </button>
+
             <div class="mobile-badge" id="lessonBadge-mobile"></div>
 
             <h1 class="mobile-title" id="lessonTitle-mobile"></h1>
 
             <p class="mobile-subtitle" id="lessonSubtitle-mobile"></p>
+
         </div>
 
-        <section class="mobile-video-card">
-            <div class="mobile-video-frame">
-                <video id="lessonVideo-mobile" controls playsinline preload="metadata">
-                    <source src="videos/smm/lesson-1.mp4" type="video/mp4">
-                </video>
+        <!-- STEP VIDEO -->
 
-                <div class="mobile-video-placeholder" id="videoPlaceholder-mobile">
-                    <div class="mobile-play-circle">▶</div>
+        <section class="lesson-step active" id="step-video-mobile">
 
-                    <div class="mobile-video-title" id="videoTitle-mobile"></div>
+            <div class="mobile-video-card">
 
-                    <div class="mobile-video-text" id="videoText-mobile"></div>
+                <div class="mobile-video-frame">
+
+                    <video
+                        id="lessonVideo-mobile"
+                        controls
+                        playsinline
+                        preload="metadata"
+                    >
+                        <source id="videoSource-mobile" type="video/mp4">
+                    </video>
+
                 </div>
+
+                <div class="mobile-video-bottom">
+
+                    <h2 class="mobile-video-title" id="videoTitle-mobile"></h2>
+
+                    <p class="mobile-video-text" id="videoText-mobile"></p>
+
+                    <div class="mobile-video-action">
+                        <button
+                            class="mobile-main-btn"
+                            id="goSummaryBtn-mobile"
+                            onclick="goStep('summary')"
+                        ></button>
+                    </div>
+
+                </div>
+
             </div>
+
         </section>
 
-        <section class="mobile-section">
-            <h2 class="mobile-section-title" id="summaryTitle-mobile"></h2>
+        <!-- STEP SUMMARY -->
 
-            <p class="lesson-note" id="summaryNote-mobile"></p>
+        <section class="lesson-step" id="step-summary-mobile">
 
-            <div class="qa-list">
+            <div class="mobile-summary-head">
 
-                <div class="qa-card soft-card">
-                    <button class="qa-question" onclick="toggleQa(this)">
-                        <span class="qa-question-text">Что такое SMM?</span>
-                        <span class="qa-arrow"></span>
-                    </button>
+                <h2
+                    class="mobile-section-title"
+                    id="summaryTitle-mobile"
+                ></h2>
 
-                    <div class="qa-answer-wrap">
-                        <div class="qa-answer">
-                            SMM — это продвижение бизнеса через социальные сети.
-                        </div>
-                    </div>
-                </div>
+                <p
+                    class="mobile-note"
+                    id="summaryNote-mobile"
+                ></p>
 
-                <div class="qa-card soft-card">
-                    <button class="qa-question" onclick="toggleQa(this)">
-                        <span class="qa-question-text">С чем работает SMM?</span>
-                        <span class="qa-arrow"></span>
-                    </button>
+            </div>
 
-                    <div class="qa-answer-wrap">
-                        <div class="qa-answer">
-                            Основа SMM — контент.
-                            <br><br>
-                            Видео, посты, сторис, тексты — всё это помогает привлекать внимание и объяснять ценность продукта.
-                        </div>
-                    </div>
-                </div>
+            <div class="summary-list" id="summaryList-mobile"></div>
 
-                <div class="qa-card soft-card">
-                    <button class="qa-question" onclick="toggleQa(this)">
-                        <span class="qa-question-text">Что такое ЦА?</span>
-                        <span class="qa-arrow"></span>
-                    </button>
+            <div class="mobile-summary-action">
 
-                    <div class="qa-answer-wrap">
-                        <div class="qa-answer">
-                            ЦА — целевая аудитория.
-                            <br><br>
-                            Это люди, которым реально может быть интересен твой продукт или услуга.
-                        </div>
-                    </div>
-                </div>
+                <button
+                    class="mobile-main-btn"
+                    id="summaryFinishBtn-mobile"
+                    onclick="openDeepModal()"
+                ></button>
 
-                <div class="qa-card soft-card">
-                    <button class="qa-question" onclick="toggleQa(this)">
-                        <span class="qa-question-text">Что такое прогрев?</span>
-                        <span class="qa-arrow"></span>
-                    </button>
+            </div>
 
-                    <div class="qa-answer-wrap">
-                        <div class="qa-answer">
-                            Прогрев — это постепенное подведение человека к покупке через контент и доверие.
-                        </div>
-                    </div>
-                </div>
+        </section>
 
-                <div class="qa-card soft-card">
-                    <button class="qa-question" onclick="toggleQa(this)">
-                        <span class="qa-question-text">Как работает SMM?</span>
-                        <span class="qa-arrow"></span>
-                    </button>
+        <!-- STEP DEEP -->
 
-                    <div class="qa-answer-wrap">
-                        <div class="qa-answer">
-                            Упрощённая схема:
-                            <br><br>
-                            контент → внимание → интерес → доверие → действие
-                        </div>
-                    </div>
-                </div>
+        <section class="lesson-step" id="step-deep-mobile">
 
-                <div class="qa-card soft-card">
-                    <button class="qa-question" onclick="toggleQa(this)">
-                        <span class="qa-question-text">Зачем бизнесу SMM?</span>
-                        <span class="qa-arrow"></span>
-                    </button>
+            <div class="mobile-summary-head">
 
-                    <div class="qa-answer-wrap">
-                        <div class="qa-answer">
-                            Чтобы:
-                            <ul>
-                                <li>привлекать клиентов</li>
-                                <li>объяснять продукт</li>
-                                <li>оставаться на связи с аудиторией</li>
-                                <li>увеличивать продажи</li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
+                <h2
+                    class="mobile-section-title"
+                    id="deepTitle-mobile"
+                ></h2>
 
-                <div class="qa-card soft-card">
-                    <button class="qa-question" onclick="toggleQa(this)">
-                        <span class="qa-question-text">Что важно понимать про SMM в Узбекистане?</span>
-                        <span class="qa-arrow"></span>
-                    </button>
+                <p
+                    class="mobile-note"
+                    id="deepText-mobile"
+                ></p>
 
-                    <div class="qa-answer-wrap">
-                        <div class="qa-answer">
-                            В Узбекистане хорошо работает:
-                            <ul>
-                                <li>локальный контент</li>
-                                <li>понятная подача</li>
-                                <li>личный бренд</li>
-                                <li>контент на узбекском языке</li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
+            </div>
 
-                <div class="qa-card soft-card">
-                    <button class="qa-question" onclick="toggleQa(this)">
-                        <span class="qa-question-text">Подойдёт ли тебе SMM?</span>
-                        <span class="qa-arrow"></span>
-                    </button>
+            <div class="summary-list" id="deepList-mobile"></div>
 
-                    <div class="qa-answer-wrap">
-                        <div class="qa-answer">
-                            Да, если тебе интересны:
-                            <ul>
-                                <li>соцсети</li>
-                                <li>контент</li>
-                                <li>работа с людьми</li>
-                                <li>digital-сфера</li>
-                            </ul>
-                            И ты готов практиковаться и развиваться.
-                        </div>
-                    </div>
+            <div class="mobile-summary-action">
+
+                <button
+                    class="mobile-main-btn"
+                    id="goTestBtn-mobile"
+                    onclick="goStep('test')"
+                ></button>
+
+            </div>
+
+        </section>
+
+        <!-- STEP TEST -->
+
+        <section class="lesson-step" id="step-test-mobile">
+
+            <div class="mobile-test-head">
+
+                <h2
+                    class="mobile-section-title"
+                    id="testTitle-mobile"
+                ></h2>
+
+                <p
+                    class="mobile-note"
+                    id="testText-mobile"
+                ></p>
+
+                <div class="test-progress-line">
+                    <div
+                        class="test-progress-fill"
+                        id="testProgress-mobile"
+                    ></div>
                 </div>
 
             </div>
+
+            <h3 class="test-question" id="testQuestion-mobile"></h3>
+
+            <div class="test-answers" id="testAnswers-mobile"></div>
+
+            <button
+                class="btn btn-primary test-next"
+                id="nextQuestionBtn-mobile"
+                onclick="nextQuestion()"
+            ></button>
+
         </section>
 
     </div>
 
-    <div class="mobile-fixed-actions">
-        <div class="mobile-fixed-actions-inner">
-            <button class="btn btn-secondary mobile-action-btn" id="materialBtn-mobile" onclick="openMaterial()"></button>
-            <button class="btn btn-primary mobile-action-btn" id="testBtn-mobile" onclick="openTest()"></button>
-        </div>
-    </div>
+    <!-- FIXED ACTIONS -->
 
     <div class="bottom-nav">
-        <div class="nav-item active-mobile-nav" onclick="goPage('mycourses.html')">
+
+        <div
+            class="nav-item active-mobile-nav"
+            onclick="goPage('mycourses.html')"
+        >
             <img src="images/icon/courses2.png" alt="">
             <span id="m1-mobile"></span>
         </div>
 
-        <div class="nav-item" onclick="goPage('support.html')">
+        <div
+            class="nav-item"
+            onclick="goPage('support.html')"
+        >
             <img src="images/icon/support.png" alt="">
             <span id="m4-mobile"></span>
         </div>
 
-        <div class="nav-center" onclick="goHome()">
+        <div
+            class="nav-center"
+            onclick="goHome()"
+        >
             <div class="circle">
                 <img src="images/icon/home2.png" alt="home">
             </div>
         </div>
 
-        <div class="nav-item" onclick="goPage('chat.html')">
+        <div
+            class="nav-item"
+            onclick="goPage('chat.html')"
+        >
             <img src="images/icon/feedback.png" alt="">
             <span id="m5-mobile"></span>
         </div>
 
-        <div class="nav-item" onclick="goPage('myprofile.html')">
+        <div
+            class="nav-item"
+            onclick="goPage('myprofile.html')"
+        >
             <img src="images/icon/profile2.png" alt="">
             <span id="m6-mobile"></span>
         </div>
+
     </div>
+
 </div>
 
-<!-- DESKTOP -->
+<!-- =========================
+     DESKTOP
+========================= -->
+
 <div class="desktop-app desktop-only">
+
     <div class="desktop-layout">
 
+        <!-- SIDEBAR -->
+
         <aside class="desktop-sidebar">
+
             <div class="desktop-brand">gaphub</div>
 
             <nav class="desktop-nav">
-                <button class="desktop-nav-item" onclick="goHome()">
+
+                <button
+                    class="desktop-nav-item"
+                    onclick="goHome()"
+                >
                     <img src="images/icon/home.png" alt="">
                     <span id="home-desktop"></span>
                 </button>
 
-                <button class="desktop-nav-item active-nav" onclick="goPage('mycourses.html')">
+                <button
+                    class="desktop-nav-item active-nav"
+                    onclick="goPage('mycourses.html')"
+                >
                     <img src="images/icon/courses2.png" alt="">
                     <span id="m1-desktop"></span>
                 </button>
 
-                <button class="desktop-nav-item" onclick="goPage('support.html')">
+                <button
+                    class="desktop-nav-item"
+                    onclick="goPage('support.html')"
+                >
                     <img src="images/icon/support.png" alt="">
                     <span id="m4-desktop"></span>
                 </button>
 
-                <button class="desktop-nav-item" onclick="goPage('chat.html')">
+                <button
+                    class="desktop-nav-item"
+                    onclick="goPage('chat.html')"
+                >
                     <img src="images/icon/feedback.png" alt="">
                     <span id="m5-desktop"></span>
                 </button>
 
-                <button class="desktop-nav-item" onclick="goPage('myprofile.html')">
+                <button
+                    class="desktop-nav-item"
+                    onclick="goPage('myprofile.html')"
+                >
                     <img src="images/icon/profile2.png" alt="">
                     <span id="m6-desktop"></span>
                 </button>
 
-                <button class="desktop-nav-item desktop-nav-item-accent" onclick="goCourses()">
+                <button
+                    class="desktop-nav-item desktop-nav-item-accent"
+                    onclick="goCourses()"
+                >
                     <img src="images/icon/catalog.png" alt="">
                     <span id="catalog-desktop"></span>
                 </button>
+
             </nav>
+
         </aside>
 
+        <!-- MAIN -->
+
         <main class="desktop-main">
-            <div class="desktop-back" onclick="goBack()">
+
+            <div
+                class="desktop-back"
+                onclick="goBack()"
+            >
                 <span class="desktop-back-arrow">←</span>
                 <span id="back-desktop"></span>
             </div>
 
             <div class="desktop-content-grid">
 
+                <!-- MAIN COLUMN -->
+
                 <div class="desktop-main-column">
 
-                    <div class="desktop-lesson-head">
-                        <div class="desktop-badge" id="lessonBadge-desktop"></div>
+                    <div class="desktop-head">
 
-                        <h1 class="desktop-title" id="lessonTitle-desktop"></h1>
+                        <div
+                            class="desktop-badge"
+                            id="lessonBadge-desktop"
+                        ></div>
 
-                        <p class="desktop-subtitle" id="lessonSubtitle-desktop"></p>
+                        <h1
+                            class="desktop-title"
+                            id="lessonTitle-desktop"
+                        ></h1>
+
+                        <p
+                            class="desktop-subtitle"
+                            id="lessonSubtitle-desktop"
+                        ></p>
+
                     </div>
 
-                    <section class="desktop-video-card">
-                        <div class="desktop-video-frame">
-                            <video id="lessonVideo-desktop" controls playsinline preload="metadata">
-                                <source src="videos/smm/lesson-1.mp4" type="video/mp4">
-                            </video>
+                    <!-- STEP VIDEO -->
 
-                            <div class="desktop-video-placeholder" id="videoPlaceholder-desktop">
-                                <div class="desktop-play-circle">▶</div>
+                    <section
+                        class="lesson-step active"
+                        id="step-video-desktop"
+                    >
 
-                                <div class="desktop-video-title" id="videoTitle-desktop"></div>
+                        <div class="desktop-video-card">
 
-                                <div class="desktop-video-text" id="videoText-desktop"></div>
+                            <div class="desktop-video-frame">
+
+                                <video
+                                    id="lessonVideo-desktop"
+                                    controls
+                                    playsinline
+                                    preload="metadata"
+                                >
+                                    <source id="videoSource-desktop" type="video/mp4">
+                                </video>
+
                             </div>
+
+                            <div class="desktop-video-bottom">
+
+                                <h2
+                                    class="desktop-video-title"
+                                    id="videoTitle-desktop"
+                                ></h2>
+
+                                <p
+                                    class="desktop-video-text"
+                                    id="videoText-desktop"
+                                ></p>
+
+                                <div class="desktop-video-action">
+
+                                    <button
+                                        class="desktop-main-btn"
+                                        id="goSummaryBtn-desktop"
+                                        onclick="goStep('summary')"
+                                    ></button>
+
+                                </div>
+
+                            </div>
+
                         </div>
+
                     </section>
 
-                    <section class="desktop-section">
-                        <h2 class="desktop-section-title" id="summaryTitle-desktop"></h2>
+                    <!-- STEP SUMMARY -->
 
-                        <p class="lesson-note" id="summaryNote-desktop"></p>
+                    <section
+                        class="lesson-step"
+                        id="step-summary-desktop"
+                    >
 
-                        <div class="qa-list">
+                        <div class="desktop-summary-top">
 
-                            <div class="qa-card soft-card">
-                                <button class="qa-question" onclick="toggleQa(this)">
-                                    <span class="qa-question-text">Что такое SMM?</span>
-                                    <span class="qa-arrow"></span>
-                                </button>
+                            <h2
+                                class="desktop-section-title"
+                                id="summaryTitle-desktop"
+                            ></h2>
 
-                                <div class="qa-answer-wrap">
-                                    <div class="qa-answer">
-                                        SMM — это продвижение бизнеса через социальные сети.
-                                    </div>
-                                </div>
-                            </div>
+                            <p
+                                class="desktop-note"
+                                id="summaryNote-desktop"
+                            ></p>
 
-                            <div class="qa-card soft-card">
-                                <button class="qa-question" onclick="toggleQa(this)">
-                                    <span class="qa-question-text">С чем работает SMM?</span>
-                                    <span class="qa-arrow"></span>
-                                </button>
+                        </div>
 
-                                <div class="qa-answer-wrap">
-                                    <div class="qa-answer">
-                                        Основа SMM — контент.
-                                        <br><br>
-                                        Видео, посты, сторис, тексты — всё это помогает привлекать внимание и объяснять ценность продукта.
-                                    </div>
-                                </div>
-                            </div>
+                        <div
+                            class="desktop-summary-grid"
+                            id="summaryList-desktop"
+                        ></div>
 
-                            <div class="qa-card soft-card">
-                                <button class="qa-question" onclick="toggleQa(this)">
-                                    <span class="qa-question-text">Что такое ЦА?</span>
-                                    <span class="qa-arrow"></span>
-                                </button>
+                        <div class="desktop-summary-action">
 
-                                <div class="qa-answer-wrap">
-                                    <div class="qa-answer">
-                                        ЦА — целевая аудитория.
-                                        <br><br>
-                                        Это люди, которым реально может быть интересен твой продукт или услуга.
-                                    </div>
-                                </div>
-                            </div>
+                            <button
+                                class="desktop-main-btn"
+                                id="summaryFinishBtn-desktop"
+                                onclick="openDeepModal()"
+                            ></button>
 
-                            <div class="qa-card soft-card">
-                                <button class="qa-question" onclick="toggleQa(this)">
-                                    <span class="qa-question-text">Что такое прогрев?</span>
-                                    <span class="qa-arrow"></span>
-                                </button>
+                        </div>
 
-                                <div class="qa-answer-wrap">
-                                    <div class="qa-answer">
-                                        Прогрев — это постепенное подведение человека к покупке через контент и доверие.
-                                    </div>
-                                </div>
-                            </div>
+                    </section>
 
-                            <div class="qa-card soft-card">
-                                <button class="qa-question" onclick="toggleQa(this)">
-                                    <span class="qa-question-text">Как работает SMM?</span>
-                                    <span class="qa-arrow"></span>
-                                </button>
+                    <!-- STEP DEEP -->
 
-                                <div class="qa-answer-wrap">
-                                    <div class="qa-answer">
-                                        Упрощённая схема:
-                                        <br><br>
-                                        контент → внимание → интерес → доверие → действие
-                                    </div>
-                                </div>
-                            </div>
+                    <section
+                        class="lesson-step"
+                        id="step-deep-desktop"
+                    >
 
-                            <div class="qa-card soft-card">
-                                <button class="qa-question" onclick="toggleQa(this)">
-                                    <span class="qa-question-text">Зачем бизнесу SMM?</span>
-                                    <span class="qa-arrow"></span>
-                                </button>
+                        <div class="desktop-summary-top">
 
-                                <div class="qa-answer-wrap">
-                                    <div class="qa-answer">
-                                        Чтобы:
-                                        <ul>
-                                            <li>привлекать клиентов</li>
-                                            <li>объяснять продукт</li>
-                                            <li>оставаться на связи с аудиторией</li>
-                                            <li>увеличивать продажи</li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </div>
+                            <h2
+                                class="desktop-section-title"
+                                id="deepTitle-desktop"
+                            ></h2>
 
-                            <div class="qa-card soft-card">
-                                <button class="qa-question" onclick="toggleQa(this)">
-                                    <span class="qa-question-text">Что важно понимать про SMM в Узбекистане?</span>
-                                    <span class="qa-arrow"></span>
-                                </button>
+                            <p
+                                class="desktop-note"
+                                id="deepText-desktop"
+                            ></p>
 
-                                <div class="qa-answer-wrap">
-                                    <div class="qa-answer">
-                                        В Узбекистане хорошо работает:
-                                        <ul>
-                                            <li>локальный контент</li>
-                                            <li>понятная подача</li>
-                                            <li>личный бренд</li>
-                                            <li>контент на узбекском языке</li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </div>
+                        </div>
 
-                            <div class="qa-card soft-card">
-                                <button class="qa-question" onclick="toggleQa(this)">
-                                    <span class="qa-question-text">Подойдёт ли тебе SMM?</span>
-                                    <span class="qa-arrow"></span>
-                                </button>
+                        <div
+                            class="desktop-summary-grid"
+                            id="deepList-desktop"
+                        ></div>
 
-                                <div class="qa-answer-wrap">
-                                    <div class="qa-answer">
-                                        Да, если тебе интересны:
-                                        <ul>
-                                            <li>соцсети</li>
-                                            <li>контент</li>
-                                            <li>работа с людьми</li>
-                                            <li>digital-сфера</li>
-                                        </ul>
-                                        И ты готов практиковаться и развиваться.
-                                    </div>
-                                </div>
+                        <div class="desktop-summary-action">
+
+                            <button
+                                class="desktop-main-btn"
+                                id="goTestBtn-desktop"
+                                onclick="goStep('test')"
+                            ></button>
+
+                        </div>
+
+                    </section>
+
+                    <!-- STEP TEST -->
+
+                    <section
+                        class="lesson-step"
+                        id="step-test-desktop"
+                    >
+
+                        <div class="desktop-test-top">
+
+                            <h2
+                                class="desktop-section-title"
+                                id="testTitle-desktop"
+                            ></h2>
+
+                            <p
+                                class="desktop-note"
+                                id="testText-desktop"
+                            ></p>
+
+                            <div class="test-progress-line">
+                                <div
+                                    class="test-progress-fill"
+                                    id="testProgress-desktop"
+                                ></div>
                             </div>
 
                         </div>
+
+                        <h3
+                            class="test-question"
+                            id="testQuestion-desktop"
+                        ></h3>
+
+                        <div
+                            class="test-answers"
+                            id="testAnswers-desktop"
+                        ></div>
+
+                        <button
+                            class="btn btn-primary test-next"
+                            id="nextQuestionBtn-desktop"
+                            onclick="nextQuestion()"
+                        ></button>
+
                     </section>
 
                 </div>
 
+                <!-- RIGHT COLUMN -->
+
                 <aside class="desktop-side-column">
 
-                    <div class="desktop-action-card glow-card">
-                        <h3 class="desktop-action-title" id="actionTitle-desktop"></h3>
+                    <div class="desktop-side-card glow-card">
 
-                        <p class="desktop-action-text" id="actionText-desktop"></p>
+                        <h3
+                            class="desktop-side-title"
+                            id="sideTitle-desktop"
+                        ></h3>
 
-                        <div class="desktop-action-buttons">
-                            <button class="btn btn-secondary desktop-action-btn" id="materialBtn-desktop" onclick="openMaterial()"></button>
-                            <button class="btn btn-primary desktop-action-btn" id="testBtn-desktop" onclick="openTest()"></button>
+                        <p
+                            class="desktop-side-text"
+                            id="sideText-desktop"
+                        ></p>
+
+                        <div class="desktop-side-buttons">
+
+                            <button
+                                class="btn btn-secondary desktop-side-btn"
+                                id="materialBtn-desktop"
+                                onclick="openMaterial()"
+                            ></button>
+
+                            <button
+                                class="btn btn-primary desktop-side-btn"
+                                id="openTestBtn-desktop"
+                                onclick="goStep('test')"
+                            ></button>
+
                         </div>
+
                     </div>
 
-                    <div class="desktop-next-card soft-card">
-                        <div class="desktop-next-label" id="nextLabel-desktop"></div>
-                        <div class="desktop-next-title" id="nextTitle-desktop"></div>
+                    <div class="desktop-steps-card soft-card">
+
+                        <div
+                            class="desktop-steps-label"
+                            id="stepsLabel-desktop"
+                        ></div>
+
+                        <div class="desktop-steps-list">
+
+                            <div
+                                class="desktop-step-item active"
+                                id="desktopStep-video"
+                            >
+                                <div class="desktop-step-dot"></div>
+                                <span id="stepVideoLabel-desktop"></span>
+                            </div>
+
+                            <div
+                                class="desktop-step-item"
+                                id="desktopStep-summary"
+                            >
+                                <div class="desktop-step-dot"></div>
+                                <span id="stepSummaryLabel-desktop"></span>
+                            </div>
+
+                            <div
+                                class="desktop-step-item"
+                                id="desktopStep-deep"
+                            >
+                                <div class="desktop-step-dot"></div>
+                                <span id="stepDeepLabel-desktop"></span>
+                            </div>
+
+                            <div
+                                class="desktop-step-item"
+                                id="desktopStep-test"
+                            >
+                                <div class="desktop-step-dot"></div>
+                                <span id="stepTestLabel-desktop"></span>
+                            </div>
+
+                        </div>
+
                     </div>
 
                 </aside>
 
             </div>
+
         </main>
 
     </div>
+
 </div>
 
-<!-- TEST MODAL -->
-<div class="test-overlay" id="testOverlay">
-    <div class="test-modal glow-card">
-        <div id="testContent"></div>
+<!-- =========================
+     DEEP MODAL
+========================= -->
+
+<div class="deep-overlay" id="deepOverlay">
+
+    <div class="deep-modal glow-card">
+
+        <div class="deep-icon">✦</div>
+
+        <h2 class="deep-title" id="deepModalTitle"></h2>
+
+        <p class="deep-text" id="deepModalText"></p>
+
+        <div class="deep-actions">
+
+            <button
+                class="btn btn-secondary deep-btn"
+                id="deepMaterialBtn"
+                onclick="goStep('deep'); closeDeepModal();"
+            ></button>
+
+            <button
+                class="btn btn-primary deep-btn"
+                id="deepTestBtn"
+                onclick="goStep('test'); closeDeepModal();"
+            ></button>
+
+        </div>
+
     </div>
+
 </div>
 
 <script>
-let lang = localStorage.getItem("lang") || "uz";
+let lang = localStorage.getItem("lang") || "uz"
 
-const COURSE_SLUG = "smm";
-const LESSON_ID = 1;
-const NEXT_LESSON_ID = 2;
+const COURSE_SLUG = "smm"
+const LESSON_ID = 1
+const NEXT_LESSON_ID = 2
 
-const VIDEO_PATH = "videos/smm/lesson-1.mp4";
+const VIDEO_PATH = "https://bot.gaphub.uz/videos/smm/lesson-1.mp4"
+
 const MATERIAL_PATHS = {
     ru:"materials/smm/lesson-1-ru.pdf",
     uz:"materials/smm/lesson-1-uz.pdf"
-};
+}
 
-let currentQuestionIndex = 0;
-let score = 0;
-let selectedAnswer = false;
-let telegramUserId = null;
+let currentStep = "video"
+
+let currentQuestionIndex = 0
+let score = 0
+let selectedAnswer = false
+
+let telegramUserId = null
+
+function setText(id, value){
+
+    const el = document.getElementById(id)
+
+    if(el){
+        el.innerText = value
+    }
+}
 
 const t = {
+
     uz:{
+
         back:"Orqaga",
+
         home:"Bosh sahifa",
         m1:"Kurslarim",
         m4:"Aloqa",
         m5:"Sharhlar",
         m6:"Profil",
+
         catalog:"Kurslar katalogi",
 
         lessonBadge:"SMM • 1-dars",
+
         lessonTitle:"SMM nima?",
+
         lessonSubtitle:"Birinchi darsda SMM nimadan boshlanishini, kontent nima uchun kerakligini va biznes ijtimoiy tarmoqlar orqali qanday mijoz topishini tushunamiz.",
 
-        videoTitle:"Video tez orada yuklanadi",
-        videoText:"Bu yerda birinchi video dars bo‘ladi. Hozircha sahifa test rejimida ishlayapti.",
+        videoTitle:"1-dars videosi",
+
+        videoText:"Videoni ko‘ring va keyin qisqa xulosaga o‘ting.",
+
+        goSummary:"Xulosaga o‘tish",
 
         summaryTitle:"Darsdan qisqa xulosa",
+
         summaryNote:"Savolni bosing, javob pastga ochiladi.",
 
+        summaryFinish:"Men o‘qib chiqdim",
+
+        deepTitle:"Chuqurroq material",
+
+        deepText:"Bu yerda mavzuni kengroq tushuntiradigan qo‘shimcha materiallar bo‘ladi.",
+
+        goTest:"Testga o‘tish",
+
+        testTitle:"Bilimni tekshirish",
+
+        testText:"Test orqali asosiy tushunchalarni mustahkamlang.",
+
+        nextQuestion:"Keyingi savol",
+
         materialBtn:"Material",
-        testBtn:"Test",
-        actionTitle:"Darsni yakunlash",
-        actionText:"Videoni ko‘ring, qisqa xulosani o‘qing va testdan o‘ting. Testdan keyin keyingi dars ochiladi.",
-        nextLabel:"Keyingi dars",
-        nextTitle:"2-dars testdan keyin ochiladi",
 
-        testCounter:"Savol",
-        nextQuestion:"Keyingisi",
+        openTestBtn:"Test",
+
+        sideTitle:"Darsni yakunlash",
+
+        sideText:"Videoni ko‘ring, xulosani o‘qing va test orqali mavzuni mustahkamlang.",
+
+        stepsLabel:"Dars bosqichlari",
+
+        stepVideo:"Video",
+        stepSummary:"Xulosa",
+        stepDeep:"Chuqurlashish",
+        stepTest:"Test",
+
+        modalTitle:"Keyingi qadam",
+
+        modalText:"Xohlasangiz chuqurroq materialni o‘rganishingiz yoki darhol testga o‘tishingiz mumkin.",
+
+        modalMaterial:"Chuqurroq material",
+        modalTest:"Testga o‘tish",
+
         finishTitle:"Dars yakunlandi",
-        finishText:"Siz 1-darsni tugatdingiz. Endi 2-darsga o‘tishingiz mumkin.",
-        finishBack:"Kursga qaytish",
-        finishNext:"2-darsga o‘tish",
-        close:"Yopish",
 
-        materialMissing:"PDF fayl keyinroq qo‘shiladi",
-        lockedNext:"2-dars testdan keyin ochiladi"
+        finishText:"Siz 1-darsni tugatdingiz. Endi keyingi darsga o‘tishingiz mumkin.",
+
+        finishNext:"2-darsga o‘tish",
+
+        materialMissing:"Material keyinroq qo‘shiladi"
     },
 
     ru:{
+
         back:"Назад",
+
         home:"Главное меню",
         m1:"Мои курсы",
         m4:"Поддержка",
         m5:"Отзывы",
         m6:"Профиль",
+
         catalog:"Каталог курсов",
 
         lessonBadge:"SMM • Урок 1",
+
         lessonTitle:"Что такое SMM?",
+
         lessonSubtitle:"В первом уроке разбираем базу: что такое SMM, зачем нужен контент и как бизнес получает клиентов через социальные сети.",
 
-        videoTitle:"Видео скоро появится",
-        videoText:"Здесь будет первый видеоурок. Пока страница работает в тестовом режиме.",
+        videoTitle:"Видео первого урока",
+
+        videoText:"Посмотри видео и после этого перейди к выжимке урока.",
+
+        goSummary:"Перейти к выжимке",
 
         summaryTitle:"Выжимка урока",
+
         summaryNote:"Нажми на вопрос, чтобы раскрыть короткий ответ.",
 
+        summaryFinish:"Я прочитал",
+
+        deepTitle:"Углубленный материал",
+
+        deepText:"Здесь будут дополнительные материалы для более глубокого понимания темы.",
+
+        goTest:"Перейти к тесту",
+
+        testTitle:"Проверка знаний",
+
+        testText:"Закрепи основные понятия через короткий тест.",
+
+        nextQuestion:"Следующий вопрос",
+
         materialBtn:"Материал",
-        testBtn:"Тест",
-        actionTitle:"Завершить урок",
-        actionText:"Посмотри видео, пройди выжимку и закрепи тему тестом. После теста откроется следующий урок.",
-        nextLabel:"Следующий урок",
-        nextTitle:"Урок 2 откроется после теста",
 
-        testCounter:"Вопрос",
-        nextQuestion:"Дальше",
+        openTestBtn:"Тест",
+
+        sideTitle:"Завершить урок",
+
+        sideText:"Посмотри видео, изучи выжимку и закрепи тему тестом.",
+
+        stepsLabel:"Этапы урока",
+
+        stepVideo:"Видео",
+        stepSummary:"Выжимка",
+        stepDeep:"Углубление",
+        stepTest:"Тест",
+
+        modalTitle:"Что дальше?",
+
+        modalText:"Можешь пройти углубленный материал или сразу перейти к тесту.",
+
+        modalMaterial:"Углубленный материал",
+        modalTest:"Перейти к тесту",
+
         finishTitle:"Урок завершён",
-        finishText:"Ты прошел первый урок. Теперь можно вернуться к курсу и перейти ко второму уроку.",
-        finishBack:"Вернуться к курсу",
+
+        finishText:"Ты прошел первый урок. Теперь можно перейти ко второму уроку.",
+
         finishNext:"Перейти ко 2 уроку",
-        close:"Закрыть",
 
-        materialMissing:"PDF-файл будет добавлен позже",
-        lockedNext:"Урок 2 откроется после теста"
+        materialMissing:"Материал будет добавлен позже"
     }
-};
+}
 
-const questions = [
-    {
-        question:"Что такое SMM?",
-        answers:[
-            "Продвижение бизнеса через социальные сети",
-            "Создание сайтов",
-            "Настройка банковских платежей"
-        ],
-        correct:0
-    },
-    {
-        question:"Что является основой SMM?",
-        answers:[
-            "Контент",
-            "Случайные скидки",
-            "Только логотип"
-        ],
-        correct:0
-    },
-    {
-        question:"Что такое ЦА?",
-        answers:[
-            "Центральная аналитика",
-            "Целевая аудитория",
-            "Цена аккаунта"
-        ],
-        correct:1
-    },
-    {
-        question:"Что такое прогрев?",
-        answers:[
-            "Постепенное подведение человека к покупке через контент и доверие",
-            "Резкое повышение цены",
-            "Удаление старых постов"
-        ],
-        correct:0
-    },
-    {
-        question:"Какая схема лучше всего описывает работу SMM?",
-        answers:[
-            "контент → внимание → интерес → доверие → действие",
-            "логотип → пароль → файл → архив",
-            "скидка → случайность → ожидание"
-        ],
-        correct:0
-    }
-];
+const summaryData = {
 
-function setText(id, value){
-    const el = document.getElementById(id);
-    if(el) el.innerText = value;
+    ru:[
+        {
+            q:"Что такое SMM?",
+            a:"SMM — это продвижение бизнеса через социальные сети."
+        },
+
+        {
+            q:"С чем работает SMM?",
+            a:"Основа SMM — контент. Видео, посты, сторис и тексты помогают привлекать внимание и объяснять ценность продукта."
+        },
+
+        {
+            q:"Что такое ЦА?",
+            a:"ЦА — целевая аудитория. Это люди, которым реально может быть интересен продукт или услуга."
+        },
+
+        {
+            q:"Что такое прогрев?",
+            a:"Прогрев — постепенное подведение человека к покупке через контент и доверие."
+        },
+
+        {
+            q:"Как работает SMM?",
+            a:"Упрощенная схема:\nконтент → внимание → интерес → доверие → действие"
+        },
+
+        {
+            q:"Зачем бизнесу SMM?",
+            a:"Чтобы привлекать клиентов, объяснять продукт, удерживать внимание аудитории и увеличивать продажи."
+        }
+    ],
+
+    uz:[
+        {
+            q:"SMM nima?",
+            a:"SMM — bu ijtimoiy tarmoqlar orqali biznesni rivojlantirish."
+        },
+
+        {
+            q:"SMM nima bilan ishlaydi?",
+            a:"SMM asosida kontent yotadi. Video, post, stories va matnlar auditoriya e’tiborini jalb qiladi."
+        },
+
+        {
+            q:"CA nima?",
+            a:"CA — maqsadli auditoriya. Bu mahsulot qiziq bo‘lishi mumkin bo‘lgan odamlar."
+        },
+
+        {
+            q:"Progrev nima?",
+            a:"Progrev — kontent va ishonch orqali odamni xaridga tayyorlash."
+        },
+
+        {
+            q:"SMM qanday ishlaydi?",
+            a:"Oddiy sxema:\nkontent → e’tibor → qiziqish → ishonch → harakat"
+        },
+
+        {
+            q:"Biznesga SMM nima uchun kerak?",
+            a:"Mijoz topish, mahsulotni tushuntirish va savdoni oshirish uchun."
+        }
+    ]
 }
 
 function updateStaticText(){
-    const d = t[lang];
 
-    document.documentElement.lang = lang === "uz" ? "uz" : "ru";
+    const d = t[lang]
 
-    setText("back-mobile", d.back);
-    setText("lessonBadge-mobile", d.lessonBadge);
-    setText("lessonTitle-mobile", d.lessonTitle);
-    setText("lessonSubtitle-mobile", d.lessonSubtitle);
-    setText("videoTitle-mobile", d.videoTitle);
-    setText("videoText-mobile", d.videoText);
-    setText("summaryTitle-mobile", d.summaryTitle);
-    setText("summaryNote-mobile", d.summaryNote);
-    setText("materialBtn-mobile", d.materialBtn);
-    setText("testBtn-mobile", d.testBtn);
-    setText("m1-mobile", d.m1);
-    setText("m4-mobile", d.m4);
-    setText("m5-mobile", d.m5);
-    setText("m6-mobile", d.m6);
+    document.documentElement.lang = lang === "uz"
+        ? "uz"
+        : "ru"
 
-    setText("back-desktop", d.back);
-    setText("home-desktop", d.home);
-    setText("m1-desktop", d.m1);
-    setText("m4-desktop", d.m4);
-    setText("m5-desktop", d.m5);
-    setText("m6-desktop", d.m6);
-    setText("catalog-desktop", d.catalog);
-    setText("lessonBadge-desktop", d.lessonBadge);
-    setText("lessonTitle-desktop", d.lessonTitle);
-    setText("lessonSubtitle-desktop", d.lessonSubtitle);
-    setText("videoTitle-desktop", d.videoTitle);
-    setText("videoText-desktop", d.videoText);
-    setText("summaryTitle-desktop", d.summaryTitle);
-    setText("summaryNote-desktop", d.summaryNote);
-    setText("materialBtn-desktop", d.materialBtn);
-    setText("testBtn-desktop", d.testBtn);
-    setText("actionTitle-desktop", d.actionTitle);
-    setText("actionText-desktop", d.actionText);
-    setText("nextLabel-desktop", d.nextLabel);
-    setText("nextTitle-desktop", d.nextTitle);
+    /* MOBILE */
+
+    setText("back-mobile", d.back)
+
+    setText("lessonBadge-mobile", d.lessonBadge)
+    setText("lessonTitle-mobile", d.lessonTitle)
+    setText("lessonSubtitle-mobile", d.lessonSubtitle)
+
+    setText("videoTitle-mobile", d.videoTitle)
+    setText("videoText-mobile", d.videoText)
+
+    setText("goSummaryBtn-mobile", d.goSummary)
+
+    setText("summaryTitle-mobile", d.summaryTitle)
+    setText("summaryNote-mobile", d.summaryNote)
+
+    setText("summaryFinishBtn-mobile", d.summaryFinish)
+
+    setText("deepTitle-mobile", d.deepTitle)
+    setText("deepText-mobile", d.deepText)
+
+    setText("goTestBtn-mobile", d.goTest)
+
+    setText("testTitle-mobile", d.testTitle)
+    setText("testText-mobile", d.testText)
+
+    setText("nextQuestionBtn-mobile", d.nextQuestion)
+
+    setText("m1-mobile", d.m1)
+    setText("m4-mobile", d.m4)
+    setText("m5-mobile", d.m5)
+    setText("m6-mobile", d.m6)
+
+    /* DESKTOP */
+
+    setText("back-desktop", d.back)
+
+    setText("home-desktop", d.home)
+    setText("m1-desktop", d.m1)
+    setText("m4-desktop", d.m4)
+    setText("m5-desktop", d.m5)
+    setText("m6-desktop", d.m6)
+
+    setText("catalog-desktop", d.catalog)
+
+    setText("lessonBadge-desktop", d.lessonBadge)
+    setText("lessonTitle-desktop", d.lessonTitle)
+    setText("lessonSubtitle-desktop", d.lessonSubtitle)
+
+    setText("videoTitle-desktop", d.videoTitle)
+    setText("videoText-desktop", d.videoText)
+
+    setText("goSummaryBtn-desktop", d.goSummary)
+
+    setText("summaryTitle-desktop", d.summaryTitle)
+    setText("summaryNote-desktop", d.summaryNote)
+
+    setText("summaryFinishBtn-desktop", d.summaryFinish)
+
+    setText("deepTitle-desktop", d.deepTitle)
+    setText("deepText-desktop", d.deepText)
+
+    setText("goTestBtn-desktop", d.goTest)
+
+    setText("testTitle-desktop", d.testTitle)
+    setText("testText-desktop", d.testText)
+
+    setText("nextQuestionBtn-desktop", d.nextQuestion)
+
+    setText("materialBtn-desktop", d.materialBtn)
+    setText("openTestBtn-desktop", d.openTestBtn)
+
+    setText("sideTitle-desktop", d.sideTitle)
+    setText("sideText-desktop", d.sideText)
+
+    setText("stepsLabel-desktop", d.stepsLabel)
+
+    setText("stepVideoLabel-desktop", d.stepVideo)
+    setText("stepSummaryLabel-desktop", d.stepSummary)
+    setText("stepDeepLabel-desktop", d.stepDeep)
+    setText("stepTestLabel-desktop", d.stepTest)
+
+    /* MODAL */
+
+    setText("deepModalTitle", d.modalTitle)
+    setText("deepModalText", d.modalText)
+
+    setText("deepMaterialBtn", d.modalMaterial)
+    setText("deepTestBtn", d.modalTest)
+
+    renderSummary()
 }
 
-function initVideo(){
-    const mobileVideo = document.getElementById("lessonVideo-mobile");
-    const desktopVideo = document.getElementById("lessonVideo-desktop");
-    const mobilePlaceholder = document.getElementById("videoPlaceholder-mobile");
-    const desktopPlaceholder = document.getElementById("videoPlaceholder-desktop");
+function renderSummary(){
 
-    function setup(video, placeholder){
-        if(!video || !placeholder) return;
+    const data = summaryData[lang]
 
-        video.addEventListener("loadedmetadata", function(){
-            placeholder.style.display = "none";
-            video.style.display = "block";
-        });
+    const mobileRoot = document.getElementById("summaryList-mobile")
+    const desktopRoot = document.getElementById("summaryList-desktop")
 
-        video.addEventListener("error", function(){
-            placeholder.style.display = "flex";
-            video.style.display = "none";
-        });
+    const html = data.map(item => `
+        <div class="summary-card soft-card">
+
+            <button
+                class="summary-question"
+                onclick="toggleSummary(this)"
+            >
+
+                <span class="summary-question-text">
+                    ${item.q}
+                </span>
+
+                <span class="summary-arrow"></span>
+
+            </button>
+
+            <div class="summary-answer-wrap">
+
+                <div class="summary-answer">
+                    ${item.a.replace(/\n/g, "<br>")}
+                </div>
+
+            </div>
+
+        </div>
+    `).join("")
+
+    if(mobileRoot){
+        mobileRoot.innerHTML = html
     }
 
-    setup(mobileVideo, mobilePlaceholder);
-    setup(desktopVideo, desktopPlaceholder);
+    if(desktopRoot){
+        desktopRoot.innerHTML = html
+    }
 }
 
-function toggleQa(button){
-    const card = button.closest(".qa-card");
-    const answer = card.querySelector(".qa-answer-wrap");
-    const isOpen = card.classList.contains("open");
+const questions = {
+    ru:[
+        {
+            question:"Что такое SMM?",
+            answers:[
+                "Продвижение бизнеса через соцсети",
+                "Создание сайтов",
+                "Настройка серверов"
+            ],
+            correct:0
+        },
 
-    document.querySelectorAll(".qa-card").forEach(item => {
-        item.classList.remove("open");
+        {
+            question:"Что является основой SMM?",
+            answers:[
+                "Контент",
+                "Случайные скидки",
+                "Только логотип"
+            ],
+            correct:0
+        },
 
-        const itemAnswer = item.querySelector(".qa-answer-wrap");
-        if(itemAnswer) itemAnswer.style.maxHeight = null;
-    });
+        {
+            question:"Что такое ЦА?",
+            answers:[
+                "Целевая аудитория",
+                "Цена аккаунта",
+                "Цифровой анализ"
+            ],
+            correct:0
+        }
+    ],
+
+    uz:[
+        {
+            question:"SMM nima?",
+            answers:[
+                "Ijtimoiy tarmoqlar orqali biznesni rivojlantirish",
+                "Sayt yaratish",
+                "Server sozlash"
+            ],
+            correct:0
+        },
+
+        {
+            question:"SMM asosida nima yotadi?",
+            answers:[
+                "Kontent",
+                "Tasodifiy chegirmalar",
+                "Faqat logotip"
+            ],
+            correct:0
+        },
+
+        {
+            question:"CA nima?",
+            answers:[
+                "Maqsadli auditoriya",
+                "Akkaunt narxi",
+                "Raqamli analiz"
+            ],
+            correct:0
+        }
+    ]
+}
+
+function toggleSummary(button){
+
+    impact()
+
+    const card = button.closest(".summary-card")
+    const wrap = card.querySelector(".summary-answer-wrap")
+
+    const isOpen = card.classList.contains("open")
+
+    document.querySelectorAll(".summary-card").forEach(item => {
+        item.classList.remove("open")
+    })
+
+    document.querySelectorAll(".summary-answer-wrap").forEach(item => {
+        item.style.maxHeight = "0px"
+    })
 
     if(!isOpen){
-        card.classList.add("open");
-        answer.style.maxHeight = answer.scrollHeight + "px";
+        card.classList.add("open")
+        wrap.style.maxHeight = wrap.scrollHeight + "px"
     }
 }
 
-function openMaterial(){
-    const d = t[lang];
-    const materialPath = MATERIAL_PATHS[lang] || MATERIAL_PATHS.ru;
+function updateDesktopSteps(){
 
-    try{
-        window.open(materialPath, "_blank");
-    }catch(e){
-        alert(d.materialMissing);
+    document.querySelectorAll(".desktop-step-item").forEach(item => {
+        item.classList.remove("active")
+    })
+
+    const current = document.getElementById(`desktopStep-${currentStep}`)
+
+    if(current){
+        current.classList.add("active")
     }
 }
 
-function openTest(){
-    currentQuestionIndex = 0;
-    score = 0;
-    selectedAnswer = false;
+function goStep(step){
 
-    const overlay = document.getElementById("testOverlay");
-    if(overlay) overlay.classList.add("active");
+    impact()
 
-    renderQuestion();
+    currentStep = step
+
+    const mobileSteps = document.querySelectorAll("#step-video-mobile, #step-summary-mobile, #step-deep-mobile, #step-test-mobile")
+
+    const desktopSteps = document.querySelectorAll("#step-video-desktop, #step-summary-desktop, #step-deep-desktop, #step-test-desktop")
+
+    mobileSteps.forEach(step => {
+        step.classList.remove("active")
+    })
+
+    desktopSteps.forEach(step => {
+        step.classList.remove("active")
+    })
+
+    const mobileTarget = document.getElementById(`step-${step}-mobile`)
+    const desktopTarget = document.getElementById(`step-${step}-desktop`)
+
+    if(mobileTarget){
+        mobileTarget.classList.add("active")
+    }
+
+    if(desktopTarget){
+        desktopTarget.classList.add("active")
+    }
+
+    updateDesktopSteps()
+
+    window.scrollTo({
+        top:0,
+        behavior:"smooth"
+    })
+
+    if(step === "test"){
+        renderQuestion()
+    }
 }
 
-function closeTest(){
-    const overlay = document.getElementById("testOverlay");
-    if(overlay) overlay.classList.remove("active");
+function openDeepModal(){
+
+    impact()
+
+    const modal = document.getElementById("deepOverlay")
+
+    if(modal){
+        modal.classList.add("active")
+    }
+}
+
+function closeDeepModal(){
+
+    const modal = document.getElementById("deepOverlay")
+
+    if(modal){
+        modal.classList.remove("active")
+    }
 }
 
 function renderQuestion(){
-    const d = t[lang];
-    const question = questions[currentQuestionIndex];
-    const progress = Math.round(((currentQuestionIndex + 1) / questions.length) * 100);
 
-    selectedAnswer = false;
+    const data = questions[lang]
+    const question = data[currentQuestionIndex]
 
-    const content = document.getElementById("testContent");
-
-    if(!content) return;
-
-    content.innerHTML = `
-        <div class="test-top">
-            <div class="test-counter">${d.testCounter} ${currentQuestionIndex + 1} / ${questions.length}</div>
-            <button class="test-close" onclick="closeTest()">×</button>
-        </div>
-
-        <div class="test-progress-line">
-            <div class="test-progress-fill" style="width:${progress}%"></div>
-        </div>
-
-        <h2 class="test-question">${question.question}</h2>
-
-        <div class="test-answers">
-            ${question.answers.map((answer, index) => `
-                <button class="test-answer" onclick="selectAnswer(${index})">
-                    ${answer}
-                </button>
-            `).join("")}
-        </div>
-
-        <button class="btn btn-primary test-next" id="testNextBtn" onclick="nextQuestion()">
-            ${d.nextQuestion}
-        </button>
-    `;
-}
-
-function selectAnswer(index){
-    if(selectedAnswer) return;
-
-    selectedAnswer = true;
-
-    const question = questions[currentQuestionIndex];
-    const buttons = document.querySelectorAll(".test-answer");
-
-    buttons.forEach((button, buttonIndex) => {
-        button.disabled = true;
-
-        if(buttonIndex === question.correct){
-            button.classList.add("correct");
-        }
-
-        if(buttonIndex === index && index !== question.correct){
-            button.classList.add("wrong");
-        }
-    });
-
-    if(index === question.correct){
-        score++;
+    if(!question){
+        finishLesson()
+        return
     }
 
-    const nextBtn = document.getElementById("testNextBtn");
-    if(nextBtn) nextBtn.style.display = "block";
+    selectedAnswer = false
+
+    const mobileQuestion = document.getElementById("testQuestion-mobile")
+    const desktopQuestion = document.getElementById("testQuestion-desktop")
+
+    if(mobileQuestion){
+        mobileQuestion.innerText = question.question
+    }
+
+    if(desktopQuestion){
+        desktopQuestion.innerText = question.question
+    }
+
+    const mobileAnswers = document.getElementById("testAnswers-mobile")
+    const desktopAnswers = document.getElementById("testAnswers-desktop")
+
+    const answersHTML = question.answers.map((answer, index) => `
+        <button
+            class="test-answer"
+            onclick="selectAnswer(this, ${index})"
+        >
+            ${answer}
+        </button>
+    `).join("")
+
+    if(mobileAnswers){
+        mobileAnswers.innerHTML = answersHTML
+    }
+
+    if(desktopAnswers){
+        desktopAnswers.innerHTML = answersHTML
+    }
+
+    updateTestProgress()
+
+    const mobileNext = document.getElementById("nextQuestionBtn-mobile")
+    const desktopNext = document.getElementById("nextQuestionBtn-desktop")
+
+    if(mobileNext){
+        mobileNext.style.display = "none"
+    }
+
+    if(desktopNext){
+        desktopNext.style.display = "none"
+    }
+}
+
+function selectAnswer(button, index){
+
+    if(selectedAnswer) return
+
+    selectedAnswer = true
+
+    impact()
+
+    const data = questions[lang]
+    const question = data[currentQuestionIndex]
+
+    const allButtons = document.querySelectorAll(".test-answer")
+
+    allButtons.forEach(btn => {
+        btn.disabled = true
+    })
+
+    if(index === question.correct){
+
+        button.classList.add("correct")
+        score++
+
+    }else{
+
+        button.classList.add("wrong")
+
+        allButtons.forEach((btn, btnIndex) => {
+
+            if(btnIndex === question.correct){
+                btn.classList.add("correct")
+            }
+
+        })
+    }
+
+    const mobileNext = document.getElementById("nextQuestionBtn-mobile")
+    const desktopNext = document.getElementById("nextQuestionBtn-desktop")
+
+    if(mobileNext){
+        mobileNext.style.display = "block"
+    }
+
+    if(desktopNext){
+        desktopNext.style.display = "block"
+    }
 }
 
 function nextQuestion(){
-    currentQuestionIndex++;
 
-    if(currentQuestionIndex >= questions.length){
-        finishTest();
-        return;
+    impact()
+
+    currentQuestionIndex++
+
+    renderQuestion()
+}
+
+function updateTestProgress(){
+
+    const data = questions[lang]
+
+    const percent = ((currentQuestionIndex) / data.length) * 100
+
+    const mobileProgress = document.getElementById("testProgress-mobile")
+    const desktopProgress = document.getElementById("testProgress-desktop")
+
+    if(mobileProgress){
+        mobileProgress.style.width = `${percent}%`
     }
 
-    renderQuestion();
+    if(desktopProgress){
+        desktopProgress.style.width = `${percent}%`
+    }
 }
 
-function finishTest(){
-    completeLesson();
+async function saveProgress(){
 
-    const d = t[lang];
-    const content = document.getElementById("testContent");
+    try{
 
-    if(!content) return;
+        if(!telegramUserId) return
 
-    content.innerHTML = `
-        <div class="test-finish">
-            <div class="test-finish-icon">✓</div>
+        await fetch("https://api.gaphub.uz/progress/complete",{
 
-            <h2 class="test-finish-title">${d.finishTitle}</h2>
-
-            <p class="test-finish-text">
-                ${d.finishText}
-                <br><br>
-                Результат: ${score} / ${questions.length}
-            </p>
-
-            <div class="test-finish-actions">
-                <button class="btn btn-primary test-next" style="display:block" onclick="goCourse()">
-                    ${d.finishBack}
-                </button>
-
-                <button class="btn btn-secondary test-next" style="display:block" onclick="goNextLesson()">
-                    ${d.finishNext}
-                </button>
-            </div>
-        </div>
-    `;
-}
-
-function completeLesson(){
-    localStorage.setItem(`${COURSE_SLUG}_completed_lessons`, String(LESSON_ID));
-
-    if(telegramUserId){
-        fetch("https://api.gaphub.uz/progress/complete", {
             method:"POST",
+
             headers:{
                 "Content-Type":"application/json"
             },
+
             body:JSON.stringify({
                 telegram_id:telegramUserId,
-                course:COURSE_SLUG,
-                lesson:LESSON_ID
+                course_slug:COURSE_SLUG,
+                lesson_id:LESSON_ID
             })
         })
-        .then(res => res.json())
-        .then(data => {
-            console.log("Progress saved:", data);
-        })
-        .catch(err => {
-            console.log("Progress save error:", err);
-        });
+
+    }catch(error){
+
+        console.log(error)
     }
 }
 
-function goCourse(){
-    localStorage.setItem("lang", lang);
-    window.location.href = "learn-smm.html";
+async function finishLesson(){
+
+    await saveProgress()
+
+    const d = t[lang]
+
+    const mobileRoot = document.getElementById("step-test-mobile")
+    const desktopRoot = document.getElementById("step-test-desktop")
+
+    const html = `
+        <div class="glow-card" style="
+            border-radius:28px;
+            padding:24px;
+        ">
+
+            <h2 style="
+                margin:0 0 12px;
+                font-size:32px;
+                line-height:1.1;
+                font-weight:800;
+            ">
+                ${d.finishTitle}
+            </h2>
+
+            <p style="
+                margin:0 0 20px;
+                color:var(--muted);
+                line-height:1.6;
+                font-size:15px;
+            ">
+                ${d.finishText}
+            </p>
+
+            <button
+                class="mobile-main-btn"
+                onclick="openNextLesson()"
+            >
+                ${d.finishNext}
+            </button>
+
+        </div>
+    `
+
+    if(mobileRoot){
+        mobileRoot.innerHTML = html
+    }
+
+    if(desktopRoot){
+        desktopRoot.innerHTML = html
+    }
 }
 
-function goNextLesson(){
-    localStorage.setItem("lang", lang);
-    window.location.href = `smm-lesson-${NEXT_LESSON_ID}.html`;
+function openNextLesson(){
+
+    impact()
+
+    window.location.href = `smm-lesson-${NEXT_LESSON_ID}.html`
 }
 
-function goHome(){
-    localStorage.setItem("lang", lang);
-    window.location.href = "index.html";
+function openMaterial(){
+
+    impact()
+
+    const path = MATERIAL_PATHS[lang]
+
+    if(!path){
+        alert(t[lang].materialMissing)
+        return
+    }
+
+    window.open(path, "_blank")
 }
 
-function goPage(page){
-    localStorage.setItem("lang", lang);
-    window.location.href = page;
-}
+function initVideo(){
 
-function goCourses(){
-    localStorage.setItem("lang", lang);
-    window.location.href = "courses.html";
+    const mobileVideo = document.getElementById("lessonVideo-mobile")
+    const desktopVideo = document.getElementById("lessonVideo-desktop")
+
+    const mobileSource = document.getElementById("videoSource-mobile")
+    const desktopSource = document.getElementById("videoSource-desktop")
+
+    if(mobileSource){
+        mobileSource.src = VIDEO_PATH
+    }
+
+    if(desktopSource){
+        desktopSource.src = VIDEO_PATH
+    }
+
+    if(mobileVideo){
+        mobileVideo.load()
+    }
+
+    if(desktopVideo){
+        desktopVideo.load()
+    }
 }
 
 function goBack(){
+
+    impact()
+
     if(window.history.length > 1){
-        window.history.back();
+
+        window.history.back()
+
     }else{
-        window.location.href = "learn-smm.html";
+
+        window.location.href = "learn-smm-v2.html"
     }
+}
+
+function goHome(){
+
+    impact()
+
+    localStorage.setItem("lang", lang)
+
+    window.location.href = "index.html"
+}
+
+function goCourses(){
+
+    impact()
+
+    localStorage.setItem("lang", lang)
+
+    window.location.href = "courses.html"
+}
+
+function goPage(page){
+
+    impact()
+
+    localStorage.setItem("lang", lang)
+
+    window.location.href = page
 }
 
 function initTelegram(){
-    if(window.Telegram && Telegram.WebApp){
-        const tg = Telegram.WebApp;
 
-        tg.ready();
-        tg.expand();
+    if(window.Telegram && Telegram.WebApp){
+
+        const tg = Telegram.WebApp
+
+        tg.ready()
+        tg.expand()
 
         try{
-            tg.requestFullscreen();
+            tg.requestFullscreen()
         }catch(e){}
 
-        document.body.style.minHeight = tg.viewportHeight + "px";
+        if(tg.initDataUnsafe && tg.initDataUnsafe.user){
 
-        const user = tg.initDataUnsafe?.user;
-
-        if(user && user.id){
-            telegramUserId = user.id;
+            telegramUserId = tg.initDataUnsafe.user.id
         }
+
+        document.body.style.minHeight =
+            tg.viewportHeight + "px"
     }
 }
 
-function init(){
-    updateStaticText();
-    initVideo();
-    initTelegram();
+function impact(style = "light"){
+
+    if(
+        window.Telegram &&
+        Telegram.WebApp &&
+        Telegram.WebApp.HapticFeedback
+    ){
+
+        Telegram.WebApp.HapticFeedback
+            .impactOccurred(style)
+    }
 }
 
-init();
+updateStaticText()
+initVideo()
+initTelegram()
+
 </script>
 
 </body>
