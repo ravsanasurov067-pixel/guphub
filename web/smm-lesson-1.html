@@ -238,6 +238,35 @@ button{
     box-shadow:var(--shadow);
 }
 
+.lesson-lang{
+    display:inline-flex;
+    align-items:center;
+    gap:3px;
+    padding:3px;
+    border-radius:999px;
+    background:rgba(255,255,255,.055);
+    border:1px solid rgba(255,255,255,.08);
+}
+
+.lesson-lang button{
+    min-width:44px;
+    height:32px;
+    border:none;
+    border-radius:999px;
+    background:transparent;
+    color:#fff;
+    font-size:13px;
+    font-weight:800;
+}
+
+.lesson-lang button.active{
+    background:linear-gradient(90deg,var(--accent),var(--accent-2));
+}
+
+.lesson-lang-mobile{
+    margin-bottom:14px;
+}
+
 .mobile-video-frame{
     width:100%;
     aspect-ratio:16/9;
@@ -763,6 +792,18 @@ button{
         margin-top:4px;
     }
 
+    .desktop-top-line{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:18px;
+    margin-bottom:18px;
+}
+
+.desktop-top-line .desktop-back{
+    margin-bottom:0;
+}
+
     .desktop-nav-item{
         display:flex;
         align-items:center;
@@ -1228,6 +1269,15 @@ button{
         font-size:14px;
 
         font-weight:700;
+
+        cursor:pointer;
+
+        transition:.18s ease;
+    }
+
+    .desktop-step-item:hover{
+        background:rgba(203,108,230,.12);
+        transform:translateX(2px);
     }
 
     .desktop-step-dot{
@@ -1515,6 +1565,11 @@ button{
                 <span class="mobile-back-arrow">←</span>
             </button>
 
+            <div class="lesson-lang lesson-lang-mobile">
+                <button id="lessonLangUz-mobile" onclick="setLessonLang('uz')">UZ</button>
+                <button id="lessonLangRu-mobile" onclick="setLessonLang('ru')">RU</button>
+            </div>
+
             <div class="mobile-badge" id="lessonBadge-mobile"></div>
 
             <h1 class="mobile-title" id="lessonTitle-mobile"></h1>
@@ -1794,6 +1849,11 @@ button{
                 <span id="back-desktop"></span>
             </div>
 
+            <div class="lesson-lang">
+                <button id="lessonLangUz-desktop" onclick="setLessonLang('uz')">UZ</button>
+                <button id="lessonLangRu-desktop" onclick="setLessonLang('ru')">RU</button>
+            </div>
+
             <div class="desktop-content-grid">
 
                 <!-- MAIN COLUMN -->
@@ -2009,22 +2069,6 @@ button{
                             id="sideText-desktop"
                         ></p>
 
-                        <div class="desktop-side-buttons">
-
-                            <button
-                                class="btn btn-secondary desktop-side-btn"
-                                id="materialBtn-desktop"
-                                onclick="openMaterial()"
-                            ></button>
-
-                            <button
-                                class="btn btn-primary desktop-side-btn"
-                                id="openTestBtn-desktop"
-                                onclick="goStep('test')"
-                            ></button>
-
-                        </div>
-
                     </div>
 
                     <div class="desktop-steps-card soft-card">
@@ -2039,6 +2083,7 @@ button{
                             <div
                                 class="desktop-step-item active"
                                 id="desktopStep-video"
+                                onclick="goStep('video')"
                             >
                                 <div class="desktop-step-dot"></div>
                                 <span id="stepVideoLabel-desktop"></span>
@@ -2047,6 +2092,7 @@ button{
                             <div
                                 class="desktop-step-item"
                                 id="desktopStep-summary"
+                                onclick="goStep('summary')"
                             >
                                 <div class="desktop-step-dot"></div>
                                 <span id="stepSummaryLabel-desktop"></span>
@@ -2055,6 +2101,7 @@ button{
                             <div
                                 class="desktop-step-item"
                                 id="desktopStep-deep"
+                                onclick="goStep('deep')"
                             >
                                 <div class="desktop-step-dot"></div>
                                 <span id="stepDeepLabel-desktop"></span>
@@ -2063,6 +2110,7 @@ button{
                             <div
                                 class="desktop-step-item"
                                 id="desktopStep-test"
+                                onclick="goStep('test')"
                             >
                                 <div class="desktop-step-dot"></div>
                                 <span id="stepTestLabel-desktop"></span>
@@ -2126,8 +2174,8 @@ const NEXT_LESSON_ID = 2
 const VIDEO_PATH = "https://bot.gaphub.uz/videos/smm/lesson-1.mp4"
 
 const MATERIAL_PATHS = {
-    ru:"materials/smm/lesson-1-ru.pdf",
-    uz:"materials/smm/lesson-1-uz.pdf"
+    ru:"https://bot.gaphub.uz/materials/smm/lesson-1-ru.pdf",
+    uz:"https://bot.gaphub.uz/materials/smm/lesson-1-uz.pdf"
 }
 
 let currentStep = "video"
@@ -2461,6 +2509,7 @@ function updateStaticText(){
     setText("deepMaterialBtn", d.modalMaterial)
     setText("deepTestBtn", d.modalTest)
 
+    updateLessonLangButtons()
     renderSummary()
 }
 
@@ -2573,6 +2622,35 @@ const questions = {
     ]
 }
 
+function updateLessonLangButtons(){
+
+    const buttons = [
+        ["lessonLangUz-mobile", "uz"],
+        ["lessonLangRu-mobile", "ru"],
+        ["lessonLangUz-desktop", "uz"],
+        ["lessonLangRu-desktop", "ru"]
+    ]
+
+    buttons.forEach(([id, value]) => {
+        const el = document.getElementById(id)
+
+        if(el){
+            el.classList.toggle("active", lang === value)
+        }
+    })
+}
+
+function setLessonLang(value){
+
+    impact()
+
+    lang = value
+    localStorage.setItem("lang", value)
+
+    updateStaticText()
+    renderQuestion()
+}
+
 function toggleSummary(button){
 
     impact()
@@ -2614,6 +2692,30 @@ function goStep(step){
     impact()
 
     currentStep = step
+
+    const mobileTop = document.querySelector(".mobile-top")
+const desktopHead = document.querySelector(".desktop-head")
+
+if(step === "video"){
+
+    if(mobileTop){
+        mobileTop.style.display = "block"
+    }
+
+    if(desktopHead){
+        desktopHead.style.display = "block"
+    }
+
+}else{
+
+    if(mobileTop){
+        mobileTop.style.display = "none"
+    }
+
+    if(desktopHead){
+        desktopHead.style.display = "none"
+    }
+}
 
     const mobileSteps = document.querySelectorAll("#step-video-mobile, #step-summary-mobile, #step-deep-mobile, #step-test-mobile")
 
@@ -2930,14 +3032,22 @@ function goBack(){
 
     impact()
 
-    if(window.history.length > 1){
-
-        window.history.back()
-
-    }else{
-
-        window.location.href = "learn-smm-v2.html"
+    if(currentStep === "test"){
+        goStep("deep")
+        return
     }
+
+    if(currentStep === "deep"){
+        goStep("summary")
+        return
+    }
+
+    if(currentStep === "summary"){
+        goStep("video")
+        return
+    }
+
+    window.location.href = "learn-smm-v2.html"
 }
 
 function goHome(){
