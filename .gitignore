@@ -1,4 +1,4 @@
-# env files
+# env
 .env
 */.env
 
@@ -6,4 +6,9 @@
 __pycache__/
 *.pyc
 venv/
-echo ".DS_Store" >> .gitignore
+
+# macOS
+.DS_Store
+
+# videos
+web/videos/

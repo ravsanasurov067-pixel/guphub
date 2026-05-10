@@ -65,181 +65,117 @@ button{
 }
 
 .mobile-page{
-    min-height:100vh;
-    padding:calc(env(safe-area-inset-top) + 76px) 14px calc(110px + env(safe-area-inset-bottom));
+    min-height:calc(100vh + 24px);
+    padding:
+        calc(env(safe-area-inset-top) + 78px)
+        16px
+        calc(112px + env(safe-area-inset-bottom));
+
     background:
-        radial-gradient(circle at 20% 10%, rgba(203,108,230,.10), transparent 24%),
+        radial-gradient(circle at 20% 8%, rgba(203,108,230,.12), transparent 24%),
         linear-gradient(180deg, #09080f 0%, #0c0b14 100%);
 }
 
-.mobile-back{
-    display:inline-flex;
-    align-items:center;
-    gap:8px;
-    background:#1a1a1a;
-    color:#fff;
-    border:none;
-    border-radius:12px;
-    padding:10px 14px;
-    font-size:15px;
-    margin-bottom:16px;
-}
-
-.mobile-back svg{
-    width:16px;
-    height:16px;
-    flex-shrink:0;
-}
-
-.mobile-hero{
-    position:relative;
-    overflow:hidden;
-    border-radius:26px;
-    background:
-        radial-gradient(circle at 85% 15%, rgba(203,108,230,.18), transparent 25%),
-        linear-gradient(180deg, #15141e 0%, #0f0e17 100%);
-    border:1px solid rgba(255,255,255,.05);
-    box-shadow:var(--shadow);
-    padding:20px 16px 18px;
-}
-
-.mobile-kicker{
-    display:inline-flex;
-    align-items:center;
-    gap:8px;
-    background:rgba(255,255,255,.06);
-    border:1px solid rgba(255,255,255,.06);
-    border-radius:999px;
-    padding:8px 12px;
-    font-size:12px;
-    color:#ebe4f5;
-    margin-bottom:14px;
+.mobile-header{
+    animation:fadeUp .42s ease both;
 }
 
 .mobile-title{
-    margin:0 0 10px;
-    font-size:34px;
-    line-height:.96;
+    margin:0 0 8px;
+    font-size:clamp(34px,9vw,42px);
+    line-height:.94;
     font-weight:800;
-    letter-spacing:-0.8px;
+    letter-spacing:-1px;
 }
 
 .mobile-desc{
     margin:0;
+    max-width:330px;
     color:var(--muted);
-    font-size:14px;
-    line-height:1.5;
-    max-width:96%;
+    font-size:15px;
+    line-height:1.45;
 }
 
-.mobile-note{
-    margin-top:16px;
-    background:rgba(255,255,255,.04);
-    border-radius:18px;
-    padding:14px;
-    color:#f0ebf8;
-    font-size:14px;
-    line-height:1.5;
+.mobile-main-action{
+    margin-top:18px;
+    animation:fadeUp .45s ease both;
+    animation-delay:.06s;
+}
+
+.mobile-support-btn{
+    width:100%;
+    min-height:58px;
+    border:none;
+    border-radius:20px;
+    color:#fff;
+    background:linear-gradient(90deg,#cb6ce6,#a855f7);
+    box-shadow:0 14px 32px rgba(203,108,230,.25);
+    font-size:16px;
+    font-weight:800;
+    transition:transform .18s ease, opacity .18s ease;
+}
+
+.mobile-support-btn:active{
+    transform:scale(.985);
+    opacity:.92;
 }
 
 .mobile-section{
-    margin-top:14px;
-    background:#121218;
-    border:1px solid rgba(255,255,255,.05);
-    border-radius:22px;
-    padding:16px 14px;
-    box-shadow:var(--shadow);
+    margin-top:22px;
 }
 
 .mobile-section-title{
-    margin:0 0 12px;
-    font-size:20px;
+    margin:0 0 14px;
+    font-size:22px;
+    line-height:1.1;
     font-weight:800;
-    line-height:1.15;
-}
-
-.mobile-contacts{
-    display:flex;
-    flex-direction:column;
-    gap:10px;
-}
-
-.mobile-contact{
-    display:flex;
-    align-items:center;
-    justify-content:space-between;
-    gap:12px;
-    background:#181821;
-    border-radius:16px;
-    padding:14px;
-}
-
-.mobile-contact-left{
-    display:flex;
-    align-items:center;
-    gap:12px;
-    min-width:0;
-}
-
-.mobile-contact-icon{
-    width:50px;
-    height:50px;
-    border-radius:12px;
-    background:#22222d;
-    flex-shrink:0;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    overflow:hidden;
-}
-
-.mobile-contact-icon img{
-    width:50px;
-    height:50px;
-    object-fit:contain;
-}
-
-.mobile-contact-title{
-    font-size:15px;
-    font-weight:700;
-    line-height:1.3;
-}
-
-.mobile-contact-text{
-    font-size:13px;
-    color:var(--muted-soft);
-    margin-top:2px;
-    line-height:1.4;
-}
-
-.mobile-contact-arrow{
-    font-size:18px;
-    color:#bfbfbf;
-    line-height:1;
-    flex-shrink:0;
+    animation:fadeUp .45s ease both;
+    animation-delay:.10s;
 }
 
 .mobile-faq-list{
     display:flex;
     flex-direction:column;
-    gap:10px;
+    gap:12px;
 }
 
 .mobile-faq-item{
-    background:#181821;
-    border-radius:16px;
+    border-radius:22px;
     overflow:hidden;
+    background:
+        radial-gradient(circle at 88% 18%, rgba(203,108,230,.10), transparent 24%),
+        linear-gradient(180deg, #121219 0%, #0d0d12 100%);
+    border:1px solid rgba(255,255,255,.05);
+    box-shadow:var(--shadow);
+    animation:fadeUp .45s ease both;
+}
+
+.mobile-faq-item:nth-child(1){
+    animation-delay:.14s;
+}
+
+.mobile-faq-item:nth-child(2){
+    animation-delay:.20s;
+}
+
+.mobile-faq-item:nth-child(3){
+    animation-delay:.26s;
+}
+
+.mobile-faq-item:nth-child(4){
+    animation-delay:.32s;
 }
 
 .mobile-faq-question{
     width:100%;
+    min-height:62px;
     background:transparent;
     border:none;
     color:#fff;
-    padding:14px;
+    padding:0 16px;
     font-size:15px;
     line-height:1.35;
-    font-weight:700;
+    font-weight:800;
     display:flex;
     align-items:center;
     justify-content:space-between;
@@ -252,18 +188,33 @@ button{
 }
 
 .mobile-faq-icon{
+    width:38px;
+    height:38px;
+    border-radius:14px;
+    background:rgba(255,255,255,.05);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    flex-shrink:0;
+    transition:.22s ease;
+}
+
+.mobile-faq-icon::before{
+    content:"";
     width:10px;
     height:10px;
-    flex-shrink:0;
     border-right:2px solid var(--accent);
     border-bottom:2px solid var(--accent);
-    transform:rotate(45deg);
-    transition:transform .25s ease;
-    margin-right:4px;
+    transform:rotate(45deg) translate(-1px,-1px);
+    transition:.22s ease;
 }
 
 .mobile-faq-item.open .mobile-faq-icon{
-    transform:rotate(225deg);
+    background:rgba(203,108,230,.16);
+}
+
+.mobile-faq-item.open .mobile-faq-icon::before{
+    transform:rotate(225deg) translate(-1px,-1px);
 }
 
 .mobile-faq-answer-wrap{
@@ -273,24 +224,18 @@ button{
 }
 
 .mobile-faq-answer{
-    padding:0 14px 14px;
+    padding:0 16px 16px;
     font-size:14px;
-    line-height:1.5;
+    line-height:1.55;
     color:#d3d3d3;
 }
 
-.mobile-cta-wrap{
-    margin-top:14px;
-}
-
-.mobile-cta{
-    width:100%;
-    height:56px;
-    border:none;
-    border-radius:18px;
-    font-size:17px;
-    font-weight:700;
-    box-shadow:0 14px 32px rgba(203,108,230,.25);
+.mobile-divider{
+    margin:22px 0 0;
+    height:1px;
+    background:linear-gradient(90deg, transparent, rgba(203,108,230,.55), transparent);
+    animation:fadeUp .45s ease both;
+    animation-delay:.36s;
 }
 
 /* BOTTOM NAV */
@@ -330,6 +275,16 @@ button{
     text-overflow:ellipsis;
 }
 
+.nav-item.active-mobile-nav span{
+    color:#d68cff;
+}
+
+.nav-item.active-mobile-nav img{
+    filter:
+        drop-shadow(0 0 10px rgba(203,108,230,.45))
+        brightness(1.08);
+}
+
 .nav-center{
     position:relative;
     top:-18px;
@@ -347,12 +302,25 @@ button{
     display:flex;
     align-items:center;
     justify-content:center;
+    box-shadow:0 10px 30px rgba(203,108,230,.25);
 }
 
 .circle img{
     width:24px;
     height:24px;
     object-fit:contain;
+}
+
+@keyframes fadeUp{
+    from{
+        opacity:0;
+        transform:translateY(14px);
+    }
+
+    to{
+        opacity:1;
+        transform:translateY(0);
+    }
 }
 
 /* =========================
@@ -484,219 +452,201 @@ button{
     }
 
     .desktop-hero{
-        position:relative;
-        overflow:hidden;
-        border-radius:30px;
-        background:
-            radial-gradient(circle at 82% 18%, rgba(203,108,230,.18), transparent 24%),
-            radial-gradient(circle at 12% 85%, rgba(203,108,230,.08), transparent 24%),
-            linear-gradient(180deg, #15141e 0%, #0f0e17 100%);
-        border:1px solid rgba(255,255,255,.05);
-        box-shadow:var(--shadow);
-        padding:28px 26px 24px;
-    }
+    position:relative;
+    overflow:hidden;
+    border-radius:30px;
+    background:
+        radial-gradient(circle at 82% 18%, rgba(203,108,230,.18), transparent 24%),
+        radial-gradient(circle at 12% 85%, rgba(203,108,230,.08), transparent 24%),
+        linear-gradient(180deg, #15141e 0%, #0f0e17 100%);
+    border:1px solid rgba(255,255,255,.05);
+    box-shadow:var(--shadow);
+    padding:28px 26px;
+}
 
-    .desktop-kicker{
-        display:inline-flex;
-        align-items:center;
-        gap:8px;
-        background:rgba(255,255,255,.06);
-        border:1px solid rgba(255,255,255,.06);
-        border-radius:999px;
-        padding:10px 14px;
-        font-size:13px;
-        color:#ebe4f5;
-        margin-bottom:18px;
-    }
+.desktop-hero-layout{
+    display:grid;
+    grid-template-columns:minmax(0,1fr) 360px;
+    gap:22px;
+    align-items:stretch;
+}
 
-    .desktop-title{
-        margin:0 0 12px;
-        font-size:clamp(42px,4.2vw,64px);
-        line-height:.94;
-        font-weight:800;
-        letter-spacing:-1.2px;
-        max-width:760px;
-    }
+.desktop-kicker{
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+    background:rgba(255,255,255,.06);
+    border:1px solid rgba(255,255,255,.06);
+    border-radius:999px;
+    padding:10px 14px;
+    font-size:13px;
+    color:#ebe4f5;
+    margin-bottom:18px;
+}
 
-    .desktop-desc{
-        margin:0;
-        color:var(--muted);
-        font-size:clamp(16px,1.15vw,19px);
-        line-height:1.6;
-        max-width:760px;
-    }
+.desktop-title{
+    margin:0 0 12px;
+    font-size:clamp(42px,4.2vw,64px);
+    line-height:.94;
+    font-weight:800;
+    letter-spacing:-1.2px;
+    max-width:760px;
+}
 
-    .desktop-note{
-        margin-top:22px;
-        background:rgba(255,255,255,.04);
-        border-radius:22px;
-        padding:18px 20px;
-        color:#f0ebf8;
-        font-size:16px;
-        line-height:1.55;
-        max-width:920px;
-    }
+.desktop-desc{
+    margin:0;
+    color:var(--muted);
+    font-size:clamp(16px,1.15vw,19px);
+    line-height:1.6;
+    max-width:760px;
+}
 
-    .desktop-grid{
-        margin-top:16px;
-        display:grid;
-        grid-template-columns:1fr 1fr;
-        gap:14px;
-    }
+.desktop-hero-action{
+    margin-top:22px;
+    display:flex;
+}
 
-    .desktop-contact-card{
-        display:flex;
-        align-items:center;
-        justify-content:space-between;
-        gap:14px;
-        background:#141419;
-        border:1px solid rgba(255,255,255,.05);
-        border-radius:24px;
-        padding:18px;
-        box-shadow:var(--shadow);
-        cursor:pointer;
-    }
+.desktop-hero-support-btn{
+    width:100%;
+    max-width:380px;
+    height:60px;
+    border:none;
+    border-radius:18px;
+    font-size:18px;
+    font-weight:800;
+    box-shadow:0 14px 32px rgba(203,108,230,.25);
+}
 
-    .desktop-contact-left{
-        display:flex;
-        align-items:center;
-        gap:14px;
-        min-width:0;
-    }
+.desktop-help-card{
+    border-radius:24px;
+    padding:20px;
+    background:
+        radial-gradient(circle at 88% 18%, rgba(203,108,230,.12), transparent 24%),
+        linear-gradient(180deg, #121219 0%, #0d0d12 100%);
+    border:1px solid rgba(255,255,255,.06);
+    box-shadow:var(--shadow);
+}
 
-    .desktop-contact-icon{
-        width:48px;
-        height:48px;
-        border-radius:14px;
-        background:#22222d;
-        flex-shrink:0;
-        display:flex;
-        align-items:center;
-        justify-content:center;
-        overflow:hidden;
-    }
+.desktop-help-title{
+    margin:0 0 12px;
+    font-size:22px;
+    line-height:1.1;
+    font-weight:800;
+}
 
-    .desktop-contact-icon img{
-        width:48px;
-        height:48px;
-        object-fit:contain;
-    }
+.desktop-help-list{
+    display:flex;
+    flex-direction:column;
+    gap:10px;
+}
 
-    .desktop-contact-title{
-        font-size:18px;
-        font-weight:700;
-        line-height:1.25;
-    }
+.desktop-help-item{
+    min-height:48px;
+    border-radius:16px;
+    padding:12px 13px;
+    background:rgba(255,255,255,.045);
+    border:1px solid rgba(255,255,255,.06);
+    color:#e8e3f0;
+    font-size:15px;
+    line-height:1.35;
+    font-weight:700;
+}
 
-    .desktop-contact-text{
-        font-size:14px;
-        color:var(--muted-soft);
-        margin-top:3px;
-        line-height:1.45;
-    }
+.desktop-wide{
+    margin-top:18px;
+    background:
+        radial-gradient(circle at 88% 18%, rgba(203,108,230,.10), transparent 20%),
+        linear-gradient(180deg, #121218 0%, #101017 100%);
+    border:1px solid rgba(255,255,255,.05);
+    border-radius:28px;
+    padding:22px;
+    box-shadow:var(--shadow);
+}
 
-    .desktop-contact-arrow{
-        font-size:24px;
-        color:#bfbfbf;
-        line-height:1;
-        flex-shrink:0;
-    }
+.desktop-section-title{
+    margin:0 0 16px;
+    font-size:30px;
+    line-height:1.1;
+    font-weight:800;
+}
 
-    .desktop-wide{
-        margin-top:16px;
-        background:
-            radial-gradient(circle at 88% 18%, rgba(203,108,230,.10), transparent 20%),
-            linear-gradient(180deg, #121218 0%, #101017 100%);
-        border:1px solid rgba(255,255,255,.05);
-        border-radius:28px;
-        padding:22px;
-        box-shadow:var(--shadow);
-    }
+.desktop-faq-list{
+    display:grid;
+    grid-template-columns:repeat(2, minmax(0,1fr));
+    gap:12px;
+}
 
-    .desktop-section-title{
-        margin:0 0 14px;
-        font-size:30px;
-        line-height:1.1;
-        font-weight:800;
-    }
+.desktop-faq-item{
+    background:#181821;
+    border-radius:18px;
+    overflow:hidden;
+    border:1px solid rgba(255,255,255,.05);
+}
 
-    .desktop-faq-list{
-        display:flex;
-        flex-direction:column;
-        gap:12px;
-    }
+.desktop-faq-question{
+    width:100%;
+    min-height:72px;
+    background:transparent;
+    border:none;
+    color:#fff;
+    padding:0 18px;
+    font-size:17px;
+    line-height:1.3;
+    font-weight:800;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:14px;
+    text-align:left;
+}
 
-    .desktop-faq-item{
-        background:#181821;
-        border-radius:18px;
-        overflow:hidden;
-    }
+.desktop-faq-question-text{
+    flex:1;
+}
 
-    .desktop-faq-question{
-        width:100%;
-        min-height:78px;
-        background:transparent;
-        border:none;
-        color:#fff;
-        padding:0 20px;
-        font-size:18px;
-        line-height:1.3;
-        font-weight:700;
-        display:flex;
-        align-items:center;
-        justify-content:space-between;
-        gap:14px;
-        text-align:left;
-    }
+.desktop-faq-icon{
+    width:38px;
+    height:38px;
+    border-radius:14px;
+    background:rgba(255,255,255,.05);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    flex-shrink:0;
+    transition:.22s ease;
+}
 
-    .desktop-faq-question-text{
-        flex:1;
-    }
+.desktop-faq-icon::before{
+    content:"";
+    width:10px;
+    height:10px;
+    border-right:2px solid var(--accent);
+    border-bottom:2px solid var(--accent);
+    transform:rotate(45deg) translate(-1px,-1px);
+    transition:.22s ease;
+}
 
-    .desktop-faq-icon{
-        width:12px;
-        height:12px;
-        flex-shrink:0;
-        border-right:3px solid var(--accent);
-        border-bottom:3px solid var(--accent);
-        transform:rotate(45deg);
-        transition:transform .25s ease;
-        margin-right:4px;
-    }
+.desktop-faq-item.open .desktop-faq-icon{
+    background:rgba(203,108,230,.16);
+}
 
-    .desktop-faq-item.open .desktop-faq-icon{
-        transform:rotate(225deg);
-    }
+.desktop-faq-item.open .desktop-faq-icon::before{
+    transform:rotate(225deg) translate(-1px,-1px);
+}
 
-    .desktop-faq-answer-wrap{
-        max-height:0;
-        overflow:hidden;
-        transition:max-height .28s ease;
-    }
+.desktop-faq-answer-wrap{
+    max-height:0;
+    overflow:hidden;
+    transition:max-height .28s ease;
+}
 
-    .desktop-faq-answer{
-        padding:0 20px 18px;
-        font-size:16px;
-        line-height:1.55;
-        color:#d3d3d3;
-    }
+.desktop-faq-answer{
+    padding:0 18px 18px;
+    font-size:15px;
+    line-height:1.55;
+    color:#d3d3d3;
+}
 
-    .desktop-cta-wrap{
-        margin-top:18px;
-        display:flex;
-        justify-content:center;
-    }
-
-    .desktop-cta{
-        width:100%;
-        max-width:560px;
-        height:62px;
-        border:none;
-        border-radius:18px;
-        font-size:21px;
-        font-weight:700;
-        box-shadow:0 14px 32px rgba(203,108,230,.25);
-    }
 }
 
 @media (min-width:1024px) and (max-width:1400px){
@@ -711,17 +661,18 @@ button{
     .desktop-hero{
         padding:22px 20px 20px;
     }
-
-    .desktop-note{
-        font-size:15px;
-    }
 }
 
 @media (min-width:1024px) and (max-width:1180px){
-    .desktop-grid{
+    .desktop-hero-layout{
+        grid-template-columns:1fr;
+    }
+
+    .desktop-faq-list{
         grid-template-columns:1fr;
     }
 }
+
 </style>
 </head>
 
@@ -730,62 +681,23 @@ button{
 <!-- MOBILE VERSION -->
 <div class="mobile-shell">
     <div class="mobile-page">
-        <button class="mobile-back" onclick="goBack()">
-            <svg viewBox="0 0 24 24" fill="none">
-                <path d="M15 5L8 12L15 19" stroke="white" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
-            </svg>
-            <span id="back-mobile"></span>
-        </button>
 
-        <section class="mobile-hero">
-            <div class="mobile-kicker" id="kicker-mobile"></div>
-
+        <section class="mobile-header">
             <h1 class="mobile-title" id="title-mobile"></h1>
             <p class="mobile-desc" id="desc-mobile"></p>
-
-            <div class="mobile-note" id="note-mobile"></div>
         </section>
 
-        <section class="mobile-section">
-            <h2 class="mobile-section-title" id="contactTitle-mobile"></h2>
+        <div class="mobile-main-action">
+            <button class="mobile-support-btn" id="supportBtn-mobile"></button>
+        </div>
 
-            <div class="mobile-contacts">
-                <div class="mobile-contact" onclick="openSupport()">
-                    <div class="mobile-contact-left">
-                        <div class="mobile-contact-icon">
-                            <img src="images/support/fast.png" alt="">
-                        </div>
-                        <div>
-                            <div class="mobile-contact-title" id="contact1Title-mobile"></div>
-                            <div class="mobile-contact-text" id="contact1Text-mobile"></div>
-                        </div>
-                    </div>
-                    <span class="mobile-contact-arrow">›</span>
-                </div>
-
-                <div class="mobile-contact" onclick="openSupport()">
-                    <div class="mobile-contact-left">
-                        <div class="mobile-contact-icon">
-                            <img src="images/support/supportwindow.png" alt="">
-                        </div>
-                        <div>
-                            <div class="mobile-contact-title" id="contact2Title-mobile"></div>
-                            <div class="mobile-contact-text" id="contact2Text-mobile"></div>
-                        </div>
-                    </div>
-                    <span class="mobile-contact-arrow">›</span>
-                </div>
-            </div>
-        </section>
+        <div class="mobile-divider"></div>
 
         <section class="mobile-section">
             <h2 class="mobile-section-title" id="faqTitle-mobile"></h2>
             <div class="mobile-faq-list" id="faqList-mobile"></div>
-
-            <div class="mobile-cta-wrap">
-                <button class="btn-gradient mobile-cta" id="supportBtn-mobile"></button>
-            </div>
         </section>
+
     </div>
 
     <div class="bottom-nav">
@@ -794,7 +706,7 @@ button{
             <span id="m1-mobile"></span>
         </div>
 
-        <div class="nav-item" onclick="goPage('support.html')">
+        <div class="nav-item active-mobile-nav" onclick="goPage('support.html')">
             <img src="images/icon/support.png" alt="">
             <span id="m4-mobile"></span>
         </div>
@@ -857,63 +769,47 @@ button{
         </aside>
 
         <main class="desktop-main">
-            <div class="desktop-back" onclick="goBack()">
-                <span class="desktop-back-arrow">←</span>
-                <span id="back-desktop"></span>
-            </div>
 
-            <section class="desktop-hero">
+    <section class="desktop-hero">
+        <div class="desktop-hero-layout">
+
+            <div class="desktop-hero-left">
                 <div class="desktop-kicker" id="kicker-desktop"></div>
 
                 <h1 class="desktop-title" id="title-desktop"></h1>
                 <p class="desktop-desc" id="desc-desktop"></p>
 
-                <div class="desktop-note" id="note-desktop"></div>
-            </section>
-
-            <section class="desktop-grid">
-                <article class="desktop-contact-card" onclick="openSupport()">
-                    <div class="desktop-contact-left">
-                        <div class="desktop-contact-icon">
-                            <img src="images/support/fast.png" alt="">
-                        </div>
-                        <div>
-                            <div class="desktop-contact-title" id="contact1Title-desktop"></div>
-                            <div class="desktop-contact-text" id="contact1Text-desktop"></div>
-                        </div>
-                    </div>
-                    <span class="desktop-contact-arrow">›</span>
-                </article>
-
-                <article class="desktop-contact-card" onclick="openSupport()">
-                    <div class="desktop-contact-left">
-                        <div class="desktop-contact-icon">
-                            <img src="images/support/supportwindow.png" alt="">
-                        </div>
-                        <div>
-                            <div class="desktop-contact-title" id="contact2Title-desktop"></div>
-                            <div class="desktop-contact-text" id="contact2Text-desktop"></div>
-                        </div>
-                    </div>
-                    <span class="desktop-contact-arrow">›</span>
-                </article>
-            </section>
-
-            <section class="desktop-wide">
-                <h2 class="desktop-section-title" id="faqTitle-desktop"></h2>
-
-                <div class="desktop-faq-list" id="faqList-desktop"></div>
-
-                <div class="desktop-cta-wrap">
-                    <button class="btn-gradient desktop-cta" id="supportBtn-desktop"></button>
+                <div class="desktop-hero-action">
+                    <button class="btn-gradient desktop-hero-support-btn" id="supportBtn-desktop"></button>
                 </div>
-            </section>
-        </main>
+            </div>
+
+            <aside class="desktop-help-card">
+                <h2 class="desktop-help-title" id="helpCardTitle-desktop"></h2>
+
+                <div class="desktop-help-list">
+                    <div class="desktop-help-item" id="helpItem1-desktop"></div>
+                    <div class="desktop-help-item" id="helpItem2-desktop"></div>
+                    <div class="desktop-help-item" id="helpItem3-desktop"></div>
+                </div>
+            </aside>
+
+        </div>
+    </section>
+
+    <section class="desktop-wide">
+        <h2 class="desktop-section-title" id="faqTitle-desktop"></h2>
+        <div class="desktop-faq-list" id="faqList-desktop"></div>
+    </section>
+
+</main>
     </div>
 </div>
 
 <script>
-let lang = localStorage.getItem("lang") || "uz";
+let lang = localStorage.getItem("lang") || "uz"
+
+const SUPPORT_LINK = "https://t.me/username"
 
 const t = {
     uz:{
@@ -922,28 +818,34 @@ const t = {
         m4:"Aloqa",
         m5:"Sharhlar",
         m6:"Profil",
-        back:"Orqaga",
-        catalog:"Kurslar katalogi",
 
-        kicker:"Qo‘llab-quvvatlash",
-        title:"Savol bo‘lsa, yolg‘iz qolmaysan",
-        desc:"gaphub ichida yordam bo‘limi shunchaki FAQ emas. Bu yerda yo‘nalish, tushunmovchilik va texnik savollar bo‘yicha tayanch nuqta bor.",
-        note:"Agar nimadir tushunarsiz bo‘lsa, yozasan. Maqsad seni chalkashlikda qoldirish emas, tezroq yo‘lga qaytarish.",
+        title:"Yordam",
+        desc:"Kurslar, to‘lov yoki platforma bo‘yicha savollarda yordam beramiz.",
 
-        contactTitle:"Bog‘lanish usullari",
-        contact1Title:"Tezkor aloqa",
-        contact1Text:"Savol bo‘lsa, to‘g‘ridan-to‘g‘ri yozish mumkin.",
-        contact2Title:"Qo‘llab-quvvatlash oynasi",
-        contact2Text:"Kurslar, kirish, platforma va boshqa savollar bo‘yicha.",
+        supportBtn:"Telegram orqali yozish",
 
         faqTitle:"Ko‘p beriladigan savollar",
-        supportBtn:"Qo‘llab-quvvatlashga yozish",
 
         faq:[
-            {q:"Men boshlovchiman, menda chiqadimi?", a:"Ha. Kurslar noldan tuzilgan. Hammasi bosqichma-bosqich, ortiqcha qiyin terminlarsiz tushuntiriladi."},
-            {q:"Kuniga qancha vaqt kerak bo‘ladi?", a:"O‘rtacha kuniga 1-2 soat yetadi. O‘qish yoki boshqa ishlar bilan birga olib borish mumkin."},
-            {q:"Kompyuter shartmi?", a:"Yo‘q. Boshlash uchun telefonning o‘zi ham yetadi. Keyinroq qulaylik uchun kompyuter bo‘lsa yaxshi."},
-            {q:"Birinchi pulni qachon topsa bo‘ladi?", a:"Bu odamning harakatiga bog‘liq. Kimdadir o‘qish vaqtidayoq chiqadi, kimdadir keyinroq. Tez million va’da qilinmaydi."}
+            {
+                q:"Men yangi boshlovchiman. Kurs menga mos keladimi?",
+                a:"Ha. Kurslar aynan yangi boshlayotganlar uchun sodda va tushunarli formatda tayyorlangan."
+            },
+
+            {
+                q:"Telefon orqali o‘qisa bo‘ladimi?",
+                a:"Ha. Platforma mobil qurilmalar uchun moslashtirilgan va darslarni telefondan ham o‘tish mumkin."
+            },
+
+            {
+                q:"Kurslardan keyin amaliyot bo‘ladimi?",
+                a:"Darslar amaliy yo‘nalishda qurilgan. Siz kontent, portfolio va real vazifalar bilan ishlaysiz."
+            },
+
+            {
+                q:"Savolim bo‘lsa qayerga yozaman?",
+                a:"Telegram orqali qo‘llab-quvvatlashga yozishingiz mumkin. Iloji boricha tez javob beramiz."
+            }
         ]
     },
 
@@ -953,203 +855,217 @@ const t = {
         m4:"Поддержка",
         m5:"Отзывы",
         m6:"Профиль",
-        back:"Назад",
-        catalog:"Каталог курсов",
 
-        kicker:"Поддержка",
-        title:"Если есть вопрос, ты не один",
-        desc:"Раздел поддержки в gaphub это не просто FAQ. Это точка опоры, где можно быстро разобраться с направлением, доступом, платформой и любыми непонятными моментами.",
-        note:"Если что-то непонятно, ты пишешь. Задача не оставить тебя в ступоре, а быстро вернуть в рабочий ритм.",
+        title:"Поддержка",
+        desc:"Поможем с вопросами по курсам, оплате и работе платформы.",
 
-        contactTitle:"Как можно связаться",
-        contact1Title:"Быстрая связь",
-        contact1Text:"Если есть вопрос, можно написать напрямую.",
-        contact2Title:"Окно поддержки",
-        contact2Text:"По курсам, доступам, платформе и другим вопросам.",
+        supportBtn:"Написать в Telegram",
 
         faqTitle:"Частые вопросы",
-        supportBtn:"Написать в поддержку",
 
         faq:[
-            {q:"Я новичок, у меня получится?", a:"Да. Курсы сделаны с нуля. Все объясняется пошагово, без перегруза и сложных терминов."},
-            {q:"Сколько времени нужно?", a:"В среднем 1-2 часа в день. Можно спокойно совмещать с учебой или другими делами."},
-            {q:"Нужен ли компьютер?", a:"Нет. Начать можно и с телефона. Позже компьютер просто даст больше удобства."},
-            {q:"Когда будут первые деньги?", a:"Это зависит от человека и от того, как он внедряет материал. У кого-то получается уже в процессе, у кого-то позже. Сказок про быстрые миллионы здесь нет."}
+            {
+                q:"Я новичок. Мне подойдут курсы?",
+                a:"Да. Курсы сделаны так, чтобы человек мог спокойно зайти в digital даже без опыта."
+            },
+
+            {
+                q:"Можно проходить курс с телефона?",
+                a:"Да. Платформа адаптирована под мобильные устройства, поэтому проходить уроки можно прямо со смартфона."
+            },
+
+            {
+                q:"Будет ли практика?",
+                a:"Да. Уроки построены вокруг практики, контента и реальных задач, а не только теории."
+            },
+
+            {
+                q:"Куда писать, если появятся вопросы?",
+                a:"Можно написать в поддержку через Telegram. Мы постараемся ответить как можно быстрее."
+            }
         ]
     }
-};
+}
+
+function impact(){
+    if(window.Telegram && Telegram.WebApp && Telegram.WebApp.HapticFeedback){
+        Telegram.WebApp.HapticFeedback.impactOccurred("light")
+    }
+}
 
 function setText(id, value){
-    const el = document.getElementById(id);
-    if(el) el.innerText = value;
+    const el = document.getElementById(id)
+    if(el) el.innerText = value
 }
 
-function update(){
-    const d = t[lang];
+function renderFaq(){
+    const d = t[lang]
+    const mobileList = document.getElementById("faqList-mobile")
+    const desktopList = document.getElementById("faqList-desktop")
 
-    document.documentElement.lang = lang === "uz" ? "uz" : "ru";
-
-    setText("back-mobile", d.back);
-    setText("kicker-mobile", d.kicker);
-    setText("title-mobile", d.title);
-    setText("desc-mobile", d.desc);
-    setText("note-mobile", d.note);
-    setText("contactTitle-mobile", d.contactTitle);
-    setText("contact1Title-mobile", d.contact1Title);
-    setText("contact1Text-mobile", d.contact1Text);
-    setText("contact2Title-mobile", d.contact2Title);
-    setText("contact2Text-mobile", d.contact2Text);
-    setText("faqTitle-mobile", d.faqTitle);
-    setText("supportBtn-mobile", d.supportBtn);
-    setText("m1-mobile", d.m1);
-    setText("m4-mobile", d.m4);
-    setText("m5-mobile", d.m5);
-    setText("m6-mobile", d.m6);
-
-    setText("home-desktop", d.home);
-    setText("back-desktop", d.back);
-    setText("title-desktop", d.title);
-    setText("desc-desktop", d.desc);
-    setText("kicker-desktop", d.kicker);
-    setText("note-desktop", d.note);
-    setText("contact1Title-desktop", d.contact1Title);
-    setText("contact1Text-desktop", d.contact1Text);
-    setText("contact2Title-desktop", d.contact2Title);
-    setText("contact2Text-desktop", d.contact2Text);
-    setText("faqTitle-desktop", d.faqTitle);
-    setText("supportBtn-desktop", d.supportBtn);
-    setText("m1-desktop", d.m1);
-    setText("m4-desktop", d.m4);
-    setText("m5-desktop", d.m5);
-    setText("m6-desktop", d.m6);
-    setText("catalog-desktop", d.catalog);
-
-    renderFaqMobile();
-    renderFaqDesktop();
-}
-
-function renderFaqMobile(){
-    const list = document.getElementById("faqList-mobile");
-    const data = t[lang].faq;
-
-    list.innerHTML = data.map(item => `
-        <div class="mobile-faq-item">
-            <button class="mobile-faq-question" onclick="toggleFaqMobile(this)">
-                <span class="mobile-faq-question-text">${item.q}</span>
-                <span class="mobile-faq-icon"></span>
+    const mobileHTML = d.faq.map((item, index) => `
+        <div class="mobile-faq-item" id="mobile-faq-item-${index}">
+            <button class="mobile-faq-question" onclick="toggleFaq('mobile', ${index})">
+                <div class="mobile-faq-question-text">${item.q}</div>
+                <div class="mobile-faq-icon"></div>
             </button>
-            <div class="mobile-faq-answer-wrap">
+
+            <div class="mobile-faq-answer-wrap" id="mobile-faq-wrap-${index}">
                 <div class="mobile-faq-answer">${item.a}</div>
             </div>
         </div>
-    `).join("");
-}
+    `).join("")
 
-function renderFaqDesktop(){
-    const list = document.getElementById("faqList-desktop");
-    const data = t[lang].faq;
-
-    list.innerHTML = data.map(item => `
-        <div class="desktop-faq-item">
-            <button class="desktop-faq-question" onclick="toggleFaqDesktop(this)">
-                <span class="desktop-faq-question-text">${item.q}</span>
-                <span class="desktop-faq-icon"></span>
+    const desktopHTML = d.faq.map((item, index) => `
+        <div class="desktop-faq-item" id="desktop-faq-item-${index}">
+            <button class="desktop-faq-question" onclick="toggleFaq('desktop', ${index})">
+                <div class="desktop-faq-question-text">${item.q}</div>
+                <div class="desktop-faq-icon"></div>
             </button>
-            <div class="desktop-faq-answer-wrap">
+
+            <div class="desktop-faq-answer-wrap" id="desktop-faq-wrap-${index}">
                 <div class="desktop-faq-answer">${item.a}</div>
             </div>
         </div>
-    `).join("");
+    `).join("")
+
+    if(mobileList) mobileList.innerHTML = mobileHTML
+    if(desktopList) desktopList.innerHTML = desktopHTML
 }
 
-function toggleFaqMobile(button){
-    const item = button.parentElement;
-    const wrap = item.querySelector(".mobile-faq-answer-wrap");
-    const isOpen = item.classList.contains("open");
+function toggleFaq(type, index){
+    impact()
 
-    document.querySelectorAll(".mobile-faq-item").forEach(el => {
-        el.classList.remove("open");
-        const target = el.querySelector(".mobile-faq-answer-wrap");
-        if(target) target.style.maxHeight = null;
-    });
+    const item = document.getElementById(`${type}-faq-item-${index}`)
+    const wrap = document.getElementById(`${type}-faq-wrap-${index}`)
+
+    if(!item || !wrap) return
+
+    const isOpen = item.classList.contains("open")
+
+    document.querySelectorAll(`.${type}-faq-item`).forEach(el => {
+        el.classList.remove("open")
+    })
+
+    document.querySelectorAll(`.${type}-faq-answer-wrap`).forEach(el => {
+        el.style.maxHeight = "0px"
+    })
 
     if(!isOpen){
-        item.classList.add("open");
-        wrap.style.maxHeight = wrap.scrollHeight + "px";
+        item.classList.add("open")
+        wrap.style.maxHeight = wrap.scrollHeight + "px"
     }
 }
 
-function toggleFaqDesktop(button){
-    const item = button.parentElement;
-    const wrap = item.querySelector(".desktop-faq-answer-wrap");
-    const isOpen = item.classList.contains("open");
 
-    document.querySelectorAll(".desktop-faq-item").forEach(el => {
-        el.classList.remove("open");
-        const target = el.querySelector(".desktop-faq-answer-wrap");
-        if(target) target.style.maxHeight = null;
-    });
+function updateStaticText(){
+    const d = t[lang]
 
-    if(!isOpen){
-        item.classList.add("open");
-        wrap.style.maxHeight = wrap.scrollHeight + "px";
-    }
-}
+    document.documentElement.lang = lang === "uz" ? "uz" : "ru"
 
-function goBack(){
-    if (window.history.length > 1) {
-        window.history.back();
-    } else {
-        window.location.href = "index.html";
-    }
-}
+    /* MOBILE */
+    setText("title-mobile", d.title)
+    setText("desc-mobile", d.desc)
+    setText("supportBtn-mobile", d.supportBtn)
+    setText("faqTitle-mobile", d.faqTitle)
 
-function goHome(){
-    localStorage.setItem("lang", lang);
-    window.location.href = "index.html";
-}
+    setText("m1-mobile", d.m1)
+    setText("m4-mobile", d.m4)
+    setText("m5-mobile", d.m5)
+    setText("m6-mobile", d.m6)
 
-function goPage(page){
-    localStorage.setItem("lang", lang);
-    window.location.href = page;
-}
+    /* DESKTOP NAV */
+    setText("home-desktop", d.home)
+    setText("m1-desktop", d.m1)
+    setText("m4-desktop", d.m4)
+    setText("m5-desktop", d.m5)
+    setText("m6-desktop", d.m6)
 
-function goCourses(){
-    localStorage.setItem("lang", lang);
-    window.location.href = "courses.html";
+    setText("catalog-desktop", lang === "uz"
+        ? "Kurslar katalogi"
+        : "Каталог курсов"
+    )
+
+    /* DESKTOP HERO */
+setText("kicker-desktop", lang === "uz"
+    ? "Yordam markazi"
+    : "Центр поддержки"
+)
+
+setText("title-desktop", d.title)
+setText("desc-desktop", d.desc)
+
+setText("supportBtn-desktop", d.supportBtn)
+
+setText("helpCardTitle-desktop", lang === "uz"
+    ? "Nima bo‘yicha yordam beramiz?"
+    : "С чем можем помочь?"
+)
+
+setText("helpItem1-desktop", lang === "uz"
+    ? "Kurs tanlash va yo‘nalishni tushunish"
+    : "Выбор курса и направления"
+)
+
+setText("helpItem2-desktop", lang === "uz"
+    ? "To‘lov va kursga kirish masalalari"
+    : "Оплата и доступ к курсу"
+)
+
+setText("helpItem3-desktop", lang === "uz"
+    ? "Platforma, darslar va texnik savollar"
+    : "Платформа, уроки и технические вопросы"
+)
+
+setText("faqTitle-desktop", d.faqTitle)
+
+renderFaq()
 }
 
 function openSupport(){
-    localStorage.setItem("lang", lang);
-    window.location.href = "https://t.me/Yusuf_bayer";
+    impact()
+    window.open(SUPPORT_LINK, "_blank")
 }
 
-function initButtons(){
-    const mobileBtn = document.getElementById("supportBtn-mobile");
-    const desktopBtn = document.getElementById("supportBtn-desktop");
+function goHome(){
+    impact()
+    localStorage.setItem("lang", lang)
+    window.location.href = "index.html"
+}
 
-    if(mobileBtn) mobileBtn.onclick = openSupport;
-    if(desktopBtn) desktopBtn.onclick = openSupport;
+function goPage(page){
+    impact()
+    localStorage.setItem("lang", lang)
+    window.location.href = page
 }
 
 function initTelegram(){
     if(window.Telegram && Telegram.WebApp){
-        const tg = Telegram.WebApp;
+        const tg = Telegram.WebApp
 
-        tg.ready();
-        tg.expand();
+        tg.ready()
+        tg.expand()
 
         try{
-            tg.requestFullscreen();
+            tg.requestFullscreen()
         }catch(e){}
 
-        document.body.style.minHeight = tg.viewportHeight + "px";
+        document.body.style.minHeight = tg.viewportHeight + "px"
     }
 }
 
-update();
-initButtons();
-initTelegram();
+updateStaticText()
+initTelegram()
+
+const mobileSupportBtn = document.getElementById("supportBtn-mobile")
+if(mobileSupportBtn){
+    mobileSupportBtn.addEventListener("click", openSupport)
+}
+
+const desktopSupportBtn = document.getElementById("supportBtn-desktop")
+if(desktopSupportBtn){
+    desktopSupportBtn.addEventListener("click", openSupport)
+}
 </script>
 
 </body>

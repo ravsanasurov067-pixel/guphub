@@ -105,135 +105,94 @@ button{
 }
 
 .mobile-page{
-    min-height:100vh;
-    padding:calc(env(safe-area-inset-top) + 76px) 14px calc(110px + env(safe-area-inset-bottom));
+    min-height:calc(100vh + 24px);
+    padding:
+        calc(env(safe-area-inset-top) + 78px)
+        16px
+        calc(112px + env(safe-area-inset-bottom));
+
     background:
-        radial-gradient(circle at 20% 10%, rgba(203,108,230,.10), transparent 24%),
+        radial-gradient(circle at 20% 8%, rgba(203,108,230,.12), transparent 24%),
         linear-gradient(180deg, #09080f 0%, #0c0b14 100%);
 }
 
-.mobile-back{
-    display:inline-flex;
-    align-items:center;
-    gap:8px;
-    background:#1a1a1a;
-    color:#fff;
-    border:none;
-    border-radius:12px;
-    padding:10px 14px;
-    font-size:15px;
-    margin-bottom:16px;
+.mobile-header{
+    animation:fadeUp .42s ease both;
 }
 
-.mobile-back svg{
-    width:16px;
-    height:16px;
-    flex-shrink:0;
-}
-
-.mobile-hero{
-    position:relative;
-    overflow:hidden;
-    border-radius:var(--radius-xl);
-    padding:18px 16px 16px;
-}
-
-.mobile-badge{
-    display:inline-flex;
-    align-items:center;
-    gap:8px;
-    background:rgba(255,255,255,.06);
-    border:1px solid rgba(255,255,255,.06);
-    border-radius:999px;
-    padding:8px 12px;
-    font-size:12px;
-    color:#ebe4f5;
-    margin-bottom:14px;
-}
-
-.mobile-hero-title{
-    margin:0 0 10px;
-    font-size:32px;
-    line-height:1;
+.mobile-title{
+    margin:0 0 8px;
+    font-size:clamp(34px,9vw,42px);
+    line-height:.94;
     font-weight:800;
-    letter-spacing:-.4px;
+    letter-spacing:-1px;
 }
 
-.mobile-hero-text{
+.mobile-subtitle{
     margin:0;
+    max-width:330px;
     color:var(--muted);
-    font-size:14px;
-    line-height:1.5;
+    font-size:15px;
+    line-height:1.45;
 }
 
-.mobile-mini-grid{
-    margin-top:14px;
-    display:grid;
-    grid-template-columns:1fr 1fr;
-    gap:10px;
+.mobile-catalog-action{
+    margin-top:18px;
+    animation:fadeUp .45s ease both;
+    animation-delay:.06s;
 }
 
-.mobile-mini-card{
-    background:rgba(255,255,255,.04);
-    border-radius:16px;
-    padding:12px;
-    min-height:78px;
-}
-
-.mobile-mini-label{
-    color:var(--muted-soft);
-    font-size:12px;
-    margin-bottom:6px;
-}
-
-.mobile-mini-value{
-    font-size:14px;
-    font-weight:700;
-    line-height:1.35;
-}
-
-.mobile-top-actions{
-    margin-top:14px;
-    display:grid;
-    grid-template-columns:1fr;
-    gap:10px;
-}
-
-.mobile-top-btn{
+.mobile-catalog-btn{
     width:100%;
-    height:54px;
+    min-height:56px;
+    border:none;
+    border-radius:20px;
+    color:#fff;
+    background:linear-gradient(90deg,var(--accent),var(--accent-2));
+    box-shadow:0 14px 32px rgba(203,108,230,.25);
     font-size:16px;
+    font-weight:800;
+    transition:transform .18s ease, opacity .18s ease;
+}
+
+.mobile-catalog-btn:active{
+    transform:scale(.985);
+    opacity:.92;
 }
 
 .mobile-section{
-    margin-top:14px;
+    margin-top:22px;
 }
 
 .mobile-section-title{
-    margin:0 0 12px;
-    font-size:21px;
+    margin:0 0 14px;
+    font-size:22px;
     line-height:1.1;
     font-weight:800;
+    animation:fadeUp .45s ease both;
+    animation-delay:.10s;
 }
 
 .mobile-loading{
-    border-radius:22px;
+    border-radius:24px;
     padding:20px;
     color:var(--muted);
     text-align:center;
+    animation:fadeUp .45s ease both;
 }
 
 .mobile-empty{
-    border-radius:24px;
-    padding:24px 16px;
+    border-radius:26px;
+    padding:24px 18px;
     text-align:center;
+    animation:fadeUp .45s ease both;
 }
 
 .mobile-empty-icon{
-    width:74px;
-    height:74px;
+    width:76px;
+    height:76px;
     margin:0 auto 14px;
-    border-radius:22px;
+    border-radius:24px;
     background:rgba(255,255,255,.05);
     display:flex;
     align-items:center;
@@ -248,17 +207,35 @@ button{
 
 .mobile-empty-title{
     margin:0 0 8px;
-    font-size:22px;
+    font-size:23px;
+    line-height:1.12;
     font-weight:800;
-    line-height:1.15;
 }
 
 .mobile-empty-text{
-    margin:0 auto 16px;
+    margin:0 auto 18px;
     max-width:310px;
     color:var(--muted);
     font-size:14px;
-    line-height:1.5;
+    line-height:1.48;
+}
+
+.mobile-empty-btn{
+    width:100%;
+    min-height:54px;
+    border:none;
+    border-radius:18px;
+    color:#fff;
+    background:linear-gradient(90deg,var(--accent),var(--accent-2));
+    box-shadow:0 14px 32px rgba(203,108,230,.22);
+    font-size:16px;
+    font-weight:800;
+    transition:transform .18s ease, opacity .18s ease;
+}
+
+.mobile-empty-btn:active{
+    transform:scale(.985);
+    opacity:.92;
 }
 
 .mobile-course-list{
@@ -269,17 +246,36 @@ button{
 
 .mobile-course-card{
     display:flex;
-    gap:12px;
-    border-radius:22px;
-    padding:12px;
+    gap:13px;
+    border-radius:24px;
+    padding:14px;
     cursor:pointer;
     overflow:hidden;
+    animation:fadeUp .45s ease both;
+    transition:transform .18s ease, opacity .18s ease;
+}
+
+.mobile-course-list .mobile-course-card:nth-child(1){
+    animation-delay:.12s;
+}
+
+.mobile-course-list .mobile-course-card:nth-child(2){
+    animation-delay:.18s;
+}
+
+.mobile-course-list .mobile-course-card:nth-child(3){
+    animation-delay:.24s;
+}
+
+.mobile-course-card:active{
+    transform:scale(.985);
+    opacity:.92;
 }
 
 .mobile-course-cover{
-    width:92px;
-    height:92px;
-    border-radius:18px;
+    width:88px;
+    height:88px;
+    border-radius:20px;
     background:#1a1a1a;
     object-fit:cover;
     flex-shrink:0;
@@ -308,9 +304,9 @@ button{
 
 .mobile-course-title{
     margin:0 0 6px;
-    font-size:17px;
+    font-size:18px;
     font-weight:800;
-    line-height:1.18;
+    line-height:1.16;
 }
 
 .mobile-course-sub{
@@ -344,58 +340,22 @@ button{
     font-size:12px;
 }
 
-.mobile-action-card{
-    display:flex;
+.mobile-course-summary{
+    margin-top:12px;
+    display:inline-flex;
     align-items:center;
-    justify-content:space-between;
-    gap:14px;
-    border-radius:20px;
-    padding:14px;
-    cursor:pointer;
-}
-
-.mobile-action-left{
-    display:flex;
-    align-items:center;
-    gap:12px;
-    min-width:0;
-}
-
-.mobile-action-icon{
-    width:44px;
-    height:44px;
-    border-radius:14px;
-    background:#22222d;
-    flex-shrink:0;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    overflow:hidden;
-}
-
-.mobile-action-icon img{
-    width:26px;
-    height:26px;
-    object-fit:contain;
-}
-
-.mobile-action-title{
-    font-size:15px;
-    font-weight:700;
-    line-height:1.3;
-}
-
-.mobile-action-sub{
-    margin-top:3px;
+    max-width:100%;
+    min-height:34px;
+    padding:0 12px;
+    border-radius:999px;
+    background:rgba(255,255,255,.06);
+    border:1px solid rgba(255,255,255,.08);
+    color:#e9e2f1;
     font-size:13px;
-    color:var(--muted-soft);
-}
-
-.mobile-action-arrow{
-    font-size:22px;
-    color:#bfbfbf;
-    line-height:1;
-    flex-shrink:0;
+    font-weight:700;
+    line-height:1.25;
+    animation:fadeUp .45s ease both;
+    animation-delay:.04s;
 }
 
 /* BOTTOM NAV */
@@ -439,6 +399,12 @@ button{
     color:#d68cff;
 }
 
+.nav-item.active-mobile-nav img{
+    filter:
+        drop-shadow(0 0 10px rgba(203,108,230,.45))
+        brightness(1.08);
+}
+
 .nav-center{
     position:relative;
     top:-18px;
@@ -456,12 +422,25 @@ button{
     display:flex;
     align-items:center;
     justify-content:center;
+    box-shadow:0 10px 30px rgba(203,108,230,.25);
 }
 
 .circle img{
     width:24px;
     height:24px;
     object-fit:contain;
+}
+
+@keyframes fadeUp{
+    from{
+        opacity:0;
+        transform:translateY(14px);
+    }
+
+    to{
+        opacity:1;
+        transform:translateY(0);
+    }
 }
 
 /* =========================
@@ -667,13 +646,14 @@ button{
     }
 
     .desktop-top-actions{
-        display:grid;
-        grid-template-columns:1fr 1fr;
+        display:flex;
+        justify-content:center;
         gap:12px;
     }
 
     .desktop-top-btn{
         width:100%;
+        max-width:420px;
         height:58px;
         font-size:16px;
     }
@@ -920,32 +900,14 @@ button{
 <!-- MOBILE -->
 <div class="mobile-shell">
     <div class="mobile-page">
-        <button class="mobile-back" onclick="goBack()">
-            <svg viewBox="0 0 24 24" fill="none">
-                <path d="M15 5L8 12L15 19" stroke="white" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
-            </svg>
-            <span id="back-mobile"></span>
-        </button>
 
-        <section class="mobile-hero glow-card">
-            <div class="mobile-badge" id="badge-mobile"></div>
+        <section class="mobile-header">
+            <h1 class="mobile-title" id="heroTitle-mobile"></h1>
+            <p class="mobile-subtitle" id="heroText-mobile"></p>
+            <div class="mobile-course-summary" id="mobileCourseSummary"></div>
 
-            <h1 class="mobile-hero-title" id="heroTitle-mobile"></h1>
-            <p class="mobile-hero-text" id="heroText-mobile"></p>
-
-            <div class="mobile-mini-grid">
-                <div class="mobile-mini-card">
-                    <div class="mobile-mini-label" id="mini1Label-mobile"></div>
-                    <div class="mobile-mini-value" id="mini1Value-mobile"></div>
-                </div>
-                <div class="mobile-mini-card">
-                    <div class="mobile-mini-label" id="mini2Label-mobile"></div>
-                    <div class="mobile-mini-value" id="mini2Value-mobile"></div>
-                </div>
-            </div>
-
-            <div class="mobile-top-actions">
-                <button class="btn btn-primary mobile-top-btn" id="catalogBtn-mobile" onclick="goCourses()"></button>
+            <div class="mobile-catalog-action" id="mobileCatalogAction">
+                <button class="mobile-catalog-btn" onclick="goCourses()" id="catalogBtn-mobile"></button>
             </div>
         </section>
 
@@ -1025,10 +987,6 @@ button{
         </aside>
 
         <main class="desktop-main">
-            <div class="desktop-back" onclick="goBack()">
-                <span class="desktop-back-arrow">←</span>
-                <span id="back-desktop"></span>
-            </div>
 
             <section class="desktop-hero glow-card">
                 <div class="desktop-badge" id="badge-desktop"></div>
@@ -1068,489 +1026,456 @@ button{
 </div>
 
 <script>
-let lang = localStorage.getItem("lang") || "uz";
+let lang = localStorage.getItem("lang") || "uz"
 
-let currentCourses = [];
-let currentUserId = null;
-let coursesRefreshTimer = null;
+let telegramUser = null
+let coursesData = []
 
-const defaultCourses = {
-    smm:{
-        slug:"smm",
-        titleRu:"Курс SMM",
-        titleUz:"SMM kursi",
-        image:"images/smmcourse/mindset.png",
-        progress:0
-    },
-    target:{
-        slug:"target",
-        titleRu:"Курс Target",
-        titleUz:"Target kursi",
-        image:"images/target-cover-mobile.png",
-        progress:0
-    },
-    ai:{
-        slug:"ai",
-        titleRu:"Курс AI",
-        titleUz:"AI kursi",
-        image:"images/ai/ailogic.png",
-        progress:0
-    }
-};
+const TOTAL_MAIN_COURSES = 3
 
 const t = {
     uz:{
-        back:"Orqaga",
         home:"Bosh sahifa",
         m1:"Kurslarim",
         m4:"Aloqa",
         m5:"Sharhlar",
         m6:"Profil",
-        catalog:"Kurslar katalogi",
 
-        badge:"Shaxsiy ta’lim kabineti",
         heroTitle:"Mening kurslarim",
-        heroText:"Bu yerda sotib olingan kurslaringiz, darslarga kirish va o‘qish progressi ko‘rinadi. Hozircha kurs bo‘lmasa, katalogdan keraklisini tanlashingiz mumkin.",
+        heroText:"Davom eting va skilllaringizni rivojlantiring.",
 
-        mini1Label:"Kurslar soni",
-        mini2Label:"Holat",
-        statusEmpty:"Kurs yo‘q",
-        statusActive:"O‘qish faol",
+        catalogBtn:"Yangi kurs olish",
 
-        catalogBtn:"Katalogga o‘tish",
-        lang:"Til",
-        langVal:"O‘zbek",
+        sectionTitle:"Faol kurslar",
 
-        sectionTitleEmpty:"Kurslar hali yo‘q",
-        sectionTitleCourses:"Sizning kurslaringiz",
+        loading:"Kurslar yuklanmoqda...",
 
-        emptyTitle:"Ups, sizda hali kurslar yo‘q",
-        emptyText:"Kurs sotib olganingizdan keyin u shu yerda paydo bo‘ladi. Siz darslarga tez kirib, o‘qishni davom ettira olasiz.",
-        emptyBtn:"Kurs tanlash",
+        emptyTitle:"Sizda hali kurs yo‘q",
+        emptyText:"Kurs sotib olganingizdan keyin ular shu yerda paydo bo‘ladi.",
+        emptyBtn:"Kurslarni ko‘rish",
 
-        continue:"O‘qishni davom ettirish",
-        progress:"Progress",
-        lessons:"Darslar",
+        continue:"Davom etish",
+        completed:"Tugallangan",
+        lessons:"dars",
 
-        extraTitle:"Yordamchi bo‘limlar",
-        support:"Yordam kerakmi?",
-        supportSub:"Savollar va qo‘llab-quvvatlash",
-        catalogCard:"Katalog",
-        catalogCardSub:"Yangi kurs tanlash",
-        homeCard:"Bosh sahifa",
-        homeCardSub:"Asosiy menyuga qaytish",
-
-        loading:"Kurslar yuklanmoqda..."
+        smm:"SMM kursi",
+        target:"Target kursi",
+        ai:"AI kursi"
     },
 
     ru:{
-        back:"Назад",
         home:"Главное меню",
         m1:"Мои курсы",
         m4:"Поддержка",
         m5:"Отзывы",
         m6:"Профиль",
-        catalog:"Каталог курсов",
 
-        badge:"Личный кабинет обучения",
         heroTitle:"Мои курсы",
-        heroText:"Здесь будут отображаться купленные курсы, доступ к урокам и прогресс обучения. Если курсов пока нет, можно перейти в каталог и выбрать подходящий.",
+        heroText:"Продолжай обучение и развивай навыки.",
 
-        mini1Label:"Количество курсов",
-        mini2Label:"Состояние",
-        statusEmpty:"Курсов нет",
-        statusActive:"Обучение активно",
+        catalogBtn:"Купить новый курс",
 
-        catalogBtn:"Перейти в каталог",
-        lang:"Язык",
-        langVal:"Русский",
+        sectionTitle:"Активные курсы",
 
-        sectionTitleEmpty:"Курсов пока нет",
-        sectionTitleCourses:"Ваши курсы",
+        loading:"Загрузка курсов...",
 
-        emptyTitle:"Упс, у вас пока нет курсов",
-        emptyText:"После покупки курс появится здесь. Вы сможете быстро открыть уроки, продолжить обучение и следить за прогрессом.",
-        emptyBtn:"Выбрать курс",
+        emptyTitle:"У вас пока нет курсов",
+        emptyText:"После покупки курсы появятся здесь.",
+        emptyBtn:"Посмотреть курсы",
 
-        continue:"Продолжить обучение",
-        progress:"Прогресс",
-        lessons:"Уроки",
+        continue:"Продолжить",
+        completed:"Завершено",
+        lessons:"уроков",
 
-        extraTitle:"Полезные разделы",
-        support:"Нужна помощь?",
-        supportSub:"Вопросы и поддержка",
-        catalogCard:"Каталог",
-        catalogCardSub:"Выбрать новый курс",
-        homeCard:"Главное меню",
-        homeCardSub:"Вернуться на главную",
-
-        loading:"Загружаем курсы..."
+        smm:"Курс SMM",
+        target:"Курс Target",
+        ai:"Курс AI"
     }
-};
-
-function setText(id, value){
-    const el = document.getElementById(id);
-    if(el) el.innerText = value;
 }
 
-function getCourseTitle(course){
-    if(lang === "uz"){
-        return course.title_uz || course.titleUz || course.title || course.name || "Kurs";
+function impact(){
+    if(window.Telegram && Telegram.WebApp && Telegram.WebApp.HapticFeedback){
+        Telegram.WebApp.HapticFeedback.impactOccurred("light")
     }
+}
 
-    return course.title_ru || course.titleRu || course.title || course.name || "Курс";
+function setText(id, value){
+    const el = document.getElementById(id)
+    if(el) el.innerText = value
 }
 
 function normalizeCourse(course){
-    if(typeof course === "string"){
-        return defaultCourses[course] || {
-            slug:course,
-            titleRu:course,
-            titleUz:course,
-            image:"images/icon/courses2.png",
-            progress:0
-        };
-    }
-
-    const slug = course.slug || course.code || course.course_slug || course.id || "course";
-    const preset = defaultCourses[slug] || {};
+    const slug = String(
+        course.slug ||
+        course.course ||
+        course.name ||
+        ""
+    ).toLowerCase()
 
     return {
-        slug:slug,
-        title:course.title || course.name || preset.titleRu || "Курс",
-        titleRu:course.title_ru || course.titleRu || course.title || course.name || preset.titleRu || "Курс",
-        titleUz:course.title_uz || course.titleUz || course.title || course.name || preset.titleUz || "Kurs",
-        image:course.image || course.cover || course.cover_url || preset.image || "images/icon/courses2.png",
-        progress:Number(course.progress || course.progress_percent || preset.progress || 0),
-        lessons:course.lessons || course.lessons_count || "",
-        nextLesson:course.next_lesson || course.nextLesson || ""
-    };
+        slug,
+        progress:Number(course.progress || 0),
+        completedLessons:Number(course.completed_lessons || 0)
+    }
 }
 
-function getCoursesArray(data){
-    if(Array.isArray(data)) return data.map(normalizeCourse);
+function getCourseInfo(slug){
+    const d = t[lang]
 
-    if(data && Array.isArray(data.courses)) return data.courses.map(normalizeCourse);
-
-    if(data && Array.isArray(data.my_courses)) return data.my_courses.map(normalizeCourse);
-
-    if(data && data.courses && typeof data.courses === "object"){
-        return Object.keys(data.courses)
-            .filter(key => data.courses[key])
-            .map(key => normalizeCourse(key));
+    if(slug.includes("smm")){
+        return {
+            title:d.smm,
+            image:"images/smm-cover.webp",
+            page:"learn-smm-v2.html"
+        }
     }
 
-    return [];
+    if(slug.includes("target")){
+        return {
+            title:d.target,
+            image:"images/target-cover.webp",
+            page:"learn-target.html"
+        }
+    }
+
+    if(slug.includes("ai")){
+        return {
+            title:d.ai,
+            image:"images/ai-cover.webp",
+            page:"learn-ai.html"
+        }
+    }
+
+    return {
+        title:"Course",
+        image:"images/course-placeholder.webp",
+        page:"courses.html"
+    }
 }
 
-function updateStaticText(){
-    const d = t[lang];
+function updateCatalogVisibility(){
+    const wrap = document.getElementById("mobileCatalogAction")
 
-    document.documentElement.lang = lang === "uz" ? "uz" : "ru";
+    if(!wrap) return
 
-    setText("back-mobile", d.back);
-    setText("badge-mobile", d.badge);
-    setText("heroTitle-mobile", d.heroTitle);
-    setText("heroText-mobile", d.heroText);
-    setText("mini1Label-mobile", d.mini1Label);
-    setText("mini2Label-mobile", d.mini2Label);
-    setText("catalogBtn-mobile", d.catalogBtn);
-    setText("langText-mobile", d.lang);
-    setText("langValue-mobile", d.langVal);
-    setText("extraTitle-mobile", d.extraTitle);
-    setText("support-mobile", d.support);
-    setText("supportSub-mobile", d.supportSub);
-    setText("m1-mobile", d.m1);
-    setText("m4-mobile", d.m4);
-    setText("m5-mobile", d.m5);
-    setText("m6-mobile", d.m6);
+    if(coursesData.length >= TOTAL_MAIN_COURSES){
+        wrap.style.display = "none"
+    }else{
+        wrap.style.display = "block"
+    }
+}
 
-    setText("back-desktop", d.back);
-    setText("home-desktop", d.home);
-    setText("m1-desktop", d.m1);
-    setText("m4-desktop", d.m4);
-    setText("m5-desktop", d.m5);
-    setText("m6-desktop", d.m6);
-    setText("catalog-desktop", d.catalog);
-    setText("badge-desktop", d.badge);
-    setText("heroTitle-desktop", d.heroTitle);
-    setText("heroText-desktop", d.heroText);
-    setText("mini1Label-desktop", d.mini1Label);
-    setText("mini2Label-desktop", d.mini2Label);
-    setText("catalogBtn-desktop", d.catalogBtn);
-    setText("langText-desktop", d.lang);
-    setText("langValue-desktop", d.langVal);
-    setText("extraTitle-desktop", d.extraTitle);
-    setText("support-desktop", d.support);
-    setText("supportSub-desktop", d.supportSub);
-    setText("catalogCard-desktop", d.catalogCard);
-    setText("catalogCardSub-desktop", d.catalogCardSub);
-    setText("homeCard-desktop", d.homeCard);
-    setText("homeCardSub-desktop", d.homeCardSub);
+function updateCourseSummary(){
+    const el = document.getElementById("mobileCourseSummary")
+    if(!el) return
 
-    renderCoursesState(currentCourses);
+    const count = coursesData.length
+
+    if(count === 0){
+        el.innerText = lang === "uz"
+            ? "Kurslar hali yo‘q"
+            : "Курсов пока нет"
+        return
+    }
+
+    const first = coursesData[0]
+    const info = getCourseInfo(first.slug)
+    const lesson = first.completedLessons ? first.completedLessons + 1 : 1
+
+    if(count === 1){
+        el.innerText = lang === "uz"
+            ? `1 ta kurs • ${info.title} • ${lesson}-dars`
+            : `1 курс • ${info.title} • урок ${lesson}`
+        return
+    }
+
+    el.innerText = lang === "uz"
+        ? `${count} ta kurs faol • keyingi: ${info.title}, ${lesson}-dars`
+        : `${count} курса активно • дальше: ${info.title}, урок ${lesson}`
 }
 
 function renderLoading(){
-    const d = t[lang];
+    const d = t[lang]
+    const root = document.getElementById("mobile-content")
 
-    setText("sectionTitle-mobile", d.sectionTitleCourses);
-    setText("sectionTitle-desktop", d.sectionTitleCourses);
-    setText("mini1Value-mobile", "...");
-    setText("mini2Value-mobile", d.loading);
-    setText("mini1Value-desktop", "...");
-    setText("mini2Value-desktop", d.loading);
+    if(!root) return
 
-    const mobile = document.getElementById("mobile-content");
-    const desktop = document.getElementById("desktop-content");
-
-    if(mobile){
-        mobile.innerHTML = `<div class="mobile-loading soft-card">${d.loading}</div>`;
-    }
-
-    if(desktop){
-        desktop.innerHTML = `<div class="desktop-loading soft-card">${d.loading}</div>`;
-    }
+    root.innerHTML = `
+        <div class="mobile-loading soft-card">
+            ${d.loading}
+        </div>
+    `
 }
 
 function renderEmpty(){
-    const d = t[lang];
+    const d = t[lang]
 
-    setText("sectionTitle-mobile", d.sectionTitleEmpty);
-    setText("sectionTitle-desktop", d.sectionTitleEmpty);
-    setText("mini1Value-mobile", "0");
-    setText("mini2Value-mobile", d.statusEmpty);
-    setText("mini1Value-desktop", "0");
-    setText("mini2Value-desktop", d.statusEmpty);
+    coursesData = []
 
-    const mobile = document.getElementById("mobile-content");
-    const desktop = document.getElementById("desktop-content");
+    const mobileRoot = document.getElementById("mobile-content")
+    const desktopRoot = document.getElementById("desktop-content")
 
-    if(mobile){
-        mobile.innerHTML = `
-            <div class="mobile-empty soft-card">
-                <div class="mobile-empty-icon">
-                    <img src="images/icon/courses2.png" alt="">
-                </div>
-                <h3 class="mobile-empty-title">${d.emptyTitle}</h3>
-                <p class="mobile-empty-text">${d.emptyText}</p>
-                <button class="btn btn-primary mobile-top-btn" onclick="goCourses()">${d.emptyBtn}</button>
+    const mobileHTML = `
+        <div class="mobile-empty soft-card">
+
+            <div class="mobile-empty-icon">
+                <img src="images/icon/courses2.png" alt="">
             </div>
-        `;
-    }
 
-    if(desktop){
-        desktop.innerHTML = `
-            <div class="desktop-empty soft-card">
-                <div class="desktop-empty-icon">
-                    <img src="images/icon/courses2.png" alt="">
-                </div>
-                <h3 class="desktop-empty-title">${d.emptyTitle}</h3>
-                <p class="desktop-empty-text">${d.emptyText}</p>
-                <button class="btn btn-primary desktop-top-btn" style="max-width:280px" onclick="goCourses()">${d.emptyBtn}</button>
+            <h3 class="mobile-empty-title">
+                ${d.emptyTitle}
+            </h3>
+
+            <p class="mobile-empty-text">
+                ${d.emptyText}
+            </p>
+
+            <button class="mobile-empty-btn" onclick="goCourses()">
+                ${d.emptyBtn}
+            </button>
+
+        </div>
+    `
+
+    const desktopHTML = `
+        <div class="desktop-empty soft-card">
+
+            <div class="desktop-empty-icon">
+                <img src="images/icon/courses2.png" alt="">
             </div>
-        `;
-    }
+
+            <h3 class="desktop-empty-title">
+                ${d.emptyTitle}
+            </h3>
+
+            <p class="desktop-empty-text">
+                ${d.emptyText}
+            </p>
+
+            <button class="btn btn-primary desktop-top-btn" onclick="goCourses()">
+                ${d.emptyBtn}
+            </button>
+
+        </div>
+    `
+
+    if(mobileRoot) mobileRoot.innerHTML = mobileHTML
+    if(desktopRoot) desktopRoot.innerHTML = desktopHTML
+
+    updateCatalogVisibility()
+    updateCourseSummary()
+    updateStaticText()
 }
 
-function renderCourses(courses){
-    const d = t[lang];
+function renderCourses(){
+    const root = document.getElementById("mobile-content")
 
-    setText("sectionTitle-mobile", d.sectionTitleCourses);
-    setText("sectionTitle-desktop", d.sectionTitleCourses);
-    setText("mini1Value-mobile", String(courses.length));
-    setText("mini2Value-mobile", d.statusActive);
-    setText("mini1Value-desktop", String(courses.length));
-    setText("mini2Value-desktop", d.statusActive);
+    if(!root) return
 
-    const mobile = document.getElementById("mobile-content");
-    const desktop = document.getElementById("desktop-content");
+    if(!coursesData.length){
+        renderEmpty()
+        updateCatalogVisibility()
+        updateCourseSummary()
+        return
+    }
 
-    if(mobile){
-        mobile.innerHTML = `
-            <div class="mobile-course-list">
-                ${courses.map(course => {
-                    const progress = Math.max(0, Math.min(100, Number(course.progress || 0)));
-                    const lessonsText = course.lessons ? `${d.lessons}: ${course.lessons}` : d.continue;
+    root.innerHTML = `
+        <div class="mobile-course-list">
+            ${coursesData.map(course => {
+                const info = getCourseInfo(course.slug)
 
-                    return `
-                        <div class="mobile-course-card soft-card" onclick="openCourse('${course.slug}')">
-                            <img class="mobile-course-cover" src="${course.image}" alt="">
-                            <div class="mobile-course-body">
-                                <div class="mobile-course-label">${lessonsText}</div>
-                                <h3 class="mobile-course-title">${getCourseTitle(course)}</h3>
-                                <div class="mobile-course-sub">${d.continue}</div>
-                                <div class="mobile-progress-line">
-                                    <div class="mobile-progress-fill" style="width:${progress}%"></div>
-                                </div>
-                                <div class="mobile-progress-row">
-                                    <span>${d.progress}</span>
-                                    <span>${progress}%</span>
-                                </div>
+                return `
+                    <div class="mobile-course-card soft-card" onclick="openCourse('${info.page}')">
+
+                        <img class="mobile-course-cover" src="${info.image}" alt="course">
+
+                        <div class="mobile-course-body">
+
+                            <div class="mobile-course-label">
+                                ${t[lang].continue}
                             </div>
-                        </div>
-                    `;
-                }).join("")}
-            </div>
-        `;
-    }
 
-    if(desktop){
-        desktop.innerHTML = `
-            <div class="desktop-course-grid">
-                ${courses.map(course => {
-                    const progress = Math.max(0, Math.min(100, Number(course.progress || 0)));
-                    const lessonsText = course.lessons ? `${d.lessons}: ${course.lessons}` : d.continue;
+                            <h3 class="mobile-course-title">
+                                ${info.title}
+                            </h3>
 
-                    return `
-                        <div class="desktop-course-card soft-card" onclick="openCourse('${course.slug}')">
-                            <img class="desktop-course-cover" src="${course.image}" alt="">
-                            <div class="desktop-course-body">
-                                <div class="desktop-course-label">${lessonsText}</div>
-                                <h3 class="desktop-course-title">${getCourseTitle(course)}</h3>
-                                <div class="desktop-course-sub">${d.continue}</div>
-                                <div class="desktop-progress-line">
-                                    <div class="desktop-progress-fill" style="width:${progress}%"></div>
-                                </div>
-                                <div class="desktop-progress-row">
-                                    <span>${d.progress}</span>
-                                    <span>${progress}%</span>
-                                </div>
+                            <div class="mobile-course-sub">
+                                ${course.completedLessons} ${t[lang].lessons}
                             </div>
+
+                            <div class="mobile-progress-line">
+                                <div
+                                    class="mobile-progress-fill"
+                                    style="width:${course.progress}%"
+                                ></div>
+                            </div>
+
+                            <div class="mobile-progress-row">
+                                <span>${course.progress}%</span>
+                                <span>${t[lang].completed}</span>
+                            </div>
+
                         </div>
-                    `;
-                }).join("")}
-            </div>
-        `;
-    }
+
+                    </div>
+                `
+            }).join("")}
+        </div>
+    `
+
+    updateCatalogVisibility()
 }
 
-function renderCoursesState(courses){
-    if(!courses || courses.length === 0){
-        renderEmpty();
-    }else{
-        renderCourses(courses);
-    }
+function openCourse(page){
+    impact()
+    localStorage.setItem("lang", lang)
+    window.location.href = page
 }
 
-function loadCourses(userId, silent = false){
-    currentUserId = userId;
-
-    if(!silent){
-        renderLoading();
+function loadCourses(userId){
+    if(!userId){
+        renderEmpty()
+        return
     }
 
-    fetch(`https://api.gaphub.uz/mycourses/${userId}?t=${Date.now()}`)
+    renderLoading()
+
+    fetch(`https://api.gaphub.uz/mycourses/${userId}`)
         .then(res => res.json())
         .then(data => {
-            currentCourses = getCoursesArray(data);
-            renderCoursesState(currentCourses);
+            let arr = []
+
+            if(Array.isArray(data)){
+                arr = data
+            }else if(data && Array.isArray(data.courses)){
+                arr = data.courses
+            }
+
+            coursesData = arr.map(normalizeCourse)
+
+            renderCourses()
         })
         .catch(err => {
-            console.log("Courses fetch error:", err);
-
-            if(!silent){
-                currentCourses = [];
-                renderCoursesState(currentCourses);
-            }
-        });
+            console.log("Courses error:", err)
+            coursesData = []
+            renderEmpty()
+        })
 }
 
-function refreshCourses(){
-    if(currentUserId){
-        loadCourses(currentUserId, true);
+function updateStaticText(){
+    const d = t[lang]
+
+    document.documentElement.lang = lang === "uz" ? "uz" : "ru"
+
+    /* MOBILE */
+    setText("heroTitle-mobile", d.heroTitle)
+    setText("heroText-mobile", d.heroText)
+    setText("catalogBtn-mobile", d.catalogBtn)
+    setText("sectionTitle-mobile", d.sectionTitle)
+
+    setText("m1-mobile", d.m1)
+    setText("m4-mobile", d.m4)
+    setText("m5-mobile", d.m5)
+    setText("m6-mobile", d.m6)
+
+    /* DESKTOP */
+    setText("back-desktop", lang === "uz"
+        ? "Orqaga"
+        : "Назад"
+    )
+
+    setText("home-desktop", d.home)
+    setText("m1-desktop", d.m1)
+    setText("m4-desktop", d.m4)
+    setText("m5-desktop", d.m5)
+    setText("m6-desktop", d.m6)
+
+    setText("catalog-desktop", lang === "uz"
+        ? "Kurslar katalogi"
+        : "Каталог курсов"
+    )
+
+    setText("badge-desktop", lang === "uz"
+        ? "Shaxsiy kabinet"
+        : "Личный кабинет"
+    )
+
+    setText("heroTitle-desktop", d.heroTitle)
+    setText("heroText-desktop", d.heroText)
+
+    setText("mini1Label-desktop", lang === "uz"
+        ? "Kurslar"
+        : "Курсы"
+    )
+
+    setText("mini1Value-desktop",
+        `${coursesData.length}/${TOTAL_MAIN_COURSES}`
+    )
+
+    setText("mini2Label-desktop", lang === "uz"
+        ? "Status"
+        : "Статус"
+    )
+
+    setText("mini2Value-desktop", coursesData.length
+        ? (lang === "uz" ? "Faol o‘qish" : "Активное обучение")
+        : (lang === "uz" ? "Kurs yo‘q" : "Нет курсов")
+    )
+
+    setText("catalogBtn-desktop", d.catalogBtn)
+
+    setText("sectionTitle-desktop", d.sectionTitle)
+
+    if(coursesData.length){
+        renderCourses()
     }
-}
-
-function openCourse(slug){
-    localStorage.setItem("lang", lang);
-
-    const safeSlug = String(slug || "").trim();
-
-    if(safeSlug === "smm"){
-        window.location.href = "learn-smm-v2.html";
-        return;
-    }
-
-    if(safeSlug === "target"){
-        window.location.href = "learn-target.html";
-        return;
-    }
-
-    if(safeSlug === "ai"){
-        window.location.href = "learn-ai.html";
-        return;
-    }
-
-    window.location.href = "learn-" + safeSlug + ".html";
-}
-
-function toggleLang(){
-    lang = lang === "uz" ? "ru" : "uz";
-    localStorage.setItem("lang", lang);
-    updateStaticText();
 }
 
 function goHome(){
-    localStorage.setItem("lang", lang);
-    window.location.href = "index.html";
-}
-
-function goPage(page){
-    localStorage.setItem("lang", lang);
-    window.location.href = page;
+    impact()
+    localStorage.setItem("lang", lang)
+    window.location.href = "index.html"
 }
 
 function goCourses(){
-    localStorage.setItem("lang", lang);
-    window.location.href = "courses.html";
+    impact()
+    localStorage.setItem("lang", lang)
+    window.location.href = "courses.html"
 }
 
-function goBack(){
-    if (window.history.length > 1) {
-        window.history.back();
-    } else {
-        window.location.href = "index.html";
-    }
+function goPage(page){
+    impact()
+    localStorage.setItem("lang", lang)
+    window.location.href = page
 }
 
 function initTelegram(){
     if(window.Telegram && Telegram.WebApp){
-        const tg = Telegram.WebApp;
+        const tg = Telegram.WebApp
 
-        tg.ready();
-        tg.expand();
+        tg.ready()
+        tg.expand()
 
         try{
-            tg.requestFullscreen();
+            tg.requestFullscreen()
         }catch(e){}
 
-        document.body.style.minHeight = tg.viewportHeight + "px";
+        document.body.style.minHeight = tg.viewportHeight + "px"
 
-        const user = tg.initDataUnsafe?.user;
+        telegramUser = tg.initDataUnsafe?.user || null
 
-        if(user && user.id){
-            loadCourses(user.id);
-
-            if(coursesRefreshTimer){
-                clearInterval(coursesRefreshTimer);
-            }
-
-            coursesRefreshTimer = setInterval(() => {
-                refreshCourses();
-            }, 10000);
+        if(telegramUser && telegramUser.id){
+            loadCourses(telegramUser.id)
         }else{
-            currentCourses = [];
-            renderCoursesState(currentCourses);
+            renderEmpty()
         }
     }else{
-        currentCourses = [];
-        renderCoursesState(currentCourses);
+        renderEmpty()
     }
 }
 
-updateStaticText();
-initTelegram();
+updateStaticText()
+initTelegram()
 </script>
 
 </body>

@@ -105,196 +105,195 @@ button{
 }
 
 .mobile-page{
-    min-height:100vh;
-    padding:calc(env(safe-area-inset-top) + 76px) 14px calc(110px + env(safe-area-inset-bottom));
+    min-height:calc(100vh + 24px);
+    padding:
+        calc(env(safe-area-inset-top) + 78px)
+        16px
+        calc(112px + env(safe-area-inset-bottom));
+
     background:
-        radial-gradient(circle at 20% 10%, rgba(203,108,230,.10), transparent 24%),
+        radial-gradient(circle at 20% 8%, rgba(203,108,230,.12), transparent 24%),
         linear-gradient(180deg, #09080f 0%, #0c0b14 100%);
 }
 
-.mobile-back{
-    display:inline-flex;
-    align-items:center;
-    gap:8px;
-    background:#1a1a1a;
-    color:#fff;
-    border:none;
-    border-radius:12px;
-    padding:10px 14px;
-    font-size:15px;
-    margin-bottom:16px;
+.mobile-header{
+    margin-bottom:18px;
+    animation:fadeUp .42s ease both;
 }
 
-.mobile-back svg{
-    width:16px;
-    height:16px;
-    flex-shrink:0;
-}
-
-.mobile-hero{
-    position:relative;
-    overflow:hidden;
-    border-radius:var(--radius-xl);
-    padding:18px 16px 16px;
-}
-
-.mobile-badge{
-    display:inline-flex;
-    align-items:center;
-    gap:8px;
-    background:rgba(255,255,255,.06);
-    border:1px solid rgba(255,255,255,.06);
-    border-radius:999px;
-    padding:8px 12px;
-    font-size:12px;
-    color:#ebe4f5;
-    margin-bottom:14px;
-}
-
-.mobile-hero-title{
-    margin:0 0 10px;
-    font-size:32px;
-    line-height:1;
+.mobile-page-title{
+    margin:0 0 8px;
+    font-size:clamp(34px,9vw,42px);
+    line-height:.94;
     font-weight:800;
-    letter-spacing:-.4px;
+    letter-spacing:-1px;
 }
 
-.mobile-hero-text{
+.mobile-page-text{
     margin:0;
+    max-width:330px;
     color:var(--muted);
-    font-size:14px;
-    line-height:1.5;
+    font-size:15px;
+    line-height:1.45;
 }
 
-.mobile-hero-actions{
+.mobile-top-actions{
     margin-top:16px;
     display:grid;
-    grid-template-columns:1fr;
+    grid-template-columns:1fr 1fr;
     gap:10px;
 }
 
-.mobile-hero-btn{
-    width:100%;
-    height:54px;
-    font-size:16px;
+.mobile-top-btn{
+    min-height:54px;
+    border-radius:18px;
+    font-size:14px;
+    font-weight:800;
     display:flex;
     align-items:center;
     justify-content:center;
+    text-align:center;
     text-decoration:none;
+    transition:transform .18s ease, opacity .18s ease;
+}
+
+.mobile-top-btn:active{
+    transform:scale(.985);
+    opacity:.92;
 }
 
 .mobile-section{
-    margin-top:16px;
+    margin-top:20px;
 }
 
 .mobile-section-title{
-    margin:0 0 12px;
-    font-size:21px;
+    margin:0 0 14px;
+    font-size:22px;
     line-height:1.1;
     font-weight:800;
 }
 
-.mobile-featured-list{
-    display:flex;
-    flex-direction:column;
-    gap:12px;
+.mobile-stack-wrap{
+    position:relative;
+    min-height:274px;
+    margin-top:2px;
+    animation:fadeUp .45s ease both;
 }
 
-.mobile-featured-card{
-    border-radius:22px;
+.mobile-review-stack{
+    position:relative;
+    height:248px;
+}
+
+.mobile-stack-card{
+    position:absolute;
+    top:0;
+    left:50%;
+    width:74%;
+    min-height:238px;
+    border-radius:26px;
+    padding:18px;
+    transform:translateX(-50%);
+    transition:
+        transform .34s ease,
+        opacity .34s ease,
+        filter .34s ease;
     overflow:hidden;
 }
 
-.mobile-featured-photo{
-    height:160px;
-    background:
-        radial-gradient(circle at 50% 40%, rgba(203,108,230,.20), transparent 28%),
-        linear-gradient(135deg,#1b1b24,#101015);
+.mobile-stack-card.is-main{
+    z-index:3;
+    opacity:1;
+    transform:translateX(-50%) scale(1);
+    filter:none;
+}
+
+.mobile-stack-card.is-left{
+    z-index:2;
+    opacity:.34;
+    transform:translateX(-76%) scale(.88);
+    filter:blur(.2px);
+}
+
+.mobile-stack-card.is-right{
+    z-index:2;
+    opacity:.34;
+    transform:translateX(-24%) scale(.88);
+    filter:blur(.2px);
+}
+
+.mobile-stack-card.is-hidden{
+    z-index:1;
+    opacity:0;
+    transform:translateX(-50%) scale(.82);
+    pointer-events:none;
+}
+
+.mobile-stack-top{
     display:flex;
     align-items:center;
-    justify-content:center;
-    color:#d6c5df;
-    font-size:13px;
+    gap:12px;
+    margin-bottom:14px;
 }
 
-.mobile-featured-body{
-    padding:14px;
-}
-
-.mobile-featured-name{
-    margin:0 0 4px;
-    font-size:17px;
-    font-weight:800;
-    line-height:1.2;
-}
-
-.mobile-featured-role{
-    color:var(--muted-soft);
-    font-size:13px;
-    margin-bottom:10px;
-}
-
-.mobile-featured-text{
-    margin:0;
-    color:#e4e0eb;
-    font-size:14px;
-    line-height:1.55;
-}
-
-.mobile-slider-card{
-    border-radius:24px;
-    padding:18px 16px;
-    text-align:center;
-    position:relative;
-    overflow:hidden;
-}
-
-.mobile-slider-avatar{
-    width:82px;
-    height:82px;
-    margin:0 auto 12px;
-    border-radius:50%;
-    border:4px solid var(--accent);
+.mobile-stack-avatar{
+    width:58px;
+    height:58px;
+    border-radius:20px;
     background:
         radial-gradient(circle at 50% 38%, rgba(255,255,255,.12), transparent 28%),
         linear-gradient(135deg,#232330,#111117);
+    border:1px solid rgba(255,255,255,.08);
     display:flex;
     align-items:center;
     justify-content:center;
     color:#d6c5df;
-    font-size:12px;
+    font-size:11px;
+    text-align:center;
     overflow:hidden;
+    flex-shrink:0;
 }
 
-.mobile-slider-name{
+.mobile-stack-avatar img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+}
+
+.mobile-stack-info{
+    min-width:0;
+    flex:1;
+}
+
+.mobile-stack-name{
     margin:0 0 4px;
     font-size:18px;
+    line-height:1.12;
     font-weight:800;
 }
 
-.mobile-slider-role{
+.mobile-stack-role{
     color:var(--muted-soft);
     font-size:13px;
-    margin-bottom:12px;
+    line-height:1.35;
 }
 
-.mobile-slider-text{
-    min-height:88px;
+.mobile-stack-text{
     margin:0;
     color:#e4e0eb;
     font-size:14px;
     line-height:1.55;
 }
 
-.mobile-slider-controls{
-    margin-top:16px;
+.mobile-stack-controls{
+    margin-top:14px;
     display:flex;
     align-items:center;
     justify-content:center;
     gap:12px;
 }
 
-.mobile-slider-btn{
+.mobile-stack-btn{
     width:42px;
     height:42px;
     border-radius:14px;
@@ -303,6 +302,12 @@ button{
     color:#fff;
     font-size:22px;
     line-height:1;
+    transition:transform .18s ease, opacity .18s ease;
+}
+
+.mobile-stack-btn:active{
+    transform:scale(.94);
+    opacity:.85;
 }
 
 .mobile-dots{
@@ -317,11 +322,52 @@ button{
     height:7px;
     border-radius:999px;
     background:rgba(255,255,255,.25);
+    transition:.2s ease;
 }
 
 .mobile-dot.active{
     width:22px;
     background:var(--accent);
+}
+
+.mobile-divider{
+    margin:22px 0 0;
+    height:1px;
+    background:linear-gradient(90deg, transparent, rgba(203,108,230,.55), transparent);
+    animation:fadeUp .45s ease both;
+}
+
+html, body{
+    overflow-x:hidden;
+}
+
+.mobile-shell,
+.mobile-page{
+    overflow-x:hidden;
+}
+
+.mobile-review-stack{
+    touch-action:pan-y;
+    overflow:visible;
+}
+
+.mobile-review-stack.swiping{
+    touch-action:none;
+}
+
+.mobile-stack-card{
+    will-change:transform, opacity;
+}
+
+.mobile-stack-card.is-main.dragging{
+    transition:none;
+}
+
+html,
+body,
+.mobile-shell,
+.mobile-page{
+    overflow-x:hidden;
 }
 
 /* BOTTOM NAV */
@@ -365,6 +411,12 @@ button{
     color:#d68cff;
 }
 
+.nav-item.active-mobile-nav img{
+    filter:
+        drop-shadow(0 0 10px rgba(203,108,230,.45))
+        brightness(1.08);
+}
+
 .nav-center{
     position:relative;
     top:-18px;
@@ -382,12 +434,25 @@ button{
     display:flex;
     align-items:center;
     justify-content:center;
+    box-shadow:0 10px 30px rgba(203,108,230,.25);
 }
 
 .circle img{
     width:24px;
     height:24px;
     object-fit:contain;
+}
+
+@keyframes fadeUp{
+    from{
+        opacity:0;
+        transform:translateY(14px);
+    }
+
+    to{
+        opacity:1;
+        transform:translateY(0);
+    }
 }
 
 /* =========================
@@ -498,23 +563,6 @@ button{
         padding:24px 22px 30px;
         height:100vh;
         overflow:auto;
-    }
-
-    .desktop-back{
-        display:inline-flex;
-        align-items:center;
-        gap:14px;
-        font-size:24px;
-        color:#fff;
-        margin-bottom:18px;
-        cursor:pointer;
-        user-select:none;
-    }
-
-    .desktop-back-arrow{
-        font-size:42px;
-        line-height:1;
-        transform:translateY(-1px);
     }
 
     .desktop-hero{
@@ -765,47 +813,47 @@ button{
 <!-- MOBILE -->
 <div class="mobile-shell">
     <div class="mobile-page">
-        <button class="mobile-back" onclick="goBack()">
-            <svg viewBox="0 0 24 24" fill="none">
-                <path d="M15 5L8 12L15 19" stroke="white" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
-            </svg>
-            <span id="back-mobile"></span>
-        </button>
 
-        <section class="mobile-hero glow-card">
-            <div class="mobile-badge" id="badge-mobile"></div>
+        <section class="mobile-header">
+            <h1 class="mobile-page-title" id="heroTitle-mobile"></h1>
+            <p class="mobile-page-text" id="heroText-mobile"></p>
 
-            <h1 class="mobile-hero-title" id="heroTitle-mobile"></h1>
-            <p class="mobile-hero-text" id="heroText-mobile"></p>
-
-            <div class="mobile-hero-actions">
-                <a class="btn btn-primary mobile-hero-btn" id="writeReviewBtn-mobile" href="https://t.me/username" target="_blank"></a>
-                <button class="btn btn-secondary mobile-hero-btn" id="moreReviewsBtn-mobile" onclick="openReviewsChannel()"></button>
+            <div class="mobile-top-actions">
+                <a class="btn btn-primary mobile-top-btn" id="writeReviewBtn-mobile" href="https://t.me/username" target="_blank"></a>
+                <button class="btn btn-secondary mobile-top-btn" id="moreReviewsBtn-mobile" onclick="openReviewsChannel()"></button>
             </div>
         </section>
 
         <section class="mobile-section">
             <h2 class="mobile-section-title" id="featuredTitle-mobile"></h2>
 
-            <div class="mobile-featured-list" id="featuredList-mobile"></div>
+            <div class="mobile-stack-wrap">
+                <div class="mobile-review-stack" id="featuredStack-mobile"></div>
+
+                <div class="mobile-stack-controls">
+                    <button class="mobile-stack-btn" onclick="prevFeatured()">‹</button>
+                    <div class="mobile-dots" id="featuredDots-mobile"></div>
+                    <button class="mobile-stack-btn" onclick="nextFeatured()">›</button>
+                </div>
+            </div>
         </section>
+
+        <div class="mobile-divider"></div>
 
         <section class="mobile-section">
             <h2 class="mobile-section-title" id="sliderTitle-mobile"></h2>
 
-            <div class="mobile-slider-card soft-card">
-                <div class="mobile-slider-avatar" id="sliderAvatar-mobile"></div>
-                <h3 class="mobile-slider-name" id="sliderName-mobile"></h3>
-                <div class="mobile-slider-role" id="sliderRole-mobile"></div>
-                <p class="mobile-slider-text" id="sliderText-mobile"></p>
+            <div class="mobile-stack-wrap">
+                <div class="mobile-review-stack" id="studentStack-mobile"></div>
 
-                <div class="mobile-slider-controls">
-                    <button class="mobile-slider-btn" onclick="prevSlide()">‹</button>
-                    <div class="mobile-dots" id="mobileDots"></div>
-                    <button class="mobile-slider-btn" onclick="nextSlide()">›</button>
+                <div class="mobile-stack-controls">
+                    <button class="mobile-stack-btn" onclick="prevStudent()">‹</button>
+                    <div class="mobile-dots" id="studentDots-mobile"></div>
+                    <button class="mobile-stack-btn" onclick="nextStudent()">›</button>
                 </div>
             </div>
         </section>
+
     </div>
 
     <div class="bottom-nav">
@@ -877,10 +925,6 @@ button{
         </aside>
 
         <main class="desktop-main">
-            <div class="desktop-back" onclick="goBack()">
-                <span class="desktop-back-arrow">←</span>
-                <span id="back-desktop"></span>
-            </div>
 
             <section class="desktop-hero glow-card">
                 <div class="desktop-badge" id="badge-desktop"></div>
@@ -933,16 +977,18 @@ button{
 </div>
 
 <script>
-let lang = localStorage.getItem("lang") || "uz";
-let currentSlide = 0;
-let sliderTimer = null;
+let lang = localStorage.getItem("lang") || "uz"
 
-const ADMIN_LINK = "https://t.me/username";
-const REVIEWS_CHANNEL_LINK = "#";
+let currentFeatured = 0
+let currentStudent = 0
+let featuredTimer = null
+let studentTimer = null
+
+const ADMIN_LINK = "https://t.me/username"
+const REVIEWS_CHANNEL_LINK = "#"
 
 const t = {
     uz:{
-        back:"Orqaga",
         home:"Bosh sahifa",
         m1:"Kurslarim",
         m4:"Aloqa",
@@ -950,66 +996,63 @@ const t = {
         m6:"Profil",
         catalog:"Kurslar katalogi",
 
-        badge:"Fikrlar va tavsiyalar",
-        heroTitle:"O‘quvchilar fikrlari",
-        heroText:"Kurslar haqida fikringiz, takliflaringiz yoki natijangiz bo‘lsa, bizga yozib qoldiring. Bu sahifada o‘quvchilar va tanilgan mutaxassislarning fikrlari jamlanadi.",
-        writeReview:"O‘z fikrimni qoldirish",
-        moreReviews:"Ko‘proq fikrlarni ko‘rish",
+        heroTitle:"Sharhlar",
+        heroText:"O‘quvchilar va mutaxassislar gaphub haqida nima deyishadi.",
+        writeReview:"Fikr qoldirish",
+        moreReviews:"Ko‘proq fikrlar",
 
-        featuredTitle:"Tavsiya qilganlar",
-        sliderTitle:"O‘quvchilar fikrlari",
-
-        photoPlaceholder:"Rasm uchun joy",
+        featuredTitle:"Ekspertlar fikri",
+        sliderTitle:"O‘quvchilar fikri",
+        photoPlaceholder:"Foto",
 
         featured:[
             {
                 name:"Aziz Rahimov",
                 role:"Digital mutaxassis",
-                text:"gaphub’dagi kurslar juda sodda va amaliy tilda berilgan. Ayniqsa yangi boshlayotganlar uchun keraksiz murakkablik yo‘q, hammasi tushunarli."
+                text:"gaphub’dagi kurslar sodda va amaliy tilda berilgan. Yangi boshlayotganlar uchun keraksiz murakkablik yo‘q."
             },
             {
                 name:"Malika Karimova",
                 role:"SMM manager",
-                text:"Kurslarda nazariya bilan amaliyot orasidagi bog‘liqlik yaxshi. O‘quvchi faqat eshitib qolmaydi, darhol ishga qo‘llashi mumkin bo‘lgan narsalarni oladi."
+                text:"Kurslarda nazariya bilan amaliyot orasidagi bog‘liqlik yaxshi. O‘quvchi darhol ishga qo‘llashi mumkin bo‘lgan narsalarni oladi."
             },
             {
                 name:"Jasur Tursunov",
                 role:"Tadbirkor",
-                text:"O‘z biznesini internetda rivojlantirmoqchi bo‘lganlar uchun foydali loyiha. SMM, reklama va AI bo‘yicha boshlang‘ich baza yaxshi yig‘ilgan."
+                text:"O‘z biznesini internetda rivojlantirmoqchi bo‘lganlar uchun foydali loyiha. Start uchun yaxshi baza yig‘ilgan."
             }
         ],
 
-        slider:[
+        students:[
             {
                 name:"Dilshod",
                 role:"Boshlovchi SMM mutaxassis",
-                text:"Avval SMM deganda faqat post qo‘yish deb o‘ylardim. Kursdan keyin kontent reja, vizual va mijoz bilan ishlashni ancha yaxshiroq tushundim."
+                text:"Avval SMM faqat post qo‘yish deb o‘ylardim. Endi kontent, vizual va mijoz bilan ishlashni yaxshiroq tushundim."
             },
             {
                 name:"Madina",
                 role:"Talaba",
-                text:"Menga eng yoqqani darslar juda og‘ir tilda emas. Oddiy qilib tushuntirilgan, shuning uchun yangi mavzularni ham qo‘rqmasdan o‘rgandim."
+                text:"Darslar og‘ir tilda emas. Oddiy tushuntirilgan, shuning uchun yangi mavzularni ham qo‘rqmasdan o‘rgandim."
             },
             {
                 name:"Bekzod",
                 role:"Kichik biznes egasi",
-                text:"Target va SMM haqida umumiy tasavvur paydo bo‘ldi. Endi reklama yoki kontent bo‘yicha mutaxassis bilan gaplashsam, nima so‘rash kerakligini bilaman."
+                text:"Target va SMM haqida umumiy tasavvur paydo bo‘ldi. Endi mutaxassis bilan gaplashsam, nima so‘rash kerakligini bilaman."
             },
             {
                 name:"Sevara",
                 role:"Kontent yaratuvchi",
-                text:"AI kursi ishlarimni tezlashtirishga yordam berdi. Matn, reja va g‘oya topishda endi vaqtim ancha kam ketadi."
+                text:"AI kursi ishlarimni tezlashtirishga yordam berdi. Matn, reja va g‘oya topishda vaqtim ancha kam ketadi."
             },
             {
                 name:"Otabek",
                 role:"Freelance boshlayotgan o‘quvchi",
-                text:"Kursdan keyin portfolio uchun nima qilish kerakligini tushundim. Oldin qayerdan boshlashni bilmasdim, endi aniqroq yo‘l bor."
+                text:"Kursdan keyin portfolio uchun nima qilish kerakligini tushundim. Oldin qayerdan boshlashni bilmasdim."
             }
         ]
     },
 
     ru:{
-        back:"Назад",
         home:"Главное меню",
         m1:"Мои курсы",
         m4:"Поддержка",
@@ -1017,270 +1060,460 @@ const t = {
         m6:"Профиль",
         catalog:"Каталог курсов",
 
-        badge:"Отзывы и рекомендации",
-        heroTitle:"Отзывы учеников",
-        heroText:"Если у тебя есть отзыв, пожелание или результат после курса, оставь его нам. Здесь будут собираться мнения учеников и авторитетных людей, которые оценили gaphub.",
-        writeReview:"Оставить свой отзыв",
-        moreReviews:"Посмотреть больше отзывов",
+        heroTitle:"Отзывы",
+        heroText:"Что ученики и специалисты говорят о gaphub.",
+        writeReview:"Оставить отзыв",
+        moreReviews:"Больше отзывов",
 
-        featuredTitle:"Отзывы авторитетных пользователей",
-        sliderTitle:"Что говорят ученики",
-
-        photoPlaceholder:"Место для фото",
+        featuredTitle:"Мнения экспертов",
+        sliderTitle:"Отзывы учеников",
+        photoPlaceholder:"Фото",
 
         featured:[
             {
                 name:"Азиз Рахимов",
                 role:"Digital-специалист",
-                text:"Курсы gaphub сделаны простым и практичным языком. Для новичков это особенно важно: без перегруза, без лишней теории, с понятной логикой."
+                text:"Курсы gaphub сделаны простым и практичным языком. Для новичков это особенно важно: без перегруза и лишней теории."
             },
             {
                 name:"Малика Каримова",
                 role:"SMM-менеджер",
-                text:"В курсах хорошо связаны теория и практика. Ученик не просто слушает, а получает вещи, которые можно сразу применять в контенте и продвижении."
+                text:"В курсах хорошо связаны теория и практика. Ученик получает вещи, которые можно сразу применять в контенте и продвижении."
             },
             {
                 name:"Жасур Турсунов",
                 role:"Предприниматель",
-                text:"Полезный проект для тех, кто хочет развивать себя или бизнес в интернете. SMM, реклама и AI собраны в понятную стартовую систему."
+                text:"Полезный проект для тех, кто хочет развивать себя или бизнес в интернете. Для старта собрана хорошая база."
             }
         ],
 
-        slider:[
+        students:[
             {
                 name:"Дильшод",
                 role:"Начинающий SMM-специалист",
-                text:"Раньше я думал, что SMM это просто выкладывать посты. После курса стало понятнее, как работает контент-план, визуал и общение с клиентом."
+                text:"Раньше я думал, что SMM это просто выкладывать посты. После курса стало понятнее, как работает контент и клиент."
             },
             {
                 name:"Мадина",
                 role:"Студентка",
-                text:"Больше всего понравилось, что уроки объясняются без сложных слов. Даже новые темы заходят спокойно, потому что всё разложено по шагам."
+                text:"Больше всего понравилось, что уроки объясняются без сложных слов. Даже новые темы заходят спокойно."
             },
             {
                 name:"Бекзод",
                 role:"Владелец небольшого бизнеса",
-                text:"Появилось нормальное понимание SMM и рекламы. Теперь, когда общаюсь со специалистами, хотя бы понимаю, что спрашивать и на что смотреть."
+                text:"Появилось нормальное понимание SMM и рекламы. Теперь понимаю, что спрашивать у специалистов."
             },
             {
                 name:"Севара",
                 role:"Контент-мейкер",
-                text:"Курс по AI реально ускорил работу. Тексты, идеи, планы и подготовка материалов теперь занимают меньше времени."
+                text:"Курс по AI реально ускорил работу. Тексты, идеи и подготовка материалов теперь занимают меньше времени."
             },
             {
                 name:"Отабек",
                 role:"Начинающий фрилансер",
-                text:"После курса стало понятно, что делать для первого портфолио. Раньше не знал, с чего начать, теперь есть более конкретный путь."
+                text:"После курса стало понятно, что делать для первого портфолио. Раньше не знал, с чего начать."
             }
         ]
     }
-};
+}
+
+function impact(){
+    if(window.Telegram && Telegram.WebApp && Telegram.WebApp.HapticFeedback){
+        Telegram.WebApp.HapticFeedback.impactOccurred("light")
+    }
+}
 
 function setText(id, value){
-    const el = document.getElementById(id);
-    if(el) el.innerText = value;
+    const el = document.getElementById(id)
+    if(el) el.innerText = value
+}
+
+function getStackClass(index, current, total){
+    const left = (current - 1 + total) % total
+    const right = (current + 1) % total
+
+    if(index === current) return "is-main"
+    if(index === left) return "is-left"
+    if(index === right) return "is-right"
+
+    return "is-hidden"
+}
+
+function renderStack(containerId, dotsId, items, current){
+    const container = document.getElementById(containerId)
+    const dots = document.getElementById(dotsId)
+    const d = t[lang]
+
+    if(container){
+        container.innerHTML = items.map((item, index) => {
+            const cardClass = getStackClass(index, current, items.length)
+
+            return `
+                <article class="mobile-stack-card soft-card ${cardClass}">
+                    <div class="mobile-stack-top">
+                        <div class="mobile-stack-avatar">
+                            ${d.photoPlaceholder}
+                        </div>
+
+                        <div class="mobile-stack-info">
+                            <h3 class="mobile-stack-name">${item.name}</h3>
+                            <div class="mobile-stack-role">${item.role}</div>
+                        </div>
+                    </div>
+
+                    <p class="mobile-stack-text">${item.text}</p>
+                </article>
+            `
+        }).join("")
+    }
+
+    if(dots){
+        dots.innerHTML = items.map((_, index) => `
+            <span class="${index === current ? "mobile-dot active" : "mobile-dot"}"></span>
+        `).join("")
+    }
+}
+
+function renderMobileStacks(){
+    const d = t[lang]
+
+    renderStack(
+        "featuredStack-mobile",
+        "featuredDots-mobile",
+        d.featured,
+        currentFeatured
+    )
+
+    renderStack(
+        "studentStack-mobile",
+        "studentDots-mobile",
+        d.students,
+        currentStudent
+    )
 }
 
 function updateStaticText(){
-    const d = t[lang];
+    const d = t[lang]
 
-    document.documentElement.lang = lang === "uz" ? "uz" : "ru";
+    document.documentElement.lang = lang === "uz" ? "uz" : "ru"
 
-    setText("back-mobile", d.back);
-    setText("badge-mobile", d.badge);
-    setText("heroTitle-mobile", d.heroTitle);
-    setText("heroText-mobile", d.heroText);
-    setText("writeReviewBtn-mobile", d.writeReview);
-    setText("moreReviewsBtn-mobile", d.moreReviews);
-    setText("featuredTitle-mobile", d.featuredTitle);
-    setText("sliderTitle-mobile", d.sliderTitle);
-    setText("m1-mobile", d.m1);
-    setText("m4-mobile", d.m4);
-    setText("m5-mobile", d.m5);
-    setText("m6-mobile", d.m6);
+    setText("heroTitle-mobile", d.heroTitle)
+    setText("heroText-mobile", d.heroText)
+    setText("writeReviewBtn-mobile", d.writeReview)
+    setText("moreReviewsBtn-mobile", d.moreReviews)
+    setText("featuredTitle-mobile", d.featuredTitle)
+    setText("sliderTitle-mobile", d.sliderTitle)
 
-    setText("back-desktop", d.back);
-    setText("home-desktop", d.home);
-    setText("m1-desktop", d.m1);
-    setText("m4-desktop", d.m4);
-    setText("m5-desktop", d.m5);
-    setText("m6-desktop", d.m6);
-    setText("catalog-desktop", d.catalog);
-    setText("badge-desktop", d.badge);
-    setText("heroTitle-desktop", d.heroTitle);
-    setText("heroText-desktop", d.heroText);
-    setText("writeReviewBtn-desktop", d.writeReview);
-    setText("moreReviewsBtn-desktop", d.moreReviews);
-    setText("featuredTitle-desktop", d.featuredTitle);
-    setText("sliderTitle-desktop", d.sliderTitle);
+    setText("m1-mobile", d.m1)
+    setText("m4-mobile", d.m4)
+    setText("m5-mobile", d.m5)
+    setText("m6-mobile", d.m6)
 
-    const mobileReviewBtn = document.getElementById("writeReviewBtn-mobile");
-    const desktopReviewBtn = document.getElementById("writeReviewBtn-desktop");
+    setText("back-desktop", lang === "uz" ? "Orqaga" : "Назад")
+    setText("home-desktop", d.home)
+    setText("m1-desktop", d.m1)
+    setText("m4-desktop", d.m4)
+    setText("m5-desktop", d.m5)
+    setText("m6-desktop", d.m6)
+    setText("catalog-desktop", d.catalog)
 
-    if(mobileReviewBtn) mobileReviewBtn.href = ADMIN_LINK;
-    if(desktopReviewBtn) desktopReviewBtn.href = ADMIN_LINK;
+    setText("badge-desktop", lang === "uz" ? "Fikrlar" : "Отзывы")
+    setText("heroTitle-desktop", d.heroTitle)
+    setText("heroText-desktop", d.heroText)
+    setText("writeReviewBtn-desktop", d.writeReview)
+    setText("moreReviewsBtn-desktop", d.moreReviews)
+    setText("featuredTitle-desktop", d.featuredTitle)
+    setText("sliderTitle-desktop", d.sliderTitle)
 
-    renderFeatured();
-    renderSlide();
+    const mobileReviewBtn = document.getElementById("writeReviewBtn-mobile")
+    const desktopReviewBtn = document.getElementById("writeReviewBtn-desktop")
+
+    if(mobileReviewBtn) mobileReviewBtn.href = ADMIN_LINK
+    if(desktopReviewBtn) desktopReviewBtn.href = ADMIN_LINK
+
+    renderMobileStacks()
+    renderDesktopFeatured()
+    renderDesktopStudent()
 }
 
-function renderFeatured(){
-    const d = t[lang];
+function renderDesktopFeatured(){
+    const d = t[lang]
+    const desktop = document.getElementById("featuredList-desktop")
 
-    const mobile = document.getElementById("featuredList-mobile");
-    const desktop = document.getElementById("featuredList-desktop");
+    if(!desktop) return
 
-    const mobileHtml = d.featured.map(item => `
-        <div class="mobile-featured-card soft-card">
-            <div class="mobile-featured-photo">${d.photoPlaceholder}</div>
-            <div class="mobile-featured-body">
-                <h3 class="mobile-featured-name">${item.name}</h3>
-                <div class="mobile-featured-role">${item.role}</div>
-                <p class="mobile-featured-text">${item.text}</p>
-            </div>
-        </div>
-    `).join("");
-
-    const desktopHtml = d.featured.map(item => `
+    desktop.innerHTML = d.featured.map(item => `
         <div class="desktop-featured-card soft-card">
             <div class="desktop-featured-photo">${d.photoPlaceholder}</div>
+
             <div class="desktop-featured-body">
                 <h3 class="desktop-featured-name">${item.name}</h3>
                 <div class="desktop-featured-role">${item.role}</div>
                 <p class="desktop-featured-text">${item.text}</p>
             </div>
         </div>
-    `).join("");
-
-    if(mobile) mobile.innerHTML = mobileHtml;
-    if(desktop) desktop.innerHTML = desktopHtml;
+    `).join("")
 }
 
-function renderSlide(){
-    const d = t[lang];
-    const items = d.slider;
-    const item = items[currentSlide];
+function renderDesktopStudent(){
+    const d = t[lang]
+    const item = d.students[currentStudent]
 
-    setText("sliderName-mobile", item.name);
-    setText("sliderRole-mobile", item.role);
-    setText("sliderText-mobile", item.text);
-    setText("sliderName-desktop", item.name);
-    setText("sliderRole-desktop", item.role);
-    setText("sliderText-desktop", item.text);
+    setText("sliderName-desktop", item.name)
+    setText("sliderRole-desktop", item.role)
+    setText("sliderText-desktop", item.text)
 
-    const mobileAvatar = document.getElementById("sliderAvatar-mobile");
-    const desktopAvatar = document.getElementById("sliderAvatar-desktop");
+    const avatar = document.getElementById("sliderAvatar-desktop")
+    if(avatar) avatar.innerText = d.photoPlaceholder
 
-    if(mobileAvatar) mobileAvatar.innerText = d.photoPlaceholder;
-    if(desktopAvatar) desktopAvatar.innerText = d.photoPlaceholder;
-
-    renderDots();
-}
-
-function renderDots(){
-    const d = t[lang];
-    const items = d.slider;
-
-    const dotsHtml = items.map((_, index) => `
-        <span class="${index === currentSlide ? 'mobile-dot active' : 'mobile-dot'}" onclick="setSlide(${index})"></span>
-    `).join("");
-
-    const desktopDotsHtml = items.map((_, index) => `
-        <span class="${index === currentSlide ? 'desktop-dot active' : 'desktop-dot'}" onclick="setSlide(${index})"></span>
-    `).join("");
-
-    const mobileDots = document.getElementById("mobileDots");
-    const desktopDots = document.getElementById("desktopDots");
-
-    if(mobileDots) mobileDots.innerHTML = dotsHtml;
-    if(desktopDots) desktopDots.innerHTML = desktopDotsHtml;
-}
-
-function setSlide(index){
-    const items = t[lang].slider;
-    currentSlide = (index + items.length) % items.length;
-    renderSlide();
-    restartSlider();
-}
-
-function nextSlide(){
-    setSlide(currentSlide + 1);
-}
-
-function prevSlide(){
-    setSlide(currentSlide - 1);
-}
-
-function startSlider(){
-    stopSlider();
-    sliderTimer = setInterval(() => {
-        const items = t[lang].slider;
-        currentSlide = (currentSlide + 1) % items.length;
-        renderSlide();
-    }, 10000);
-}
-
-function stopSlider(){
-    if(sliderTimer){
-        clearInterval(sliderTimer);
-        sliderTimer = null;
+    const dots = document.getElementById("desktopDots")
+    if(dots){
+        dots.innerHTML = d.students.map((_, index) => `
+            <span class="${index === currentStudent ? "desktop-dot active" : "desktop-dot"}" onclick="setStudent(${index})"></span>
+        `).join("")
     }
 }
 
-function restartSlider(){
-    startSlider();
+function startFeaturedSlider(){
+    stopFeaturedSlider()
+
+    featuredTimer = setInterval(() => {
+        const items = t[lang].featured
+        currentFeatured = (currentFeatured + 1) % items.length
+        renderMobileStacks()
+    }, 10000)
+}
+
+function stopFeaturedSlider(){
+    if(featuredTimer){
+        clearInterval(featuredTimer)
+        featuredTimer = null
+    }
+}
+
+function restartFeaturedSlider(){
+    startFeaturedSlider()
+}
+
+function setFeatured(index){
+    const items = t[lang].featured
+    currentFeatured = (index + items.length) % items.length
+    impact()
+    renderMobileStacks()
+    restartFeaturedSlider()
+}
+
+function nextFeatured(){
+    setFeatured(currentFeatured + 1)
+}
+
+function prevFeatured(){
+    setFeatured(currentFeatured - 1)
+}
+
+function setStudent(index){
+    const items = t[lang].students
+    currentStudent = (index + items.length) % items.length
+    impact()
+    renderMobileStacks()
+    renderDesktopStudent()
+    restartStudentSlider()
+}
+
+function nextStudent(){
+    setStudent(currentStudent + 1)
+}
+
+function prevStudent(){
+    setStudent(currentStudent - 1)
+}
+
+function startStudentSlider(){
+    stopStudentSlider()
+
+    studentTimer = setInterval(() => {
+        const items = t[lang].students
+        currentStudent = (currentStudent + 1) % items.length
+        renderMobileStacks()
+        renderDesktopStudent()
+    }, 10000)
+}
+
+function stopStudentSlider(){
+    if(studentTimer){
+        clearInterval(studentTimer)
+        studentTimer = null
+    }
+}
+
+function restartStudentSlider(){
+    startStudentSlider()
 }
 
 function openReviewsChannel(){
+    impact()
+
     if(REVIEWS_CHANNEL_LINK === "#"){
-        alert(lang === "uz" ? "Tez orada fikrlar kanali qo‘shiladi" : "Скоро здесь будет канал с отзывами");
-        return;
+        alert(lang === "uz" ? "Tez orada fikrlar kanali qo‘shiladi" : "Скоро здесь будет канал с отзывами")
+        return
     }
 
-    window.open(REVIEWS_CHANNEL_LINK, "_blank");
+    window.open(REVIEWS_CHANNEL_LINK, "_blank")
 }
 
 function goHome(){
-    localStorage.setItem("lang", lang);
-    window.location.href = "index.html";
+    impact()
+    localStorage.setItem("lang", lang)
+    window.location.href = "index.html"
 }
 
 function goPage(page){
-    localStorage.setItem("lang", lang);
-    window.location.href = page;
+    impact()
+    localStorage.setItem("lang", lang)
+    window.location.href = page
 }
 
 function goCourses(){
-    localStorage.setItem("lang", lang);
-    window.location.href = "courses.html";
+    impact()
+    localStorage.setItem("lang", lang)
+    window.location.href = "courses.html"
 }
 
 function goBack(){
-    if (window.history.length > 1) {
-        window.history.back();
-    } else {
-        window.location.href = "index.html";
+    impact()
+
+    if(window.history.length > 1){
+        window.history.back()
+    }else{
+        window.location.href = "index.html"
     }
 }
 
 function initTelegram(){
     if(window.Telegram && Telegram.WebApp){
-        const tg = Telegram.WebApp;
+        const tg = Telegram.WebApp
 
-        tg.ready();
-        tg.expand();
+        tg.ready()
+        tg.expand()
 
         try{
-            tg.requestFullscreen();
+            tg.requestFullscreen()
         }catch(e){}
 
-        document.body.style.minHeight = tg.viewportHeight + "px";
+        document.body.style.minHeight = tg.viewportHeight + "px"
     }
 }
 
-updateStaticText();
-initTelegram();
-startSlider();
+function initCardSwipe(stackId, nextFn, prevFn){
+    const stack = document.getElementById(stackId)
+    if(!stack) return
+
+    let startX = 0
+    let startY = 0
+    let currentX = 0
+    let isDragging = false
+    let isHorizontal = false
+
+    function getMainCard(){
+        return stack.querySelector(".mobile-stack-card.is-main")
+    }
+
+    stack.addEventListener("touchstart", function(e){
+        if(!e.touches || !e.touches.length) return
+
+        const touch = e.touches[0]
+
+        startX = touch.clientX
+        startY = touch.clientY
+        currentX = startX
+        isDragging = true
+        isHorizontal = false
+
+        const card = getMainCard()
+        if(card){
+            card.classList.add("dragging")
+        }
+    }, {passive:true})
+
+    stack.addEventListener("touchmove", function(e){
+        if(!isDragging || !e.touches || !e.touches.length) return
+
+        const touch = e.touches[0]
+        const diffX = touch.clientX - startX
+        const diffY = touch.clientY - startY
+
+        currentX = touch.clientX
+
+        if(!isHorizontal){
+            if(Math.abs(diffX) > 12 && Math.abs(diffX) > Math.abs(diffY)){
+                isHorizontal = true
+                stack.classList.add("swiping")
+            }
+        }
+
+        if(isHorizontal){
+            e.preventDefault()
+
+            const card = getMainCard()
+            if(card){
+                const limitedX = Math.max(-70, Math.min(70, diffX))
+                const rotate = limitedX / 18
+
+                card.style.transform = `translateX(calc(-50% + ${limitedX}px)) scale(1) rotate(${rotate}deg)`
+            }
+        }
+    }, {passive:false})
+
+    stack.addEventListener("touchend", function(){
+        if(!isDragging) return
+
+        const diffX = currentX - startX
+        const card = getMainCard()
+
+        if(card){
+            card.classList.remove("dragging")
+            card.style.transform = ""
+        }
+
+        stack.classList.remove("swiping")
+
+        if(isHorizontal && Math.abs(diffX) > 55){
+            if(diffX < 0){
+                nextFn()
+            }else{
+                prevFn()
+            }
+        }
+
+        isDragging = false
+        isHorizontal = false
+    }, {passive:true})
+
+    stack.addEventListener("touchcancel", function(){
+        const card = getMainCard()
+
+        if(card){
+            card.classList.remove("dragging")
+            card.style.transform = ""
+        }
+
+        stack.classList.remove("swiping")
+
+        isDragging = false
+        isHorizontal = false
+    }, {passive:true})
+}
+
+function initSwipes(){
+    initCardSwipe("featuredStack-mobile", nextFeatured, prevFeatured)
+    initCardSwipe("studentStack-mobile", nextStudent, prevStudent)
+}
+
+updateStaticText()
+initTelegram()
+initSwipes()
+startFeaturedSlider()
+startStudentSlider()
 </script>
 
 </body>

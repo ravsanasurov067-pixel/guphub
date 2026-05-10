@@ -105,203 +105,206 @@ button{
 }
 
 .mobile-page{
-    min-height:100vh;
-    padding:calc(env(safe-area-inset-top) + 76px) 14px calc(110px + env(safe-area-inset-bottom));
+    min-height:calc(100vh + 24px);
+    padding:
+        calc(env(safe-area-inset-top) + 78px)
+        16px
+        calc(112px + env(safe-area-inset-bottom));
+
     background:
-        radial-gradient(circle at 20% 10%, rgba(203,108,230,.10), transparent 24%),
+        radial-gradient(circle at 20% 8%, rgba(203,108,230,.12), transparent 24%),
         linear-gradient(180deg, #09080f 0%, #0c0b14 100%);
 }
 
-.mobile-back{
-    display:inline-flex;
-    align-items:center;
-    gap:8px;
-    background:#1a1a1a;
-    color:#fff;
-    border:none;
-    border-radius:12px;
-    padding:10px 14px;
-    font-size:15px;
-    margin-bottom:16px;
-}
-
-.mobile-back svg{
-    width:16px;
-    height:16px;
-    flex-shrink:0;
-}
-
-.mobile-hero{
+.mobile-profile-card{
     position:relative;
     overflow:hidden;
-    border-radius:var(--radius-xl);
-    padding:18px 16px 16px;
+    border-radius:30px;
+    padding:20px 18px 18px;
+    animation:fadeUp .42s ease both;
 }
 
-.mobile-badge{
-    display:inline-flex;
-    align-items:center;
-    gap:8px;
-    background:rgba(255,255,255,.06);
-    border:1px solid rgba(255,255,255,.06);
-    border-radius:999px;
-    padding:8px 12px;
-    font-size:12px;
-    color:#ebe4f5;
-    margin-bottom:14px;
-}
-
-.mobile-profile-row{
+.mobile-profile-top{
     display:flex;
     align-items:center;
     gap:14px;
 }
 
 .mobile-avatar{
-    width:88px;
-    height:88px;
-    border-radius:50%;
-    border:4px solid var(--accent);
-    background:linear-gradient(135deg,#f3bb63,#f7a35f);
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    color:#fff;
-    font-size:34px;
-    font-weight:700;
-    overflow:hidden;
-    flex-shrink:0;
-    box-shadow:0 12px 26px rgba(0,0,0,.28);
-}
-
-.mobile-avatar img{
-    width:100%;
-    height:100%;
+    width:76px;
+    height:76px;
+    border-radius:24px;
     object-fit:cover;
+    flex-shrink:0;
+    border:1px solid rgba(255,255,255,.08);
 }
 
-.mobile-profile-meta{
+.mobile-profile-info{
     min-width:0;
     flex:1;
 }
 
-.mobile-name{
-    margin:0 0 4px;
-    font-size:27px;
-    line-height:1.02;
+.mobile-profile-name{
+    margin:0 0 5px;
+    font-size:24px;
+    line-height:1.05;
     font-weight:800;
-    letter-spacing:-0.4px;
+    letter-spacing:-.4px;
 }
 
-.mobile-username{
-    color:var(--muted-soft);
-    font-size:14px;
-    margin-bottom:10px;
-    white-space:nowrap;
-    overflow:hidden;
-    text-overflow:ellipsis;
-}
-
-.mobile-phone{
-    display:inline-block;
-    background:#2a1933;
-    color:#d68cff;
-    border-radius:999px;
-    padding:8px 12px;
-    font-size:13px;
-    min-width:110px;
-}
-
-.mobile-hero-note{
-    margin-top:14px;
+.mobile-profile-username{
     color:var(--muted);
     font-size:14px;
-    line-height:1.5;
+    line-height:1.4;
+    margin-bottom:8px;
 }
 
-.mobile-mini-grid{
-    margin-top:14px;
+.mobile-phone-pill{
+    display:inline-flex;
+    align-items:center;
+    min-height:32px;
+    padding:0 12px;
+    border-radius:999px;
+    background:rgba(255,255,255,.06);
+    border:1px solid rgba(255,255,255,.08);
+    color:#fff;
+    font-size:13px;
+    font-weight:700;
+}
+
+.mobile-top-actions{
+    margin-top:18px;
     display:grid;
     grid-template-columns:1fr 1fr;
     gap:10px;
 }
 
-.mobile-mini-card{
-    background:rgba(255,255,255,.04);
-    border-radius:16px;
-    padding:12px;
-    min-height:78px;
+.mobile-top-btn{
+    height:54px;
+    border:none;
+    border-radius:18px;
+    font-size:15px;
+    font-weight:800;
+    transition:.18s ease;
 }
 
-.mobile-mini-label{
+.mobile-top-btn:active{
+    transform:scale(.985);
+    opacity:.92;
+}
+
+.mobile-top-btn.primary{
+    color:#fff;
+    background:linear-gradient(90deg,var(--accent),var(--accent-2));
+    box-shadow:0 12px 28px rgba(203,108,230,.22);
+}
+
+.mobile-top-btn.secondary{
+    color:#fff;
+    background:rgba(255,255,255,.05);
+    border:1px solid rgba(255,255,255,.08);
+}
+
+.mobile-continue-card{
+    margin-top:14px;
+    border-radius:24px;
+    padding:16px;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:14px;
+    cursor:pointer;
+    animation:fadeUp .45s ease both;
+    animation-delay:.10s;
+    transition:transform .18s ease, opacity .18s ease;
+}
+
+.mobile-continue-card:active{
+    transform:scale(.985);
+    opacity:.92;
+}
+
+.mobile-continue-left{
+    min-width:0;
+    flex:1;
+}
+
+.mobile-continue-label{
     color:var(--muted-soft);
     font-size:12px;
     margin-bottom:6px;
 }
 
-.mobile-mini-value{
-    font-size:14px;
-    font-weight:700;
-    line-height:1.35;
-}
-
-.mobile-top-actions{
-    margin-top:14px;
-    display:grid;
-    grid-template-columns:1fr;
-    gap:10px;
-}
-
-.mobile-top-btn{
-    width:100%;
-    height:54px;
-    font-size:16px;
-}
-
-.mobile-section{
-    margin-top:14px;
-}
-
-.mobile-section-title{
-    margin:0 0 12px;
-    font-size:21px;
-    line-height:1.1;
+.mobile-continue-title{
+    font-size:18px;
+    line-height:1.2;
     font-weight:800;
 }
 
+.mobile-continue-arrow{
+    width:44px;
+    height:44px;
+    border-radius:15px;
+    background:rgba(255,255,255,.06);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    flex-shrink:0;
+    font-size:24px;
+}
+
 .mobile-actions-grid{
+    margin-top:16px;
     display:flex;
     flex-direction:column;
-    gap:10px;
+    gap:12px;
 }
 
 .mobile-action-card{
+    border-radius:24px;
+    padding:16px;
     display:flex;
     align-items:center;
     justify-content:space-between;
     gap:14px;
-    border-radius:20px;
-    padding:14px;
     cursor:pointer;
+    animation:fadeUp .45s ease both;
+    transition:transform .18s ease, opacity .18s ease;
+}
+
+.mobile-actions-grid .mobile-action-card:nth-child(1){
+    animation-delay:.16s;
+}
+
+.mobile-actions-grid .mobile-action-card:nth-child(2){
+    animation-delay:.22s;
+}
+
+.mobile-actions-grid .mobile-action-card:nth-child(3){
+    animation-delay:.28s;
+}
+
+.mobile-action-card:active{
+    transform:scale(.985);
+    opacity:.92;
 }
 
 .mobile-action-left{
     display:flex;
     align-items:center;
-    gap:12px;
+    gap:14px;
     min-width:0;
 }
 
 .mobile-action-icon{
-    width:44px;
-    height:44px;
-    border-radius:14px;
-    background:#22222d;
-    flex-shrink:0;
+    width:54px;
+    height:54px;
+    border-radius:18px;
+    background:rgba(255,255,255,.06);
     display:flex;
     align-items:center;
     justify-content:center;
-    overflow:hidden;
+    flex-shrink:0;
 }
 
 .mobile-action-icon img{
@@ -310,26 +313,36 @@ button{
     object-fit:contain;
 }
 
-.mobile-action-title{
-    font-size:15px;
-    font-weight:700;
-    line-height:1.3;
+.mobile-action-content{
+    min-width:0;
 }
 
-.mobile-action-sub{
-    margin-top:3px;
+.mobile-action-title{
+    margin:0 0 4px;
+    font-size:17px;
+    font-weight:800;
+    line-height:1.2;
+}
+
+.mobile-action-text{
+    color:var(--muted);
     font-size:13px;
-    color:var(--muted-soft);
+    line-height:1.4;
 }
 
 .mobile-action-arrow{
+    width:40px;
+    height:40px;
+    border-radius:14px;
+    background:rgba(255,255,255,.05);
+    display:flex;
+    align-items:center;
+    justify-content:center;
     font-size:22px;
-    color:#bfbfbf;
-    line-height:1;
     flex-shrink:0;
 }
 
-/* BOTTOM NAV */
+/* bottom nav */
 .bottom-nav{
     position:fixed;
     left:0;
@@ -366,6 +379,16 @@ button{
     text-overflow:ellipsis;
 }
 
+.nav-item.active-mobile-nav span{
+    color:#d68cff;
+}
+
+.nav-item.active-mobile-nav img{
+    filter:
+        drop-shadow(0 0 10px rgba(203,108,230,.45))
+        brightness(1.08);
+}
+
 .nav-center{
     position:relative;
     top:-18px;
@@ -377,18 +400,31 @@ button{
 .circle{
     width:60px;
     height:60px;
-    background:#ffffff;
+    background:#fff;
     border-radius:50%;
     border:4px solid var(--accent);
     display:flex;
     align-items:center;
     justify-content:center;
+    box-shadow:0 10px 30px rgba(203,108,230,.25);
 }
 
 .circle img{
     width:24px;
     height:24px;
     object-fit:contain;
+}
+
+@keyframes fadeUp{
+    from{
+        opacity:0;
+        transform:translateY(14px);
+    }
+
+    to{
+        opacity:1;
+        transform:translateY(0);
+    }
 }
 
 /* =========================
@@ -768,93 +804,91 @@ button{
 <!-- MOBILE -->
 <div class="mobile-shell">
     <div class="mobile-page">
-        <button class="mobile-back" onclick="goBack()">
-            <svg viewBox="0 0 24 24" fill="none">
-                <path d="M15 5L8 12L15 19" stroke="white" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
-            </svg>
-            <span id="back-mobile"></span>
-        </button>
 
-        <section class="mobile-hero glow-card">
-            <div class="mobile-badge" id="badge-mobile"></div>
+        <section class="mobile-profile-card glow-card">
 
-            <div class="mobile-profile-row">
-                <div class="mobile-avatar" id="avatarWrap-mobile">C</div>
+            <div class="mobile-profile-top">
+                <img id="mobileAvatar" class="mobile-avatar" src="images/default-avatar.png" alt="avatar">
 
-                <div class="mobile-profile-meta">
-                    <h1 class="mobile-name" id="name-mobile">User</h1>
-                    <div class="mobile-username" id="username-mobile">@username</div>
-                    <div class="mobile-phone" id="phone-mobile"></div>
-                </div>
-            </div>
+                <div class="mobile-profile-info">
+                    <h1 class="mobile-profile-name" id="mobileName">User</h1>
 
-            <div class="mobile-hero-note" id="note-mobile"></div>
+                    <div class="mobile-profile-username" id="mobileUsername">@username</div>
 
-            <div class="mobile-mini-grid">
-                <div class="mobile-mini-card">
-                    <div class="mobile-mini-label" id="mini1Label-mobile"></div>
-                    <div class="mobile-mini-value" id="mini1Value-mobile"></div>
-                </div>
-                <div class="mobile-mini-card">
-                    <div class="mobile-mini-label" id="mini2Label-mobile"></div>
-                    <div class="mobile-mini-value" id="mini2Value-mobile"></div>
+                    <div class="mobile-phone-pill" id="mobilePhone">
+                        +998 00 000 00 00
+                    </div>
                 </div>
             </div>
 
             <div class="mobile-top-actions">
-                <button class="btn btn-primary mobile-top-btn" id="buyBtn-mobile"></button>
+                <button class="mobile-top-btn primary" onclick="goCourses()" id="buyBtn-mobile"></button>
 
-                <button class="btn btn-secondary mobile-top-btn" onclick="toggleLang()">
-                    <span id="langText-mobile"></span>
-                    <span style="margin-left:8px;color:#cfcfcf" id="langValue-mobile"></span>
-                </button>
+                <button class="mobile-top-btn secondary" onclick="toggleLang()" id="langBtn-mobile"></button>
+            </div>
+
+            <div class="mobile-continue-card soft-card" onclick="continueLearning()">
+                <div class="mobile-continue-left">
+                    <div class="mobile-continue-label" id="continueLabel-mobile"></div>
+
+                    <div class="mobile-continue-title" id="continueTitle-mobile"></div>
+                </div>
+
+                <div class="mobile-continue-arrow">›</div>
             </div>
         </section>
 
-        <section class="mobile-section">
-            <h2 class="mobile-section-title" id="sectionTitle-mobile"></h2>
+        <div class="mobile-actions-grid">
 
-            <div class="mobile-actions-grid">
-                <div class="mobile-action-card soft-card" onclick="goPage('mycourses.html')">
-                    <div class="mobile-action-left">
-                        <div class="mobile-action-icon">
-                            <img src="images/icon/courses2.png" alt="">
-                        </div>
-                        <div>
-                            <div class="mobile-action-title" id="courses-mobile"></div>
-                            <div class="mobile-action-sub" id="coursesSub-mobile"></div>
-                        </div>
+            <div class="mobile-action-card soft-card" onclick="goPage('mycourses.html')">
+
+                <div class="mobile-action-left">
+                    <div class="mobile-action-icon">
+                        <img src="images/icon/courses2.png" alt="">
                     </div>
-                    <span class="mobile-action-arrow">›</span>
+
+                    <div class="mobile-action-content">
+                        <div class="mobile-action-title" id="coursesCardTitle-mobile"></div>
+                        <div class="mobile-action-text" id="coursesCardText-mobile"></div>
+                    </div>
                 </div>
 
-                <div class="mobile-action-card soft-card" onclick="goPage('progress.html')">
-                    <div class="mobile-action-left">
-                        <div class="mobile-action-icon">
-                            <img src="images/icon/progress.png" alt="">
-                        </div>
-                        <div>
-                            <div class="mobile-action-title" id="progress-mobile"></div>
-                            <div class="mobile-action-sub" id="progressSub-mobile"></div>
-                        </div>
-                    </div>
-                    <span class="mobile-action-arrow">›</span>
-                </div>
-
-                <div class="mobile-action-card soft-card" onclick="goPage('support.html')">
-                    <div class="mobile-action-left">
-                        <div class="mobile-action-icon">
-                            <img src="images/icon/support.png" alt="">
-                        </div>
-                        <div>
-                            <div class="mobile-action-title" id="support-mobile"></div>
-                            <div class="mobile-action-sub" id="supportSub-mobile"></div>
-                        </div>
-                    </div>
-                    <span class="mobile-action-arrow">›</span>
-                </div>
+                <div class="mobile-action-arrow">›</div>
             </div>
-        </section>
+
+            <div class="mobile-action-card soft-card" onclick="goPage('support.html')">
+
+                <div class="mobile-action-left">
+                    <div class="mobile-action-icon">
+                        <img src="images/icon/support.png" alt="">
+                    </div>
+
+                    <div class="mobile-action-content">
+                        <div class="mobile-action-title" id="supportCardTitle-mobile"></div>
+                        <div class="mobile-action-text" id="supportCardText-mobile"></div>
+                    </div>
+                </div>
+
+                <div class="mobile-action-arrow">›</div>
+            </div>
+
+            <div class="mobile-action-card soft-card" onclick="goPage('chat.html')">
+
+                <div class="mobile-action-left">
+                    <div class="mobile-action-icon">
+                        <img src="images/icon/feedback.png" alt="">
+                    </div>
+
+                    <div class="mobile-action-content">
+                        <div class="mobile-action-title" id="reviewsCardTitle-mobile"></div>
+                        <div class="mobile-action-text" id="reviewsCardText-mobile"></div>
+                    </div>
+                </div>
+
+                <div class="mobile-action-arrow">›</div>
+            </div>
+
+        </div>
     </div>
 
     <div class="bottom-nav">
@@ -879,7 +913,7 @@ button{
             <span id="m5-mobile"></span>
         </div>
 
-        <div class="nav-item" onclick="goPage('myprofile.html')">
+        <div class="nav-item active-mobile-nav" onclick="goPage('myprofile.html')">
             <img src="images/icon/profile2.png" alt="">
             <span id="m6-mobile"></span>
         </div>
@@ -1021,6 +1055,9 @@ button{
 <script>
 let lang = localStorage.getItem("lang") || "uz"
 
+let userCourses = []
+let currentUserId = null
+
 const t = {
     uz:{
         back:"Orqaga",
@@ -1031,28 +1068,25 @@ const t = {
         m6:"Profil",
         catalog:"Kurslar katalogi",
 
-        badge:"Shaxsiy kabinet",
-        note:"Bu yerda kurslar, progress va keyingi harakatlaring jamlangan. Profil ichidan kerakli bo‘limlarga tez o‘tish mumkin.",
         buy:"Kurs sotib olish",
-        lang:"Til",
-        langVal:"O‘zbek",
+        langBtn:"Til: UZ",
 
-        mini1Label:"Kabinet holati",
-        mini1Value:"Profil faol",
+        continueLabel:"Davom etish",
+        continueEmpty:"Hali faol kurs yo‘q",
+        continueSmm:"SMM • 1-dars",
+        continueTarget:"Target • 1-dars",
+        continueAi:"AI • 1-dars",
 
-        mini2Label:"Asosiy yo‘nalish",
-        mini2Value:"Digital start",
+        coursesTitle:"Mening kurslarim",
+        coursesText:"Sotib olingan kurslar va darslar",
 
-        sectionTitle:"Asosiy bo‘limlar",
+        supportTitle:"Yordam",
+        supportText:"Savollar va qo‘llab-quvvatlash",
 
-        courses:"Mening kurslarim",
-        coursesSub:"Sotib olingan kurslar va kirishlar",
+        reviewsTitle:"Sharhlar",
+        reviewsText:"O‘quvchilar fikrlari",
 
-        progress:"Mening progressim",
-        progressSub:"Darslar va keyingi bosqich",
-
-        support:"Yordam",
-        supportSub:"Savollar va qo‘llab-quvvatlash"
+        phoneEmpty:"Telefon yo‘q"
     },
 
     ru:{
@@ -1064,28 +1098,31 @@ const t = {
         m6:"Профиль",
         catalog:"Каталог курсов",
 
-        badge:"Личный кабинет",
-        note:"Здесь собраны твои курсы, прогресс и следующие действия. Из профиля можно быстро перейти в нужный раздел без лишних шагов.",
         buy:"Купить курс",
-        lang:"Язык",
-        langVal:"Русский",
+        langBtn:"Язык: RU",
 
-        mini1Label:"Состояние кабинета",
-        mini1Value:"Профиль активен",
+        continueLabel:"Продолжить обучение",
+        continueEmpty:"Пока нет активного курса",
+        continueSmm:"SMM • Урок 1",
+        continueTarget:"Target • Урок 1",
+        continueAi:"AI • Урок 1",
 
-        mini2Label:"Основной вектор",
-        mini2Value:"Digital start",
+        coursesTitle:"Мои курсы",
+        coursesText:"Купленные курсы и уроки",
 
-        sectionTitle:"Основные разделы",
+        supportTitle:"Поддержка",
+        supportText:"Вопросы и помощь",
 
-        courses:"Мои курсы",
-        coursesSub:"Купленные курсы и доступы",
+        reviewsTitle:"Отзывы",
+        reviewsText:"Мнения учеников",
 
-        progress:"Мой прогресс",
-        progressSub:"Уроки и следующий этап",
+        phoneEmpty:"Телефон не указан"
+    }
+}
 
-        support:"Поддержка",
-        supportSub:"Вопросы и помощь"
+function impact(){
+    if(window.Telegram && Telegram.WebApp && Telegram.WebApp.HapticFeedback){
+        Telegram.WebApp.HapticFeedback.impactOccurred("light")
     }
 }
 
@@ -1094,30 +1131,35 @@ function setText(id, value){
     if(el) el.innerText = value
 }
 
+function setImage(id, src){
+    const el = document.getElementById(id)
+    if(el && src) el.src = src
+}
+
 function update(){
     const d = t[lang]
 
-    setText("back-mobile", d.back)
-    setText("badge-mobile", d.badge)
-    setText("note-mobile", d.note)
-    setText("mini1Label-mobile", d.mini1Label)
-    setText("mini1Value-mobile", d.mini1Value)
-    setText("mini2Label-mobile", d.mini2Label)
-    setText("mini2Value-mobile", d.mini2Value)
-    setText("buyBtn-mobile", d.buy)
-    setText("langText-mobile", d.lang)
-    setText("langValue-mobile", d.langVal)
-    setText("sectionTitle-mobile", d.sectionTitle)
-    setText("courses-mobile", d.courses)
-    setText("coursesSub-mobile", d.coursesSub)
-    setText("progress-mobile", d.progress)
-    setText("progressSub-mobile", d.progressSub)
-    setText("support-mobile", d.support)
-    setText("supportSub-mobile", d.supportSub)
+    document.documentElement.lang = lang === "uz" ? "uz" : "ru"
+
     setText("m1-mobile", d.m1)
     setText("m4-mobile", d.m4)
     setText("m5-mobile", d.m5)
     setText("m6-mobile", d.m6)
+
+    setText("buyBtn-mobile", d.buy)
+    setText("langBtn-mobile", d.langBtn)
+
+    setText("continueLabel-mobile", d.continueLabel)
+    setText("continueTitle-mobile", getContinueTitle())
+
+    setText("coursesCardTitle-mobile", d.coursesTitle)
+    setText("coursesCardText-mobile", d.coursesText)
+
+    setText("supportCardTitle-mobile", d.supportTitle)
+    setText("supportCardText-mobile", d.supportText)
+
+    setText("reviewsCardTitle-mobile", d.reviewsTitle)
+    setText("reviewsCardText-mobile", d.reviewsText)
 
     setText("back-desktop", d.back)
     setText("home-desktop", d.home)
@@ -1126,54 +1168,121 @@ function update(){
     setText("m5-desktop", d.m5)
     setText("m6-desktop", d.m6)
     setText("catalog-desktop", d.catalog)
-    setText("badge-desktop", d.badge)
-    setText("note-desktop", d.note)
-    setText("mini1Label-desktop", d.mini1Label)
-    setText("mini1Value-desktop", d.mini1Value)
-    setText("mini2Label-desktop", d.mini2Label)
-    setText("mini2Value-desktop", d.mini2Value)
+
     setText("buyBtn-desktop", d.buy)
-    setText("langText-desktop", d.lang)
-    setText("langValue-desktop", d.langVal)
-    setText("sectionTitle-desktop", d.sectionTitle)
-    setText("courses-desktop", d.courses)
-    setText("coursesSub-desktop", d.coursesSub)
-    setText("progress-desktop", d.progress)
-    setText("progressSub-desktop", d.progressSub)
-    setText("support-desktop", d.support)
-    setText("supportSub-desktop", d.supportSub)
+    setText("langText-desktop", lang === "uz" ? "Til" : "Язык")
+    setText("langValue-desktop", lang === "uz" ? "O‘zbek" : "Русский")
+
+    setText("badge-desktop", lang === "uz" ? "Profil" : "Профиль")
+    setText("note-desktop", lang === "uz" ? "Kurslaringiz va kerakli bo‘limlar shu yerda." : "Курсы и нужные разделы собраны здесь.")
+
+    setText("mini1Label-desktop", lang === "uz" ? "Holat" : "Статус")
+    setText("mini1Value-desktop", lang === "uz" ? "Profil faol" : "Профиль активен")
+
+    setText("mini2Label-desktop", lang === "uz" ? "Yo‘nalish" : "Направление")
+    setText("mini2Value-desktop", "Digital")
+
+    setText("sectionTitle-desktop", lang === "uz" ? "Bo‘limlar" : "Разделы")
+
+    setText("courses-desktop", d.coursesTitle)
+    setText("coursesSub-desktop", d.coursesText)
+
+    setText("progress-desktop", lang === "uz" ? "Progress" : "Прогресс")
+    setText("progressSub-desktop", lang === "uz" ? "Darslar va keyingi bosqich" : "Уроки и следующий этап")
+
+    setText("support-desktop", d.supportTitle)
+    setText("supportSub-desktop", d.supportText)
+}
+
+function getContinueTitle(){
+    const d = t[lang]
+
+    if(!userCourses || userCourses.length === 0){
+        return d.continueEmpty
+    }
+
+    const firstCourse = String(userCourses[0].slug || userCourses[0].course || userCourses[0].name || "").toLowerCase()
+
+    if(firstCourse.includes("smm")){
+        return d.continueSmm
+    }
+
+    if(firstCourse.includes("target")){
+        return d.continueTarget
+    }
+
+    if(firstCourse.includes("ai")){
+        return d.continueAi
+    }
+
+    return d.continueSmm
+}
+
+function getContinueUrl(){
+    if(!userCourses || userCourses.length === 0){
+        return "courses.html"
+    }
+
+    const firstCourse = String(userCourses[0].slug || userCourses[0].course || userCourses[0].name || "").toLowerCase()
+
+    if(firstCourse.includes("smm")){
+        return "/learn-smm-v2.html"
+    }
+
+    if(firstCourse.includes("target")){
+        return "/learn-target.html"
+    }
+
+    if(firstCourse.includes("ai")){
+        return "/learn-ai.html"
+    }
+
+    return "mycourses.html"
 }
 
 function toggleLang(){
+    impact()
     lang = lang === "uz" ? "ru" : "uz"
     localStorage.setItem("lang", lang)
     update()
 }
 
+function continueLearning(){
+    impact()
+    localStorage.setItem("lang", lang)
+    window.location.href = getContinueUrl()
+}
+
 function goHome(){
+    impact()
     localStorage.setItem("lang", lang)
     window.location.href = "index.html"
 }
 
 function goPage(page){
+    impact()
     localStorage.setItem("lang", lang)
     window.location.href = page
 }
 
 function goBack(){
-    if (window.history.length > 1) {
+    impact()
+
+    if(window.history.length > 1){
         window.history.back()
-    } else {
+    }else{
         window.location.href = "index.html"
     }
 }
 
 function buyCourse(){
+    impact()
     localStorage.setItem("lang", lang)
     window.location.href = "courses.html"
 }
 
 function goCourses(){
+    impact()
     localStorage.setItem("lang", lang)
     window.location.href = "courses.html"
 }
@@ -1184,16 +1293,13 @@ function setUserData(user){
     const fullName = [user.first_name, user.last_name].filter(Boolean).join(" ") || "User"
     const username = user.username ? "@" + user.username : ""
 
-    setText("name-mobile", fullName)
-    setText("username-mobile", username)
+    setText("mobileName", fullName)
+    setText("mobileUsername", username || "")
     setText("name-desktop", fullName)
-    setText("username-desktop", username)
+    setText("username-desktop", username || "")
 
     if(user.photo_url){
-        const avatarMobile = document.getElementById("avatarWrap-mobile")
-        if(avatarMobile){
-            avatarMobile.innerHTML = `<img src="${user.photo_url}" alt="avatar">`
-        }
+        setImage("mobileAvatar", user.photo_url)
 
         const avatarDesktop = document.getElementById("avatarWrap-desktop")
         if(avatarDesktop){
@@ -1201,20 +1307,70 @@ function setUserData(user){
         }
     }else{
         const letter = fullName.trim().charAt(0).toUpperCase()
-        const avatarMobile = document.getElementById("avatarWrap-mobile")
-        const avatarDesktop = document.getElementById("avatarWrap-desktop")
 
-        if(avatarMobile) avatarMobile.textContent = letter
-        if(avatarDesktop) avatarDesktop.textContent = letter
+        const mobileAvatar = document.getElementById("mobileAvatar")
+        if(mobileAvatar){
+            mobileAvatar.removeAttribute("src")
+            mobileAvatar.outerHTML = `<div id="mobileAvatar" class="mobile-avatar" style="display:flex;align-items:center;justify-content:center;background:linear-gradient(135deg,#f3bb63,#f7a35f);font-size:30px;font-weight:800;">${letter}</div>`
+        }
+
+        const avatarDesktop = document.getElementById("avatarWrap-desktop")
+        if(avatarDesktop){
+            avatarDesktop.textContent = letter
+        }
     }
 }
 
 function setPhone(phone){
-    const mobilePhone = document.getElementById("phone-mobile")
-    const desktopPhone = document.getElementById("phone-desktop")
+    const d = t[lang]
+    const value = phone || d.phoneEmpty
 
-    if(mobilePhone) mobilePhone.innerText = phone || ""
-    if(desktopPhone) desktopPhone.innerText = phone || ""
+    setText("mobilePhone", value)
+    setText("phone-desktop", value)
+}
+
+function loadUserPhone(userId){
+    if(!userId) return
+
+    fetch(`https://api.gaphub.uz/user/${userId}`)
+        .then(res => res.json())
+        .then(data => {
+            if(data && data.phone){
+                setPhone(data.phone)
+            }else{
+                setPhone("")
+            }
+        })
+        .catch(err => {
+            console.log("Phone fetch error:", err)
+            setPhone("")
+        })
+}
+
+function loadUserCourses(userId){
+    if(!userId){
+        update()
+        return
+    }
+
+    fetch(`https://api.gaphub.uz/mycourses/${userId}`)
+        .then(res => res.json())
+        .then(data => {
+            if(Array.isArray(data)){
+                userCourses = data
+            }else if(data && Array.isArray(data.courses)){
+                userCourses = data.courses
+            }else{
+                userCourses = []
+            }
+
+            update()
+        })
+        .catch(err => {
+            console.log("Courses fetch error:", err)
+            userCourses = []
+            update()
+        })
 }
 
 function initButtons(){
@@ -1228,6 +1384,7 @@ function initButtons(){
 function initTelegram(){
     if(window.Telegram && Telegram.WebApp){
         const tg = Telegram.WebApp
+
         tg.ready()
         tg.expand()
 
@@ -1238,20 +1395,17 @@ function initTelegram(){
         document.body.style.minHeight = tg.viewportHeight + "px"
 
         const user = tg.initDataUnsafe?.user
-        if(user){
-            setUserData(user)
 
-            fetch(`https://api.gaphub.uz/user/${user.id}`)
-                .then(res => res.json())
-                .then(data => {
-                    if(data.phone){
-                        setPhone(data.phone)
-                    }
-                })
-                .catch(err => {
-                    console.log("Phone fetch error:", err)
-                })
+        if(user){
+            currentUserId = user.id
+            setUserData(user)
+            loadUserPhone(user.id)
+            loadUserCourses(user.id)
+        }else{
+            update()
         }
+    }else{
+        update()
     }
 }
 
