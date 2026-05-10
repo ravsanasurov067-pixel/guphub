@@ -1125,7 +1125,7 @@ function getCourseInfo(slug){
     if(slug.includes("smm")){
         return {
             title:d.smm,
-            image:"images/smm-cover.webp",
+            image:"images/home/smm2.webp",
             page:"learn-smm-v2.html"
         }
     }
@@ -1133,7 +1133,7 @@ function getCourseInfo(slug){
     if(slug.includes("target")){
         return {
             title:d.target,
-            image:"images/target-cover.webp",
+            image:"images/home/target2.webp",
             page:"learn-target.html"
         }
     }
@@ -1141,7 +1141,7 @@ function getCourseInfo(slug){
     if(slug.includes("ai")){
         return {
             title:d.ai,
-            image:"images/ai-cover.webp",
+            image:"images/home/ai2.webp",
             page:"learn-ai.html"
         }
     }
@@ -1268,9 +1268,8 @@ function renderEmpty(){
 }
 
 function renderCourses(){
-    const root = document.getElementById("mobile-content")
-
-    if(!root) return
+    const mobileRoot = document.getElementById("mobile-content")
+    const desktopRoot = document.getElementById("desktop-content")
 
     if(!coursesData.length){
         renderEmpty()
@@ -1279,7 +1278,7 @@ function renderCourses(){
         return
     }
 
-    root.innerHTML = `
+    const mobileHTML = `
         <div class="mobile-course-list">
             ${coursesData.map(course => {
                 const info = getCourseInfo(course.slug)
@@ -1323,7 +1322,56 @@ function renderCourses(){
         </div>
     `
 
+    const desktopHTML = `
+        <div class="desktop-course-grid">
+            ${coursesData.map(course => {
+                const info = getCourseInfo(course.slug)
+
+                return `
+                    <div class="desktop-course-card soft-card" onclick="openCourse('${info.page}')">
+
+                        <img class="desktop-course-cover" src="${info.image}" alt="course">
+
+                        <div class="desktop-course-body">
+
+                            <div class="desktop-course-label">
+                                ${t[lang].continue}
+                            </div>
+
+                            <h3 class="desktop-course-title">
+                                ${info.title}
+                            </h3>
+
+                            <div class="desktop-course-sub">
+                                ${course.completedLessons} ${t[lang].lessons}
+                            </div>
+
+                            <div class="desktop-progress-line">
+                                <div
+                                    class="desktop-progress-fill"
+                                    style="width:${course.progress}%"
+                                ></div>
+                            </div>
+
+                            <div class="desktop-progress-row">
+                                <span>${course.progress}%</span>
+                                <span>${t[lang].completed}</span>
+                            </div>
+
+                        </div>
+
+                    </div>
+                `
+            }).join("")}
+        </div>
+    `
+
+    if(mobileRoot) mobileRoot.innerHTML = mobileHTML
+    if(desktopRoot) desktopRoot.innerHTML = desktopHTML
+
     updateCatalogVisibility()
+    updateCourseSummary()
+    updateStaticText()
 }
 
 function openCourse(page){
@@ -1425,10 +1473,6 @@ function updateStaticText(){
     setText("catalogBtn-desktop", d.catalogBtn)
 
     setText("sectionTitle-desktop", d.sectionTitle)
-
-    if(coursesData.length){
-        renderCourses()
-    }
 }
 
 function goHome(){
