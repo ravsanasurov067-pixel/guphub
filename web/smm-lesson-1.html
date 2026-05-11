@@ -1296,6 +1296,104 @@ button{
         box-shadow:0 0 12px rgba(203,108,230,.55);
     }
 
+    .desktop-language-card{
+    border-radius:24px;
+    padding:18px;
+}
+
+.desktop-language-kicker{
+    display:inline-flex;
+    align-items:center;
+    min-height:28px;
+    padding:0 10px;
+    border-radius:999px;
+    background:rgba(255,255,255,.06);
+    border:1px solid rgba(255,255,255,.07);
+    color:#d8d2e3;
+    font-size:12px;
+    font-weight:800;
+    margin-bottom:12px;
+}
+
+.desktop-language-title{
+    margin:0 0 14px;
+    font-size:22px;
+    line-height:1.1;
+    font-weight:800;
+}
+
+.desktop-language-options{
+    display:grid;
+    grid-template-columns:1fr;
+    gap:10px;
+}
+
+.desktop-language-option{
+    width:100%;
+    min-height:56px;
+    border:none;
+    border-radius:18px;
+    padding:0 14px;
+    background:rgba(255,255,255,.045);
+    border:1px solid rgba(255,255,255,.07);
+    color:#fff;
+    display:flex;
+    align-items:center;
+    gap:12px;
+    text-align:left;
+    transition:.18s ease;
+}
+
+.desktop-language-option:hover{
+    transform:translateY(-1px);
+    border-color:rgba(203,108,230,.28);
+    background:rgba(203,108,230,.08);
+}
+
+.desktop-language-option.active{
+    background:linear-gradient(90deg, rgba(203,108,230,.28), rgba(168,85,247,.18));
+    border-color:rgba(203,108,230,.55);
+    box-shadow:0 12px 26px rgba(203,108,230,.18);
+}
+
+.desktop-language-flag{
+    width:36px;
+    height:36px;
+    border-radius:14px;
+    background:rgba(255,255,255,.08);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:12px;
+    font-weight:900;
+    flex-shrink:0;
+}
+
+.desktop-language-name{
+    font-size:15px;
+    font-weight:800;
+}
+
+.desktop-video-info-row{
+    display:grid;
+    grid-template-columns:minmax(0,1fr) 250px;
+    gap:18px;
+    align-items:center;
+}
+
+.desktop-video-copy{
+    min-width:0;
+}
+
+.desktop-video-action{
+    margin-top:0;
+}
+
+.desktop-video-action .desktop-main-btn{
+    width:100%;
+    max-width:none;
+}
+
     /* DEEP MODAL */
 
     .deep-overlay{
@@ -1777,58 +1875,38 @@ button{
 
     <div class="desktop-layout">
 
-        <!-- SIDEBAR -->
-
         <aside class="desktop-sidebar">
 
             <div class="desktop-brand">gaphub</div>
 
             <nav class="desktop-nav">
 
-                <button
-                    class="desktop-nav-item"
-                    onclick="goHome()"
-                >
+                <button class="desktop-nav-item" onclick="goHome()">
                     <img src="images/icon/home.png" alt="">
                     <span id="home-desktop"></span>
                 </button>
 
-                <button
-                    class="desktop-nav-item active-nav"
-                    onclick="goPage('mycourses.html')"
-                >
+                <button class="desktop-nav-item active-nav" onclick="goPage('mycourses.html')">
                     <img src="images/icon/courses2.png" alt="">
                     <span id="m1-desktop"></span>
                 </button>
 
-                <button
-                    class="desktop-nav-item"
-                    onclick="goPage('support.html')"
-                >
+                <button class="desktop-nav-item" onclick="goPage('support.html')">
                     <img src="images/icon/support.png" alt="">
                     <span id="m4-desktop"></span>
                 </button>
 
-                <button
-                    class="desktop-nav-item"
-                    onclick="goPage('chat.html')"
-                >
+                <button class="desktop-nav-item" onclick="goPage('chat.html')">
                     <img src="images/icon/feedback.png" alt="">
                     <span id="m5-desktop"></span>
                 </button>
 
-                <button
-                    class="desktop-nav-item"
-                    onclick="goPage('myprofile.html')"
-                >
+                <button class="desktop-nav-item" onclick="goPage('myprofile.html')">
                     <img src="images/icon/profile2.png" alt="">
                     <span id="m6-desktop"></span>
                 </button>
 
-                <button
-                    class="desktop-nav-item desktop-nav-item-accent"
-                    onclick="goCourses()"
-                >
+                <button class="desktop-nav-item desktop-nav-item-accent" onclick="goCourses()">
                     <img src="images/icon/catalog.png" alt="">
                     <span id="catalog-desktop"></span>
                 </button>
@@ -1837,54 +1915,31 @@ button{
 
         </aside>
 
-        <!-- MAIN -->
-
         <main class="desktop-main">
 
-            <div
-                class="desktop-back"
-                onclick="goBack()"
-            >
-                <span class="desktop-back-arrow">←</span>
-                <span id="back-desktop"></span>
-            </div>
-
-            <div class="lesson-lang">
-                <button id="lessonLangUz-desktop" onclick="setLessonLang('uz')">UZ</button>
-                <button id="lessonLangRu-desktop" onclick="setLessonLang('ru')">RU</button>
-            </div>
-
             <div class="desktop-content-grid">
-
-                <!-- MAIN COLUMN -->
 
                 <div class="desktop-main-column">
 
                     <div class="desktop-head">
 
-                        <div
-                            class="desktop-badge"
-                            id="lessonBadge-desktop"
-                        ></div>
+                        <div class="desktop-lesson-line">
 
-                        <h1
-                            class="desktop-title"
-                            id="lessonTitle-desktop"
-                        ></h1>
+                            <button class="desktop-step-back" onclick="goBack()">
+                                <span>←</span>
+                            </button>
 
-                        <p
-                            class="desktop-subtitle"
-                            id="lessonSubtitle-desktop"
-                        ></p>
+                            <div class="desktop-badge" id="lessonBadge-desktop"></div>
+
+                        </div>
+
+                        <h1 class="desktop-title" id="lessonTitle-desktop"></h1>
+
+                        <p class="desktop-subtitle" id="lessonSubtitle-desktop"></p>
 
                     </div>
 
-                    <!-- STEP VIDEO -->
-
-                    <section
-                        class="lesson-step active"
-                        id="step-video-desktop"
-                    >
+                    <section class="lesson-step active" id="step-video-desktop">
 
                         <div class="desktop-video-card">
 
@@ -1903,23 +1958,20 @@ button{
 
                             <div class="desktop-video-bottom">
 
-                                <h2
-                                    class="desktop-video-title"
-                                    id="videoTitle-desktop"
-                                ></h2>
+                                <div class="desktop-video-info-row">
 
-                                <p
-                                    class="desktop-video-text"
-                                    id="videoText-desktop"
-                                ></p>
+                                    <div class="desktop-video-copy">
+                                        <h2 class="desktop-video-title" id="videoTitle-desktop"></h2>
+                                        <p class="desktop-video-text" id="videoText-desktop"></p>
+                                    </div>
 
-                                <div class="desktop-video-action">
-
-                                    <button
-                                        class="desktop-main-btn"
-                                        id="goSummaryBtn-desktop"
-                                        onclick="goStep('summary')"
-                                    ></button>
+                                    <div class="desktop-video-action">
+                                        <button
+                                            class="desktop-main-btn"
+                                            id="goSummaryBtn-desktop"
+                                            onclick="goStep('summary')"
+                                        ></button>
+                                    </div>
 
                                 </div>
 
@@ -1929,31 +1981,17 @@ button{
 
                     </section>
 
-                    <!-- STEP SUMMARY -->
-
-                    <section
-                        class="lesson-step"
-                        id="step-summary-desktop"
-                    >
+                    <section class="lesson-step" id="step-summary-desktop">
 
                         <div class="desktop-summary-top">
 
-                            <h2
-                                class="desktop-section-title"
-                                id="summaryTitle-desktop"
-                            ></h2>
+                            <h2 class="desktop-section-title" id="summaryTitle-desktop"></h2>
 
-                            <p
-                                class="desktop-note"
-                                id="summaryNote-desktop"
-                            ></p>
+                            <p class="desktop-note" id="summaryNote-desktop"></p>
 
                         </div>
 
-                        <div
-                            class="desktop-summary-grid"
-                            id="summaryList-desktop"
-                        ></div>
+                        <div class="desktop-summary-grid" id="summaryList-desktop"></div>
 
                         <div class="desktop-summary-action">
 
@@ -1967,31 +2005,17 @@ button{
 
                     </section>
 
-                    <!-- STEP DEEP -->
-
-                    <section
-                        class="lesson-step"
-                        id="step-deep-desktop"
-                    >
+                    <section class="lesson-step" id="step-deep-desktop">
 
                         <div class="desktop-summary-top">
 
-                            <h2
-                                class="desktop-section-title"
-                                id="deepTitle-desktop"
-                            ></h2>
+                            <h2 class="desktop-section-title" id="deepTitle-desktop"></h2>
 
-                            <p
-                                class="desktop-note"
-                                id="deepText-desktop"
-                            ></p>
+                            <p class="desktop-note" id="deepText-desktop"></p>
 
                         </div>
 
-                        <div
-                            class="desktop-summary-grid"
-                            id="deepList-desktop"
-                        ></div>
+                        <div class="desktop-summary-grid" id="deepList-desktop"></div>
 
                         <div class="desktop-summary-action">
 
@@ -2005,43 +2029,23 @@ button{
 
                     </section>
 
-                    <!-- STEP TEST -->
-
-                    <section
-                        class="lesson-step"
-                        id="step-test-desktop"
-                    >
+                    <section class="lesson-step" id="step-test-desktop">
 
                         <div class="desktop-test-top">
 
-                            <h2
-                                class="desktop-section-title"
-                                id="testTitle-desktop"
-                            ></h2>
+                            <h2 class="desktop-section-title" id="testTitle-desktop"></h2>
 
-                            <p
-                                class="desktop-note"
-                                id="testText-desktop"
-                            ></p>
+                            <p class="desktop-note" id="testText-desktop"></p>
 
                             <div class="test-progress-line">
-                                <div
-                                    class="test-progress-fill"
-                                    id="testProgress-desktop"
-                                ></div>
+                                <div class="test-progress-fill" id="testProgress-desktop"></div>
                             </div>
 
                         </div>
 
-                        <h3
-                            class="test-question"
-                            id="testQuestion-desktop"
-                        ></h3>
+                        <h3 class="test-question" id="testQuestion-desktop"></h3>
 
-                        <div
-                            class="test-answers"
-                            id="testAnswers-desktop"
-                        ></div>
+                        <div class="test-answers" id="testAnswers-desktop"></div>
 
                         <button
                             class="btn btn-primary test-next"
@@ -2053,30 +2057,41 @@ button{
 
                 </div>
 
-                <!-- RIGHT COLUMN -->
-
                 <aside class="desktop-side-column">
 
-                    <div class="desktop-side-card glow-card">
+                    <div class="desktop-language-card glow-card">
 
-                        <h3
-                            class="desktop-side-title"
-                            id="sideTitle-desktop"
-                        ></h3>
+                        <div class="desktop-language-kicker" id="languageKicker-desktop"></div>
 
-                        <p
-                            class="desktop-side-text"
-                            id="sideText-desktop"
-                        ></p>
+                        <h3 class="desktop-language-title" id="languageTitle-desktop"></h3>
+
+                        <div class="desktop-language-options">
+
+                            <button
+                                class="desktop-language-option"
+                                id="lessonLangRu-desktop"
+                                onclick="setLessonLang('ru')"
+                            >
+                                <span class="desktop-language-flag">RU</span>
+                                <span class="desktop-language-name">Русский</span>
+                            </button>
+
+                            <button
+                                class="desktop-language-option"
+                                id="lessonLangUz-desktop"
+                                onclick="setLessonLang('uz')"
+                            >
+                                <span class="desktop-language-flag">UZ</span>
+                                <span class="desktop-language-name">O‘zbekcha</span>
+                            </button>
+
+                        </div>
 
                     </div>
 
                     <div class="desktop-steps-card soft-card">
 
-                        <div
-                            class="desktop-steps-label"
-                            id="stepsLabel-desktop"
-                        ></div>
+                        <div class="desktop-steps-label" id="stepsLabel-desktop"></div>
 
                         <div class="desktop-steps-list">
 
@@ -2463,6 +2478,16 @@ function updateStaticText(){
     setText("m6-desktop", d.m6)
 
     setText("catalog-desktop", d.catalog)
+
+    setText("languageKicker-desktop", lang === "uz"
+    ? "Til"
+    : "Язык"
+)
+
+setText("languageTitle-desktop", lang === "uz"
+    ? "Ta’lim tilini tanlang"
+    : "Выберите язык обучения"
+)
 
     setText("lessonBadge-desktop", d.lessonBadge)
     setText("lessonTitle-desktop", d.lessonTitle)
