@@ -142,7 +142,7 @@ button{
 
 .mobile-lesson-bar{
     display:grid;
-    grid-template-columns:46px minmax(0,1fr) 54px;
+    grid-template-columns:46px minmax(0,1fr) 64px;
     gap:8px;
     align-items:center;
     margin-bottom:14px;
@@ -638,94 +638,6 @@ button{
     font-size:16px;
 }
 
-/* BOTTOM NAV */
-
-.bottom-nav{
-    position:fixed;
-
-    left:0;
-    bottom:0;
-
-    width:100%;
-
-    background:#000;
-
-    display:flex;
-
-    justify-content:space-between;
-
-    align-items:center;
-
-    padding:8px 10px;
-
-    padding-bottom:calc(8px + env(safe-area-inset-bottom));
-
-    z-index:50;
-}
-
-.nav-item{
-    display:flex;
-    flex-direction:column;
-    align-items:center;
-
-    font-size:12px;
-
-    color:#fff;
-
-    width:20%;
-
-    text-align:center;
-
-    cursor:pointer;
-}
-
-.nav-item img{
-    width:27px;
-    margin-bottom:2px;
-}
-
-.nav-item span{
-    white-space:nowrap;
-    overflow:hidden;
-    text-overflow:ellipsis;
-}
-
-.nav-item.active-mobile-nav span{
-    color:#d68cff;
-}
-
-.nav-center{
-    position:relative;
-    top:-18px;
-
-    width:20%;
-
-    display:flex;
-
-    justify-content:center;
-}
-
-.circle{
-    width:60px;
-    height:60px;
-
-    background:#ffffff;
-
-    border-radius:50%;
-
-    border:4px solid var(--accent);
-
-    display:flex;
-
-    align-items:center;
-    justify-content:center;
-}
-
-.circle img{
-    width:24px;
-    height:24px;
-    object-fit:contain;
-}
 
 @media (min-width:1024px){
 
@@ -759,163 +671,23 @@ button{
     }
 
     .desktop-layout{
-        display:grid;
-        grid-template-columns:270px minmax(0,1fr);
+        display:block;
         min-height:100vh;
     }
 
-    .desktop-sidebar{
-        padding:22px 20px;
-
-        border-right:1px solid rgba(255,255,255,.05);
-
-        background:
-            linear-gradient(
-                180deg,
-                rgba(14,13,23,.70) 0%,
-                rgba(12,11,20,.40) 100%
-            );
-
-        overflow:auto;
-    }
-
-    .desktop-brand{
-        font-size:34px;
-        font-weight:800;
-        line-height:1;
-
-        margin:8px 0 56px;
-    }
-
-    .desktop-nav{
-        display:flex;
-        flex-direction:column;
-        gap:10px;
-
-        margin-top:4px;
-    }
-
-    .desktop-top-line{
-    display:flex;
-    align-items:center;
-    justify-content:space-between;
-    gap:18px;
-    margin-bottom:18px;
-}
-
-.desktop-top-line .desktop-back{
-    margin-bottom:0;
-}
-
-    .desktop-nav-item{
-        display:flex;
-        align-items:center;
-        gap:14px;
-
-        width:100%;
-        min-height:56px;
-
-        padding:0 18px;
-
-        border-radius:16px;
-
-        color:#f1f1f1;
-
-        background:transparent;
-
-        border:1px solid transparent;
-
-        font-size:16px;
-        font-weight:600;
-
-        transition:.2s ease;
-
-        cursor:pointer;
-
-        text-align:left;
-    }
-
-    .desktop-nav-item img{
-        width:28px;
-        height:28px;
-
-        object-fit:contain;
-
-        flex-shrink:0;
-    }
-
-    .desktop-nav-item.active-nav{
-        background:
-            linear-gradient(
-                180deg,
-                rgba(255,255,255,.06) 0%,
-                rgba(255,255,255,.03) 100%
-            );
-
-        border-color:rgba(255,255,255,.06);
-
-        box-shadow:var(--shadow);
-    }
-
-    .desktop-nav-item-accent{
-        background:
-            linear-gradient(
-                90deg,
-                #b85bda 0%,
-                #cb6ce6 100%
-            );
-
-        border-color:transparent;
-
-        color:#fff;
-
-        box-shadow:0 12px 26px rgba(203,108,230,.28);
-
-        margin-top:8px;
-    }
-
-    .desktop-nav-item-accent img{
-        filter:brightness(0) invert(1);
-    }
-
     .desktop-main{
-        padding:24px 22px 34px;
-
-        height:100vh;
-
-        overflow:auto;
-    }
-
-    .desktop-back{
-        display:inline-flex;
-        align-items:center;
-        gap:14px;
-
-        font-size:24px;
-
-        color:#fff;
-
-        margin-bottom:18px;
-
-        cursor:pointer;
-
-        user-select:none;
-    }
-
-    .desktop-back-arrow{
-        font-size:42px;
-
-        line-height:1;
-
-        transform:translateY(-1px);
-    }
+    padding:24px 22px 34px;
+    height:100vh;
+    overflow:auto;
+}
 
     .desktop-content-grid{
         display:grid;
-        grid-template-columns:minmax(0,1fr) 320px;
+        grid-template-columns:280px minmax(0,1fr) 280px;
         gap:18px;
-
         align-items:start;
+        max-width:1480px;
+        margin:0 auto;
     }
 
     .desktop-main-column{
@@ -1645,6 +1417,235 @@ button{
     }
 }
 
+
+/* =========================
+   OTABEK AI
+========================= */
+
+.otabek-desktop-panel{
+    position:sticky;
+    top:0;
+}
+
+.otabek-card{
+    height:calc(100vh - 48px);
+    min-height:620px;
+    border-radius:26px;
+    padding:16px;
+    display:flex;
+    flex-direction:column;
+    overflow:hidden;
+}
+
+.otabek-head,
+.otabek-mobile-head{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:12px;
+    margin-bottom:14px;
+}
+
+.otabek-head{
+    justify-content:flex-start;
+}
+
+.otabek-head-left{
+    display:flex;
+    align-items:center;
+    gap:12px;
+}
+
+.otabek-avatar{
+    width:44px;
+    height:44px;
+    border-radius:16px;
+    background:linear-gradient(135deg,var(--accent),var(--accent-2));
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    color:#fff;
+    font-size:19px;
+    font-weight:900;
+    box-shadow:0 14px 28px rgba(203,108,230,.20);
+    flex-shrink:0;
+}
+
+.otabek-name{
+    font-size:17px;
+    line-height:1.1;
+    font-weight:900;
+}
+
+.otabek-role{
+    margin-top:4px;
+    color:var(--muted-soft);
+    font-size:12px;
+    line-height:1.2;
+}
+
+.otabek-messages{
+    flex:1;
+    display:flex;
+    flex-direction:column;
+    gap:10px;
+    overflow:auto;
+    padding:4px 2px 12px;
+}
+
+.otabek-message{
+    max-width:92%;
+    padding:12px 13px;
+    border-radius:18px;
+    font-size:14px;
+    line-height:1.45;
+}
+
+.otabek-message.bot{
+    align-self:flex-start;
+    background:rgba(255,255,255,.055);
+    border:1px solid rgba(255,255,255,.07);
+    color:#e9e2f1;
+}
+
+.otabek-message.user{
+    align-self:flex-end;
+    background:linear-gradient(90deg, rgba(203,108,230,.32), rgba(168,85,247,.24));
+    border:1px solid rgba(203,108,230,.36);
+    color:#fff;
+}
+
+.otabek-quick-actions{
+    display:flex;
+    flex-wrap:wrap;
+    gap:8px;
+    margin-bottom:12px;
+}
+
+.otabek-quick-actions button{
+    min-height:34px;
+    border:none;
+    border-radius:999px;
+    padding:0 12px;
+    background:rgba(255,255,255,.055);
+    border:1px solid rgba(255,255,255,.07);
+    color:#fff;
+    font-size:12px;
+    font-weight:800;
+}
+
+.otabek-input-row{
+    display:grid;
+    grid-template-columns:minmax(0,1fr) 42px;
+    gap:8px;
+    padding-top:12px;
+    border-top:1px solid rgba(255,255,255,.07);
+}
+
+.otabek-input-row input{
+    width:100%;
+    height:44px;
+    border:none;
+    outline:none;
+    border-radius:16px;
+    padding:0 14px;
+    background:rgba(255,255,255,.065);
+    border:1px solid rgba(255,255,255,.08);
+    color:#fff;
+    font-size:14px;
+}
+
+.otabek-input-row input::placeholder{
+    color:rgba(255,255,255,.42);
+}
+
+.otabek-input-row button{
+    width:42px;
+    height:44px;
+    border:none;
+    border-radius:16px;
+    background:linear-gradient(90deg,var(--accent),var(--accent-2));
+    color:#fff;
+    font-size:18px;
+    font-weight:900;
+}
+
+.otabek-mobile-fab,
+.otabek-mobile-sheet{
+    display:none;
+}
+
+.otabek-close{
+    width:34px;
+    height:34px;
+    border:none;
+    border-radius:50%;
+    background:rgba(255,255,255,.08);
+    color:#fff;
+    font-size:22px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+}
+
+/* MOBILE OTABEK */
+
+@media (max-width:1023px){
+
+    .otabek-mobile-fab{
+        position:fixed;
+        right:16px;
+        bottom:calc(18px + env(safe-area-inset-bottom));
+        width:58px;
+        height:58px;
+        border:none;
+        border-radius:22px;
+        background:linear-gradient(135deg,var(--accent),var(--accent-2));
+        color:#fff;
+        display:flex;
+        align-items:center;
+        justify-content:center;
+        z-index:80;
+        box-shadow:0 18px 38px rgba(203,108,230,.32);
+    }
+
+    .otabek-mobile-fab span{
+        font-size:22px;
+        font-weight:900;
+    }
+
+    .otabek-mobile-sheet{
+        position:fixed;
+        inset:0;
+        display:none;
+        align-items:flex-end;
+        background:rgba(0,0,0,.58);
+        backdrop-filter:blur(10px);
+        z-index:1000;
+        padding:14px;
+        padding-bottom:calc(14px + env(safe-area-inset-bottom));
+    }
+
+    .otabek-mobile-sheet.active{
+        display:flex;
+    }
+
+    .otabek-mobile-card{
+        width:100%;
+        height:min(620px, 82vh);
+        border-radius:28px;
+        background:
+            radial-gradient(circle at 86% 14%, rgba(203,108,230,.18), transparent 26%),
+            linear-gradient(180deg,#171621 0%,#0f0e17 100%);
+        border:1px solid rgba(255,255,255,.08);
+        box-shadow:var(--shadow);
+        padding:16px;
+        display:flex;
+        flex-direction:column;
+        overflow:hidden;
+    }
+}
+
 /* =========================
    ADAPTIVE
 ========================= */
@@ -1660,7 +1661,7 @@ button{
     }
 
     .desktop-content-grid{
-        grid-template-columns:minmax(0,1fr) 280px;
+        grid-template-columns:280px minmax(0,1fr) 280px;
     }
 
     .desktop-title{
@@ -1672,11 +1673,20 @@ button{
 
     .desktop-content-grid{
         grid-template-columns:1fr;
+        max-width:900px;
+    }
+
+    .otabek-desktop-panel{
+        position:static;
+    }
+
+    .otabek-card{
+        height:auto;
+        min-height:360px;
     }
 
     .desktop-side-column{
         position:static;
-
         display:grid;
         grid-template-columns:1fr 1fr;
     }
@@ -1887,49 +1897,72 @@ button{
 
     </div>
 
-    <!-- FIXED ACTIONS -->
+</div>
 
-    <div class="bottom-nav">
+<button class="otabek-mobile-fab" onclick="toggleOtabekMobile()">
+    <span>O</span>
+</button>
 
-        <div
-            class="nav-item active-mobile-nav"
-            onclick="goPage('mycourses.html')"
-        >
-            <img src="images/icon/courses2.png" alt="">
-            <span id="m1-mobile"></span>
-        </div>
+<div class="otabek-mobile-sheet" id="otabekMobileSheet">
 
-        <div
-            class="nav-item"
-            onclick="goPage('support.html')"
-        >
-            <img src="images/icon/support.png" alt="">
-            <span id="m4-mobile"></span>
-        </div>
+    <div class="otabek-mobile-card">
 
-        <div
-            class="nav-center"
-            onclick="goHome()"
-        >
-            <div class="circle">
-                <img src="images/icon/home2.png" alt="home">
+        <div class="otabek-mobile-head">
+
+            <div class="otabek-head-left">
+
+                <div class="otabek-avatar">O</div>
+
+                <div>
+                    <div class="otabek-name">Отабек</div>
+                    <div class="otabek-role">AI-помощник урока</div>
+                </div>
+
             </div>
+
+            <button
+                class="otabek-close"
+                onclick="toggleOtabekMobile()"
+            >
+                ×
+            </button>
+
         </div>
 
         <div
-            class="nav-item"
-            onclick="goPage('chat.html')"
-        >
-            <img src="images/icon/feedback.png" alt="">
-            <span id="m5-mobile"></span>
+            class="otabek-messages"
+            id="otabekMessagesMobile"
+        ></div>
+
+        <div class="otabek-quick-actions">
+
+            <button onclick="otabekQuick('Объясни тему проще')">
+                Проще
+            </button>
+
+            <button onclick="otabekQuick('Приведи пример')">
+                Пример
+            </button>
+
+            <button onclick="otabekQuick('Что главное запомнить?')">
+                Главное
+            </button>
+
         </div>
 
-        <div
-            class="nav-item"
-            onclick="goPage('myprofile.html')"
-        >
-            <img src="images/icon/profile2.png" alt="">
-            <span id="m6-mobile"></span>
+        <div class="otabek-input-row">
+
+            <input
+                id="otabekInputMobile"
+                type="text"
+                placeholder="Спроси по уроку..."
+                onkeydown="otabekEnter(event, 'mobile')"
+            >
+
+            <button onclick="sendOtabekMessage('mobile')">
+                ↑
+            </button>
+
         </div>
 
     </div>
@@ -1944,49 +1977,59 @@ button{
 
     <div class="desktop-layout">
 
-        <aside class="desktop-sidebar">
-
-            <div class="desktop-brand">gaphub</div>
-
-            <nav class="desktop-nav">
-
-                <button class="desktop-nav-item" onclick="goHome()">
-                    <img src="images/icon/home.png" alt="">
-                    <span id="home-desktop"></span>
-                </button>
-
-                <button class="desktop-nav-item active-nav" onclick="goPage('mycourses.html')">
-                    <img src="images/icon/courses2.png" alt="">
-                    <span id="m1-desktop"></span>
-                </button>
-
-                <button class="desktop-nav-item" onclick="goPage('support.html')">
-                    <img src="images/icon/support.png" alt="">
-                    <span id="m4-desktop"></span>
-                </button>
-
-                <button class="desktop-nav-item" onclick="goPage('chat.html')">
-                    <img src="images/icon/feedback.png" alt="">
-                    <span id="m5-desktop"></span>
-                </button>
-
-                <button class="desktop-nav-item" onclick="goPage('myprofile.html')">
-                    <img src="images/icon/profile2.png" alt="">
-                    <span id="m6-desktop"></span>
-                </button>
-
-                <button class="desktop-nav-item desktop-nav-item-accent" onclick="goCourses()">
-                    <img src="images/icon/catalog.png" alt="">
-                    <span id="catalog-desktop"></span>
-                </button>
-
-            </nav>
-
-        </aside>
-
         <main class="desktop-main">
 
             <div class="desktop-content-grid">
+
+                <aside class="otabek-desktop-panel">
+
+                    <div class="otabek-card glow-card">
+
+                        <div class="otabek-head">
+
+                            <div class="otabek-avatar">O</div>
+
+                            <div>
+                                <div class="otabek-name">Отабек</div>
+                                <div class="otabek-role">AI-помощник урока</div>
+                            </div>
+
+                        </div>
+
+                        <div class="otabek-messages" id="otabekMessagesDesktop"></div>
+
+                        <div class="otabek-quick-actions">
+
+                            <button onclick="otabekQuick('Объясни тему проще')">
+                                Объясни проще
+                            </button>
+
+                            <button onclick="otabekQuick('Приведи пример')">
+                                Пример
+                            </button>
+
+                            <button onclick="otabekQuick('Что главное запомнить?')">
+                                Главное
+                            </button>
+
+                        </div>
+
+                        <div class="otabek-input-row">
+
+                            <input
+                                id="otabekInputDesktop"
+                                type="text"
+                                placeholder="Спроси по уроку..."
+                                onkeydown="otabekEnter(event, 'desktop')"
+                            >
+
+                            <button onclick="sendOtabekMessage('desktop')">↑</button>
+
+                        </div>
+
+                    </div>
+
+                </aside>
 
                 <div class="desktop-main-column">
 
@@ -2221,7 +2264,12 @@ button{
 <div class="deep-overlay" id="deepOverlay">
 
     <div class="deep-modal glow-card">
-        <button class="deep-close" onclick="closeDeepModal()">×</button>
+        <button
+            class="deep-close"
+            onclick="goStep('summary'); closeDeepModal()"
+        >
+            ×
+        </button>
         <div class="deep-icon">✦</div>
 
         <h2 class="deep-title" id="deepModalTitle"></h2>
@@ -2284,14 +2332,6 @@ const t = {
     uz:{
 
         back:"Orqaga",
-
-        home:"Bosh sahifa",
-        m1:"Kurslarim",
-        m4:"Aloqa",
-        m5:"Sharhlar",
-        m6:"Profil",
-
-        catalog:"Kurslar katalogi",
 
         lessonBadge:"SMM • 1-dars",
 
@@ -2357,14 +2397,6 @@ const t = {
     ru:{
 
         back:"Назад",
-
-        home:"Главное меню",
-        m1:"Мои курсы",
-        m4:"Поддержка",
-        m5:"Отзывы",
-        m6:"Профиль",
-
-        catalog:"Каталог курсов",
 
         lessonBadge:"SMM • Урок 1",
 
@@ -2531,20 +2563,7 @@ function updateStaticText(){
 
     setText("nextQuestionBtn-mobile", d.nextQuestion)
 
-    setText("m1-mobile", d.m1)
-    setText("m4-mobile", d.m4)
-    setText("m5-mobile", d.m5)
-    setText("m6-mobile", d.m6)
-
     /* DESKTOP */
-
-    setText("back-desktop", d.back)
-
-    setText("home-desktop", d.home)
-    setText("m1-desktop", d.m1)
-    setText("m4-desktop", d.m4)
-    setText("m5-desktop", d.m5)
-    setText("m6-desktop", d.m6)
 
     setText("catalog-desktop", d.catalog)
 
@@ -2581,12 +2600,6 @@ setText("languageTitle-desktop", lang === "uz"
     setText("testText-desktop", d.testText)
 
     setText("nextQuestionBtn-desktop", d.nextQuestion)
-
-    setText("materialBtn-desktop", d.materialBtn)
-    setText("openTestBtn-desktop", d.openTestBtn)
-
-    setText("sideTitle-desktop", d.sideTitle)
-    setText("sideText-desktop", d.sideText)
 
     setText("stepsLabel-desktop", d.stepsLabel)
 
@@ -3250,6 +3263,133 @@ function impact(style = "light"){
             .impactOccurred(style)
     }
 }
+let otabekHistory = JSON.parse(
+    localStorage.getItem("otabek_smm_lesson_1") || "[]"
+)
+
+function saveOtabekHistory(){
+    localStorage.setItem(
+        "otabek_smm_lesson_1",
+        JSON.stringify(otabekHistory)
+    )
+}
+
+function renderOtabekMessages(){
+
+    const desktopRoot = document.getElementById("otabekMessagesDesktop")
+    const mobileRoot = document.getElementById("otabekMessagesMobile")
+
+    const defaultMessage = `
+        <div class="otabek-message bot">
+            Привет. Я помогу разобраться с уроком. Можешь спросить меня про SMM, аудиторию, контент или тест.
+        </div>
+    `
+
+    const historyHTML = otabekHistory.map(item => `
+        <div class="otabek-message ${item.role}">
+            ${item.text}
+        </div>
+    `).join("")
+
+    const html = defaultMessage + historyHTML
+
+    if(desktopRoot){
+        desktopRoot.innerHTML = html
+        desktopRoot.scrollTop = desktopRoot.scrollHeight
+    }
+
+    if(mobileRoot){
+        mobileRoot.innerHTML = html
+        mobileRoot.scrollTop = mobileRoot.scrollHeight
+    }
+}
+
+function toggleOtabekMobile(){
+
+    impact()
+
+    const sheet = document.getElementById("otabekMobileSheet")
+
+    if(sheet){
+        sheet.classList.toggle("active")
+    }
+}
+
+function otabekEnter(event, mode){
+
+    if(event.key === "Enter"){
+        sendOtabekMessage(mode)
+    }
+}
+
+function otabekQuick(text){
+
+    const inputDesktop = document.getElementById("otabekInputDesktop")
+    const inputMobile = document.getElementById("otabekInputMobile")
+
+    if(inputDesktop){
+        inputDesktop.value = text
+    }
+
+    if(inputMobile){
+        inputMobile.value = text
+    }
+
+    sendOtabekMessage(
+        window.innerWidth >= 1024 ? "desktop" : "mobile"
+    )
+}
+
+function sendOtabekMessage(mode){
+
+    impact()
+
+    const input = mode === "desktop"
+        ? document.getElementById("otabekInputDesktop")
+        : document.getElementById("otabekInputMobile")
+
+    if(!input) return
+
+    const text = input.value.trim()
+
+    if(!text) return
+
+    input.value = ""
+
+    otabekHistory.push({
+        role:"user",
+        text:text
+    })
+
+    otabekHistory.push({
+        role:"bot",
+        text:getOtabekMockAnswer(text)
+    })
+
+    saveOtabekHistory()
+    renderOtabekMessages()
+}
+
+function getOtabekMockAnswer(text){
+
+    const lower = text.toLowerCase()
+
+    if(lower.includes("проще") || lower.includes("тушун") || lower.includes("oddiy")){
+        return "Если проще: SMM помогает бизнесу быть заметным в соцсетях, объяснять пользу продукта и постепенно приводить людей к покупке."
+    }
+
+    if(lower.includes("пример") || lower.includes("misol")){
+        return "Например, салон красоты может не просто выкладывать фото работ, а показывать процесс, давать советы по уходу и отвечать на частые вопросы клиентов."
+    }
+
+    if(lower.includes("главное") || lower.includes("asosiy")){
+        return "Главное из урока: SMM это не просто посты. Это система: контент, внимание, доверие и действие."
+    }
+
+    return "Пока я работаю в тестовом режиме. Позже я смогу отвечать через AI, но уже сейчас можно проверить, как будет выглядеть помощник внутри урока."
+}
+
+renderOtabekMessages()
 
 updateStaticText()
 initVideo()
