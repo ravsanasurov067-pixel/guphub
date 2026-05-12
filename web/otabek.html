@@ -1,0 +1,770 @@
+<style>
+
+:root{
+    --otabek-accent:#cb6ce6;
+    --otabek-accent-2:#a855f7;
+
+    --otabek-bg:#12111a;
+    --otabek-bg-2:#171621;
+
+    --otabek-text:#ffffff;
+    --otabek-muted:#9f98aa;
+
+    --otabek-line:rgba(255,255,255,.08);
+
+    --otabek-shadow:
+        0 18px 40px rgba(0,0,0,.34);
+}
+
+/* =========================
+   ROOT
+========================= */
+
+.otabek-root *{
+    box-sizing:border-box;
+    -webkit-tap-highlight-color:transparent;
+}
+
+.otabek-root button,
+.otabek-root input{
+    font-family:Arial,sans-serif;
+}
+
+.otabek-root{
+    color:var(--otabek-text);
+}
+
+/* =========================
+   DESKTOP
+========================= */
+
+.otabek-desktop{
+    position:sticky;
+    top:0;
+}
+
+.otabek-card{
+    height:calc(100vh - 48px);
+    min-height:620px;
+
+    border-radius:28px;
+
+    overflow:hidden;
+
+    display:flex;
+    flex-direction:column;
+
+    background:
+        radial-gradient(circle at 84% 14%, rgba(203,108,230,.18), transparent 24%),
+        radial-gradient(circle at 14% 88%, rgba(203,108,230,.08), transparent 24%),
+        linear-gradient(180deg,#171621 0%,#0f0e17 100%);
+
+    border:1px solid rgba(255,255,255,.06);
+
+    box-shadow:var(--otabek-shadow);
+
+    padding:16px;
+}
+
+.otabek-head{
+    display:flex;
+    align-items:center;
+    gap:12px;
+
+    margin-bottom:14px;
+}
+
+.otabek-avatar{
+    width:46px;
+    height:46px;
+
+    border-radius:18px;
+
+    background:
+        linear-gradient(
+            135deg,
+            var(--otabek-accent),
+            var(--otabek-accent-2)
+        );
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    color:#fff;
+
+    font-size:20px;
+    font-weight:900;
+
+    flex-shrink:0;
+
+    box-shadow:
+        0 16px 34px rgba(203,108,230,.24);
+}
+
+.otabek-name{
+    font-size:17px;
+    line-height:1.1;
+    font-weight:900;
+}
+
+.otabek-role{
+    margin-top:4px;
+
+    color:var(--otabek-muted);
+
+    font-size:12px;
+    line-height:1.2;
+}
+
+.otabek-messages{
+    flex:1;
+
+    overflow:auto;
+
+    display:flex;
+    flex-direction:column;
+
+    gap:10px;
+
+    padding:2px 2px 14px;
+}
+
+.otabek-message{
+    max-width:92%;
+
+    padding:12px 13px;
+
+    border-radius:18px;
+
+    font-size:14px;
+    line-height:1.45;
+}
+
+.otabek-message.bot{
+    align-self:flex-start;
+
+    background:rgba(255,255,255,.055);
+
+    border:1px solid rgba(255,255,255,.07);
+
+    color:#ebe4f5;
+}
+
+.otabek-message.user{
+    align-self:flex-end;
+
+    background:
+        linear-gradient(
+            90deg,
+            rgba(203,108,230,.34),
+            rgba(168,85,247,.24)
+        );
+
+    border:1px solid rgba(203,108,230,.36);
+
+    color:#fff;
+}
+
+.otabek-actions{
+    display:flex;
+    flex-wrap:wrap;
+
+    gap:8px;
+
+    margin-bottom:12px;
+}
+
+.otabek-action{
+    min-height:34px;
+
+    border:none;
+
+    border-radius:999px;
+
+    padding:0 12px;
+
+    background:rgba(255,255,255,.055);
+
+    border:1px solid rgba(255,255,255,.08);
+
+    color:#fff;
+
+    font-size:12px;
+    font-weight:800;
+
+    transition:.18s ease;
+}
+
+.otabek-action:hover{
+    transform:translateY(-1px);
+
+    border-color:rgba(203,108,230,.26);
+
+    background:rgba(203,108,230,.08);
+}
+
+.otabek-input-row{
+    display:grid;
+    grid-template-columns:minmax(0,1fr) 44px;
+
+    gap:8px;
+
+    padding-top:12px;
+
+    border-top:1px solid rgba(255,255,255,.07);
+}
+
+.otabek-input{
+    width:100%;
+    height:46px;
+
+    border:none;
+    outline:none;
+
+    border-radius:16px;
+
+    padding:0 14px;
+
+    background:rgba(255,255,255,.06);
+
+    border:1px solid rgba(255,255,255,.08);
+
+    color:#fff;
+
+    font-size:14px;
+}
+
+.otabek-input::placeholder{
+    color:rgba(255,255,255,.42);
+}
+
+.otabek-send{
+    width:44px;
+    height:46px;
+
+    border:none;
+
+    border-radius:16px;
+
+    background:
+        linear-gradient(
+            90deg,
+            var(--otabek-accent),
+            var(--otabek-accent-2)
+        );
+
+    color:#fff;
+
+    font-size:18px;
+    font-weight:900;
+}
+
+/* =========================
+   MOBILE
+========================= */
+
+.otabek-mobile-fab{
+    position:fixed;
+
+    right:16px;
+
+    bottom:calc(18px + env(safe-area-inset-bottom));
+
+    width:58px;
+    height:58px;
+
+    border:none;
+
+    border-radius:22px;
+
+    background:
+        linear-gradient(
+            135deg,
+            var(--otabek-accent),
+            var(--otabek-accent-2)
+        );
+
+    color:#fff;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    z-index:3000;
+
+    box-shadow:
+        0 18px 38px rgba(203,108,230,.32);
+}
+
+.otabek-mobile-fab span{
+    font-size:22px;
+    font-weight:900;
+}
+
+.otabek-mobile-overlay{
+    position:fixed;
+    inset:0;
+
+    background:rgba(0,0,0,.58);
+
+    backdrop-filter:blur(10px);
+
+    z-index:4000;
+
+    display:none;
+
+    align-items:flex-end;
+
+    padding:14px;
+
+    padding-bottom:
+        calc(14px + env(safe-area-inset-bottom));
+}
+
+.otabek-mobile-overlay.active{
+    display:flex;
+}
+
+.otabek-mobile-card{
+    width:100%;
+
+    height:min(680px, 84vh);
+
+    border-radius:30px;
+
+    overflow:hidden;
+
+    display:flex;
+    flex-direction:column;
+
+    background:
+        radial-gradient(circle at 84% 14%, rgba(203,108,230,.18), transparent 24%),
+        radial-gradient(circle at 14% 88%, rgba(203,108,230,.08), transparent 24%),
+        linear-gradient(180deg,#171621 0%,#0f0e17 100%);
+
+    border:1px solid rgba(255,255,255,.06);
+
+    box-shadow:var(--otabek-shadow);
+
+    padding:16px;
+}
+
+.otabek-mobile-top{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+
+    gap:12px;
+
+    margin-bottom:14px;
+}
+
+.otabek-mobile-left{
+    display:flex;
+    align-items:center;
+    gap:12px;
+}
+
+.otabek-close{
+    width:34px;
+    height:34px;
+
+    border:none;
+
+    border-radius:50%;
+
+    background:rgba(255,255,255,.08);
+
+    color:#fff;
+
+    font-size:22px;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+}
+
+.otabek-close:active{
+    transform:scale(.94);
+}
+
+</style>
+
+<div class="otabek-root">    
+    
+    <!-- DESKTOP -->
+
+    <aside class="otabek-desktop">
+
+        <div class="otabek-card">
+
+            <div class="otabek-head">
+
+                <div class="otabek-avatar">
+                    O
+                </div>
+
+                <div>
+
+                    <div class="otabek-name">
+                        Отабек
+                    </div>
+
+                    <div class="otabek-role">
+                        AI-помощник урока
+                    </div>
+
+                </div>
+
+            </div>
+
+            <div
+                class="otabek-messages"
+                id="otabekMessages"
+            >
+
+                <div class="otabek-message bot">
+                    Привет. Я помогу разобраться с уроком. Можешь спросить меня про SMM, аудиторию, контент или тест.
+                </div>
+
+            </div>
+
+            <div class="otabek-actions">
+
+                <button
+                    class="otabek-action"
+                    onclick="otabekQuick('Объясни тему проще')"
+                >
+                    Объясни проще
+                </button>
+
+                <button
+                    class="otabek-action"
+                    onclick="otabekQuick('Приведи пример')"
+                >
+                    Пример
+                </button>
+
+                <button
+                    class="otabek-action"
+                    onclick="otabekQuick('Что главное запомнить?')"
+                >
+                    Главное
+                </button>
+
+            </div>
+
+            <div class="otabek-input-row">
+
+                <input
+                    type="text"
+                    class="otabek-input"
+                    id="otabekInput"
+                    placeholder="Спроси по уроку..."
+                    onkeydown="otabekEnter(event)"
+                >
+
+                <button
+                    class="otabek-send"
+                    onclick="sendOtabekMessage()"
+                >
+                    ↑
+                </button>
+
+            </div>
+
+        </div>
+
+    </aside>
+
+    <!-- MOBILE -->
+
+    <button
+        class="otabek-mobile-fab"
+        onclick="toggleOtabekMobile()"
+    >
+        <span>O</span>
+    </button>
+
+    <div
+        class="otabek-mobile-overlay"
+        id="otabekMobileOverlay"
+    >
+
+        <div class="otabek-mobile-card">
+
+            <div class="otabek-mobile-top">
+
+                <div class="otabek-mobile-left">
+
+                    <div class="otabek-avatar">
+                        O
+                    </div>
+
+                    <div>
+
+                        <div class="otabek-name">
+                            Отабек
+                        </div>
+
+                        <div class="otabek-role">
+                            AI-помощник урока
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <button
+                    class="otabek-close"
+                    onclick="toggleOtabekMobile()"
+                >
+                    ×
+                </button>
+
+            </div>
+
+            <div
+                class="otabek-messages"
+                id="otabekMessagesMobile"
+            >
+
+                <div class="otabek-message bot">
+                    Привет. Я помогу разобраться с уроком. Можешь спросить меня про SMM, аудиторию, контент или тест.
+                </div>
+
+            </div>
+
+            <div class="otabek-actions">
+
+                <button
+                    class="otabek-action"
+                    onclick="otabekQuick('Объясни тему проще')"
+                >
+                    Проще
+                </button>
+
+                <button
+                    class="otabek-action"
+                    onclick="otabekQuick('Приведи пример')"
+                >
+                    Пример
+                </button>
+
+                <button
+                    class="otabek-action"
+                    onclick="otabekQuick('Что главное запомнить?')"
+                >
+                    Главное
+                </button>
+
+            </div>
+
+            <div class="otabek-input-row">
+
+                <input
+                    type="text"
+                    class="otabek-input"
+                    id="otabekInputMobile"
+                    placeholder="Спроси по уроку..."
+                    onkeydown="otabekEnterMobile(event)"
+                >
+
+                <button
+                    class="otabek-send"
+                    onclick="sendOtabekMessageMobile()"
+                >
+                    ↑
+                </button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <script>
+const OTABEK_STORAGE_KEY =
+    window.OTABEK_STORAGE_KEY || "gaphub_otabek_default"
+
+let otabekHistory = JSON.parse(
+    localStorage.getItem(OTABEK_STORAGE_KEY) || "[]"
+)
+
+function saveOtabekHistory(){
+
+    localStorage.setItem(
+        OTABEK_STORAGE_KEY,
+        JSON.stringify(otabekHistory)
+    )
+}
+
+function renderOtabekMessages(){
+
+    const desktopRoot =
+        document.getElementById("otabekMessages")
+
+    const mobileRoot =
+        document.getElementById("otabekMessagesMobile")
+
+    const defaultMessage = `
+        <div class="otabek-message bot">
+            Привет. Я помогу разобраться с уроком. Можешь спросить меня про SMM, аудиторию, контент или тест.
+        </div>
+    `
+
+    const historyHTML = otabekHistory.map(item => `
+        <div class="otabek-message ${item.role}">
+            ${item.text}
+        </div>
+    `).join("")
+
+    const html = defaultMessage + historyHTML
+
+    if(desktopRoot){
+        desktopRoot.innerHTML = html
+        desktopRoot.scrollTop = desktopRoot.scrollHeight
+    }
+
+    if(mobileRoot){
+        mobileRoot.innerHTML = html
+        mobileRoot.scrollTop = mobileRoot.scrollHeight
+    }
+}
+
+function toggleOtabekMobile(){
+
+    const overlay =
+        document.getElementById("otabekMobileOverlay")
+
+    if(!overlay) return
+
+    overlay.classList.toggle("active")
+}
+
+function otabekEnter(event){
+
+    if(event.key === "Enter"){
+        sendOtabekMessage()
+    }
+}
+
+function otabekEnterMobile(event){
+
+    if(event.key === "Enter"){
+        sendOtabekMessageMobile()
+    }
+}
+
+function otabekQuick(text){
+
+    const desktopInput =
+        document.getElementById("otabekInput")
+
+    const mobileInput =
+        document.getElementById("otabekInputMobile")
+
+    if(desktopInput){
+        desktopInput.value = text
+    }
+
+    if(mobileInput){
+        mobileInput.value = text
+    }
+
+    if(window.innerWidth >= 1024){
+        sendOtabekMessage()
+    }else{
+        sendOtabekMessageMobile()
+    }
+}
+
+function sendOtabekMessage(){
+
+    const input =
+        document.getElementById("otabekInput")
+
+    if(!input) return
+
+    const text = input.value.trim()
+
+    if(!text) return
+
+    input.value = ""
+
+    addOtabekMessage(text)
+}
+
+function sendOtabekMessageMobile(){
+
+    const input =
+        document.getElementById("otabekInputMobile")
+
+    if(!input) return
+
+    const text = input.value.trim()
+
+    if(!text) return
+
+    input.value = ""
+
+    addOtabekMessage(text)
+}
+
+function addOtabekMessage(text){
+
+    otabekHistory.push({
+        role:"user",
+        text:text
+    })
+
+    otabekHistory.push({
+        role:"bot",
+        text:getOtabekMockAnswer(text)
+    })
+
+    saveOtabekHistory()
+    renderOtabekMessages()
+}
+
+function getOtabekMockAnswer(text){
+
+    const lower = text.toLowerCase()
+
+    if(
+        lower.includes("проще") ||
+        lower.includes("oddiy") ||
+        lower.includes("тушун")
+    ){
+        return "Если проще: SMM помогает бизнесу быть заметным в соцсетях, объяснять ценность продукта и постепенно приводить людей к покупке."
+    }
+
+    if(
+        lower.includes("пример") ||
+        lower.includes("misol")
+    ){
+        return "Например, салон красоты может показывать не только результат, но и процесс работы, уход после процедуры и ответы на частые вопросы клиентов."
+    }
+
+    if(
+        lower.includes("главное") ||
+        lower.includes("asosiy")
+    ){
+        return "Главное из урока: SMM это не просто публикация постов. Это система: контент, внимание, доверие и действие."
+    }
+
+    if(
+        lower.includes("ца") ||
+        lower.includes("аудитория") ||
+        lower.includes("auditoriya")
+    ){
+        return "ЦА — это люди, которым реально может быть интересен продукт или услуга. Без понимания аудитории сложно делать хороший контент."
+    }
+
+    return "Пока я работаю в тестовом режиме. Позже меня подключат к полноценному AI, и я смогу отвечать намного глубже и точнее."
+}
+
+renderOtabekMessages()
+</script>
+</div>
