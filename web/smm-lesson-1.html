@@ -1447,15 +1447,6 @@ button{
         max-width:900px;
     }
 
-    .otabek-desktop-panel{
-        position:static;
-    }
-
-    .otabek-card{
-        height:auto;
-        min-height:360px;
-    }
-
     .desktop-side-column{
         position:static;
         display:grid;
@@ -2917,96 +2908,40 @@ function impact(style = "light"){
     }
 }
 
-function toggleOtabekMobile(){
+function loadOtabek(){
 
-    impact()
+    window.OTABEK_STORAGE_KEY = "smm_lesson_1"
 
-    const sheet = document.getElementById("otabekMobileSheet")
+    fetch("otabek.html")
+        .then(response => response.text())
+        .then(html => {
+            const slot = document.getElementById("otabek-slot")
 
-    if(sheet){
-        sheet.classList.toggle("active")
-    }
+            if(!slot) return
+
+            slot.innerHTML = html
+
+            const scripts = slot.querySelectorAll("script")
+
+            scripts.forEach(oldScript => {
+                const newScript = document.createElement("script")
+
+                newScript.textContent = oldScript.textContent
+
+                document.body.appendChild(newScript)
+
+                oldScript.remove()
+            })
+        })
+        .catch(error => {
+            console.log("Otabek load error:", error)
+        })
 }
-
-function otabekEnter(event, mode){
-
-    if(event.key === "Enter"){
-        sendOtabekMessage(mode)
-    }
-}
-
-function otabekQuick(text){
-
-    const inputDesktop = document.getElementById("otabekInputDesktop")
-    const inputMobile = document.getElementById("otabekInputMobile")
-
-    if(inputDesktop){
-        inputDesktop.value = text
-    }
-
-    if(inputMobile){
-        inputMobile.value = text
-    }
-
-    sendOtabekMessage(
-        window.innerWidth >= 1024 ? "desktop" : "mobile"
-    )
-}
-
-function sendOtabekMessage(mode){
-
-    impact()
-
-    const input = mode === "desktop"
-        ? document.getElementById("otabekInputDesktop")
-        : document.getElementById("otabekInputMobile")
-
-    if(!input) return
-
-    const text = input.value.trim()
-
-    if(!text) return
-
-    input.value = ""
-
-    otabekHistory.push({
-        role:"user",
-        text:text
-    })
-
-    otabekHistory.push({
-        role:"bot",
-        text:getOtabekMockAnswer(text)
-    })
-
-    saveOtabekHistory()
-    renderOtabekMessages()
-}
-
-function getOtabekMockAnswer(text){
-
-    const lower = text.toLowerCase()
-
-    if(lower.includes("проще") || lower.includes("тушун") || lower.includes("oddiy")){
-        return "Если проще: SMM помогает бизнесу быть заметным в соцсетях, объяснять пользу продукта и постепенно приводить людей к покупке."
-    }
-
-    if(lower.includes("пример") || lower.includes("misol")){
-        return "Например, салон красоты может не просто выкладывать фото работ, а показывать процесс, давать советы по уходу и отвечать на частые вопросы клиентов."
-    }
-
-    if(lower.includes("главное") || lower.includes("asosiy")){
-        return "Главное из урока: SMM это не просто посты. Это система: контент, внимание, доверие и действие."
-    }
-
-    return "Пока я работаю в тестовом режиме. Позже я смогу отвечать через AI, но уже сейчас можно проверить, как будет выглядеть помощник внутри урока."
-}
-
-renderOtabekMessages()
 
 updateStaticText()
 initVideo()
 initTelegram()
+loadOtabek()
 
 </script>
 
