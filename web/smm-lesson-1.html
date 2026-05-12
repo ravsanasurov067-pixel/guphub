@@ -1661,6 +1661,8 @@ button{
 
 </div>
 
+<div id="otabek-mobile-slot"></div>
+
 <!-- =========================
      DESKTOP
 ========================= -->
@@ -2915,21 +2917,23 @@ function loadOtabek(){
     fetch("otabek.html")
         .then(response => response.text())
         .then(html => {
-            const slot = document.getElementById("otabek-slot")
+            const desktopSlot = document.getElementById("otabek-slot")
+            const mobileSlot = document.getElementById("otabek-mobile-slot")
 
-            if(!slot) return
+            if(desktopSlot){
+                desktopSlot.innerHTML = html
+            }
 
-            slot.innerHTML = html
+            if(mobileSlot){
+                mobileSlot.innerHTML = html
+            }
 
-            const scripts = slot.querySelectorAll("script")
+            const scripts = document.querySelectorAll("#otabek-slot script, #otabek-mobile-slot script")
 
             scripts.forEach(oldScript => {
                 const newScript = document.createElement("script")
-
                 newScript.textContent = oldScript.textContent
-
                 document.body.appendChild(newScript)
-
                 oldScript.remove()
             })
         })
