@@ -2944,12 +2944,17 @@ function loadOtabek(){
             const desktopSlot = document.getElementById("otabek-slot")
             const mobileSlot = document.getElementById("otabek-mobile-slot")
 
-            if(desktopSlot){
-                desktopSlot.innerHTML = html
-            }
+            if(window.innerWidth >= 1024){
 
-            if(mobileSlot){
-                mobileSlot.innerHTML = html
+                if(desktopSlot){
+                    desktopSlot.innerHTML = html
+                }
+
+            }else{
+
+                if(mobileSlot){
+                    mobileSlot.innerHTML = html
+                }
             }
 
             const scripts = document.querySelectorAll("#otabek-slot script, #otabek-mobile-slot script")
