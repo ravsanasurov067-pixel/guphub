@@ -194,3 +194,35 @@ def complete_lesson(data: ProgressCompleteRequest):
         "course_slug": data.course_slug,
         "lesson_id": data.lesson_id
     }    
+
+@app.get("/progress/{telegram_id}/{course_slug}")
+def get_progress(telegram_id: int, course_slug: str):
+    conn = get_connection()
+    cursor = conn.cursor()
+
+    cursor.execute("""
+        SELECT lesson_id
+        FROM lesson_progress
+        WHERE telegram_id = %s
+          AND course_slug = %s
+        ORDER BY lesson_id
+    """, (
+        telegram_id,
+        course_slug
+    ))
+
+    rows = cursor.fetchall()
+
+    cursor.close()
+    conn.close()
+
+    completed_lessons = []
+
+    for row in rows:
+        completed_lessons.append(row[0])
+
+    return {
+        "telegram_id": telegram_id,
+        "course_slug": course_slug,
+        "completed_lessons": completed_lessons
+    }
