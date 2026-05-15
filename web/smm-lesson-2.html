@@ -2921,20 +2921,7 @@ function openMaterial(){
         return
     }
 
-    if(
-        window.Telegram &&
-        Telegram.WebApp &&
-        Telegram.WebApp.openLink
-    ){
-        Telegram.WebApp.openLink(path)
-        return
-    }
-
-    const opened = window.open(path, "_blank")
-
-    if(!opened){
-        window.location.href = path
-    }
+    window.open(path, "_blank")
 }
 
 function initVideo(){
