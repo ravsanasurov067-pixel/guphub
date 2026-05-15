@@ -1636,6 +1636,12 @@ button{
 
                 <button
                     class="mobile-main-btn"
+                    id="deepMaterialOpenBtn-mobile"
+                    onclick="openMaterial()"
+                ></button>
+
+                <button
+                    class="btn btn-secondary deep-secondary-btn"
                     id="goTestBtn-mobile"
                     onclick="goStep('test')"
                 ></button>
@@ -1775,16 +1781,21 @@ button{
 
                         <div class="desktop-summary-grid" id="summaryList-desktop"></div>
 
-                        <div class="desktop-summary-action">
+                        <div class="desktop-summary-action desktop-deep-actions">
 
                             <button
                                 class="desktop-main-btn"
-                                id="summaryFinishBtn-desktop"
-                                onclick="openDeepModal()"
+                                id="deepMaterialOpenBtn-desktop"
+                                onclick="openMaterial()"
+                            ></button>
+
+                            <button
+                                class="btn btn-secondary desktop-secondary-btn"
+                                id="goTestBtn-desktop"
+                                onclick="goStep('test')"
                             ></button>
 
                         </div>
-
                     </section>
 
                     <section class="lesson-step" id="step-deep-desktop">
@@ -1951,7 +1962,7 @@ button{
             <button
                 class="btn btn-secondary deep-btn"
                 id="deepMaterialBtn"
-                onclick="goStep('deep'); closeDeepModal();"
+                onclick="openMaterial(); closeDeepModal();"
             ></button>
 
             <button
