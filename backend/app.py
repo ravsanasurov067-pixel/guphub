@@ -41,6 +41,11 @@ class OtabekChatRequest(BaseModel):
     lesson: int = 1
     lang: str = "ru"
 
+class ProgressCompleteRequest(BaseModel):
+    telegram_id: int
+    course_slug: str
+    lesson_id: int
+
 @app.get("/user/{telegram_id}")
 def get_user(telegram_id: int):
     conn = get_connection()
@@ -157,3 +162,35 @@ def otabek_chat(data: OtabekChatRequest):
             status_code=500,
             detail="Otabek AI error"
         )
+    
+@app.post("/progress/complete")
+def complete_lesson(data: ProgressCompleteRequest):
+    conn = get_connection()
+    cursor = conn.cursor()
+
+    cursor.execute("""
+        INSERT INTO lesson_progress (
+            telegram_id,
+            course_slug,
+            lesson_id
+        )
+        VALUES (%s, %s, %s)
+        ON CONFLICT (telegram_id, course_slug, lesson_id)
+        DO UPDATE SET completed_at = NOW()
+    """, (
+        data.telegram_id,
+        data.course_slug,
+        data.lesson_id
+    ))
+
+    conn.commit()
+
+    cursor.close()
+    conn.close()
+
+    return {
+        "success": True,
+        "telegram_id": data.telegram_id,
+        "course_slug": data.course_slug,
+        "lesson_id": data.lesson_id
+    }    
