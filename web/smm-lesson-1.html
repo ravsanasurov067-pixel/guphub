@@ -1636,12 +1636,11 @@ button{
 
                 <button
                     class="mobile-main-btn"
-                    id="summaryFinishBtn-mobile"
-                    onclick="openDeepModal()"
+                    id="goTestBtn-mobile"
+                    onclick="goStep('test')"
                 ></button>
 
             </div>
-
         </section>
 
         <!-- STEP TEST -->
@@ -1775,18 +1774,12 @@ button{
 
                         <div class="desktop-summary-grid" id="summaryList-desktop"></div>
 
-                        <div class="desktop-summary-action desktop-deep-actions">
+                        <div class="desktop-summary-action">
 
                             <button
                                 class="desktop-main-btn"
-                                id="deepMaterialOpenBtn-desktop"
-                                onclick="openMaterial()"
-                            ></button>
-
-                            <button
-                                class="btn btn-secondary desktop-secondary-btn"
-                                id="goTestBtn-desktop"
-                                onclick="goStep('test')"
+                                id="summaryFinishBtn-desktop"
+                                onclick="openDeepModal()"
                             ></button>
 
                         </div>
@@ -2784,7 +2777,20 @@ function openMaterial(){
         return
     }
 
-    window.open(path, "_blank")
+    if(
+        window.Telegram &&
+        Telegram.WebApp &&
+        Telegram.WebApp.openLink
+    ){
+        Telegram.WebApp.openLink(path)
+        return
+    }
+
+    const opened = window.open(path, "_blank")
+
+    if(!opened){
+        window.location.href = path
+    }
 }
 
 function initVideo(){
