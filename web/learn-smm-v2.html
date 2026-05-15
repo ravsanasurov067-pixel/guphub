@@ -1185,20 +1185,30 @@ function loadProgress(userId){
     fetch(`https://api.gaphub.uz/progress/${userId}/${COURSE_SLUG}`)
         .then(res => res.json())
         .then(data => {
-            completedLessons = Number(data.completed_lessons || data.completedLessons || 0);
-            completedLessons = Math.max(0, Math.min(TOTAL_LESSONS, completedLessons));
+            const completedArray = Array.isArray(data.completed_lessons)
+                ? data.completed_lessons
+                : []
 
-            currentLesson = completedLessons + 1;
-            if(currentLesson > TOTAL_LESSONS) currentLesson = TOTAL_LESSONS;
+            completedLessons = completedArray.length
 
-            updateStaticText();
+            const maxCompletedLesson = completedArray.length
+                ? Math.max(...completedArray)
+                : 0
+
+            currentLesson = maxCompletedLesson + 1
+
+            if(currentLesson > TOTAL_LESSONS){
+                currentLesson = TOTAL_LESSONS
+            }
+
+            updateStaticText()
         })
         .catch(err => {
-            console.log("Progress fetch error:", err);
-            completedLessons = 0;
-            currentLesson = 1;
-            updateStaticText();
-        });
+            console.log("Progress fetch error:", err)
+            completedLessons = 0
+            currentLesson = 1
+            updateStaticText()
+        })
 }
 
 function openLesson(lessonId){
