@@ -583,16 +583,18 @@ button{
 
     .desktop-point{
         display:grid;
-        grid-template-columns:58px 1px minmax(0,1fr);
+        grid-template-columns:74px minmax(360px,1fr);
         align-items:center;
-        gap:16px;
+        gap:18px;
         font-size:17px;
         line-height:1.35;
         font-weight:700;
         color:rgba(255,255,255,.92);
+        width:100%;
     }
 
     .desktop-point-icon{
+        position:relative;
         width:auto;
         height:auto;
         font-size:34px;
@@ -605,11 +607,12 @@ button{
 
     .desktop-point-icon::after{
         content:"";
-        display:block;
+        position:absolute;
+        right:-18px;
+        top:50%;
+        transform:translateY(-50%);
         width:1px;
         height:34px;
-        margin-left:72px;
-        margin-top:-34px;
         background:linear-gradient(
             180deg,
             transparent,
