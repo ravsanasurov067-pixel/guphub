@@ -1971,7 +1971,13 @@ const COURSE_SLUG = "smm"
 const LESSON_ID = 1
 const NEXT_LESSON_ID = 2
 
-const VIDEO_PATH = "https://bot.gaphub.uz/videos/smm/lesson-1.mp4"
+const VIDEO_PATHS = {
+
+    ru:"https://bot.gaphub.uz/videos/smm/lesson-1-ru.mp4",
+
+    uz:"https://bot.gaphub.uz/videos/smm/lesson-1-uz.mp4"
+
+}
 
 const MATERIAL_PATHS = {
     ru:"https://bot.gaphub.uz/materials/smm/lesson-1-ru.pdf",
@@ -2568,6 +2574,7 @@ function setLessonLang(value){
     localStorage.setItem("lang", value)
 
     updateStaticText()
+    initVideo()
     renderQuestion()
 }
 
@@ -2946,11 +2953,11 @@ function initVideo(){
     const desktopSource = document.getElementById("videoSource-desktop")
 
     if(mobileSource){
-        mobileSource.src = VIDEO_PATH
+        mobileSource.src = VIDEO_PATHS[lang]
     }
 
     if(desktopSource){
-        desktopSource.src = VIDEO_PATH
+        desktopSource.src = VIDEO_PATHS[lang]
     }
 
     if(mobileVideo){
