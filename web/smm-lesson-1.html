@@ -1708,6 +1708,81 @@ button{
     }
 }
 
+/* SUMMARY FIXES */
+
+#step-summary-mobile .mobile-summary-head,
+#step-summary-desktop .desktop-summary-top{
+    display:none;
+}
+
+.summary-stage{
+    position:relative;
+}
+
+.summary-overlay-arrow{
+    position:absolute;
+    top:50%;
+    z-index:5;
+
+    width:48px;
+    height:48px;
+
+    border:none;
+    border-radius:999px;
+
+    background:rgba(0,0,0,.38);
+    border:1px solid rgba(255,255,255,.12);
+
+    color:#fff;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    font-size:24px;
+    font-weight:900;
+
+    backdrop-filter:blur(12px);
+    box-shadow:0 10px 24px rgba(0,0,0,.28);
+
+    transform:translateY(-50%);
+    transition:.18s ease;
+}
+
+.summary-overlay-arrow:active{
+    transform:translateY(-50%) scale(.94);
+}
+
+.summary-overlay-arrow:disabled{
+    opacity:.28;
+    cursor:not-allowed;
+}
+
+.summary-overlay-arrow-left{
+    left:14px;
+}
+
+.summary-overlay-arrow-right{
+    right:14px;
+}
+
+@media (max-width:1023px){
+
+    .summary-overlay-arrow{
+        width:44px;
+        height:44px;
+        font-size:22px;
+    }
+
+    .summary-overlay-arrow-left{
+        left:12px;
+    }
+
+    .summary-overlay-arrow-right{
+        right:12px;
+    }
+}
+
 </style>
 
 </head>
@@ -1820,26 +1895,24 @@ button{
 
             <div class="summary-slider">
 
-                <div class="summary-stage">
+                <div
+                    class="summary-stage"
+                    ontouchstart="summaryTouchStart(event)"
+                    ontouchend="summaryTouchEnd(event)"
+                >
 
                     <div class="summary-image-wrap" id="summaryImageWrap-mobile"></div>
 
-                </div>
-
-                <div class="summary-controls">
-
                     <button
-                        class="summary-arrow-btn"
+                        class="summary-overlay-arrow summary-overlay-arrow-left"
                         id="summaryPrev-mobile"
                         onclick="prevSummaryCard()"
                     >
                         ←
                     </button>
 
-                    <div class="summary-counter" id="summaryCounter-mobile"></div>
-
                     <button
-                        class="summary-arrow-btn"
+                        class="summary-overlay-arrow summary-overlay-arrow-right"
                         id="summaryNext-mobile"
                         onclick="nextSummaryCard()"
                     >
@@ -2118,22 +2191,16 @@ button{
 
                                 <div class="summary-image-wrap" id="summaryImageWrap-desktop"></div>
 
-                            </div>
-
-                            <div class="summary-controls">
-
                                 <button
-                                    class="summary-arrow-btn"
+                                    class="summary-overlay-arrow summary-overlay-arrow-left"
                                     id="summaryPrev-desktop"
                                     onclick="prevSummaryCard()"
                                 >
                                     ←
                                 </button>
 
-                                <div class="summary-counter" id="summaryCounter-desktop"></div>
-
                                 <button
-                                    class="summary-arrow-btn"
+                                    class="summary-overlay-arrow summary-overlay-arrow-right"
                                     id="summaryNext-desktop"
                                     onclick="nextSummaryCard()"
                                 >
@@ -2370,6 +2437,8 @@ let currentStep = "video"
 let maxUnlockedStepIndex = 1
 let currentSummaryCardIndex = 0
 const SUMMARY_CARDS_COUNT = 10
+let summaryTouchStartX = 0
+let summaryTouchStartY = 0
 
 let currentQuestionIndex = 0
 let score = 0
@@ -3114,6 +3183,37 @@ function prevSummaryCard(){
     if(currentSummaryCardIndex <= 0) return
 
     setSummaryCard(currentSummaryCardIndex - 1)
+}
+
+function summaryTouchStart(event){
+
+    if(!event.touches || !event.touches[0]) return
+
+    summaryTouchStartX = event.touches[0].clientX
+    summaryTouchStartY = event.touches[0].clientY
+}
+
+function summaryTouchEnd(event){
+
+    if(!event.changedTouches || !event.changedTouches[0]) return
+
+    const endX = event.changedTouches[0].clientX
+    const endY = event.changedTouches[0].clientY
+
+    const diffX = endX - summaryTouchStartX
+    const diffY = endY - summaryTouchStartY
+
+    if(Math.abs(diffX) < 45) return
+    if(Math.abs(diffY) > 70) return
+
+    if(diffX < 0){
+        nextSummaryCard()
+        return
+    }
+
+    if(diffX > 0){
+        prevSummaryCard()
+    }
 }
 
 function renderDeepMaterials(){
