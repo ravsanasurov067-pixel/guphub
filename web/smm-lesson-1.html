@@ -56,8 +56,12 @@ img{
     max-width:100%;
 }
 
-button{
+button,
+input{
     font-family:inherit;
+}
+
+button{
     cursor:pointer;
 }
 
@@ -212,23 +216,7 @@ button{
 }
 
 .mobile-badge{
-    display:inline-flex;
-    align-items:center;
-    gap:8px;
-
-    background:rgba(255,255,255,.06);
-
-    border:1px solid rgba(255,255,255,.06);
-
-    border-radius:999px;
-
-    padding:9px 13px;
-
-    font-size:12px;
-
-    color:#ebe4f5;
-
-    margin-bottom:12px;
+    display:none;
 }
 
 .mobile-title{
@@ -243,15 +231,7 @@ button{
 }
 
 .mobile-subtitle{
-    margin:0;
-
-    color:var(--muted);
-
-    font-size:14px;
-
-    line-height:1.5;
-
-    max-width:330px;
+    display:none;
 }
 
 /* VIDEO STEP */
@@ -294,23 +274,17 @@ button{
 }
 
 .mobile-video-title{
-    margin:0 0 8px;
-
-    font-size:18px;
-
-    font-weight:800;
-
-    line-height:1.2;
+    display:none;
 }
 
 .mobile-video-text{
-    margin:0;
+    display:none;
+}
 
-    color:var(--muted);
-
-    font-size:14px;
-
-    line-height:1.55;
+.mobile-video-actions{
+    display:grid;
+    grid-template-columns:1fr;
+    gap:10px;
 }
 
 .mobile-video-action{
@@ -335,6 +309,13 @@ button{
     font-size:16px;
 
     font-weight:800;
+}
+
+.mobile-material-btn{
+    width:100%;
+    min-height:52px;
+    border-radius:18px;
+    font-size:15px;
 }
 
 /* SUMMARY STEP */
@@ -486,6 +467,28 @@ button{
     border-radius:28px;
 
     padding:22px;
+    position:relative;
+}
+
+.deep-close{
+    position:absolute;
+    top:14px;
+    right:14px;
+    width:34px;
+    height:34px;
+    border:none;
+    border-radius:50%;
+    background:rgba(255,255,255,.07);
+    color:#fff;
+    font-size:22px;
+    line-height:1;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+}
+
+.deep-close:active{
+    transform:scale(.94);
 }
 
 .deep-icon{
@@ -638,6 +641,9 @@ button{
     font-size:16px;
 }
 
+/* =========================
+   DESKTOP
+========================= */
 
 @media (min-width:1024px){
 
@@ -676,17 +682,17 @@ button{
     }
 
     .desktop-main{
-    padding:24px 22px 34px;
-    height:100vh;
-    overflow:auto;
-}
+        padding:24px 22px 34px;
+        height:100vh;
+        overflow:auto;
+    }
 
     .desktop-content-grid{
         display:grid;
-        grid-template-columns:280px minmax(0,1fr) 280px;
+        grid-template-columns:260px minmax(0,1fr) 260px;
         gap:18px;
         align-items:start;
-        max-width:1480px;
+        max-width:1440px;
         margin:0 auto;
     }
 
@@ -694,20 +700,224 @@ button{
         min-width:0;
     }
 
-    .desktop-side-column{
+    /* LEFT ASSISTANT */
+
+    .desktop-assistant-card{
         position:sticky;
         top:0;
 
+        min-height:calc(100vh - 58px);
+
+        border-radius:28px;
+        padding:18px;
+
         display:flex;
         flex-direction:column;
-        gap:14px;
+        gap:16px;
     }
+
+    .assistant-profile{
+        display:flex;
+        flex-direction:column;
+        align-items:center;
+        text-align:center;
+        padding-top:4px;
+    }
+
+    .assistant-avatar{
+        width:86px;
+        height:86px;
+
+        border-radius:28px;
+
+        background:
+            radial-gradient(circle at 50% 38%, rgba(203,108,230,.22), transparent 34%),
+            linear-gradient(180deg,#1c1a27 0%,#111017 100%);
+
+        border:1px solid rgba(255,255,255,.07);
+
+        display:flex;
+        align-items:center;
+        justify-content:center;
+
+        overflow:hidden;
+
+        margin-bottom:12px;
+    }
+
+    .assistant-avatar img{
+        width:100%;
+        height:100%;
+        object-fit:cover;
+    }
+
+    .assistant-avatar-fallback{
+        font-size:36px;
+        line-height:1;
+    }
+
+    .assistant-name{
+        margin:0 0 4px;
+        font-size:21px;
+        line-height:1.1;
+        font-weight:900;
+    }
+
+    .assistant-role{
+        margin:0;
+        color:var(--muted-soft);
+        font-size:13px;
+        line-height:1.35;
+        font-weight:700;
+    }
+
+    .assistant-quick-list{
+        display:grid;
+        grid-template-columns:1fr;
+        gap:9px;
+        margin-top:2px;
+    }
+
+    .assistant-quick-btn{
+        width:100%;
+        min-height:48px;
+
+        border:none;
+        border-radius:16px;
+
+        background:rgba(255,255,255,.045);
+        border:1px solid rgba(255,255,255,.07);
+
+        color:#fff;
+
+        padding:0 12px;
+
+        display:flex;
+        align-items:center;
+        gap:10px;
+
+        text-align:left;
+
+        transition:.18s ease;
+    }
+
+    .assistant-quick-btn:hover{
+        transform:translateY(-1px);
+        border-color:rgba(203,108,230,.28);
+        background:rgba(203,108,230,.08);
+    }
+
+    .assistant-quick-icon{
+        width:30px;
+        height:30px;
+        border-radius:12px;
+        background:rgba(203,108,230,.12);
+        display:flex;
+        align-items:center;
+        justify-content:center;
+        flex-shrink:0;
+        font-size:14px;
+    }
+
+    .assistant-quick-text{
+        font-size:13px;
+        font-weight:800;
+        line-height:1.2;
+    }
+
+    .assistant-history-btn{
+        width:100%;
+        min-height:46px;
+        border-radius:16px;
+        font-size:14px;
+        margin-top:auto;
+    }
+
+    .assistant-input-wrap{
+        display:grid;
+        grid-template-columns:minmax(0,1fr) 42px;
+        gap:8px;
+    }
+
+    .assistant-input{
+        width:100%;
+        height:42px;
+        border:none;
+        outline:none;
+
+        border-radius:15px;
+
+        background:rgba(255,255,255,.045);
+        border:1px solid rgba(255,255,255,.07);
+
+        color:#fff;
+
+        padding:0 13px;
+
+        font-size:13px;
+    }
+
+    .assistant-input::placeholder{
+        color:rgba(255,255,255,.40);
+    }
+
+    .assistant-send{
+        width:42px;
+        height:42px;
+        border:none;
+        border-radius:15px;
+
+        color:#fff;
+        background:linear-gradient(90deg,var(--accent),var(--accent-2));
+
+        box-shadow:0 12px 24px rgba(203,108,230,.18);
+
+        font-size:18px;
+        font-weight:900;
+    }
+
+    /* DESKTOP HEAD */
 
     .desktop-head{
         margin-bottom:16px;
     }
 
+    .desktop-lesson-line{
+        display:flex;
+        align-items:center;
+        gap:10px;
+        margin-bottom:14px;
+    }
+
+    .desktop-step-back{
+        width:44px;
+        height:36px;
+        border:none;
+        border-radius:999px;
+        background:rgba(255,255,255,.045);
+        border:1px solid rgba(203,108,230,.45);
+        color:#fff;
+        display:flex;
+        align-items:center;
+        justify-content:center;
+        font-size:22px;
+        font-weight:800;
+        transition:.18s ease;
+        flex-shrink:0;
+    }
+
+    .desktop-step-back:hover{
+        transform:translateX(-2px);
+        background:rgba(203,108,230,.10);
+    }
+
+    .desktop-step-back:active{
+        transform:scale(.95);
+    }
+
     .desktop-badge{
+        min-height:36px;
+
         display:inline-flex;
         align-items:center;
         gap:8px;
@@ -718,19 +928,19 @@ button{
 
         border-radius:999px;
 
-        padding:10px 14px;
+        padding:0 14px;
 
         font-size:13px;
 
         color:#ebe4f5;
 
-        margin-bottom:14px;
+        font-weight:800;
     }
 
     .desktop-title{
-        margin:0 0 10px;
+        margin:0;
 
-        font-size:clamp(38px,3.2vw,56px);
+        font-size:clamp(38px,3.2vw,54px);
 
         line-height:.96;
 
@@ -740,15 +950,7 @@ button{
     }
 
     .desktop-subtitle{
-        margin:0;
-
-        color:var(--muted);
-
-        font-size:17px;
-
-        line-height:1.55;
-
-        max-width:760px;
+        display:none;
     }
 
     /* VIDEO STEP */
@@ -788,38 +990,35 @@ button{
     }
 
     .desktop-video-bottom{
-        padding:20px;
+        padding:18px 20px 20px;
     }
 
-    .desktop-video-title{
-        margin:0 0 10px;
-
-        font-size:22px;
-
-        font-weight:800;
-
-        line-height:1.2;
-    }
-
+    .desktop-video-title,
     .desktop-video-text{
-        margin:0;
+        display:none;
+    }
 
-        color:var(--muted);
+    .desktop-video-actions{
+        display:grid;
+        grid-template-columns:minmax(0,1fr) 250px;
+        gap:14px;
+        align-items:center;
+    }
 
+    .desktop-material-btn{
+        width:100%;
+        min-height:56px;
+        border-radius:18px;
         font-size:15px;
 
-        line-height:1.6;
-
-        max-width:760px;
-    }
-
-    .desktop-video-action{
-        margin-top:18px;
+        display:flex;
+        align-items:center;
+        justify-content:center;
+        gap:8px;
     }
 
     .desktop-main-btn{
         width:100%;
-        max-width:360px;
 
         min-height:58px;
 
@@ -841,6 +1040,15 @@ button{
         font-size:16px;
 
         font-weight:800;
+    }
+
+    .desktop-video-action{
+        margin-top:0;
+    }
+
+    .desktop-video-action .desktop-main-btn{
+        width:100%;
+        max-width:none;
     }
 
     /* SUMMARY STEP */
@@ -870,10 +1078,10 @@ button{
     }
 
     .desktop-summary-grid{
-    display:grid;
-    grid-template-columns:1fr 1fr;
-    gap:12px;
-    align-items:start;
+        display:grid;
+        grid-template-columns:1fr 1fr;
+        gap:12px;
+        align-items:start;
     }
 
     .summary-list{
@@ -919,32 +1127,6 @@ button{
         font-weight:800;
     }
 
-    .summary-arrow{
-        width:11px;
-        height:11px;
-
-        border-right:2px solid var(--accent);
-        border-bottom:2px solid var(--accent);
-
-        transform:rotate(45deg);
-
-        transition:.25s ease;
-
-        flex-shrink:0;
-
-        margin-right:4px;
-    }
-
-    .summary-card.open .summary-arrow{
-        transform:rotate(225deg);
-    }
-
-    .summary-answer-wrap{
-        max-height:0;
-        overflow:hidden;
-        transition:max-height .28s ease;
-    }
-
     .summary-answer{
         padding:0 18px 18px;
 
@@ -955,69 +1137,88 @@ button{
         line-height:1.62;
     }
 
-    .summary-answer ul{
-        margin:8px 0 0;
-        padding-left:18px;
-    }
-
-    .summary-answer li{
-        margin:5px 0;
-    }
-
     .desktop-summary-action{
         margin-top:18px;
     }
 
     /* RIGHT PANEL */
 
-    .desktop-side-card{
-        border-radius:24px;
-        padding:18px;
+    .desktop-side-column{
+        position:sticky;
+        top:0;
+
+        display:flex;
+        flex-direction:column;
+        gap:14px;
     }
 
-    .desktop-side-title{
-        margin:0 0 8px;
+    .desktop-control-card{
+        border-radius:28px;
+        padding:18px;
 
-        font-size:21px;
+        display:flex;
+        flex-direction:column;
+        gap:18px;
 
-        line-height:1.2;
+        min-height:calc(100vh - 58px);
+    }
 
+    .desktop-language-title{
+        margin:0 0 12px;
+        font-size:20px;
+        line-height:1.1;
         font-weight:800;
     }
 
-    .desktop-side-text{
-        margin:0 0 16px;
-
-        color:var(--muted);
-
-        font-size:14px;
-
-        line-height:1.55;
-    }
-
-    .desktop-side-buttons{
+    .desktop-language-options{
         display:grid;
-        grid-template-columns:1fr;
+        grid-template-columns:1fr 1fr;
         gap:10px;
     }
 
-    .desktop-side-btn{
+    .desktop-language-option{
         width:100%;
-        height:54px;
-        font-size:15px;
+        min-height:50px;
+
+        border:none;
+        border-radius:18px;
+
+        padding:0 12px;
+
+        background:rgba(255,255,255,.045);
+        border:1px solid rgba(255,255,255,.07);
+
+        color:#fff;
+
+        display:flex;
+        align-items:center;
+        justify-content:center;
+        gap:8px;
+
+        text-align:center;
+
+        transition:.18s ease;
     }
 
-    .desktop-steps-card{
-        border-radius:24px;
-        padding:18px;
+    .desktop-language-option:hover{
+        transform:translateY(-1px);
+        border-color:rgba(203,108,230,.28);
+        background:rgba(203,108,230,.08);
     }
 
-    .desktop-steps-label{
-        color:var(--muted-soft);
+    .desktop-language-option.active{
+        background:linear-gradient(90deg, rgba(203,108,230,.28), rgba(168,85,247,.18));
+        border-color:rgba(203,108,230,.55);
+        box-shadow:0 12px 26px rgba(203,108,230,.18);
+    }
 
-        font-size:12px;
+    .desktop-language-flag{
+        font-size:13px;
+        font-weight:900;
+    }
 
-        margin-bottom:10px;
+    .desktop-language-name{
+        display:none;
     }
 
     .desktop-steps-list{
@@ -1031,9 +1232,9 @@ button{
         align-items:center;
         gap:10px;
 
-        min-height:44px;
+        min-height:48px;
 
-        border-radius:14px;
+        border-radius:16px;
 
         padding:0 12px;
 
@@ -1043,7 +1244,7 @@ button{
 
         font-size:14px;
 
-        font-weight:700;
+        font-weight:800;
 
         cursor:pointer;
 
@@ -1053,6 +1254,16 @@ button{
     .desktop-step-item:hover{
         background:rgba(203,108,230,.12);
         transform:translateX(2px);
+    }
+
+    .desktop-step-item.locked{
+        cursor:not-allowed;
+        opacity:.42;
+    }
+
+    .desktop-step-item.locked:hover{
+        background:rgba(255,255,255,.04);
+        transform:none;
     }
 
     .desktop-step-dot{
@@ -1071,248 +1282,30 @@ button{
         box-shadow:0 0 12px rgba(203,108,230,.55);
     }
 
-    .desktop-language-card{
-    border-radius:24px;
-    padding:18px;
-}
+    .desktop-step-item.available .desktop-step-dot{
+        background:rgba(203,108,230,.65);
+    }
 
-.desktop-language-kicker{
-    display:inline-flex;
-    align-items:center;
-    min-height:28px;
-    padding:0 10px;
-    border-radius:999px;
-    background:rgba(255,255,255,.06);
-    border:1px solid rgba(255,255,255,.07);
-    color:#d8d2e3;
-    font-size:12px;
-    font-weight:800;
-    margin-bottom:12px;
-}
+    .desktop-step-item.locked .desktop-step-dot{
+        background:rgba(255,255,255,.12);
+    }
 
-.desktop-language-title{
-    margin:0 0 14px;
-    font-size:22px;
-    line-height:1.1;
-    font-weight:800;
-}
+    .desktop-step-label{
+        flex:1;
+        min-width:0;
+    }
 
-.desktop-language-options{
-    display:grid;
-    grid-template-columns:1fr;
-    gap:10px;
-}
+    .desktop-step-lock{
+        font-size:13px;
+        opacity:.85;
+    }
 
-.desktop-language-option{
-    width:100%;
-    min-height:56px;
-    border:none;
-    border-radius:18px;
-    padding:0 14px;
-    background:rgba(255,255,255,.045);
-    border:1px solid rgba(255,255,255,.07);
-    color:#fff;
-    display:flex;
-    align-items:center;
-    gap:12px;
-    text-align:left;
-    transition:.18s ease;
-}
-
-.desktop-language-option:hover{
-    transform:translateY(-1px);
-    border-color:rgba(203,108,230,.28);
-    background:rgba(203,108,230,.08);
-}
-
-.desktop-language-option.active{
-    background:linear-gradient(90deg, rgba(203,108,230,.28), rgba(168,85,247,.18));
-    border-color:rgba(203,108,230,.55);
-    box-shadow:0 12px 26px rgba(203,108,230,.18);
-}
-
-.desktop-language-flag{
-    width:36px;
-    height:36px;
-    border-radius:14px;
-    background:rgba(255,255,255,.08);
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    font-size:12px;
-    font-weight:900;
-    flex-shrink:0;
-}
-
-.desktop-language-name{
-    font-size:15px;
-    font-weight:800;
-}
-
-.desktop-video-info-row{
-    display:grid;
-    grid-template-columns:minmax(0,1fr) 250px;
-    gap:18px;
-    align-items:center;
-}
-
-.desktop-video-copy{
-    min-width:0;
-}
-
-.desktop-video-action{
-    margin-top:0;
-}
-
-.desktop-video-action .desktop-main-btn{
-    width:100%;
-    max-width:none;
-}
-
-.desktop-lesson-line{
-    display:flex;
-    align-items:center;
-    gap:10px;
-    margin-bottom:14px;
-}
-
-.desktop-step-back{
-    width:44px;
-    height:36px;
-    border:none;
-    border-radius:999px;
-    background:rgba(255,255,255,.045);
-    border:1px solid rgba(203,108,230,.45);
-    color:#fff;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    font-size:22px;
-    font-weight:800;
-    transition:.18s ease;
-}
-
-.desktop-step-back:hover{
-    transform:translateX(-2px);
-    background:rgba(203,108,230,.10);
-}
-
-.desktop-step-back:active{
-    transform:scale(.95);
-}
-
-    /* DEEP MODAL */
-
-    .deep-overlay{
-        position:fixed;
-        inset:0;
-
-        background:rgba(0,0,0,.74);
-
-        backdrop-filter:blur(12px);
-
+    .desktop-side-card,
+    .desktop-steps-card,
+    .desktop-language-card,
+    .desktop-steps-label,
+    .desktop-language-kicker{
         display:none;
-
-        align-items:center;
-        justify-content:center;
-
-        padding:16px;
-
-        z-index:999;
-    }
-
-    .deep-overlay.active{
-        display:flex;
-    }
-
-    .deep-modal{
-        width:100%;
-        max-width:520px;
-
-        border-radius:30px;
-
-        padding:28px;
-    }
-
-    .deep-modal{
-    position:relative;
-}
-
-.deep-close{
-    position:absolute;
-    top:14px;
-    right:14px;
-    width:34px;
-    height:34px;
-    border:none;
-    border-radius:50%;
-    background:rgba(255,255,255,.07);
-    color:#fff;
-    font-size:22px;
-    line-height:1;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-}
-
-.deep-close:active{
-    transform:scale(.94);
-}
-
-    .deep-icon{
-        width:92px;
-        height:92px;
-
-        margin:0 auto 18px;
-
-        border-radius:28px;
-
-        background:rgba(203,108,230,.14);
-
-        display:flex;
-
-        align-items:center;
-        justify-content:center;
-
-        font-size:40px;
-    }
-
-    .deep-title{
-        margin:0 0 12px;
-
-        text-align:center;
-
-        font-size:34px;
-
-        line-height:1.08;
-
-        font-weight:800;
-    }
-
-    .deep-text{
-        margin:0 auto 20px;
-
-        max-width:380px;
-
-        text-align:center;
-
-        color:var(--muted);
-
-        font-size:16px;
-
-        line-height:1.62;
-    }
-
-    .deep-actions{
-        display:grid;
-        grid-template-columns:1fr;
-        gap:10px;
-    }
-
-    .deep-btn{
-        width:100%;
-        height:58px;
-        font-size:16px;
     }
 
     /* TEST */
@@ -1417,15 +1410,13 @@ button{
     }
 }
 
+/* OTABEK MOBILE SLOT */
+
 #otabek-mobile-slot{
     display:none;
 }
 
 @media (max-width:1023px){
-    #otabek-slot{
-        display:none;
-    }
-
     #otabek-mobile-slot{
         display:block;
     }
@@ -1435,10 +1426,6 @@ button{
     #otabek-mobile-slot{
         display:none;
     }
-
-    #otabek-slot{
-        display:block;
-    }
 }
 
 /* =========================
@@ -1447,20 +1434,26 @@ button{
 
 @media (max-width:1360px) and (min-width:1024px){
 
-    .desktop-layout{
-        grid-template-columns:245px minmax(0,1fr);
-    }
-
     .desktop-main{
         padding:22px 18px 26px;
     }
 
     .desktop-content-grid{
-        grid-template-columns:280px minmax(0,1fr) 280px;
+        grid-template-columns:245px minmax(0,1fr) 245px;
     }
 
     .desktop-title{
         font-size:42px;
+    }
+
+    .assistant-avatar{
+        width:76px;
+        height:76px;
+        border-radius:24px;
+    }
+
+    .assistant-name{
+        font-size:19px;
     }
 }
 
@@ -1471,13 +1464,17 @@ button{
         max-width:900px;
     }
 
-    .desktop-side-column{
+    .desktop-assistant-card,
+    .desktop-control-card{
+        min-height:auto;
         position:static;
-        display:grid;
-        grid-template-columns:1fr 1fr;
     }
 
     .desktop-summary-grid{
+        grid-template-columns:1fr;
+    }
+
+    .desktop-video-actions{
         grid-template-columns:1fr;
     }
 }
@@ -1499,6 +1496,7 @@ button{
 }
 
 </style>
+
 </head>
 
 <body>
@@ -1566,12 +1564,20 @@ button{
 
                     <p class="mobile-video-text" id="videoText-mobile"></p>
 
-                    <div class="mobile-video-action">
+                    <div class="mobile-video-actions">
+
+                        <button
+                            class="btn btn-secondary mobile-material-btn"
+                            id="videoMaterialBtn-mobile"
+                            onclick="openMaterial()"
+                        ></button>
+
                         <button
                             class="mobile-main-btn"
                             id="goSummaryBtn-mobile"
                             onclick="goStep('summary')"
                         ></button>
+
                     </div>
 
                 </div>
@@ -1605,7 +1611,7 @@ button{
                 <button
                     class="mobile-main-btn"
                     id="summaryFinishBtn-mobile"
-                    onclick="openDeepModal()"
+                    onclick="goStep('deep')"
                 ></button>
 
             </div>
@@ -1641,6 +1647,7 @@ button{
                 ></button>
 
             </div>
+
         </section>
 
         <!-- STEP TEST -->
@@ -1698,7 +1705,82 @@ button{
 
             <div class="desktop-content-grid">
 
-                <div id="otabek-slot"></div>
+                <!-- LEFT: OTABEK -->
+
+                <aside class="desktop-assistant-card glow-card">
+
+                    <div class="assistant-profile">
+
+                        <div class="assistant-avatar">
+                            <img
+                                src="images/otabek.png"
+                                alt="Отабек AI"
+                                onerror="this.style.display='none'; this.parentElement.querySelector('.assistant-avatar-fallback').style.display='block';"
+                            >
+                            <div class="assistant-avatar-fallback" style="display:none;">✦</div>
+                        </div>
+
+                        <h3 class="assistant-name" id="assistantName-desktop"></h3>
+
+                        <p class="assistant-role" id="assistantRole-desktop"></p>
+
+                    </div>
+
+                    <div class="assistant-quick-list">
+
+                        <button
+                            class="assistant-quick-btn"
+                            onclick="openAssistantPrompt('simple')"
+                        >
+                            <span class="assistant-quick-icon">?</span>
+                            <span class="assistant-quick-text" id="assistantQuickSimple-desktop"></span>
+                        </button>
+
+                        <button
+                            class="assistant-quick-btn"
+                            onclick="openAssistantPrompt('example')"
+                        >
+                            <span class="assistant-quick-icon">#</span>
+                            <span class="assistant-quick-text" id="assistantQuickExample-desktop"></span>
+                        </button>
+
+                        <button
+                            class="assistant-quick-btn"
+                            onclick="openAssistantPrompt('main')"
+                        >
+                            <span class="assistant-quick-icon">!</span>
+                            <span class="assistant-quick-text" id="assistantQuickMain-desktop"></span>
+                        </button>
+
+                    </div>
+
+                    <button
+                        class="btn btn-secondary assistant-history-btn"
+                        id="assistantHistoryBtn-desktop"
+                        onclick="openAssistantHistory()"
+                    ></button>
+
+                    <div class="assistant-input-wrap">
+
+                        <input
+                            class="assistant-input"
+                            id="assistantInput-desktop"
+                            type="text"
+                            autocomplete="off"
+                        >
+
+                        <button
+                            class="assistant-send"
+                            onclick="sendAssistantMessage()"
+                        >
+                            →
+                        </button>
+
+                    </div>
+
+                </aside>
+
+                <!-- CENTER -->
 
                 <div class="desktop-main-column">
 
@@ -1720,6 +1802,8 @@ button{
 
                     </div>
 
+                    <!-- STEP VIDEO -->
+
                     <section class="lesson-step active" id="step-video-desktop">
 
                         <div class="desktop-video-card">
@@ -1739,19 +1823,26 @@ button{
 
                             <div class="desktop-video-bottom">
 
-                                <div class="desktop-video-info-row">
+                                <h2 class="desktop-video-title" id="videoTitle-desktop"></h2>
 
-                                    <div class="desktop-video-copy">
-                                        <h2 class="desktop-video-title" id="videoTitle-desktop"></h2>
-                                        <p class="desktop-video-text" id="videoText-desktop"></p>
-                                    </div>
+                                <p class="desktop-video-text" id="videoText-desktop"></p>
+
+                                <div class="desktop-video-actions">
+
+                                    <button
+                                        class="btn btn-secondary desktop-material-btn"
+                                        id="videoMaterialBtn-desktop"
+                                        onclick="openMaterial()"
+                                    ></button>
 
                                     <div class="desktop-video-action">
+
                                         <button
                                             class="desktop-main-btn"
                                             id="goSummaryBtn-desktop"
                                             onclick="goStep('summary')"
                                         ></button>
+
                                     </div>
 
                                 </div>
@@ -1761,6 +1852,8 @@ button{
                         </div>
 
                     </section>
+
+                    <!-- STEP SUMMARY -->
 
                     <section class="lesson-step" id="step-summary-desktop">
 
@@ -1779,11 +1872,14 @@ button{
                             <button
                                 class="desktop-main-btn"
                                 id="summaryFinishBtn-desktop"
-                                onclick="openDeepModal()"
+                                onclick="goStep('deep')"
                             ></button>
 
                         </div>
+
                     </section>
+
+                    <!-- STEP DEEP -->
 
                     <section class="lesson-step" id="step-deep-desktop">
 
@@ -1801,13 +1897,15 @@ button{
 
                             <button
                                 class="desktop-main-btn"
-                                id="summaryFinishBtn-desktop"
-                                onclick="openDeepModal()"
+                                id="goTestBtn-desktop"
+                                onclick="goStep('test')"
                             ></button>
 
                         </div>
 
                     </section>
+
+                    <!-- STEP TEST -->
 
                     <section class="lesson-step" id="step-test-desktop">
 
@@ -1837,41 +1935,39 @@ button{
 
                 </div>
 
+                <!-- RIGHT: LANGUAGE + PROGRESS -->
+
                 <aside class="desktop-side-column">
 
-                    <div class="desktop-language-card glow-card">
+                    <div class="desktop-control-card soft-card">
 
-                        <div class="desktop-language-kicker" id="languageKicker-desktop"></div>
+                        <div class="desktop-language-block">
 
-                        <h3 class="desktop-language-title" id="languageTitle-desktop"></h3>
+                            <h3 class="desktop-language-title" id="languageTitle-desktop"></h3>
 
-                        <div class="desktop-language-options">
+                            <div class="desktop-language-options">
 
-                            <button
-                                class="desktop-language-option"
-                                id="lessonLangRu-desktop"
-                                onclick="setLessonLang('ru')"
-                            >
-                                <span class="desktop-language-flag">RU</span>
-                                <span class="desktop-language-name">Русский</span>
-                            </button>
+                                <button
+                                    class="desktop-language-option"
+                                    id="lessonLangRu-desktop"
+                                    onclick="setLessonLang('ru')"
+                                >
+                                    <span class="desktop-language-flag">RU</span>
+                                    <span class="desktop-language-name">Русский</span>
+                                </button>
 
-                            <button
-                                class="desktop-language-option"
-                                id="lessonLangUz-desktop"
-                                onclick="setLessonLang('uz')"
-                            >
-                                <span class="desktop-language-flag">UZ</span>
-                                <span class="desktop-language-name">O‘zbekcha</span>
-                            </button>
+                                <button
+                                    class="desktop-language-option"
+                                    id="lessonLangUz-desktop"
+                                    onclick="setLessonLang('uz')"
+                                >
+                                    <span class="desktop-language-flag">UZ</span>
+                                    <span class="desktop-language-name">O‘zbekcha</span>
+                                </button>
+
+                            </div>
 
                         </div>
-
-                    </div>
-
-                    <div class="desktop-steps-card soft-card">
-
-                        <div class="desktop-steps-label" id="stepsLabel-desktop"></div>
 
                         <div class="desktop-steps-list">
 
@@ -1881,7 +1977,8 @@ button{
                                 onclick="goStep('video')"
                             >
                                 <div class="desktop-step-dot"></div>
-                                <span id="stepVideoLabel-desktop"></span>
+                                <span class="desktop-step-label" id="stepVideoLabel-desktop"></span>
+                                <span class="desktop-step-lock" id="desktopStepLock-video"></span>
                             </div>
 
                             <div
@@ -1890,7 +1987,8 @@ button{
                                 onclick="goStep('summary')"
                             >
                                 <div class="desktop-step-dot"></div>
-                                <span id="stepSummaryLabel-desktop"></span>
+                                <span class="desktop-step-label" id="stepSummaryLabel-desktop"></span>
+                                <span class="desktop-step-lock" id="desktopStepLock-summary"></span>
                             </div>
 
                             <div
@@ -1899,7 +1997,8 @@ button{
                                 onclick="goStep('deep')"
                             >
                                 <div class="desktop-step-dot"></div>
-                                <span id="stepDeepLabel-desktop"></span>
+                                <span class="desktop-step-label" id="stepDeepLabel-desktop"></span>
+                                <span class="desktop-step-lock" id="desktopStepLock-deep"></span>
                             </div>
 
                             <div
@@ -1908,7 +2007,8 @@ button{
                                 onclick="goStep('test')"
                             >
                                 <div class="desktop-step-dot"></div>
-                                <span id="stepTestLabel-desktop"></span>
+                                <span class="desktop-step-label" id="stepTestLabel-desktop"></span>
+                                <span class="desktop-step-lock" id="desktopStepLock-test"></span>
                             </div>
 
                         </div>
@@ -1932,12 +2032,14 @@ button{
 <div class="deep-overlay" id="deepOverlay">
 
     <div class="deep-modal glow-card">
+
         <button
             class="deep-close"
-            onclick="goStep('summary'); closeDeepModal()"
+            onclick="closeDeepModal()"
         >
             ×
         </button>
+
         <div class="deep-icon">✦</div>
 
         <h2 class="deep-title" id="deepModalTitle"></h2>
@@ -1972,11 +2074,8 @@ const LESSON_ID = 1
 const NEXT_LESSON_ID = 2
 
 const VIDEO_PATHS = {
-
     ru:"https://bot.gaphub.uz/videos/smm/lesson-1-ru.mp4",
-
     uz:"https://bot.gaphub.uz/videos/smm/lesson-1-uz.mp4"
-
 }
 
 const MATERIAL_PATHS = {
@@ -1984,7 +2083,10 @@ const MATERIAL_PATHS = {
     uz:"https://bot.gaphub.uz/materials/smm/lesson-1-uz.pdf"
 }
 
+const STEP_ORDER = ["video", "summary", "deep", "test"]
+
 let currentStep = "video"
+let maxUnlockedStepIndex = 1
 
 let currentQuestionIndex = 0
 let score = 0
@@ -2017,13 +2119,15 @@ const t = {
 
         videoText:"Videoni ko‘ring va keyin qisqa xulosaga o‘ting.",
 
-        goSummary:"Xulosaga o‘tish",
+        videoMaterial:"Video materiallari",
+
+        goSummary:"Xulosaga o‘tish →",
 
         summaryTitle:"Darsdan qisqa xulosa",
 
         summaryNote:"Savolni bosing, javob pastga ochiladi.",
 
-        summaryFinish:"Men o‘qib chiqdim",
+        summaryFinish:"Chuqurroq materialga o‘tish",
 
         deepTitle:"Chuqurroq material",
 
@@ -2041,16 +2145,21 @@ const t = {
 
         openTestBtn:"Test",
 
-        sideTitle:"Darsni yakunlash",
-
-        sideText:"Videoni ko‘ring, xulosani o‘qing va test orqali mavzuni mustahkamlang.",
-
-        stepsLabel:"Dars bosqichlari",
-
         stepVideo:"Video",
         stepSummary:"Xulosa",
-        stepDeep:"Chuqurlashish",
+        stepDeep:"Materiallar",
         stepTest:"Test",
+
+        languageTitle:"Kurs tili",
+
+        assistantName:"Otabek AI",
+        assistantRole:"Kurs AI assistenti",
+        assistantQuickSimple:"Soddaroq tushuntir",
+        assistantQuickExample:"Misol keltir",
+        assistantQuickMain:"Asosiy fikr",
+        assistantHistory:"Chatlar tarixi",
+        assistantPlaceholder:"Savol yozing...",
+        assistantNotReady:"Otabek chatini keyingi bosqichda ulaymiz. Hozir bu blok interfeys uchun tayyorlandi.",
 
         modalTitle:"Keyingi qadam",
 
@@ -2082,13 +2191,15 @@ const t = {
 
         videoText:"Посмотри видео и после этого перейди к выжимке урока.",
 
-        goSummary:"Перейти к выжимке",
+        videoMaterial:"Материалы к видео",
+
+        goSummary:"Перейти к выжимке →",
 
         summaryTitle:"Выжимка урока",
 
         summaryNote:"Нажми на вопрос, чтобы раскрыть короткий ответ.",
 
-        summaryFinish:"Я прочитал",
+        summaryFinish:"Перейти к материалам",
 
         deepTitle:"Углубленный материал",
 
@@ -2106,16 +2217,21 @@ const t = {
 
         openTestBtn:"Тест",
 
-        sideTitle:"Завершить урок",
-
-        sideText:"Посмотри видео, изучи выжимку и закрепи тему тестом.",
-
-        stepsLabel:"Этапы урока",
-
         stepVideo:"Видео",
         stepSummary:"Выжимка",
-        stepDeep:"Углубление",
+        stepDeep:"Материалы",
         stepTest:"Тест",
+
+        languageTitle:"Язык курса",
+
+        assistantName:"Отабек AI",
+        assistantRole:"AI ассистент курса",
+        assistantQuickSimple:"Объясни проще",
+        assistantQuickExample:"Приведи пример",
+        assistantQuickMain:"Главная мысль",
+        assistantHistory:"История чатов",
+        assistantPlaceholder:"Напиши вопрос...",
+        assistantNotReady:"Чат Отабека подключим следующим шагом. Сейчас блок подготовлен как чистый интерфейс.",
 
         modalTitle:"Что дальше?",
 
@@ -2486,14 +2602,13 @@ function updateStaticText(){
 
     /* MOBILE */
 
-    setText("back-mobile", d.back)
-
     setText("lessonBadge-mobile", d.lessonBadge)
     setText("lessonTitle-mobile", d.lessonTitle)
     setText("lessonSubtitle-mobile", d.lessonSubtitle)
 
     setText("videoTitle-mobile", d.videoTitle)
     setText("videoText-mobile", d.videoText)
+    setText("videoMaterialBtn-mobile", d.videoMaterial)
 
     setText("goSummaryBtn-mobile", d.goSummary)
 
@@ -2514,24 +2629,13 @@ function updateStaticText(){
 
     /* DESKTOP */
 
-    setText("catalog-desktop", d.catalog)
-
-    setText("languageKicker-desktop", lang === "uz"
-    ? "Til"
-    : "Язык"
-)
-
-setText("languageTitle-desktop", lang === "uz"
-    ? "Ta’lim tilini tanlang"
-    : "Выберите язык обучения"
-)
-
     setText("lessonBadge-desktop", d.lessonBadge)
     setText("lessonTitle-desktop", d.lessonTitle)
     setText("lessonSubtitle-desktop", d.lessonSubtitle)
 
     setText("videoTitle-desktop", d.videoTitle)
     setText("videoText-desktop", d.videoText)
+    setText("videoMaterialBtn-desktop", d.videoMaterial)
 
     setText("goSummaryBtn-desktop", d.goSummary)
 
@@ -2550,12 +2654,25 @@ setText("languageTitle-desktop", lang === "uz"
 
     setText("nextQuestionBtn-desktop", d.nextQuestion)
 
-    setText("stepsLabel-desktop", d.stepsLabel)
+    setText("languageTitle-desktop", d.languageTitle)
 
     setText("stepVideoLabel-desktop", d.stepVideo)
     setText("stepSummaryLabel-desktop", d.stepSummary)
     setText("stepDeepLabel-desktop", d.stepDeep)
     setText("stepTestLabel-desktop", d.stepTest)
+
+    setText("assistantName-desktop", d.assistantName)
+    setText("assistantRole-desktop", d.assistantRole)
+    setText("assistantQuickSimple-desktop", d.assistantQuickSimple)
+    setText("assistantQuickExample-desktop", d.assistantQuickExample)
+    setText("assistantQuickMain-desktop", d.assistantQuickMain)
+    setText("assistantHistoryBtn-desktop", d.assistantHistory)
+
+    const assistantInput = document.getElementById("assistantInput-desktop")
+
+    if(assistantInput){
+        assistantInput.placeholder = d.assistantPlaceholder
+    }
 
     /* MODAL */
 
@@ -2568,6 +2685,9 @@ setText("languageTitle-desktop", lang === "uz"
     updateLessonLangButtons()
     updateMobileStepTitle()
     renderSummary()
+    renderDeepMaterials()
+    renderQuestion()
+    updateDesktopSteps()
 }
 
 function renderSummary(){
@@ -2613,6 +2733,67 @@ function renderSummary(){
     }
 }
 
+function renderDeepMaterials(){
+
+    const data = lang === "uz"
+        ? [
+            {
+                q:"1. Video materiallari",
+                a:"Bu bo‘limda darsga bog‘liq PDF, jadval va qo‘shimcha materiallarni ochish mumkin.<br><br>Hozir asosiy PDF material ochiladi."
+            }
+        ]
+        : [
+            {
+                q:"1. Материалы к видео",
+                a:"В этом разделе можно открывать PDF, таблицы и дополнительные материалы к уроку.<br><br>Сейчас открывается основной PDF-материал."
+            }
+        ]
+
+    const mobileRoot = document.getElementById("deepList-mobile")
+    const desktopRoot = document.getElementById("deepList-desktop")
+
+    const html = data.map(item => `
+        <div class="summary-card soft-card open">
+
+            <button
+                class="summary-question"
+                onclick="toggleSummary(this)"
+            >
+
+                <span class="summary-question-text">
+                    ${item.q}
+                </span>
+
+                <span class="summary-arrow"></span>
+
+            </button>
+
+            <div class="summary-answer-wrap" style="max-height:300px;">
+
+                <div class="summary-answer">
+                    ${item.a}
+                    <br><br>
+                    <button
+                        class="btn btn-primary deep-btn"
+                        onclick="openMaterial()"
+                    >
+                        ${t[lang].modalMaterial}
+                    </button>
+                </div>
+
+            </div>
+
+        </div>
+    `).join("")
+
+    if(mobileRoot){
+        mobileRoot.innerHTML = html
+    }
+
+    if(desktopRoot){
+        desktopRoot.innerHTML = html
+    }
+}
 
 function updateLessonLangButtons(){
 
@@ -2639,9 +2820,19 @@ function setLessonLang(value){
     lang = value
     localStorage.setItem("lang", value)
 
+    resetAssistantDraft()
+
     updateStaticText()
     initVideo()
-    renderQuestion()
+}
+
+function resetAssistantDraft(){
+
+    const input = document.getElementById("assistantInput-desktop")
+
+    if(input){
+        input.value = ""
+    }
 }
 
 function toggleSummary(button){
@@ -2653,11 +2844,13 @@ function toggleSummary(button){
 
     const isOpen = card.classList.contains("open")
 
-    document.querySelectorAll(".summary-card").forEach(item => {
+    const root = card.parentElement
+
+    root.querySelectorAll(".summary-card").forEach(item => {
         item.classList.remove("open")
     })
 
-    document.querySelectorAll(".summary-answer-wrap").forEach(item => {
+    root.querySelectorAll(".summary-answer-wrap").forEach(item => {
         item.style.maxHeight = "0px"
     })
 
@@ -2667,24 +2860,85 @@ function toggleSummary(button){
     }
 }
 
+function getStepIndex(step){
+
+    return STEP_ORDER.indexOf(step)
+}
+
+function canOpenStep(step){
+
+    const index = getStepIndex(step)
+
+    return index <= maxUnlockedStepIndex
+}
+
+function unlockNextStep(step){
+
+    const index = getStepIndex(step)
+
+    if(index >= 0){
+        const nextIndex = Math.min(index + 1, STEP_ORDER.length - 1)
+
+        if(nextIndex > maxUnlockedStepIndex){
+            maxUnlockedStepIndex = nextIndex
+        }
+    }
+}
+
 function updateDesktopSteps(){
 
     document.querySelectorAll(".desktop-step-item").forEach(item => {
         item.classList.remove("active")
+        item.classList.remove("available")
+        item.classList.remove("locked")
     })
 
-    const current = document.getElementById(`desktopStep-${currentStep}`)
+    STEP_ORDER.forEach((step, index) => {
 
-    if(current){
-        current.classList.add("active")
-    }
+        const item = document.getElementById(`desktopStep-${step}`)
+        const lock = document.getElementById(`desktopStepLock-${step}`)
+
+        if(!item) return
+
+        if(lock){
+            lock.innerText = ""
+        }
+
+        if(step === currentStep){
+            item.classList.add("active")
+            return
+        }
+
+        if(index <= maxUnlockedStepIndex){
+            item.classList.add("available")
+            return
+        }
+
+        item.classList.add("locked")
+
+        if(lock){
+            lock.innerText = "🔒"
+        }
+    })
 }
 
 function goStep(step){
 
+    const targetIndex = getStepIndex(step)
+
+    if(targetIndex === -1) return
+
+    if(!canOpenStep(step)){
+        impact("medium")
+        updateDesktopSteps()
+        return
+    }
+
     impact()
 
     currentStep = step
+
+    unlockNextStep(step)
 
     const mobileVideoHead = document.getElementById("mobileVideoHead")
     const desktopHead = document.querySelector(".desktop-head")
@@ -2834,7 +3088,10 @@ function selectAnswer(button, index){
     const data = questions[lang]
     const question = data[currentQuestionIndex]
 
-    const allButtons = document.querySelectorAll(".test-answer")
+    const stepRoot = button.closest(".lesson-step")
+    const allButtons = stepRoot
+        ? stepRoot.querySelectorAll(".test-answer")
+        : document.querySelectorAll(".test-answer")
 
     allButtons.forEach(btn => {
         btn.disabled = true
@@ -2861,11 +3118,11 @@ function selectAnswer(button, index){
     const mobileNext = document.getElementById("nextQuestionBtn-mobile")
     const desktopNext = document.getElementById("nextQuestionBtn-desktop")
 
-    if(mobileNext){
+    if(mobileNext && stepRoot && stepRoot.id.includes("mobile")){
         mobileNext.style.display = "block"
     }
 
-    if(desktopNext){
+    if(desktopNext && stepRoot && stepRoot.id.includes("desktop")){
         desktopNext.style.display = "block"
     }
 }
@@ -3162,30 +3419,81 @@ function impact(style = "light"){
     }
 }
 
+function openAssistantPrompt(type){
+
+    impact()
+
+    const input = document.getElementById("assistantInput-desktop")
+
+    if(!input) return
+
+    if(lang === "uz"){
+
+        if(type === "simple"){
+            input.value = "Shu darsni soddaroq tushuntirib ber"
+        }
+
+        if(type === "example"){
+            input.value = "Shu mavzuga oddiy misol keltir"
+        }
+
+        if(type === "main"){
+            input.value = "Bu darsdagi asosiy fikr nima?"
+        }
+
+        return
+    }
+
+    if(type === "simple"){
+        input.value = "Объясни этот урок проще"
+    }
+
+    if(type === "example"){
+        input.value = "Приведи простой пример по этой теме"
+    }
+
+    if(type === "main"){
+        input.value = "Какая главная мысль этого урока?"
+    }
+}
+
+function openAssistantHistory(){
+
+    impact()
+
+    alert(t[lang].assistantNotReady)
+}
+
+function sendAssistantMessage(){
+
+    impact()
+
+    const input = document.getElementById("assistantInput-desktop")
+
+    if(!input) return
+
+    if(!input.value.trim()){
+        return
+    }
+
+    alert(t[lang].assistantNotReady)
+}
+
 function loadOtabek(){
 
-    window.OTABEK_STORAGE_KEY = "smm_lesson_1"
+    window.OTABEK_STORAGE_KEY = `smm_lesson_${LESSON_ID}_${lang}`
+
+    const mobileSlot = document.getElementById("otabek-mobile-slot")
+
+    if(!mobileSlot) return
 
     fetch("otabek.html")
         .then(response => response.text())
         .then(html => {
-            const desktopSlot = document.getElementById("otabek-slot")
-            const mobileSlot = document.getElementById("otabek-mobile-slot")
 
-            if(window.innerWidth >= 1024){
+            mobileSlot.innerHTML = html
 
-                if(desktopSlot){
-                    desktopSlot.innerHTML = html
-                }
-
-            }else{
-
-                if(mobileSlot){
-                    mobileSlot.innerHTML = html
-                }
-            }
-
-            const scripts = document.querySelectorAll("#otabek-slot script, #otabek-mobile-slot script")
+            const scripts = document.querySelectorAll("#otabek-mobile-slot script")
 
             scripts.forEach(oldScript => {
                 const newScript = document.createElement("script")
