@@ -4,6 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 <script src="https://telegram.org/js/telegram-web-app.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/plyr/3.8.4/plyr.css">
 
 <title>gaphub - SMM lesson 1</title>
 
@@ -29,6 +30,29 @@
     --radius-xl:28px;
     --radius-lg:22px;
     --radius-md:16px;
+}
+
+.plyr{
+    border-radius:0;
+    --plyr-color-main:var(--accent);
+    --plyr-video-control-color:#fff;
+    --plyr-video-control-background-hover:rgba(203,108,230,.28);
+    --plyr-video-controls-background:linear-gradient(transparent, rgba(0,0,0,.78));
+}
+
+.plyr--video{
+    height:100%;
+}
+
+.plyr__video-wrapper{
+    height:100%;
+    background:#000;
+}
+
+.plyr video{
+    width:100%;
+    height:100%;
+    object-fit:cover;
 }
 
 *{
@@ -1548,6 +1572,7 @@ button{
                 <div class="mobile-video-frame">
 
                     <video
+                        class="js-plyr-video"
                         id="lessonVideo-mobile"
                         controls
                         playsinline
@@ -1811,6 +1836,7 @@ button{
                             <div class="desktop-video-frame" id="desktopVideoFrame">
 
                                 <video
+                                    class="js-plyr-video"
                                     id="lessonVideo-desktop"
                                     controls
                                     playsinline
@@ -2074,6 +2100,8 @@ button{
 
 </div>
 
+<script src="https://cdnjs.cloudflare.com/ajax/libs/plyr/3.8.4/plyr.min.js"></script>
+
 <script>
 let lang = localStorage.getItem("lang") || "uz"
 
@@ -2101,6 +2129,9 @@ let score = 0
 let selectedAnswer = false
 
 let telegramUserId = null
+
+let mobilePlyr = null
+let desktopPlyr = null
 
 function setText(id, value){
 
@@ -3283,6 +3314,14 @@ function initVideo(){
     const mobileSource = document.getElementById("videoSource-mobile")
     const desktopSource = document.getElementById("videoSource-desktop")
 
+    if(mobilePlyr){
+        mobilePlyr.pause()
+    }
+
+    if(desktopPlyr){
+        desktopPlyr.pause()
+    }
+
     if(mobileSource){
         mobileSource.src = VIDEO_PATHS[lang]
     }
@@ -3297,6 +3336,70 @@ function initVideo(){
 
     if(desktopVideo){
         desktopVideo.load()
+    }
+
+    if(mobilePlyr){
+        mobilePlyr.source = {
+            type:"video",
+            sources:[
+                {
+                    src:VIDEO_PATHS[lang],
+                    type:"video/mp4"
+                }
+            ]
+        }
+    }
+
+    if(desktopPlyr){
+        desktopPlyr.source = {
+            type:"video",
+            sources:[
+                {
+                    src:VIDEO_PATHS[lang],
+                    type:"video/mp4"
+                }
+            ]
+        }
+    }
+}
+
+function initPlyr(){
+
+    const controls = [
+        "play-large",
+        "play",
+        "progress",
+        "current-time",
+        "duration",
+        "mute",
+        "volume",
+        "settings",
+        "fullscreen"
+    ]
+
+    const mobileVideo = document.getElementById("lessonVideo-mobile")
+    const desktopVideo = document.getElementById("lessonVideo-desktop")
+
+    if(window.Plyr && mobileVideo && !mobilePlyr){
+        mobilePlyr = new Plyr(mobileVideo, {
+            controls:controls,
+            fullscreen:{
+                enabled:true,
+                fallback:true,
+                iosNative:true
+            }
+        })
+    }
+
+    if(window.Plyr && desktopVideo && !desktopPlyr){
+        desktopPlyr = new Plyr(desktopVideo, {
+            controls:controls,
+            fullscreen:{
+                enabled:true,
+                fallback:true,
+                iosNative:true
+            }
+        })
     }
 }
 
@@ -3517,6 +3620,7 @@ function loadOtabek(){
 }
 
 updateStaticText()
+initPlyr()
 initVideo()
 initTelegram()
 loadOtabek()
