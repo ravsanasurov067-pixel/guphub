@@ -982,46 +982,6 @@ button{
             linear-gradient(135deg,#171621,#0b0b10);
     }
 
-    .desktop-fullscreen-btn{
-        position:absolute;
-        right:14px;
-        bottom:14px;
-
-        width:42px;
-        height:42px;
-
-        border:none;
-        border-radius:14px;
-
-        background:rgba(0,0,0,.48);
-        border:1px solid rgba(255,255,255,.12);
-
-        color:#fff;
-
-        display:flex;
-        align-items:center;
-        justify-content:center;
-
-        font-size:20px;
-        font-weight:900;
-
-        z-index:5;
-
-        backdrop-filter:blur(8px);
-
-        transition:.18s ease;
-    }
-
-    .desktop-fullscreen-btn:hover{
-        background:rgba(203,108,230,.18);
-        border-color:rgba(203,108,230,.40);
-        transform:scale(1.04);
-    }
-
-    .desktop-fullscreen-btn:active{
-        transform:scale(.95);
-    }
-
     .desktop-video-frame video{
         width:100%;
         height:100%;
@@ -3340,36 +3300,6 @@ function initVideo(){
     }
 }
 
-function openVideoFullscreen(){
-
-    impact()
-
-    const frame = document.getElementById("desktopVideoFrame")
-    const video = document.getElementById("lessonVideo-desktop")
-
-    if(video && video.paused){
-        video.play().catch(() => {})
-    }
-
-    if(frame && frame.requestFullscreen){
-        frame.requestFullscreen()
-        return
-    }
-
-    if(frame && frame.webkitRequestFullscreen){
-        frame.webkitRequestFullscreen()
-        return
-    }
-
-    if(video && video.requestFullscreen){
-        video.requestFullscreen()
-        return
-    }
-
-    if(video && video.webkitEnterFullscreen){
-        video.webkitEnterFullscreen()
-    }
-}
 
 function goBack(){
 
