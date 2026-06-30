@@ -1710,8 +1710,7 @@ button{
 
 /* SUMMARY FIXES */
 
-#step-summary-mobile .mobile-summary-head,
-#step-summary-desktop .desktop-summary-top{
+#step-summary-mobile .mobile-summary-head{
     display:none;
 }
 
@@ -1780,6 +1779,107 @@ button{
 
     .summary-overlay-arrow-right{
         right:12px;
+    }
+}
+
+/* MOBILE SUMMARY ARROWS FIX */
+
+@media (max-width:1023px){
+
+    .summary-overlay-arrow{
+        width:34px;
+        height:54px;
+
+        background:transparent;
+        border:none;
+        box-shadow:none;
+        backdrop-filter:none;
+
+        color:rgba(255,255,255,.82);
+
+        font-size:34px;
+        font-weight:900;
+
+        text-shadow:0 4px 18px rgba(0,0,0,.75);
+    }
+
+    .summary-overlay-arrow:disabled{
+        opacity:.18;
+    }
+
+    .summary-overlay-arrow-left{
+        left:4px;
+    }
+
+    .summary-overlay-arrow-right{
+        right:4px;
+    }
+
+    .summary-stage{
+        touch-action:pan-y;
+        user-select:none;
+    }
+}
+
+/* MOBILE SUMMARY SWIPE */
+
+.summary-swipe-stack{
+    width:100%;
+    height:100%;
+    position:relative;
+    overflow:hidden;
+}
+
+.summary-swipe-current{
+    width:100%;
+    height:100%;
+    position:relative;
+    z-index:3;
+    transition:
+        transform .28s cubic-bezier(.22,.9,.28,1),
+        opacity .28s ease;
+    will-change:transform;
+}
+
+.summary-swipe-current.dragging{
+    transition:none;
+}
+
+.summary-swipe-ghost{
+    display:none;
+}
+
+@media (max-width:1023px){
+
+    .summary-swipe-ghost{
+        display:block;
+        position:absolute;
+        top:0;
+        width:100%;
+        height:100%;
+        z-index:1;
+        opacity:.34;
+        filter:blur(8px);
+        transform:scale(.94);
+        pointer-events:none;
+    }
+
+    .summary-swipe-ghost.prev{
+        left:-82%;
+    }
+
+    .summary-swipe-ghost.next{
+        right:-82%;
+    }
+
+    .summary-swipe-current.swipe-left{
+        transform:translateX(-120%) rotate(-4deg);
+        opacity:.75;
+    }
+
+    .summary-swipe-current.swipe-right{
+        transform:translateX(120%) rotate(4deg);
+        opacity:.75;
     }
 }
 
@@ -1898,6 +1998,7 @@ button{
                 <div
                     class="summary-stage"
                     ontouchstart="summaryTouchStart(event)"
+                    ontouchmove="summaryTouchMove(event)"
                     ontouchend="summaryTouchEnd(event)"
                 >
 
@@ -3106,11 +3207,42 @@ function renderSummaryImage(root, device){
 
     if(!root) return
 
-    const src = getSummaryImagePath(currentSummaryCardIndex, device)
+    const currentSrc = getSummaryImagePath(currentSummaryCardIndex, device)
+
+    const prevIndex = Math.max(currentSummaryCardIndex - 1, 0)
+    const nextIndex = Math.min(currentSummaryCardIndex + 1, SUMMARY_CARDS_COUNT - 1)
+
+    const prevSrc = getSummaryImagePath(prevIndex, device)
+    const nextSrc = getSummaryImagePath(nextIndex, device)
+
     const number = String(currentSummaryCardIndex + 1).padStart(2, "0")
     const deviceText = device === "mobile" ? "mobile" : "desktop"
 
     root.innerHTML = `
+        <div class="summary-swipe-stack">
+
+            <div class="summary-swipe-ghost prev">
+                ${renderSummaryCardContent(prevSrc, prevIndex, device, true)}
+            </div>
+
+            <div class="summary-swipe-ghost next">
+                ${renderSummaryCardContent(nextSrc, nextIndex, device, true)}
+            </div>
+
+            <div class="summary-swipe-current" id="summarySwipeCurrent-${device}">
+                ${renderSummaryCardContent(currentSrc, currentSummaryCardIndex, device, false)}
+            </div>
+
+        </div>
+    `
+}
+
+function renderSummaryCardContent(src, index, device, isGhost){
+
+    const number = String(index + 1).padStart(2, "0")
+    const deviceText = device === "mobile" ? "mobile" : "desktop"
+
+    return `
         <img
             class="summary-image"
             src="${src}"
@@ -3129,7 +3261,7 @@ function renderSummaryImage(root, device){
 
             <p class="summary-placeholder-text">
                 Здесь позже будет изображение:<br>
-                summary-${currentSummaryCardIndex + 1}-${lang}-${device}.png
+                summary-${index + 1}-${lang}-${device}.png
             </p>
         </div>
     `
@@ -3185,34 +3317,105 @@ function prevSummaryCard(){
     setSummaryCard(currentSummaryCardIndex - 1)
 }
 
+let summaryTouchMoveX = 0
+let summaryTouchMoveY = 0
+let summaryIsDragging = false
+let summaryIsHorizontalSwipe = false
+
 function summaryTouchStart(event){
 
     if(!event.touches || !event.touches[0]) return
 
     summaryTouchStartX = event.touches[0].clientX
     summaryTouchStartY = event.touches[0].clientY
+
+    summaryTouchMoveX = summaryTouchStartX
+    summaryTouchMoveY = summaryTouchStartY
+
+    summaryIsDragging = true
+    summaryIsHorizontalSwipe = false
+
+    const current = document.getElementById("summarySwipeCurrent-mobile")
+
+    if(current){
+        current.classList.add("dragging")
+        current.classList.remove("swipe-left")
+        current.classList.remove("swipe-right")
+        current.style.transform = "translateX(0px) rotate(0deg)"
+    }
+}
+
+function summaryTouchMove(event){
+
+    if(!summaryIsDragging) return
+    if(!event.touches || !event.touches[0]) return
+
+    summaryTouchMoveX = event.touches[0].clientX
+    summaryTouchMoveY = event.touches[0].clientY
+
+    const diffX = summaryTouchMoveX - summaryTouchStartX
+    const diffY = summaryTouchMoveY - summaryTouchStartY
+
+    if(Math.abs(diffX) > 12 && Math.abs(diffX) > Math.abs(diffY)){
+        summaryIsHorizontalSwipe = true
+    }
+
+    if(!summaryIsHorizontalSwipe) return
+
+    event.preventDefault()
+
+    const current = document.getElementById("summarySwipeCurrent-mobile")
+
+    if(!current) return
+
+    const limitedX = Math.max(Math.min(diffX, 130), -130)
+    const rotate = limitedX / 38
+
+    current.style.transform = `translateX(${limitedX}px) rotate(${rotate}deg)`
 }
 
 function summaryTouchEnd(event){
 
-    if(!event.changedTouches || !event.changedTouches[0]) return
+    if(!summaryIsDragging) return
 
-    const endX = event.changedTouches[0].clientX
-    const endY = event.changedTouches[0].clientY
+    summaryIsDragging = false
 
-    const diffX = endX - summaryTouchStartX
-    const diffY = endY - summaryTouchStartY
+    const diffX = summaryTouchMoveX - summaryTouchStartX
+    const diffY = summaryTouchMoveY - summaryTouchStartY
 
-    if(Math.abs(diffX) < 45) return
-    if(Math.abs(diffY) > 70) return
+    const current = document.getElementById("summarySwipeCurrent-mobile")
+
+    if(current){
+        current.classList.remove("dragging")
+        current.style.transform = ""
+    }
+
+    if(!summaryIsHorizontalSwipe) return
+    if(Math.abs(diffX) < 70) return
+    if(Math.abs(diffY) > 90) return
 
     if(diffX < 0){
-        nextSummaryCard()
+
+        if(current){
+            current.classList.add("swipe-left")
+        }
+
+        setTimeout(() => {
+            nextSummaryCard()
+        }, 160)
+
         return
     }
 
     if(diffX > 0){
-        prevSummaryCard()
+
+        if(current){
+            current.classList.add("swipe-right")
+        }
+
+        setTimeout(() => {
+            prevSummaryCard()
+        }, 160)
     }
 }
 
