@@ -1883,6 +1883,186 @@ button{
     }
 }
 
+/* MATERIAL SHOWCASE */
+
+.material-showcase{
+    width:100%;
+}
+
+.material-cover-shell{
+    position:relative;
+}
+
+.material-cover-card{
+    position:relative;
+    overflow:hidden;
+
+    border-radius:28px;
+
+    background:
+        radial-gradient(circle at 50% 18%, rgba(203,108,230,.18), transparent 26%),
+        linear-gradient(180deg,#171621 0%,#0f0e17 100%);
+
+    border:1px solid rgba(255,255,255,.07);
+    box-shadow:var(--shadow);
+}
+
+.material-cover-img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    display:block;
+}
+
+.material-cover-placeholder{
+    width:100%;
+    height:100%;
+
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+
+    padding:28px;
+
+    text-align:center;
+
+    background:
+        radial-gradient(circle at 50% 42%, rgba(203,108,230,.16), transparent 30%),
+        linear-gradient(135deg,#171621,#0b0b10);
+}
+
+.material-cover-kicker{
+    color:var(--accent);
+    font-size:13px;
+    font-weight:900;
+    letter-spacing:.08em;
+    text-transform:uppercase;
+    margin-bottom:12px;
+}
+
+.material-cover-title{
+    margin:0 0 12px;
+    font-size:30px;
+    line-height:1.08;
+    font-weight:900;
+}
+
+.material-cover-text{
+    margin:0;
+    max-width:360px;
+    color:var(--muted);
+    font-size:15px;
+    line-height:1.55;
+}
+
+.material-info-card{
+    border-radius:28px;
+    padding:22px;
+}
+
+.material-info-title{
+    margin:0 0 10px;
+    font-size:28px;
+    line-height:1.08;
+    font-weight:900;
+}
+
+.material-info-text{
+    margin:0 0 18px;
+    color:var(--muted);
+    font-size:15px;
+    line-height:1.6;
+}
+
+.material-actions{
+    display:grid;
+    gap:12px;
+}
+
+.material-action-btn{
+    width:100%;
+    min-height:56px;
+    border-radius:18px;
+    font-size:15px;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    text-align:center;
+}
+
+@media (max-width:1023px){
+
+    .material-showcase{
+        display:flex;
+        flex-direction:column;
+        gap:16px;
+    }
+
+    .material-cover-shell{
+        width:min(78vw, 330px);
+        margin:0 auto;
+    }
+
+    .material-cover-card{
+        aspect-ratio:3/4.25;
+        border-radius:26px;
+    }
+
+    .material-info-card{
+        padding:18px;
+    }
+
+    .material-info-title{
+        font-size:24px;
+    }
+
+    .material-info-text{
+        font-size:14px;
+        margin-bottom:16px;
+    }
+
+    .material-actions{
+        grid-template-columns:1fr 1fr;
+        gap:10px;
+    }
+
+    .material-action-btn{
+        min-height:54px;
+        font-size:14px;
+        padding:0 10px;
+    }
+}
+
+@media (min-width:1024px){
+
+    .material-showcase{
+        display:grid;
+        grid-template-columns:minmax(260px, 360px) minmax(0, 1fr);
+        gap:22px;
+        align-items:center;
+        max-width:860px;
+    }
+
+    .material-cover-card{
+        aspect-ratio:3/4.25;
+    }
+
+    .material-info-card{
+        min-height:360px;
+
+        display:flex;
+        flex-direction:column;
+        justify-content:center;
+    }
+
+    .material-actions{
+        grid-template-columns:1fr;
+        max-width:320px;
+    }
+}
+
 </style>
 
 </head>
@@ -2042,29 +2222,41 @@ button{
 
         <section class="lesson-step" id="step-deep-mobile">
 
-            <div class="mobile-summary-head">
+            <div class="material-showcase">
 
-                <h2
-                    class="mobile-section-title"
-                    id="deepTitle-mobile"
-                ></h2>
+                <div class="material-cover-shell">
 
-                <p
-                    class="mobile-note"
-                    id="deepText-mobile"
-                ></p>
+                    <div class="material-cover-card">
 
-            </div>
+                        <div id="materialCover-mobile"></div>
 
-            <div class="summary-list" id="deepList-mobile"></div>
+                    </div>
 
-            <div class="mobile-summary-action">
+                </div>
 
-                <button
-                    class="mobile-main-btn"
-                    id="goTestBtn-mobile"
-                    onclick="goStep('test')"
-                ></button>
+                <div class="material-info-card soft-card">
+
+                    <h2 class="material-info-title" id="materialTitle-mobile"></h2>
+
+                    <p class="material-info-text" id="materialText-mobile"></p>
+
+                    <div class="material-actions">
+
+                        <button
+                            class="btn btn-primary material-action-btn"
+                            id="materialOpenBtn-mobile"
+                            onclick="openMaterial()"
+                        ></button>
+
+                        <button
+                            class="btn btn-secondary material-action-btn"
+                            id="goTestBtn-mobile"
+                            onclick="goStep('test')"
+                        ></button>
+
+                    </div>
+
+                </div>
 
             </div>
 
@@ -2338,15 +2530,41 @@ button{
 
                         </div>
 
-                        <div class="desktop-summary-grid" id="deepList-desktop"></div>
+                        <div class="material-showcase">
 
-                        <div class="desktop-summary-action">
+                            <div class="material-cover-shell">
 
-                            <button
-                                class="desktop-main-btn"
-                                id="goTestBtn-desktop"
-                                onclick="goStep('test')"
-                            ></button>
+                                <div class="material-cover-card">
+
+                                    <div id="materialCover-desktop"></div>
+
+                                </div>
+
+                            </div>
+
+                            <div class="material-info-card soft-card">
+
+                                <h2 class="material-info-title" id="materialTitle-desktop"></h2>
+
+                                <p class="material-info-text" id="materialText-desktop"></p>
+
+                                <div class="material-actions">
+
+                                    <button
+                                        class="btn btn-primary material-action-btn"
+                                        id="materialOpenBtn-desktop"
+                                        onclick="openMaterial()"
+                                    ></button>
+
+                                    <button
+                                        class="btn btn-secondary material-action-btn"
+                                        id="goTestBtn-desktop"
+                                        onclick="goStep('test')"
+                                    ></button>
+
+                                </div>
+
+                            </div>
 
                         </div>
 
@@ -2532,6 +2750,11 @@ const MATERIAL_PATHS = {
     uz:"https://bot.gaphub.uz/materials/smm/lesson-1-uz.pdf"
 }
 
+function getMaterialCoverPath(device){
+
+    return `images/smm/lesson-1/material-cover-${lang}-${device}.png`
+}
+
 const STEP_ORDER = ["video", "summary", "deep", "test"]
 
 let currentStep = "video"
@@ -2600,6 +2823,9 @@ const t = {
         materialBtn:"Material",
 
         openTestBtn:"Test",
+        materialTitle:"Dars materiallari",
+        materialText:"PDF konspektni oching: unda darsdagi asosiy fikrlar, misollar va qaytib ko‘rish uchun qulay xulosa bor.",
+        materialOpen:"PDFni ko‘rish",
 
         stepVideo:"Video",
         stepSummary:"Xulosa",
@@ -2672,6 +2898,9 @@ const t = {
         materialBtn:"Материал",
 
         openTestBtn:"Тест",
+        materialTitle:"Материалы к уроку",
+        materialText:"Открой PDF-конспект: там собраны главные мысли урока, примеры и удобная выжимка, к которой можно вернуться позже.",
+        materialOpen:"Смотреть PDF",
 
         stepVideo:"Видео",
         stepSummary:"Выжимка",
@@ -3077,6 +3306,9 @@ function updateStaticText(){
     setText("deepText-mobile", d.deepText)
 
     setText("goTestBtn-mobile", d.goTest)
+    setText("materialTitle-mobile", d.materialTitle)
+    setText("materialText-mobile", d.materialText)
+    setText("materialOpenBtn-mobile", d.materialOpen)
 
     setText("testTitle-mobile", d.testTitle)
     setText("testText-mobile", d.testText)
@@ -3104,6 +3336,9 @@ function updateStaticText(){
     setText("deepText-desktop", d.deepText)
 
     setText("goTestBtn-desktop", d.goTest)
+    setText("materialTitle-desktop", d.materialTitle)
+    setText("materialText-desktop", d.materialText)
+    setText("materialOpenBtn-desktop", d.materialOpen)
 
     setText("testTitle-desktop", d.testTitle)
     setText("testText-desktop", d.testText)
@@ -3141,7 +3376,7 @@ function updateStaticText(){
     updateLessonLangButtons()
     updateMobileStepTitle()
     renderSummary()
-    renderDeepMaterials()
+    renderMaterialCover()
     renderQuestion()
     updateDesktopSteps()
 }
@@ -3417,6 +3652,46 @@ function summaryTouchEnd(event){
             prevSummaryCard()
         }, 160)
     }
+}
+function renderMaterialCover(){
+
+    const mobileRoot = document.getElementById("materialCover-mobile")
+    const desktopRoot = document.getElementById("materialCover-desktop")
+
+    renderMaterialCoverItem(mobileRoot, "mobile")
+    renderMaterialCoverItem(desktopRoot, "desktop")
+}
+
+function renderMaterialCoverItem(root, device){
+
+    if(!root) return
+
+    const src = getMaterialCoverPath(device)
+    const deviceText = device === "mobile" ? "mobile" : "desktop"
+
+    root.innerHTML = `
+        <img
+            class="material-cover-img"
+            src="${src}"
+            alt="PDF material cover"
+            onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"
+        >
+
+        <div class="material-cover-placeholder" style="display:none;">
+            <div class="material-cover-kicker">
+                ${lang.toUpperCase()} • ${deviceText}
+            </div>
+
+            <h3 class="material-cover-title">
+                PDF обложка
+            </h3>
+
+            <p class="material-cover-text">
+                Здесь позже будет изображение:<br>
+                material-cover-${lang}-${device}.png
+            </p>
+        </div>
+    `
 }
 
 function renderDeepMaterials(){
