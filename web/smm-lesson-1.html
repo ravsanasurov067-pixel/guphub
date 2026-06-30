@@ -460,6 +460,195 @@ button{
     margin-top:18px;
 }
 
+
+/* SUMMARY SLIDER */
+
+.summary-slider{
+    width:100%;
+}
+
+.summary-stage{
+    width:100%;
+    border-radius:28px;
+    overflow:hidden;
+    position:relative;
+    background:
+        radial-gradient(circle at 82% 18%, rgba(203,108,230,.18), transparent 26%),
+        linear-gradient(180deg,#171621 0%,#0f0e17 100%);
+    border:1px solid rgba(255,255,255,.06);
+    box-shadow:var(--shadow);
+}
+
+.summary-image-wrap{
+    width:100%;
+    position:relative;
+    overflow:hidden;
+    background:
+        radial-gradient(circle at 50% 42%, rgba(203,108,230,.14), transparent 30%),
+        linear-gradient(135deg,#171621,#0b0b10);
+}
+
+.summary-image{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    display:block;
+}
+
+.summary-placeholder{
+    width:100%;
+    height:100%;
+    min-height:360px;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+    padding:28px;
+    text-align:center;
+}
+
+.summary-placeholder-kicker{
+    color:var(--accent);
+    font-size:13px;
+    font-weight:900;
+    letter-spacing:.08em;
+    text-transform:uppercase;
+    margin-bottom:12px;
+}
+
+.summary-placeholder-title{
+    margin:0 0 12px;
+    font-size:28px;
+    line-height:1.08;
+    font-weight:900;
+}
+
+.summary-placeholder-text{
+    margin:0;
+    max-width:420px;
+    color:var(--muted);
+    font-size:15px;
+    line-height:1.55;
+}
+
+.summary-controls{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    gap:12px;
+    margin-top:16px;
+}
+
+.summary-arrow-btn{
+    width:52px;
+    height:44px;
+    border:none;
+    border-radius:999px;
+    background:rgba(255,255,255,.055);
+    border:1px solid rgba(255,255,255,.08);
+    color:#fff;
+    font-size:22px;
+    font-weight:900;
+    transition:.18s ease;
+}
+
+.summary-arrow-btn:active{
+    transform:scale(.94);
+}
+
+.summary-arrow-btn:disabled{
+    opacity:.35;
+    cursor:not-allowed;
+}
+
+.summary-counter{
+    min-width:74px;
+    height:44px;
+    border-radius:999px;
+    background:rgba(203,108,230,.12);
+    border:1px solid rgba(203,108,230,.28);
+    color:#fff;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:14px;
+    font-weight:900;
+}
+
+.summary-pages{
+    display:flex;
+    flex-wrap:wrap;
+    justify-content:center;
+    gap:8px;
+    margin-top:14px;
+}
+
+.summary-page-btn{
+    min-width:34px;
+    height:32px;
+    border:none;
+    border-radius:999px;
+    background:rgba(255,255,255,.045);
+    border:1px solid rgba(255,255,255,.07);
+    color:rgba(255,255,255,.62);
+    font-size:12px;
+    font-weight:900;
+    transition:.18s ease;
+}
+
+.summary-page-btn.active{
+    color:#fff;
+    background:linear-gradient(90deg, rgba(203,108,230,.34), rgba(168,85,247,.22));
+    border-color:rgba(203,108,230,.50);
+    box-shadow:0 10px 22px rgba(203,108,230,.16);
+}
+
+.summary-page-btn:active{
+    transform:scale(.94);
+}
+
+.summary-slider-action{
+    margin-top:18px;
+}
+
+@media (max-width:1023px){
+
+    .summary-stage{
+        border-radius:28px;
+    }
+
+    .summary-image-wrap{
+        aspect-ratio:9/14;
+    }
+
+    .summary-placeholder{
+        min-height:420px;
+    }
+
+    .summary-placeholder-title{
+        font-size:25px;
+    }
+
+    .summary-controls{
+        margin-top:14px;
+    }
+}
+
+@media (min-width:1024px){
+
+    .summary-image-wrap{
+        aspect-ratio:16/9;
+    }
+
+    .summary-placeholder{
+        min-height:430px;
+    }
+
+    .summary-placeholder-title{
+        font-size:34px;
+    }
+}
+
 /* DEEP MODAL */
 
 .deep-overlay{
@@ -1629,15 +1818,47 @@ button{
 
             </div>
 
-            <div class="summary-list" id="summaryList-mobile"></div>
+            <div class="summary-slider">
 
-            <div class="mobile-summary-action">
+                <div class="summary-stage">
 
-                <button
-                    class="mobile-main-btn"
-                    id="summaryFinishBtn-mobile"
-                    onclick="goStep('deep')"
-                ></button>
+                    <div class="summary-image-wrap" id="summaryImageWrap-mobile"></div>
+
+                </div>
+
+                <div class="summary-controls">
+
+                    <button
+                        class="summary-arrow-btn"
+                        id="summaryPrev-mobile"
+                        onclick="prevSummaryCard()"
+                    >
+                        ←
+                    </button>
+
+                    <div class="summary-counter" id="summaryCounter-mobile"></div>
+
+                    <button
+                        class="summary-arrow-btn"
+                        id="summaryNext-mobile"
+                        onclick="nextSummaryCard()"
+                    >
+                        →
+                    </button>
+
+                </div>
+
+                <div class="summary-pages" id="summaryPages-mobile"></div>
+
+                <div class="summary-slider-action">
+
+                    <button
+                        class="mobile-main-btn"
+                        id="summaryFinishBtn-mobile"
+                        onclick="goStep('deep')"
+                    ></button>
+
+                </div>
 
             </div>
 
@@ -1845,14 +2066,6 @@ button{
                                     <source id="videoSource-desktop" type="video/mp4">
                                 </video>
 
-                                <button
-                                    class="desktop-fullscreen-btn"
-                                    onclick="openVideoFullscreen()"
-                                    aria-label="Fullscreen"
-                                >
-                                    ⛶
-                                </button>
-
                             </div>
 
                             <div class="desktop-video-bottom">
@@ -1899,15 +2112,47 @@ button{
 
                         </div>
 
-                        <div class="desktop-summary-grid" id="summaryList-desktop"></div>
+                        <div class="summary-slider">
 
-                        <div class="desktop-summary-action">
+                            <div class="summary-stage">
 
-                            <button
-                                class="desktop-main-btn"
-                                id="summaryFinishBtn-desktop"
-                                onclick="goStep('deep')"
-                            ></button>
+                                <div class="summary-image-wrap" id="summaryImageWrap-desktop"></div>
+
+                            </div>
+
+                            <div class="summary-controls">
+
+                                <button
+                                    class="summary-arrow-btn"
+                                    id="summaryPrev-desktop"
+                                    onclick="prevSummaryCard()"
+                                >
+                                    ←
+                                </button>
+
+                                <div class="summary-counter" id="summaryCounter-desktop"></div>
+
+                                <button
+                                    class="summary-arrow-btn"
+                                    id="summaryNext-desktop"
+                                    onclick="nextSummaryCard()"
+                                >
+                                    →
+                                </button>
+
+                            </div>
+
+                            <div class="summary-pages" id="summaryPages-desktop"></div>
+
+                            <div class="summary-slider-action">
+
+                                <button
+                                    class="desktop-main-btn"
+                                    id="summaryFinishBtn-desktop"
+                                    onclick="goStep('deep')"
+                                ></button>
+
+                            </div>
 
                         </div>
 
@@ -2123,6 +2368,8 @@ const STEP_ORDER = ["video", "summary", "deep", "test"]
 
 let currentStep = "video"
 let maxUnlockedStepIndex = 1
+let currentSummaryCardIndex = 0
+const SUMMARY_CARDS_COUNT = 10
 
 let currentQuestionIndex = 0
 let score = 0
@@ -2729,47 +2976,144 @@ function updateStaticText(){
     updateDesktopSteps()
 }
 
+function getSummaryImagePath(index, device){
+
+    const number = index + 1
+
+    return `images/smm/lesson-1/summary-${number}-${lang}-${device}.png`
+}
+
 function renderSummary(){
 
-    const data = summaryData[lang]
+    const mobileWrap = document.getElementById("summaryImageWrap-mobile")
+    const desktopWrap = document.getElementById("summaryImageWrap-desktop")
 
-    const mobileRoot = document.getElementById("summaryList-mobile")
-    const desktopRoot = document.getElementById("summaryList-desktop")
+    const mobileCounter = document.getElementById("summaryCounter-mobile")
+    const desktopCounter = document.getElementById("summaryCounter-desktop")
 
-    const html = data.map(item => `
-        <div class="summary-card soft-card">
+    const mobilePages = document.getElementById("summaryPages-mobile")
+    const desktopPages = document.getElementById("summaryPages-desktop")
 
-            <button
-                class="summary-question"
-                onclick="toggleSummary(this)"
-            >
+    const mobilePrev = document.getElementById("summaryPrev-mobile")
+    const desktopPrev = document.getElementById("summaryPrev-desktop")
 
-                <span class="summary-question-text">
-                    ${item.q}
-                </span>
+    const mobileNext = document.getElementById("summaryNext-mobile")
+    const desktopNext = document.getElementById("summaryNext-desktop")
 
-                <span class="summary-arrow"></span>
+    renderSummaryImage(mobileWrap, "mobile")
+    renderSummaryImage(desktopWrap, "desktop")
 
-            </button>
+    const counterText = `${String(currentSummaryCardIndex + 1).padStart(2, "0")} / ${String(SUMMARY_CARDS_COUNT).padStart(2, "0")}`
 
-            <div class="summary-answer-wrap">
+    if(mobileCounter){
+        mobileCounter.innerText = counterText
+    }
 
-                <div class="summary-answer">
-                    ${item.a.replace(/\n/g, "<br>")}
-                </div>
+    if(desktopCounter){
+        desktopCounter.innerText = counterText
+    }
 
+    if(mobilePrev){
+        mobilePrev.disabled = currentSummaryCardIndex === 0
+    }
+
+    if(desktopPrev){
+        desktopPrev.disabled = currentSummaryCardIndex === 0
+    }
+
+    if(mobileNext){
+        mobileNext.disabled = currentSummaryCardIndex === SUMMARY_CARDS_COUNT - 1
+    }
+
+    if(desktopNext){
+        desktopNext.disabled = currentSummaryCardIndex === SUMMARY_CARDS_COUNT - 1
+    }
+
+    renderSummaryPages(mobilePages)
+    renderSummaryPages(desktopPages)
+}
+
+function renderSummaryImage(root, device){
+
+    if(!root) return
+
+    const src = getSummaryImagePath(currentSummaryCardIndex, device)
+    const number = String(currentSummaryCardIndex + 1).padStart(2, "0")
+    const deviceText = device === "mobile" ? "mobile" : "desktop"
+
+    root.innerHTML = `
+        <img
+            class="summary-image"
+            src="${src}"
+            alt="Summary ${number}"
+            onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"
+        >
+
+        <div class="summary-placeholder" style="display:none;">
+            <div class="summary-placeholder-kicker">
+                ${lang.toUpperCase()} • ${deviceText}
             </div>
 
+            <h3 class="summary-placeholder-title">
+                Карточка ${number}
+            </h3>
+
+            <p class="summary-placeholder-text">
+                Здесь позже будет изображение:<br>
+                summary-${currentSummaryCardIndex + 1}-${lang}-${device}.png
+            </p>
         </div>
-    `).join("")
+    `
+}
 
-    if(mobileRoot){
-        mobileRoot.innerHTML = html
+function renderSummaryPages(root){
+
+    if(!root) return
+
+    let html = ""
+
+    for(let i = 0; i < SUMMARY_CARDS_COUNT; i++){
+
+        const label = String(i + 1).padStart(2, "0")
+        const activeClass = i === currentSummaryCardIndex ? "active" : ""
+
+        html += `
+            <button
+                class="summary-page-btn ${activeClass}"
+                onclick="setSummaryCard(${i})"
+            >
+                ${label}
+            </button>
+        `
     }
 
-    if(desktopRoot){
-        desktopRoot.innerHTML = html
-    }
+    root.innerHTML = html
+}
+
+function setSummaryCard(index){
+
+    if(index < 0) return
+    if(index >= SUMMARY_CARDS_COUNT) return
+
+    impact()
+
+    currentSummaryCardIndex = index
+
+    renderSummary()
+}
+
+function nextSummaryCard(){
+
+    if(currentSummaryCardIndex >= SUMMARY_CARDS_COUNT - 1) return
+
+    setSummaryCard(currentSummaryCardIndex + 1)
+}
+
+function prevSummaryCard(){
+
+    if(currentSummaryCardIndex <= 0) return
+
+    setSummaryCard(currentSummaryCardIndex - 1)
 }
 
 function renderDeepMaterials(){
