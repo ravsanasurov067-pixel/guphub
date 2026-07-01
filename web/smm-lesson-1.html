@@ -2063,6 +2063,31 @@ button{
     }
 }
 
+/* TEST QUESTION ADAPTIVE SIZE */
+
+.test-question.long-question{
+    font-size:26px;
+    line-height:1.18;
+}
+
+.test-question.very-long-question{
+    font-size:22px;
+    line-height:1.22;
+}
+
+@media (max-width:1023px){
+
+    .test-question.long-question{
+        font-size:22px;
+        line-height:1.2;
+    }
+
+    .test-question.very-long-question{
+        font-size:19px;
+        line-height:1.24;
+    }
+}
+
 </style>
 
 </head>
@@ -3981,6 +4006,23 @@ function closeDeepModal(){
     }
 }
 
+function updateQuestionSize(element, text){
+
+    if(!element) return
+
+    element.classList.remove("long-question")
+    element.classList.remove("very-long-question")
+
+    if(text.length > 120){
+        element.classList.add("very-long-question")
+        return
+    }
+
+    if(text.length > 80){
+        element.classList.add("long-question")
+    }
+}
+
 function renderQuestion(){
 
     const data = questions[lang]
@@ -3998,10 +4040,12 @@ function renderQuestion(){
 
     if(mobileQuestion){
         mobileQuestion.innerText = question.question
+        updateQuestionSize(mobileQuestion, question.question)
     }
 
     if(desktopQuestion){
         desktopQuestion.innerText = question.question
+        updateQuestionSize(desktopQuestion, question.question)
     }
 
     const mobileAnswers = document.getElementById("testAnswers-mobile")
