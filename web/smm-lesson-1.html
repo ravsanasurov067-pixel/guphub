@@ -4490,17 +4490,21 @@ function loadOtabek(){
 
     window.OTABEK_STORAGE_KEY = `smm_lesson_${LESSON_ID}_${lang}`
 
-    const mobileSlot = document.getElementById("otabek-mobile-slot")
+    const isDesktop = window.innerWidth >= 1024
 
-    if(!mobileSlot) return
+    const slot = isDesktop
+        ? document.getElementById("otabek-slot")
+        : document.getElementById("otabek-mobile-slot")
+
+    if(!slot) return
 
     fetch("otabek.html")
         .then(response => response.text())
         .then(html => {
 
-            mobileSlot.innerHTML = html
+            slot.innerHTML = html
 
-            const scripts = document.querySelectorAll("#otabek-mobile-slot script")
+            const scripts = slot.querySelectorAll("script")
 
             scripts.forEach(oldScript => {
                 const newScript = document.createElement("script")
