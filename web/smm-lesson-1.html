@@ -4498,7 +4498,7 @@ function loadOtabek(){
 
     if(!slot) return
 
-    fetch("otabek.html")
+    fetch(`otabek.html?v=${Date.now()}`)
         .then(response => response.text())
         .then(html => {
 

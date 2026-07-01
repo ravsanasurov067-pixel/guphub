@@ -545,6 +545,79 @@
 }
 
 /* =========================
+   HISTORY BUTTON
+========================= */
+
+.otabek-card{
+    position:relative;
+}
+
+.otabek-history-icon{
+    position:absolute;
+    top:18px;
+    right:18px;
+
+    width:38px;
+    height:38px;
+
+    border:none;
+    border-radius:14px;
+
+    background:rgba(255,255,255,.055);
+    border:1px solid rgba(255,255,255,.08);
+
+    color:#fff;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    font-size:18px;
+    font-weight:900;
+}
+
+.otabek-history-icon span{
+    position:absolute;
+    top:44px;
+    right:0;
+
+    padding:8px 10px;
+
+    border-radius:12px;
+
+    background:#1b1924;
+    border:1px solid rgba(255,255,255,.08);
+
+    color:#fff;
+
+    font-size:11px;
+    line-height:1;
+    font-weight:800;
+    white-space:nowrap;
+
+    opacity:0;
+    pointer-events:none;
+    transform:translateY(-4px);
+
+    transition:.16s ease;
+}
+
+.otabek-history-icon:hover span{
+    opacity:1;
+    transform:translateY(0);
+}
+
+.otabek-actions.hidden{
+    display:none;
+}
+
+@media (max-width:1023px){
+    .otabek-history-icon{
+        display:none;
+    }
+}
+
+/* =========================
    RESPONSIVE VISIBILITY
 ========================= */
 
@@ -590,6 +663,15 @@
                     <div class="otabek-role">
                         AI-помощник урока
                     </div>
+
+                    <button
+                        class="otabek-history-icon"
+                        onclick="toggleOtabekHistory()"
+                        aria-label="История чатов"
+                    >
+                        ↺
+                        <span>История чатов</span>
+                    </button>
                 </div>
 
             </div>
@@ -603,7 +685,7 @@
                 </div>
             </div>
 
-            <div class="otabek-actions">
+            <div class="otabek-actions" id="otabekActionsDesktop">
 
                 <button
                     class="otabek-action"
@@ -627,13 +709,6 @@
                 </button>
 
             </div>
-
-            <button
-                class="otabek-history-btn"
-                onclick="toggleOtabekHistory()"
-            >
-                История чатов
-            </button>
 
             <div class="otabek-input-row">
 
@@ -724,7 +799,7 @@
                 </div>
             </div>
 
-            <div class="otabek-actions">
+            <div class="otabek-actions" id="otabekActionsMobile">
 
                 <button
                     class="otabek-action"
@@ -826,6 +901,28 @@ function getCurrentOtabekChat(){
     return otabekChats.find(chat => chat.id === currentOtabekChatId) || null
 }
 
+function updateOtabekActionsVisibility(){
+
+    const currentChat = getCurrentOtabekChat()
+
+    const desktopActions =
+        document.getElementById("otabekActionsDesktop")
+
+    const mobileActions =
+        document.getElementById("otabekActionsMobile")
+
+    const shouldHide =
+        Boolean(currentChat) || otabekHistoryViewOpen
+
+    if(desktopActions){
+        desktopActions.classList.toggle("hidden", shouldHide)
+    }
+
+    if(mobileActions){
+        mobileActions.classList.toggle("hidden", shouldHide)
+    }
+}
+
 function renderOtabekMessages(){
 
     const desktopRoot =
@@ -861,6 +958,8 @@ function renderOtabekMessages(){
         mobileRoot.innerHTML = html
         mobileRoot.scrollTop = mobileRoot.scrollHeight
     }
+
+    updateOtabekActionsVisibility()
 }
 
 function renderOtabekChatHistory(){
@@ -898,6 +997,8 @@ function renderOtabekChatHistory(){
     if(mobileRoot){
         mobileRoot.innerHTML = html
     }
+
+    updateOtabekActionsVisibility()
 }
 
 function toggleOtabekHistory(){
@@ -952,7 +1053,16 @@ function toggleOtabekMobile(){
 
     if(!overlay) return
 
+    const willOpen =
+        !overlay.classList.contains("active")
+
     overlay.classList.toggle("active")
+
+    if(willOpen){
+        currentOtabekChatId = null
+        otabekHistoryViewOpen = false
+        renderOtabekMessages()
+    }
 }
 
 function otabekEnter(event){
