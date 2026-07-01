@@ -2344,78 +2344,7 @@ button{
 
                 <!-- LEFT: OTABEK -->
 
-                <aside class="desktop-assistant-card glow-card">
-
-                    <div class="assistant-profile">
-
-                        <div class="assistant-avatar">
-                            <img
-                                src="images/otabek.png"
-                                alt="Отабек AI"
-                                onerror="this.style.display='none'; this.parentElement.querySelector('.assistant-avatar-fallback').style.display='block';"
-                            >
-                            <div class="assistant-avatar-fallback" style="display:none;">✦</div>
-                        </div>
-
-                        <h3 class="assistant-name" id="assistantName-desktop"></h3>
-
-                        <p class="assistant-role" id="assistantRole-desktop"></p>
-
-                    </div>
-
-                    <div class="assistant-quick-list">
-
-                        <button
-                            class="assistant-quick-btn"
-                            onclick="openAssistantPrompt('simple')"
-                        >
-                            <span class="assistant-quick-icon">?</span>
-                            <span class="assistant-quick-text" id="assistantQuickSimple-desktop"></span>
-                        </button>
-
-                        <button
-                            class="assistant-quick-btn"
-                            onclick="openAssistantPrompt('example')"
-                        >
-                            <span class="assistant-quick-icon">#</span>
-                            <span class="assistant-quick-text" id="assistantQuickExample-desktop"></span>
-                        </button>
-
-                        <button
-                            class="assistant-quick-btn"
-                            onclick="openAssistantPrompt('main')"
-                        >
-                            <span class="assistant-quick-icon">!</span>
-                            <span class="assistant-quick-text" id="assistantQuickMain-desktop"></span>
-                        </button>
-
-                    </div>
-
-                    <button
-                        class="btn btn-secondary assistant-history-btn"
-                        id="assistantHistoryBtn-desktop"
-                        onclick="openAssistantHistory()"
-                    ></button>
-
-                    <div class="assistant-input-wrap">
-
-                        <input
-                            class="assistant-input"
-                            id="assistantInput-desktop"
-                            type="text"
-                            autocomplete="off"
-                        >
-
-                        <button
-                            class="assistant-send"
-                            onclick="sendAssistantMessage()"
-                        >
-                            →
-                        </button>
-
-                    </div>
-
-                </aside>
+                    <div id="otabek-slot"></div>
 
                 <!-- CENTER -->
 

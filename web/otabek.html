@@ -1,5 +1,4 @@
 <style>
-
 :root{
     --otabek-accent:#cb6ce6;
     --otabek-accent-2:#a855f7;
@@ -12,13 +11,16 @@
 
     --otabek-line:rgba(255,255,255,.08);
 
-    --otabek-shadow:
-        0 18px 40px rgba(0,0,0,.34);
+    --otabek-shadow:0 18px 40px rgba(0,0,0,.34);
 }
 
 /* =========================
    ROOT
 ========================= */
+
+.otabek-root{
+    color:var(--otabek-text);
+}
 
 .otabek-root *{
     box-sizing:border-box;
@@ -30,25 +32,16 @@
     font-family:Arial,sans-serif;
 }
 
-.otabek-root{
-    color:var(--otabek-text);
+.otabek-root button{
+    cursor:pointer;
 }
 
 /* =========================
-   DESKTOP
+   SHARED CARD
 ========================= */
 
-.otabek-desktop{
-    position:sticky;
-    top:0;
-}
-
-.otabek-card{
-    height:calc(100vh - 48px);
-    min-height:620px;
-
-    border-radius:28px;
-
+.otabek-card,
+.otabek-mobile-card{
     overflow:hidden;
 
     display:flex;
@@ -60,71 +53,195 @@
         linear-gradient(180deg,#171621 0%,#0f0e17 100%);
 
     border:1px solid rgba(255,255,255,.06);
-
     box-shadow:var(--otabek-shadow);
-
-    padding:16px;
 }
 
-.otabek-head{
+.otabek-head,
+.otabek-mobile-top{
     display:flex;
     align-items:center;
-    gap:12px;
-
-    margin-bottom:14px;
 }
 
 .otabek-avatar{
-    width:46px;
-    height:46px;
-
-    border-radius:18px;
-
-    background:
-        linear-gradient(
-            135deg,
-            var(--otabek-accent),
-            var(--otabek-accent-2)
-        );
+    overflow:hidden;
 
     display:flex;
     align-items:center;
     justify-content:center;
 
-    color:#fff;
-
-    font-size:20px;
-    font-weight:900;
-
     flex-shrink:0;
 
-    box-shadow:
-        0 16px 34px rgba(203,108,230,.24);
+    color:#fff;
+
+    background:
+        radial-gradient(circle at 50% 38%, rgba(203,108,230,.22), transparent 34%),
+        linear-gradient(180deg,#1c1a27 0%,#111017 100%);
+
+    border:1px solid rgba(255,255,255,.07);
+}
+
+.otabek-avatar-img{
+    width:100%;
+    height:100%;
+
+    object-fit:cover;
+
+    display:block;
+}
+
+.otabek-avatar-letter{
+    font-weight:900;
 }
 
 .otabek-name{
-    font-size:17px;
-    line-height:1.1;
     font-weight:900;
 }
 
 .otabek-role{
-    margin-top:4px;
-
     color:var(--otabek-muted);
+    font-weight:700;
+}
 
-    font-size:12px;
+.otabek-actions{
+    display:grid;
+    grid-template-columns:1fr;
+    gap:9px;
+}
+
+.otabek-action,
+.otabek-history-btn{
+    width:100%;
+
+    border:none;
+    border-radius:16px;
+
+    background:rgba(255,255,255,.045);
+    border:1px solid rgba(255,255,255,.07);
+
+    color:#fff;
+
+    font-weight:800;
+
+    transition:.18s ease;
+}
+
+.otabek-action{
+    min-height:48px;
+
+    padding:0 12px;
+
+    display:flex;
+    align-items:center;
+    gap:10px;
+
+    text-align:left;
+
+    font-size:13px;
     line-height:1.2;
 }
 
+.otabek-action::before{
+    width:30px;
+    height:30px;
+
+    border-radius:12px;
+
+    background:rgba(203,108,230,.12);
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    flex-shrink:0;
+
+    font-size:14px;
+}
+
+.otabek-action:nth-child(1)::before{
+    content:"?";
+}
+
+.otabek-action:nth-child(2)::before{
+    content:"#";
+}
+
+.otabek-action:nth-child(3)::before{
+    content:"!";
+}
+
+.otabek-action:hover,
+.otabek-history-btn:hover{
+    transform:translateY(-1px);
+    border-color:rgba(203,108,230,.28);
+    background:rgba(203,108,230,.08);
+}
+
+.otabek-history-btn{
+    min-height:46px;
+
+    font-size:14px;
+}
+
+.otabek-input-row{
+    display:grid;
+    grid-template-columns:minmax(0,1fr) 42px;
+    gap:8px;
+}
+
+.otabek-input{
+    width:100%;
+    height:42px;
+
+    border:none;
+    outline:none;
+
+    border-radius:15px;
+
+    padding:0 13px;
+
+    background:rgba(255,255,255,.045);
+    border:1px solid rgba(255,255,255,.07);
+
+    color:#fff;
+
+    font-size:13px;
+}
+
+.otabek-input::placeholder{
+    color:rgba(255,255,255,.42);
+}
+
+.otabek-send{
+    width:42px;
+    height:42px;
+
+    border:none;
+    border-radius:15px;
+
+    background:
+        linear-gradient(
+            90deg,
+            var(--otabek-accent),
+            var(--otabek-accent-2)
+        );
+
+    color:#fff;
+
+    font-size:18px;
+    font-weight:900;
+}
+
+/* =========================
+   MESSAGES
+========================= */
+
 .otabek-messages{
     flex:1;
+    min-height:0;
 
     overflow:auto;
 
-    display:flex;
     flex-direction:column;
-
     gap:10px;
 
     padding:2px 2px 14px;
@@ -145,7 +262,6 @@
     align-self:flex-start;
 
     background:rgba(255,255,255,.055);
-
     border:1px solid rgba(255,255,255,.07);
 
     color:#ebe4f5;
@@ -166,98 +282,126 @@
     color:#fff;
 }
 
-.otabek-actions{
-    display:flex;
-    flex-wrap:wrap;
+/* =========================
+   CHAT HISTORY
+========================= */
 
-    gap:8px;
+.otabek-chat-history-item{
+    width:100%;
+
+    border:none;
+    border-radius:16px;
+
+    padding:12px 13px;
+
+    background:rgba(255,255,255,.055);
+    border:1px solid rgba(255,255,255,.08);
+
+    color:#fff;
+
+    display:flex;
+    flex-direction:column;
+    gap:5px;
+
+    text-align:left;
+}
+
+.otabek-chat-history-title{
+    font-size:13px;
+    line-height:1.25;
+    font-weight:800;
+}
+
+.otabek-chat-history-date{
+    color:var(--otabek-muted);
+
+    font-size:11px;
+    line-height:1.2;
+    font-weight:700;
+}
+
+.otabek-history-empty{
+    padding:14px;
+
+    border-radius:16px;
+
+    background:rgba(255,255,255,.045);
+    border:1px solid rgba(255,255,255,.07);
+
+    color:var(--otabek-muted);
+
+    font-size:13px;
+    line-height:1.35;
+}
+
+/* =========================
+   DESKTOP
+========================= */
+
+.otabek-desktop{
+    position:sticky;
+    top:0;
+}
+
+.otabek-card{
+    height:calc(100vh - 58px);
+    min-height:620px;
+
+    border-radius:28px;
+
+    padding:18px;
+
+    gap:16px;
+}
+
+.otabek-head{
+    flex-direction:column;
+    align-items:center;
+    text-align:center;
+    gap:0;
+
+    margin-bottom:0;
+    padding-top:4px;
+}
+
+.otabek-desktop .otabek-avatar{
+    width:86px;
+    height:86px;
+
+    border-radius:28px;
 
     margin-bottom:12px;
 }
 
-.otabek-action{
-    min-height:34px;
-
-    border:none;
-
-    border-radius:999px;
-
-    padding:0 12px;
-
-    background:rgba(255,255,255,.055);
-
-    border:1px solid rgba(255,255,255,.08);
-
-    color:#fff;
-
-    font-size:12px;
-    font-weight:800;
-
-    transition:.18s ease;
+.otabek-desktop .otabek-avatar-letter{
+    font-size:36px;
+    line-height:1;
 }
 
-.otabek-action:hover{
-    transform:translateY(-1px);
-
-    border-color:rgba(203,108,230,.26);
-
-    background:rgba(203,108,230,.08);
+.otabek-desktop .otabek-name{
+    font-size:21px;
+    line-height:1.1;
 }
 
-.otabek-input-row{
-    display:grid;
-    grid-template-columns:minmax(0,1fr) 44px;
+.otabek-desktop .otabek-role{
+    margin-top:4px;
 
-    gap:8px;
-
-    padding-top:12px;
-
-    border-top:1px solid rgba(255,255,255,.07);
+    font-size:13px;
+    line-height:1.35;
 }
 
-.otabek-input{
-    width:100%;
-    height:46px;
+.otabek-desktop .otabek-messages{
+    display:none;
 
-    border:none;
-    outline:none;
-
-    border-radius:16px;
-
-    padding:0 14px;
-
-    background:rgba(255,255,255,.06);
-
-    border:1px solid rgba(255,255,255,.08);
-
-    color:#fff;
-
-    font-size:14px;
+    margin-top:4px;
 }
 
-.otabek-input::placeholder{
-    color:rgba(255,255,255,.42);
+.otabek-desktop .otabek-messages.active{
+    display:flex;
 }
 
-.otabek-send{
-    width:44px;
-    height:46px;
-
-    border:none;
-
-    border-radius:16px;
-
-    background:
-        linear-gradient(
-            90deg,
-            var(--otabek-accent),
-            var(--otabek-accent-2)
-        );
-
-    color:#fff;
-
-    font-size:18px;
-    font-weight:900;
+.otabek-desktop .otabek-history-btn{
+    margin-top:auto;
 }
 
 /* =========================
@@ -268,15 +412,15 @@
     position:fixed;
 
     right:16px;
-
     bottom:calc(18px + env(safe-area-inset-bottom));
 
     width:58px;
     height:58px;
 
     border:none;
-
     border-radius:22px;
+
+    overflow:hidden;
 
     background:
         linear-gradient(
@@ -293,33 +437,29 @@
 
     z-index:3000;
 
-    box-shadow:
-        0 18px 38px rgba(203,108,230,.32);
+    box-shadow:0 18px 38px rgba(203,108,230,.32);
 }
 
-.otabek-mobile-fab span{
+.otabek-mobile-fab .otabek-avatar-letter{
     font-size:22px;
-    font-weight:900;
 }
 
 .otabek-mobile-overlay{
     position:fixed;
     inset:0;
 
-    background:rgba(0,0,0,.58);
-
-    backdrop-filter:blur(10px);
-
-    z-index:4000;
-
     display:none;
 
     align-items:flex-end;
 
     padding:14px;
+    padding-bottom:calc(14px + env(safe-area-inset-bottom));
 
-    padding-bottom:
-        calc(14px + env(safe-area-inset-bottom));
+    background:rgba(0,0,0,.58);
+
+    backdrop-filter:blur(10px);
+
+    z-index:4000;
 }
 
 .otabek-mobile-overlay.active{
@@ -328,36 +468,21 @@
 
 .otabek-mobile-card{
     width:100%;
-
     height:min(680px, 84vh);
 
     border-radius:30px;
 
-    overflow:hidden;
-
-    display:flex;
-    flex-direction:column;
-
-    background:
-        radial-gradient(circle at 84% 14%, rgba(203,108,230,.18), transparent 24%),
-        radial-gradient(circle at 14% 88%, rgba(203,108,230,.08), transparent 24%),
-        linear-gradient(180deg,#171621 0%,#0f0e17 100%);
-
-    border:1px solid rgba(255,255,255,.06);
-
-    box-shadow:var(--otabek-shadow);
-
     padding:16px;
+
+    gap:12px;
 }
 
 .otabek-mobile-top{
-    display:flex;
-    align-items:center;
     justify-content:space-between;
 
     gap:12px;
 
-    margin-bottom:14px;
+    margin-bottom:2px;
 }
 
 .otabek-mobile-left{
@@ -366,12 +491,42 @@
     gap:12px;
 }
 
+.otabek-mobile-left .otabek-avatar{
+    width:46px;
+    height:46px;
+
+    border-radius:18px;
+}
+
+.otabek-mobile-left .otabek-avatar-letter{
+    font-size:20px;
+}
+
+.otabek-mobile-left .otabek-name{
+    font-size:17px;
+    line-height:1.1;
+}
+
+.otabek-mobile-left .otabek-role{
+    margin-top:4px;
+
+    font-size:12px;
+    line-height:1.2;
+}
+
+.otabek-mobile-card .otabek-messages{
+    display:flex;
+}
+
+.otabek-mobile-card .otabek-history-btn{
+    margin-top:0;
+}
+
 .otabek-close{
     width:34px;
     height:34px;
 
     border:none;
-
     border-radius:50%;
 
     background:rgba(255,255,255,.08);
@@ -389,6 +544,10 @@
     transform:scale(.94);
 }
 
+/* =========================
+   RESPONSIVE VISIBILITY
+========================= */
+
 @media (max-width:1023px){
     .otabek-desktop{
         display:none;
@@ -401,11 +560,10 @@
         display:none;
     }
 }
-
 </style>
 
-<div class="otabek-root">    
-    
+<div class="otabek-root">
+
     <!-- DESKTOP -->
 
     <aside class="otabek-desktop">
@@ -415,11 +573,16 @@
             <div class="otabek-head">
 
                 <div class="otabek-avatar">
-                    O
+                    <img
+                        class="otabek-avatar-img"
+                        src="images/otabek.png"
+                        alt="Отабек"
+                        onerror="this.style.display='none'; this.parentElement.querySelector('.otabek-avatar-letter').style.display='block';"
+                    >
+                    <span class="otabek-avatar-letter" style="display:none;">O</span>
                 </div>
 
                 <div>
-
                     <div class="otabek-name">
                         Отабек
                     </div>
@@ -427,7 +590,6 @@
                     <div class="otabek-role">
                         AI-помощник урока
                     </div>
-
                 </div>
 
             </div>
@@ -436,11 +598,9 @@
                 class="otabek-messages"
                 id="otabekMessages"
             >
-
                 <div class="otabek-message bot">
                     Привет. Я помогу разобраться с уроком. Можешь спросить меня про SMM, аудиторию, контент или тест.
                 </div>
-
             </div>
 
             <div class="otabek-actions">
@@ -467,6 +627,13 @@
                 </button>
 
             </div>
+
+            <button
+                class="otabek-history-btn"
+                onclick="toggleOtabekHistory()"
+            >
+                История чатов
+            </button>
 
             <div class="otabek-input-row">
 
@@ -497,7 +664,13 @@
         class="otabek-mobile-fab"
         onclick="toggleOtabekMobile()"
     >
-        <span>O</span>
+        <img
+            class="otabek-avatar-img"
+            src="images/otabek-mobile.png"
+            alt="Отабек"
+            onerror="this.style.display='none'; this.parentElement.querySelector('.otabek-avatar-letter').style.display='block';"
+        >
+        <span class="otabek-avatar-letter" style="display:none;">O</span>
     </button>
 
     <div
@@ -512,11 +685,16 @@
                 <div class="otabek-mobile-left">
 
                     <div class="otabek-avatar">
-                        O
+                        <img
+                            class="otabek-avatar-img"
+                            src="images/otabek.png"
+                            alt="Отабек"
+                            onerror="this.style.display='none'; this.parentElement.querySelector('.otabek-avatar-letter').style.display='block';"
+                        >
+                        <span class="otabek-avatar-letter" style="display:none;">O</span>
                     </div>
 
                     <div>
-
                         <div class="otabek-name">
                             Отабек
                         </div>
@@ -524,7 +702,6 @@
                         <div class="otabek-role">
                             AI-помощник урока
                         </div>
-
                     </div>
 
                 </div>
@@ -542,11 +719,9 @@
                 class="otabek-messages"
                 id="otabekMessagesMobile"
             >
-
                 <div class="otabek-message bot">
                     Привет. Я помогу разобраться с уроком. Можешь спросить меня про SMM, аудиторию, контент или тест.
                 </div>
-
             </div>
 
             <div class="otabek-actions">
@@ -573,6 +748,13 @@
                 </button>
 
             </div>
+
+            <button
+                class="otabek-history-btn"
+                onclick="toggleOtabekHistory()"
+            >
+                История чатов
+            </button>
 
             <div class="otabek-input-row">
 
@@ -601,16 +783,47 @@
 const OTABEK_STORAGE_KEY =
     window.OTABEK_STORAGE_KEY || "gaphub_otabek_default"
 
-let otabekHistory = JSON.parse(
-    localStorage.getItem(OTABEK_STORAGE_KEY) || "[]"
+const OTABEK_CHATS_KEY =
+    OTABEK_STORAGE_KEY + "_chats"
+
+let otabekChats = JSON.parse(
+    localStorage.getItem(OTABEK_CHATS_KEY) || "[]"
 )
 
-function saveOtabekHistory(){
+let currentOtabekChatId = null
+let otabekHistoryViewOpen = false
+
+function saveOtabekChats(){
 
     localStorage.setItem(
-        OTABEK_STORAGE_KEY,
-        JSON.stringify(otabekHistory)
+        OTABEK_CHATS_KEY,
+        JSON.stringify(otabekChats)
     )
+}
+
+function createOtabekChat(firstText){
+
+    const chat = {
+        id:"chat_" + Date.now(),
+        title:firstText ? firstText.slice(0, 42) : "Новый чат",
+        createdAt:new Date().toISOString(),
+        updatedAt:new Date().toISOString(),
+        messages:[]
+    }
+
+    otabekChats.unshift(chat)
+    currentOtabekChatId = chat.id
+
+    saveOtabekChats()
+
+    return chat
+}
+
+function getCurrentOtabekChat(){
+
+    if(!currentOtabekChatId) return null
+
+    return otabekChats.find(chat => chat.id === currentOtabekChatId) || null
 }
 
 function renderOtabekMessages(){
@@ -621,19 +834,23 @@ function renderOtabekMessages(){
     const mobileRoot =
         document.getElementById("otabekMessagesMobile")
 
+    const currentChat = getCurrentOtabekChat()
+
     const defaultMessage = `
         <div class="otabek-message bot">
             Привет. Я помогу разобраться с уроком. Можешь спросить меня про SMM, аудиторию, контент или тест.
         </div>
     `
 
-    const historyHTML = otabekHistory.map(item => `
-        <div class="otabek-message ${item.role}">
-            ${item.text}
-        </div>
-    `).join("")
+    let html = defaultMessage
 
-    const html = defaultMessage + historyHTML
+    if(currentChat){
+        html += currentChat.messages.map(item => `
+            <div class="otabek-message ${item.role}">
+                ${item.text}
+            </div>
+        `).join("")
+    }
 
     if(desktopRoot){
         desktopRoot.innerHTML = html
@@ -644,6 +861,88 @@ function renderOtabekMessages(){
         mobileRoot.innerHTML = html
         mobileRoot.scrollTop = mobileRoot.scrollHeight
     }
+}
+
+function renderOtabekChatHistory(){
+
+    const desktopRoot =
+        document.getElementById("otabekMessages")
+
+    const mobileRoot =
+        document.getElementById("otabekMessagesMobile")
+
+    const html = otabekChats.length
+        ? otabekChats.map(chat => `
+            <button
+                class="otabek-chat-history-item"
+                onclick="openOtabekChat('${chat.id}')"
+            >
+                <span class="otabek-chat-history-title">
+                    ${chat.title}
+                </span>
+                <span class="otabek-chat-history-date">
+                    ${formatOtabekChatDate(chat.updatedAt)}
+                </span>
+            </button>
+        `).join("")
+        : `
+            <div class="otabek-history-empty">
+                История пока пустая
+            </div>
+        `
+
+    if(desktopRoot){
+        desktopRoot.innerHTML = html
+    }
+
+    if(mobileRoot){
+        mobileRoot.innerHTML = html
+    }
+}
+
+function toggleOtabekHistory(){
+
+    otabekHistoryViewOpen = !otabekHistoryViewOpen
+
+    const desktopRoot =
+        document.getElementById("otabekMessages")
+
+    if(desktopRoot){
+        desktopRoot.classList.add("active")
+    }
+
+    if(otabekHistoryViewOpen){
+        renderOtabekChatHistory()
+    }else{
+        renderOtabekMessages()
+    }
+}
+
+function openOtabekChat(chatId){
+
+    currentOtabekChatId = chatId
+    otabekHistoryViewOpen = false
+
+    const desktopRoot =
+        document.getElementById("otabekMessages")
+
+    if(desktopRoot){
+        desktopRoot.classList.add("active")
+    }
+
+    renderOtabekMessages()
+}
+
+function formatOtabekChatDate(value){
+
+    const date = new Date(value)
+
+    return date.toLocaleString("ru-RU", {
+        day:"2-digit",
+        month:"2-digit",
+        hour:"2-digit",
+        minute:"2-digit"
+    })
 }
 
 function toggleOtabekMobile(){
@@ -727,17 +1026,45 @@ function sendOtabekMessageMobile(){
 
 function addOtabekMessage(text){
 
-    otabekHistory.push({
+    let currentChat = getCurrentOtabekChat()
+
+    if(!currentChat){
+        currentChat = createOtabekChat(text)
+    }
+
+    currentChat.messages.push({
         role:"user",
         text:text
     })
 
-    otabekHistory.push({
+    currentChat.messages.push({
         role:"bot",
         text:getOtabekMockAnswer(text)
     })
 
-    saveOtabekHistory()
+    currentChat.updatedAt = new Date().toISOString()
+
+    if(!currentChat.title || currentChat.title === "Новый чат"){
+        currentChat.title = text.slice(0, 42)
+    }
+
+    otabekChats =
+        otabekChats.filter(chat => chat.id !== currentChat.id)
+
+    otabekChats.unshift(currentChat)
+
+    currentOtabekChatId = currentChat.id
+    otabekHistoryViewOpen = false
+
+    saveOtabekChats()
+
+    const desktopRoot =
+        document.getElementById("otabekMessages")
+
+    if(desktopRoot){
+        desktopRoot.classList.add("active")
+    }
+
     renderOtabekMessages()
 }
 
@@ -780,4 +1107,5 @@ function getOtabekMockAnswer(text){
 
 renderOtabekMessages()
 </script>
+
 </div>
