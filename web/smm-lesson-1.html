@@ -1595,6 +1595,167 @@ button{
     }
 
 }
+
+/* =========================
+   TEST RESULT MODAL
+========================= */
+
+.result-overlay{
+    position:fixed;
+    inset:0;
+    z-index:9000;
+
+    display:none;
+    align-items:center;
+    justify-content:center;
+
+    padding:18px;
+
+    background:rgba(0,0,0,.58);
+    backdrop-filter:blur(14px);
+}
+
+.result-overlay.active{
+    display:flex;
+}
+
+.result-modal{
+    width:min(520px, 100%);
+
+    border-radius:30px;
+    padding:24px;
+
+    background:
+        radial-gradient(circle at 82% 14%, rgba(203,108,230,.22), transparent 28%),
+        linear-gradient(180deg,#171621 0%,#0f0e17 100%);
+
+    border:1px solid rgba(255,255,255,.08);
+
+    box-shadow:0 24px 70px rgba(0,0,0,.48);
+
+    color:#fff;
+}
+
+.result-fire{
+    width:54px;
+    height:54px;
+
+    margin:0 auto 14px;
+
+    border-radius:20px;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    background:rgba(203,108,230,.16);
+    border:1px solid rgba(203,108,230,.30);
+
+    font-size:30px;
+}
+
+.result-title{
+    margin:0 0 8px;
+
+    text-align:center;
+
+    font-size:30px;
+    line-height:1.1;
+    font-weight:900;
+}
+
+.result-score{
+    margin:0 0 18px;
+
+    text-align:center;
+
+    color:var(--muted);
+
+    font-size:15px;
+    line-height:1.45;
+    font-weight:700;
+}
+
+.result-scale{
+    display:grid;
+    gap:10px;
+
+    margin-bottom:18px;
+}
+
+.result-scale-item{
+    padding:13px 14px;
+
+    border-radius:18px;
+
+    background:rgba(255,255,255,.045);
+    border:1px solid rgba(255,255,255,.07);
+
+    color:rgba(255,255,255,.72);
+
+    font-size:14px;
+    line-height:1.35;
+    font-weight:800;
+}
+
+.result-scale-item.active{
+    color:#fff;
+
+    background:
+        linear-gradient(
+            90deg,
+            rgba(203,108,230,.30),
+            rgba(168,85,247,.18)
+        );
+
+    border-color:rgba(203,108,230,.45);
+}
+
+.result-actions{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:10px;
+}
+
+.result-btn{
+    width:100%;
+    min-height:54px;
+
+    border:none;
+    border-radius:18px;
+
+    color:#fff;
+
+    font-size:15px;
+    line-height:1.2;
+    font-weight:900;
+}
+
+.result-btn-secondary{
+    background:rgba(255,255,255,.055);
+    border:1px solid rgba(255,255,255,.09);
+}
+
+.result-btn-primary{
+    background:
+        linear-gradient(
+            90deg,
+            var(--accent),
+            var(--accent-2)
+        );
+
+    box-shadow:0 14px 32px rgba(203,108,230,.22);
+}
+
+@media (max-width:420px){
+    .result-actions{
+        grid-template-columns:1fr;
+    }
+
+    .result-title{
+        font-size:26px;
+    }
+}
 </style>
 
 </head>
@@ -2396,6 +2557,23 @@ const t = {
         finishText:"Siz 1-darsni tugatdingiz. Endi keyingi darsga o‘tishingiz mumkin.",
         finishNext:"2-darsga o‘tish",
 
+        showResults:"Natijalarni ko‘rish",
+
+        resultBadTitle:"Darsni qayta ko‘rish kerak",
+        resultGoodTitle:"Yaxshi natija",
+        resultGreatTitle:"A’lo natija",
+
+        resultBadText:"Ba’zi joylar tushunarsiz qolgan. Darsni yana bir marta ko‘rib, testni qayta topshirishni tavsiya qilamiz.",
+        resultGoodText:"Yaxshi natija, lekin bundan ham yaxshiroq bo‘lishi mumkin. Asosiy tushuncha bor, detallarga e’tibor kerak.",
+        resultGreatText:"Tabriklaymiz! Dars juda yaxshi o‘zlashtirildi.",
+
+        resultScaleBad:"0–4 to‘g‘ri javob — past natija, darsni qayta ko‘rishni tavsiya qilamiz",
+        resultScaleGood:"5–7 to‘g‘ri javob — yaxshi natija, lekin yanada yaxshiroq bo‘lishi mumkin",
+        resultScaleGreat:"8–10 to‘g‘ri javob — a’lo natija, dars o‘zlashtirildi",
+
+        restartLesson:"Darsni qayta ko‘rish",
+        finishLessonBtn:"Darsni yakunlash",
+
         materialMissing:"Material keyinroq qo‘shiladi"
     },
 
@@ -2436,6 +2614,23 @@ const t = {
         finishTitle:"Урок завершён",
         finishText:"Ты прошёл первый урок. Теперь можно перейти ко второму уроку.",
         finishNext:"Перейти ко 2 уроку",
+
+        showResults:"Узнать результаты",
+
+        resultBadTitle:"Нужно повторить урок",
+        resultGoodTitle:"Хороший результат",
+        resultGreatTitle:"Отличный результат",
+
+        resultBadText:"Есть пробелы. Советуем ещё раз пройти урок и потом повторить тест.",
+        resultGoodText:"Хороший результат, но можно лучше. Основу ты понял, осталось закрепить детали.",
+        resultGreatText:"Поздравляем! Урок усвоен отлично.",
+
+        resultScaleBad:"0–4 правильных ответа — плохо, советуем ещё раз пройти урок",
+        resultScaleGood:"5–7 правильных ответов — хороший результат, но можно лучше",
+        resultScaleGreat:"8–10 правильных ответов — отличный результат, урок усвоен",
+
+        restartLesson:"Пройти урок ещё раз",
+        finishLessonBtn:"Закончить урок",
 
         materialMissing:"Материал будет добавлен позже"
     }
@@ -3553,11 +3748,20 @@ function renderQuestion(){
         desktopAnswers.innerHTML = html
     }
 
+    const isLastQuestion =
+        currentQuestionIndex === list.length - 1
+
     if(mobileNext){
+        mobileNext.innerText =
+            isLastQuestion ? t[lang].showResults : t[lang].nextQuestion
+
         mobileNext.style.display = "none"
     }
 
     if(desktopNext){
+        desktopNext.innerText =
+            isLastQuestion ? t[lang].showResults : t[lang].nextQuestion
+
         desktopNext.style.display = "none"
     }
 
@@ -3664,11 +3868,170 @@ function updateTestProgress(){
     }
 }
 
+async function saveProgress(){
+
+    try{
+
+        if(!telegramUserId){
+            console.log("No telegram user id, progress not saved")
+            return false
+        }
+
+        const response =
+            await fetch("https://api.gaphub.uz/progress/complete", {
+
+                method:"POST",
+
+                headers:{
+                    "Content-Type":"application/json"
+                },
+
+                body:JSON.stringify({
+                    telegram_id:telegramUserId,
+                    course_slug:COURSE_SLUG,
+                    lesson_id:LESSON_ID
+                })
+            })
+
+        return response.ok
+
+    }catch(error){
+
+        console.log("Progress save error:", error)
+        return false
+    }
+}
+
+function getResultStatus(){
+
+    const total =
+        questions[lang].length
+
+    if(score <= 4){
+        return {
+            key:"bad",
+            title:t[lang].resultBadTitle,
+            text:t[lang].resultBadText,
+            scoreText:`${score}/${total}`
+        }
+    }
+
+    if(score <= 7){
+        return {
+            key:"good",
+            title:t[lang].resultGoodTitle,
+            text:t[lang].resultGoodText,
+            scoreText:`${score}/${total}`
+        }
+    }
+
+    return {
+        key:"great",
+        title:t[lang].resultGreatTitle,
+        text:t[lang].resultGreatText,
+        scoreText:`${score}/${total}`
+    }
+}
+
 function finishLesson(){
 
     impact("medium")
 
-    alert(`${t[lang].finishTitle}\n\n${t[lang].finishText}`)
+    const result =
+        getResultStatus()
+
+    let overlay =
+        document.getElementById("resultOverlay")
+
+    if(!overlay){
+        overlay = document.createElement("div")
+        overlay.id = "resultOverlay"
+        overlay.className = "result-overlay"
+        document.body.appendChild(overlay)
+    }
+
+    overlay.innerHTML = `
+        <div class="result-modal">
+
+            <div class="result-fire">
+                🔥
+            </div>
+
+            <h2 class="result-title">
+                ${result.title}
+            </h2>
+
+            <p class="result-score">
+                ${result.text}<br>
+                ${result.scoreText}
+            </p>
+
+            <div class="result-scale">
+
+                <div class="result-scale-item ${result.key === "bad" ? "active" : ""}">
+                    ${t[lang].resultScaleBad}
+                </div>
+
+                <div class="result-scale-item ${result.key === "good" ? "active" : ""}">
+                    ${t[lang].resultScaleGood}
+                </div>
+
+                <div class="result-scale-item ${result.key === "great" ? "active" : ""}">
+                    ${t[lang].resultScaleGreat}
+                </div>
+
+            </div>
+
+            <div class="result-actions">
+
+                <button
+                    class="result-btn result-btn-secondary"
+                    onclick="restartLesson()"
+                >
+                    ${t[lang].restartLesson}
+                </button>
+
+                <button
+                    class="result-btn result-btn-primary"
+                    onclick="completeLesson()"
+                >
+                    ${t[lang].finishLessonBtn}
+                </button>
+
+            </div>
+
+        </div>
+    `
+
+    overlay.classList.add("active")
+}
+
+function restartLesson(){
+
+    impact()
+
+    const overlay =
+        document.getElementById("resultOverlay")
+
+    if(overlay){
+        overlay.classList.remove("active")
+    }
+
+    currentQuestionIndex = 0
+    score = 0
+    selectedAnswer = false
+
+    renderQuestion()
+    goStep("video")
+}
+
+async function completeLesson(){
+
+    impact("medium")
+
+    await saveProgress()
+
+    window.location.href = "learn-smm-v2.html"
 }
 
 /* =========================
