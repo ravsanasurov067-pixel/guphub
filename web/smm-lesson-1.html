@@ -1556,6 +1556,71 @@ button{
         font-size:15px;
     }
 }
+
+/* =========================
+   MOBILE PLYR FULLSCREEN FIX
+========================= */
+
+@media (max-width:1023px){
+
+    .mobile-video-frame .plyr{
+        width:100%;
+        height:100%;
+    }
+
+    .mobile-video-frame .plyr__video-wrapper{
+        width:100%;
+        height:100%;
+    }
+
+    .mobile-video-frame .plyr video{
+        width:100%;
+        height:100%;
+        object-fit:contain;
+        background:#000;
+    }
+
+    .plyr:fullscreen,
+    .plyr:-webkit-full-screen{
+        width:100vw !important;
+        height:100vh !important;
+        max-width:100vw !important;
+        max-height:100vh !important;
+
+        background:#000 !important;
+    }
+
+    .plyr:fullscreen .plyr__video-wrapper,
+    .plyr:-webkit-full-screen .plyr__video-wrapper{
+        width:100vw !important;
+        height:100vh !important;
+        max-width:100vw !important;
+        max-height:100vh !important;
+
+        display:flex !important;
+        align-items:center !important;
+        justify-content:center !important;
+
+        background:#000 !important;
+    }
+
+    .plyr:fullscreen video,
+    .plyr:-webkit-full-screen video{
+        width:100vw !important;
+        height:100vh !important;
+        max-width:100vw !important;
+        max-height:100vh !important;
+
+        object-fit:contain !important;
+
+        background:#000 !important;
+    }
+
+    .plyr:fullscreen .plyr__controls,
+    .plyr:-webkit-full-screen .plyr__controls{
+        width:100% !important;
+    }
+}
 </style>
 
 </head>
@@ -2657,16 +2722,17 @@ function goBack(){
 
     impact()
 
-    if(
-        window.Telegram &&
-        Telegram.WebApp &&
-        Telegram.WebApp.close
-    ){
-        Telegram.WebApp.close()
-        return
+    if(currentStep !== "video"){
+        const currentIndex = getStepIndex(currentStep)
+        const previousStep = STEP_ORDER[currentIndex - 1]
+
+        if(previousStep){
+            goStep(previousStep)
+            return
+        }
     }
 
-    window.history.back()
+    window.location.href = "smm.html"
 }
 
 /* =========================
@@ -2790,6 +2856,7 @@ function setLessonLang(value){
 
     updateStaticText()
     initVideo()
+    loadOtabek()
 }
 
 function updateLessonLangButtons(){
@@ -3588,6 +3655,20 @@ function nextQuestion(){
         return
     }
 
+    const mobileProgress =
+        document.getElementById("testProgress-mobile")
+
+    const desktopProgress =
+        document.getElementById("testProgress-desktop")
+
+    if(mobileProgress){
+        mobileProgress.style.width = "100%"
+    }
+
+    if(desktopProgress){
+        desktopProgress.style.width = "100%"
+    }
+
     finishLesson()
 }
 
@@ -3597,7 +3678,7 @@ function updateTestProgress(){
         questions[lang]
 
     const percent =
-        ((currentQuestionIndex + 1) / list.length) * 100
+        (currentQuestionIndex / list.length) * 100
 
     const mobileProgress =
         document.getElementById("testProgress-mobile")
@@ -3675,6 +3756,13 @@ function loadOtabek(){
 
             slot.innerHTML = html
 
+            const oldOtabekScript =
+                document.getElementById("otabekRuntimeScript")
+
+            if(oldOtabekScript){
+                oldOtabekScript.remove()
+            }
+
             const scripts =
                 slot.querySelectorAll("script")
 
@@ -3682,6 +3770,8 @@ function loadOtabek(){
 
                 const newScript =
                     document.createElement("script")
+
+                newScript.id = "otabekRuntimeScript"
 
                 newScript.textContent =
                     oldScript.textContent
