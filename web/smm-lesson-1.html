@@ -1568,58 +1568,6 @@ button{
         height:100%;
     }
 
-    .mobile-video-frame .plyr__video-wrapper{
-        width:100%;
-        height:100%;
-    }
-
-    .mobile-video-frame .plyr video{
-        width:100%;
-        height:100%;
-        object-fit:contain;
-        background:#000;
-    }
-
-    .plyr:fullscreen,
-    .plyr:-webkit-full-screen{
-        width:100vw !important;
-        height:100vh !important;
-        max-width:100vw !important;
-        max-height:100vh !important;
-
-        background:#000 !important;
-    }
-
-    .plyr:fullscreen .plyr__video-wrapper,
-    .plyr:-webkit-full-screen .plyr__video-wrapper{
-        width:100vw !important;
-        height:100vh !important;
-        max-width:100vw !important;
-        max-height:100vh !important;
-
-        display:flex !important;
-        align-items:center !important;
-        justify-content:center !important;
-
-        background:#000 !important;
-    }
-
-    .plyr:fullscreen video,
-    .plyr:-webkit-full-screen video{
-        width:100vw !important;
-        height:100vh !important;
-        max-width:100vw !important;
-        max-height:100vh !important;
-
-        object-fit:contain !important;
-
-        background:#000 !important;
-    }
-
-    .plyr:fullscreen .plyr__controls,
-    .plyr:-webkit-full-screen .plyr__controls{
-        width:100% !important;
-    }
 }
 </style>
 
@@ -1698,7 +1646,6 @@ button{
                 <div class="mobile-video-frame">
 
                     <video
-                        class="js-plyr-video"
                         id="lessonVideo-mobile"
                         controls
                         playsinline
@@ -2732,7 +2679,7 @@ function goBack(){
         }
     }
 
-    window.location.href = "smm.html"
+    window.location.href = "learn-smm-v2.html"
 }
 
 /* =========================
@@ -2907,21 +2854,11 @@ function capitalizeStep(step){
 
 function initPlyr(){
 
-    const mobileVideo =
-        document.getElementById("lessonVideo-mobile")
-
     const desktopVideo =
         document.getElementById("lessonVideo-desktop")
 
-    if(window.Plyr){
-
-        if(mobileVideo){
-            mobilePlyr = new Plyr(mobileVideo)
-        }
-
-        if(desktopVideo){
-            desktopPlyr = new Plyr(desktopVideo)
-        }
+    if(window.Plyr && desktopVideo){
+        desktopPlyr = new Plyr(desktopVideo)
     }
 }
 
