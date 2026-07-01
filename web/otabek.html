@@ -864,368 +864,558 @@
 
     </div>
 
-    <script>
-const OTABEK_STORAGE_KEY =
-    window.OTABEK_STORAGE_KEY || "gaphub_otabek_default"
+<script>
+(function(){
 
-const OTABEK_CHATS_KEY =
-    OTABEK_STORAGE_KEY + "_chats"
+    const otabekLang =
+        window.OTABEK_LANG || localStorage.getItem("lang") || "uz"
 
-let otabekChats = JSON.parse(
-    localStorage.getItem(OTABEK_CHATS_KEY) || "[]"
-)
+    const OTABEK_STORAGE_KEY =
+        window.OTABEK_STORAGE_KEY || `gaphub_otabek_default_${otabekLang}`
 
-let currentOtabekChatId = null
-let otabekHistoryViewOpen = false
+    const OTABEK_CHATS_KEY =
+        OTABEK_STORAGE_KEY + "_chats"
 
-function saveOtabekChats(){
+    const otabekText = {
 
-    localStorage.setItem(
-        OTABEK_CHATS_KEY,
-        JSON.stringify(otabekChats)
+        ru:{
+            name:"Отабек",
+            role:"AI-помощник урока",
+            history:"История чатов",
+            historyEmpty:"История пока пустая",
+            newChat:"Новый чат",
+            placeholder:"Спроси по уроку...",
+
+            hello:"Привет. Я помогу разобраться с уроком. Можешь спросить меня про SMM, аудиторию, контент или тест.",
+
+            quickSimple:"Объясни проще",
+            quickSimpleMobile:"Проще",
+            quickSimplePrompt:"Объясни тему проще",
+
+            quickExample:"Пример",
+            quickExamplePrompt:"Приведи пример",
+
+            quickMain:"Главное",
+            quickMainPrompt:"Что главное запомнить?",
+
+            answerSimple:"Если проще: SMM помогает бизнесу быть заметным в соцсетях, объяснять ценность продукта и постепенно приводить людей к покупке.",
+            answerExample:"Например, салон красоты может показывать не только результат, но и процесс работы, уход после процедуры и ответы на частые вопросы клиентов.",
+            answerMain:"Главное из урока: SMM это не просто публикация постов. Это система: контент, внимание, доверие и действие.",
+            answerAudience:"ЦА — это люди, которым реально может быть интересен продукт или услуга. Без понимания аудитории сложно делать хороший контент.",
+            answerDefault:"Пока я работаю в тестовом режиме. Позже меня подключат к полноценному AI, и я смогу отвечать намного глубже и точнее.",
+
+            locale:"ru-RU"
+        },
+
+        uz:{
+            name:"Otabek",
+            role:"Dars AI yordamchisi",
+            history:"Chatlar tarixi",
+            historyEmpty:"Tarix hozircha bo‘sh",
+            newChat:"Yangi chat",
+            placeholder:"Dars bo‘yicha savol yozing...",
+
+            hello:"Salom. Men darsni tushunishga yordam beraman. Mendan SMM, auditoriya, kontent yoki test bo‘yicha so‘rashingiz mumkin.",
+
+            quickSimple:"Soddaroq tushuntir",
+            quickSimpleMobile:"Soddaroq",
+            quickSimplePrompt:"Mavzuni soddaroq tushuntir",
+
+            quickExample:"Misol",
+            quickExamplePrompt:"Misol keltir",
+
+            quickMain:"Asosiy fikr",
+            quickMainPrompt:"Eng asosiy nimani eslab qolish kerak?",
+
+            answerSimple:"Soddaroq aytganda: SMM biznesga ijtimoiy tarmoqlarda ko‘rinish, mahsulot qiymatini tushuntirish va odamlarni asta-sekin xaridga olib kelishga yordam beradi.",
+            answerExample:"Masalan, go‘zallik saloni faqat natijani emas, jarayonni, protseduradan keyingi parvarishni va mijozlarning ko‘p so‘raydigan savollariga javoblarni ham ko‘rsatishi mumkin.",
+            answerMain:"Darsdagi eng asosiy fikr: SMM shunchaki post joylash emas. Bu tizim: kontent, e’tibor, ishonch va harakat.",
+            answerAudience:"Auditoriya — mahsulot yoki xizmatga haqiqatda qiziqishi mumkin bo‘lgan odamlar. Auditoriyani tushunmasdan yaxshi kontent qilish qiyin.",
+            answerDefault:"Hozir men test rejimida ishlayapman. Keyinroq meni to‘liq AI bilan ulaymiz va men ancha chuqurroq hamda aniqroq javob bera olaman.",
+
+            locale:"uz-UZ"
+        }
+    }
+
+    const d =
+        otabekText[otabekLang] || otabekText.uz
+
+    let otabekChats = JSON.parse(
+        localStorage.getItem(OTABEK_CHATS_KEY) || "[]"
     )
-}
 
-function createOtabekChat(firstText){
+    let currentOtabekChatId = null
+    let otabekHistoryViewOpen = false
 
-    const chat = {
-        id:"chat_" + Date.now(),
-        title:firstText ? firstText.slice(0, 42) : "Новый чат",
-        createdAt:new Date().toISOString(),
-        updatedAt:new Date().toISOString(),
-        messages:[]
+    function saveOtabekChats(){
+
+        localStorage.setItem(
+            OTABEK_CHATS_KEY,
+            JSON.stringify(otabekChats)
+        )
     }
 
-    otabekChats.unshift(chat)
-    currentOtabekChatId = chat.id
+    function createOtabekChat(firstText){
 
-    saveOtabekChats()
+        const chat = {
+            id:"chat_" + Date.now(),
+            title:firstText ? firstText.slice(0, 42) : d.newChat,
+            createdAt:new Date().toISOString(),
+            updatedAt:new Date().toISOString(),
+            messages:[]
+        }
 
-    return chat
-}
+        otabekChats.unshift(chat)
+        currentOtabekChatId = chat.id
 
-function getCurrentOtabekChat(){
+        saveOtabekChats()
 
-    if(!currentOtabekChatId) return null
-
-    return otabekChats.find(chat => chat.id === currentOtabekChatId) || null
-}
-
-function updateOtabekActionsVisibility(){
-
-    const currentChat = getCurrentOtabekChat()
-
-    const desktopActions =
-        document.getElementById("otabekActionsDesktop")
-
-    const mobileActions =
-        document.getElementById("otabekActionsMobile")
-
-    const shouldHide =
-        Boolean(currentChat) || otabekHistoryViewOpen
-
-    if(desktopActions){
-        desktopActions.classList.toggle("hidden", shouldHide)
+        return chat
     }
 
-    if(mobileActions){
-        mobileActions.classList.toggle("hidden", shouldHide)
-    }
-}
+    function getCurrentOtabekChat(){
 
-function renderOtabekMessages(){
+        if(!currentOtabekChatId) return null
 
-    const desktopRoot =
-        document.getElementById("otabekMessages")
-
-    const mobileRoot =
-        document.getElementById("otabekMessagesMobile")
-
-    const currentChat = getCurrentOtabekChat()
-
-    const defaultMessage = `
-        <div class="otabek-message bot">
-            Привет. Я помогу разобраться с уроком. Можешь спросить меня про SMM, аудиторию, контент или тест.
-        </div>
-    `
-
-    let html = defaultMessage
-
-    if(currentChat){
-        html += currentChat.messages.map(item => `
-            <div class="otabek-message ${item.role}">
-                ${item.text}
-            </div>
-        `).join("")
+        return otabekChats.find(chat => chat.id === currentOtabekChatId) || null
     }
 
-    if(desktopRoot){
-        desktopRoot.innerHTML = html
-        desktopRoot.scrollTop = desktopRoot.scrollHeight
+    function updateOtabekStaticText(){
+
+        document
+            .querySelectorAll(".otabek-name")
+            .forEach(item => {
+                item.innerText = d.name
+            })
+
+        document
+            .querySelectorAll(".otabek-role")
+            .forEach(item => {
+                item.innerText = d.role
+            })
+
+        document
+            .querySelectorAll(".otabek-avatar-img")
+            .forEach(item => {
+                item.alt = d.name
+            })
+
+        const historyIcon =
+            document.querySelector(".otabek-history-icon")
+
+        if(historyIcon){
+            historyIcon.setAttribute("aria-label", d.history)
+
+            const span =
+                historyIcon.querySelector("span")
+
+            if(span){
+                span.innerText = d.history
+            }
+        }
+
+        document
+            .querySelectorAll(".otabek-history-btn")
+            .forEach(item => {
+                item.innerText = d.history
+            })
+
+        document
+            .querySelectorAll(".otabek-input")
+            .forEach(item => {
+                item.placeholder = d.placeholder
+            })
+
+        const desktopActions =
+            document.querySelectorAll("#otabekActionsDesktop .otabek-action")
+
+        if(desktopActions[0]){
+            desktopActions[0].innerText = d.quickSimple
+            desktopActions[0].setAttribute(
+                "onclick",
+                `otabekQuick('${d.quickSimplePrompt}')`
+            )
+        }
+
+        if(desktopActions[1]){
+            desktopActions[1].innerText = d.quickExample
+            desktopActions[1].setAttribute(
+                "onclick",
+                `otabekQuick('${d.quickExamplePrompt}')`
+            )
+        }
+
+        if(desktopActions[2]){
+            desktopActions[2].innerText = d.quickMain
+            desktopActions[2].setAttribute(
+                "onclick",
+                `otabekQuick('${d.quickMainPrompt}')`
+            )
+        }
+
+        const mobileActions =
+            document.querySelectorAll("#otabekActionsMobile .otabek-action")
+
+        if(mobileActions[0]){
+            mobileActions[0].innerText = d.quickSimpleMobile
+            mobileActions[0].setAttribute(
+                "onclick",
+                `otabekQuick('${d.quickSimplePrompt}')`
+            )
+        }
+
+        if(mobileActions[1]){
+            mobileActions[1].innerText = d.quickExample
+            mobileActions[1].setAttribute(
+                "onclick",
+                `otabekQuick('${d.quickExamplePrompt}')`
+            )
+        }
+
+        if(mobileActions[2]){
+            mobileActions[2].innerText = d.quickMain
+            mobileActions[2].setAttribute(
+                "onclick",
+                `otabekQuick('${d.quickMainPrompt}')`
+            )
+        }
     }
 
-    if(mobileRoot){
-        mobileRoot.innerHTML = html
-        mobileRoot.scrollTop = mobileRoot.scrollHeight
+    function updateOtabekActionsVisibility(){
+
+        const currentChat = getCurrentOtabekChat()
+
+        const desktopActions =
+            document.getElementById("otabekActionsDesktop")
+
+        const mobileActions =
+            document.getElementById("otabekActionsMobile")
+
+        const shouldHide =
+            otabekHistoryViewOpen ||
+            Boolean(currentChat && currentChat.messages.length > 0)
+
+        if(desktopActions){
+            desktopActions.classList.toggle("hidden", shouldHide)
+        }
+
+        if(mobileActions){
+            mobileActions.classList.toggle("hidden", shouldHide)
+        }
     }
 
-    updateOtabekActionsVisibility()
-}
+    function renderOtabekMessages(){
 
-function renderOtabekChatHistory(){
+        const desktopRoot =
+            document.getElementById("otabekMessages")
 
-    const desktopRoot =
-        document.getElementById("otabekMessages")
+        const mobileRoot =
+            document.getElementById("otabekMessagesMobile")
 
-    const mobileRoot =
-        document.getElementById("otabekMessagesMobile")
+        const currentChat = getCurrentOtabekChat()
 
-    const html = otabekChats.length
-        ? otabekChats.map(chat => `
-            <button
-                class="otabek-chat-history-item"
-                onclick="openOtabekChat('${chat.id}')"
-            >
-                <span class="otabek-chat-history-title">
-                    ${chat.title}
-                </span>
-                <span class="otabek-chat-history-date">
-                    ${formatOtabekChatDate(chat.updatedAt)}
-                </span>
-            </button>
-        `).join("")
-        : `
-            <div class="otabek-history-empty">
-                История пока пустая
+        const defaultMessage = `
+            <div class="otabek-message bot">
+                ${d.hello}
             </div>
         `
 
-    if(desktopRoot){
-        desktopRoot.innerHTML = html
+        let html = defaultMessage
+
+        if(currentChat){
+            html += currentChat.messages.map(item => `
+                <div class="otabek-message ${item.role}">
+                    ${item.text}
+                </div>
+            `).join("")
+        }
+
+        if(desktopRoot){
+            desktopRoot.innerHTML = html
+            desktopRoot.scrollTop = desktopRoot.scrollHeight
+        }
+
+        if(mobileRoot){
+            mobileRoot.innerHTML = html
+            mobileRoot.scrollTop = mobileRoot.scrollHeight
+        }
+
+        updateOtabekActionsVisibility()
     }
 
-    if(mobileRoot){
-        mobileRoot.innerHTML = html
+    function renderOtabekChatHistory(){
+
+        const desktopRoot =
+            document.getElementById("otabekMessages")
+
+        const mobileRoot =
+            document.getElementById("otabekMessagesMobile")
+
+        const html = otabekChats.length
+            ? otabekChats.map(chat => `
+                <button
+                    class="otabek-chat-history-item"
+                    onclick="openOtabekChat('${chat.id}')"
+                >
+                    <span class="otabek-chat-history-title">
+                        ${chat.title}
+                    </span>
+                    <span class="otabek-chat-history-date">
+                        ${formatOtabekChatDate(chat.updatedAt)}
+                    </span>
+                </button>
+            `).join("")
+            : `
+                <div class="otabek-history-empty">
+                    ${d.historyEmpty}
+                </div>
+            `
+
+        if(desktopRoot){
+            desktopRoot.innerHTML = html
+        }
+
+        if(mobileRoot){
+            mobileRoot.innerHTML = html
+        }
+
+        updateOtabekActionsVisibility()
     }
 
-    updateOtabekActionsVisibility()
-}
+    function toggleOtabekHistory(){
 
-function toggleOtabekHistory(){
+        otabekHistoryViewOpen = !otabekHistoryViewOpen
 
-    otabekHistoryViewOpen = !otabekHistoryViewOpen
+        const desktopRoot =
+            document.getElementById("otabekMessages")
 
-    const desktopRoot =
-        document.getElementById("otabekMessages")
+        if(desktopRoot){
+            desktopRoot.classList.add("active")
+        }
 
-    if(desktopRoot){
-        desktopRoot.classList.add("active")
+        if(otabekHistoryViewOpen){
+            renderOtabekChatHistory()
+        }else{
+            renderOtabekMessages()
+        }
     }
 
-    if(otabekHistoryViewOpen){
-        renderOtabekChatHistory()
-    }else{
-        renderOtabekMessages()
-    }
-}
+    function openOtabekChat(chatId){
 
-function openOtabekChat(chatId){
-
-    currentOtabekChatId = chatId
-    otabekHistoryViewOpen = false
-
-    const desktopRoot =
-        document.getElementById("otabekMessages")
-
-    if(desktopRoot){
-        desktopRoot.classList.add("active")
-    }
-
-    renderOtabekMessages()
-}
-
-function formatOtabekChatDate(value){
-
-    const date = new Date(value)
-
-    return date.toLocaleString("ru-RU", {
-        day:"2-digit",
-        month:"2-digit",
-        hour:"2-digit",
-        minute:"2-digit"
-    })
-}
-
-function toggleOtabekMobile(){
-
-    const overlay =
-        document.getElementById("otabekMobileOverlay")
-
-    if(!overlay) return
-
-    const willOpen =
-        !overlay.classList.contains("active")
-
-    overlay.classList.toggle("active")
-
-    if(willOpen){
-        currentOtabekChatId = null
+        currentOtabekChatId = chatId
         otabekHistoryViewOpen = false
+
+        const desktopRoot =
+            document.getElementById("otabekMessages")
+
+        if(desktopRoot){
+            desktopRoot.classList.add("active")
+        }
+
         renderOtabekMessages()
     }
-}
 
-function otabekEnter(event){
+    function formatOtabekChatDate(value){
 
-    if(event.key === "Enter"){
-        sendOtabekMessage()
-    }
-}
+        const date =
+            new Date(value)
 
-function otabekEnterMobile(event){
-
-    if(event.key === "Enter"){
-        sendOtabekMessageMobile()
-    }
-}
-
-function otabekQuick(text){
-
-    const desktopInput =
-        document.getElementById("otabekInput")
-
-    const mobileInput =
-        document.getElementById("otabekInputMobile")
-
-    if(desktopInput){
-        desktopInput.value = text
+        return date.toLocaleString(d.locale, {
+            day:"2-digit",
+            month:"2-digit",
+            hour:"2-digit",
+            minute:"2-digit"
+        })
     }
 
-    if(mobileInput){
-        mobileInput.value = text
+    function toggleOtabekMobile(){
+
+        const overlay =
+            document.getElementById("otabekMobileOverlay")
+
+        if(!overlay) return
+
+        const willOpen =
+            !overlay.classList.contains("active")
+
+        overlay.classList.toggle("active")
+
+        if(willOpen){
+            currentOtabekChatId = null
+            otabekHistoryViewOpen = false
+            renderOtabekMessages()
+        }
     }
 
-    if(window.innerWidth >= 1024){
-        sendOtabekMessage()
-    }else{
-        sendOtabekMessageMobile()
-    }
-}
+    function otabekEnter(event){
 
-function sendOtabekMessage(){
-
-    const input =
-        document.getElementById("otabekInput")
-
-    if(!input) return
-
-    const text = input.value.trim()
-
-    if(!text) return
-
-    input.value = ""
-
-    addOtabekMessage(text)
-}
-
-function sendOtabekMessageMobile(){
-
-    const input =
-        document.getElementById("otabekInputMobile")
-
-    if(!input) return
-
-    const text = input.value.trim()
-
-    if(!text) return
-
-    input.value = ""
-
-    addOtabekMessage(text)
-}
-
-function addOtabekMessage(text){
-
-    let currentChat = getCurrentOtabekChat()
-
-    if(!currentChat){
-        currentChat = createOtabekChat(text)
+        if(event.key === "Enter"){
+            sendOtabekMessage()
+        }
     }
 
-    currentChat.messages.push({
-        role:"user",
-        text:text
-    })
+    function otabekEnterMobile(event){
 
-    currentChat.messages.push({
-        role:"bot",
-        text:getOtabekMockAnswer(text)
-    })
-
-    currentChat.updatedAt = new Date().toISOString()
-
-    if(!currentChat.title || currentChat.title === "Новый чат"){
-        currentChat.title = text.slice(0, 42)
+        if(event.key === "Enter"){
+            sendOtabekMessageMobile()
+        }
     }
 
-    otabekChats =
-        otabekChats.filter(chat => chat.id !== currentChat.id)
+    function otabekQuick(text){
 
-    otabekChats.unshift(currentChat)
+        const desktopInput =
+            document.getElementById("otabekInput")
 
-    currentOtabekChatId = currentChat.id
-    otabekHistoryViewOpen = false
+        const mobileInput =
+            document.getElementById("otabekInputMobile")
 
-    saveOtabekChats()
+        if(desktopInput){
+            desktopInput.value = text
+        }
 
-    const desktopRoot =
-        document.getElementById("otabekMessages")
+        if(mobileInput){
+            mobileInput.value = text
+        }
 
-    if(desktopRoot){
-        desktopRoot.classList.add("active")
+        if(window.innerWidth >= 1024){
+            sendOtabekMessage()
+        }else{
+            sendOtabekMessageMobile()
+        }
     }
 
+    function sendOtabekMessage(){
+
+        const input =
+            document.getElementById("otabekInput")
+
+        if(!input) return
+
+        const text =
+            input.value.trim()
+
+        if(!text) return
+
+        input.value = ""
+
+        addOtabekMessage(text)
+    }
+
+    function sendOtabekMessageMobile(){
+
+        const input =
+            document.getElementById("otabekInputMobile")
+
+        if(!input) return
+
+        const text =
+            input.value.trim()
+
+        if(!text) return
+
+        input.value = ""
+
+        addOtabekMessage(text)
+    }
+
+    function addOtabekMessage(text){
+
+        let currentChat =
+            getCurrentOtabekChat()
+
+        if(!currentChat){
+            currentChat = createOtabekChat(text)
+        }
+
+        currentChat.messages.push({
+            role:"user",
+            text:text
+        })
+
+        currentChat.messages.push({
+            role:"bot",
+            text:getOtabekMockAnswer(text)
+        })
+
+        currentChat.updatedAt =
+            new Date().toISOString()
+
+        if(!currentChat.title || currentChat.title === d.newChat){
+            currentChat.title = text.slice(0, 42)
+        }
+
+        otabekChats =
+            otabekChats.filter(chat => chat.id !== currentChat.id)
+
+        otabekChats.unshift(currentChat)
+
+        currentOtabekChatId = currentChat.id
+        otabekHistoryViewOpen = false
+
+        saveOtabekChats()
+
+        const desktopRoot =
+            document.getElementById("otabekMessages")
+
+        if(desktopRoot){
+            desktopRoot.classList.add("active")
+        }
+
+        renderOtabekMessages()
+    }
+
+    function getOtabekMockAnswer(text){
+
+        const lower =
+            text.toLowerCase()
+
+        if(
+            lower.includes("проще") ||
+            lower.includes("sodda") ||
+            lower.includes("soddaroq") ||
+            lower.includes("oddiy") ||
+            lower.includes("tushuntir")
+        ){
+            return d.answerSimple
+        }
+
+        if(
+            lower.includes("пример") ||
+            lower.includes("misol")
+        ){
+            return d.answerExample
+        }
+
+        if(
+            lower.includes("главное") ||
+            lower.includes("asosiy") ||
+            lower.includes("eslab")
+        ){
+            return d.answerMain
+        }
+
+        if(
+            lower.includes("ца") ||
+            lower.includes("аудитория") ||
+            lower.includes("auditoriya")
+        ){
+            return d.answerAudience
+        }
+
+        return d.answerDefault
+    }
+
+    window.toggleOtabekHistory = toggleOtabekHistory
+    window.openOtabekChat = openOtabekChat
+    window.toggleOtabekMobile = toggleOtabekMobile
+    window.otabekEnter = otabekEnter
+    window.otabekEnterMobile = otabekEnterMobile
+    window.otabekQuick = otabekQuick
+    window.sendOtabekMessage = sendOtabekMessage
+    window.sendOtabekMessageMobile = sendOtabekMessageMobile
+
+    updateOtabekStaticText()
     renderOtabekMessages()
-}
 
-function getOtabekMockAnswer(text){
-
-    const lower = text.toLowerCase()
-
-    if(
-        lower.includes("проще") ||
-        lower.includes("oddiy") ||
-        lower.includes("тушун")
-    ){
-        return "Если проще: SMM помогает бизнесу быть заметным в соцсетях, объяснять ценность продукта и постепенно приводить людей к покупке."
-    }
-
-    if(
-        lower.includes("пример") ||
-        lower.includes("misol")
-    ){
-        return "Например, салон красоты может показывать не только результат, но и процесс работы, уход после процедуры и ответы на частые вопросы клиентов."
-    }
-
-    if(
-        lower.includes("главное") ||
-        lower.includes("asosiy")
-    ){
-        return "Главное из урока: SMM это не просто публикация постов. Это система: контент, внимание, доверие и действие."
-    }
-
-    if(
-        lower.includes("ца") ||
-        lower.includes("аудитория") ||
-        lower.includes("auditoriya")
-    ){
-        return "ЦА — это люди, которым реально может быть интересен продукт или услуга. Без понимания аудитории сложно делать хороший контент."
-    }
-
-    return "Пока я работаю в тестовом режиме. Позже меня подключат к полноценному AI, и я смогу отвечать намного глубже и точнее."
-}
-
-renderOtabekMessages()
+})()
 </script>
-
-</div>
