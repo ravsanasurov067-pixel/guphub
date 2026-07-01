@@ -1124,6 +1124,9 @@ button{
     .desktop-control-card{
         min-height:calc(100vh - 58px);
 
+        position:relative;
+        overflow:hidden;
+
         display:flex;
         flex-direction:column;
         gap:18px;
@@ -1131,6 +1134,29 @@ button{
         padding:18px;
 
         border-radius:var(--radius-lg);
+    }
+
+    .desktop-side-character{
+        position:absolute;
+
+        left:50%;
+        bottom:0;
+
+        width:100%;
+        max-width:none;
+
+        transform:translateX(-50%);
+
+        z-index:0;
+
+        pointer-events:none;
+        user-select:none;
+    }
+
+    .desktop-language-block,
+    .desktop-steps-list{
+        position:relative;
+        z-index:2;
     }
 
     .desktop-language-title{
@@ -2269,6 +2295,12 @@ button{
                             </div>
 
                         </div>
+
+                        <img
+                            class="desktop-side-character"
+                            src="images/smm/lesson-1/side-character.png"
+                            alt=""
+                        >
 
                     </div>
 
