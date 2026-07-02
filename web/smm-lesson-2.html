@@ -3153,87 +3153,68 @@ function initPlyr(){
     }
 
     if(window.Plyr && mobileVideo){
-
-    mobilePlyr = new Plyr(mobileVideo, plyrOptions)
-
-    mobilePlyr.on("enterfullscreen", function(){
-
-        try{
-            if(window.Telegram && Telegram.WebApp){
-
-                if(Telegram.WebApp.requestFullscreen){
-                    Telegram.WebApp.requestFullscreen()
-                }
-
-                if(Telegram.WebApp.disableVerticalSwipes){
-                    Telegram.WebApp.disableVerticalSwipes()
-                }
-
-                if(Telegram.WebApp.enableClosingConfirmation){
-                    Telegram.WebApp.enableClosingConfirmation()
-                }
-            }
-        }catch(error){}
-    })
-
-    mobilePlyr.on("exitfullscreen", function(){
-
-        try{
-            if(window.Telegram && Telegram.WebApp){
-
-                if(Telegram.WebApp.exitFullscreen){
-                    Telegram.WebApp.exitFullscreen()
-                }
-
-                if(Telegram.WebApp.enableVerticalSwipes){
-                    Telegram.WebApp.enableVerticalSwipes()
-                }
-
-                if(Telegram.WebApp.disableClosingConfirmation){
-                    Telegram.WebApp.disableClosingConfirmation()
-                }
-            }
-        }catch(error){}
-    })
-}
+        mobilePlyr = new Plyr(mobileVideo, plyrOptions)
+    }
 
     if(window.Plyr && desktopVideo){
         desktopPlyr = new Plyr(desktopVideo, plyrOptions)
     }
 }
 
-function initVideo(){
+function initMobilePlyrSwipeExit(){
 
-    const mobileSource =
-        document.getElementById("videoSource-mobile")
+    let touchStartX = 0
+    let touchStartY = 0
 
-    const desktopSource =
-        document.getElementById("videoSource-desktop")
+    document.addEventListener("touchstart", function(event){
 
-    const src =
-        VIDEO_PATHS[lang]
+        const activeFullscreen =
+            document.querySelector(".plyr--fullscreen-fallback")
 
-    if(mobileSource){
-        mobileSource.src = src
-    }
+        if(!activeFullscreen) return
+        if(!event.touches || !event.touches[0]) return
 
-    if(desktopSource){
-        desktopSource.src = src
-    }
+        touchStartX =
+            event.touches[0].clientX
 
-    const mobileVideo =
-        document.getElementById("lessonVideo-mobile")
+        touchStartY =
+            event.touches[0].clientY
 
-    const desktopVideo =
-        document.getElementById("lessonVideo-desktop")
+    }, { passive:true })
 
-    if(mobileVideo){
-        mobileVideo.load()
-    }
+    document.addEventListener("touchend", function(event){
 
-    if(desktopVideo){
-        desktopVideo.load()
-    }
+        const activeFullscreen =
+            document.querySelector(".plyr--fullscreen-fallback")
+
+        if(!activeFullscreen) return
+        if(!event.changedTouches || !event.changedTouches[0]) return
+
+        const touchEndX =
+            event.changedTouches[0].clientX
+
+        const touchEndY =
+            event.changedTouches[0].clientY
+
+        const diffX =
+            touchEndX - touchStartX
+
+        const diffY =
+            touchEndY - touchStartY
+
+        const isVerticalSwipe =
+            Math.abs(diffY) > 90 &&
+            Math.abs(diffY) > Math.abs(diffX) * 1.4
+
+        if(!isVerticalSwipe) return
+
+        try{
+            if(mobilePlyr && mobilePlyr.fullscreen){
+                mobilePlyr.fullscreen.exit()
+            }
+        }catch(error){}
+
+    }, { passive:true })
 }
 
 /* =========================
@@ -4162,6 +4143,14 @@ function initTelegram(){
             Telegram.WebApp.ready()
             Telegram.WebApp.expand()
 
+            if(Telegram.WebApp.disableVerticalSwipes){
+                Telegram.WebApp.disableVerticalSwipes()
+            }
+
+            if(Telegram.WebApp.enableClosingConfirmation){
+                Telegram.WebApp.enableClosingConfirmation()
+            }
+
             const user =
                 Telegram.WebApp.initDataUnsafe &&
                 Telegram.WebApp.initDataUnsafe.user
@@ -4241,6 +4230,7 @@ initTelegram()
 updateStaticText()
 initVideo()
 initPlyr()
+initMobilePlyrSwipeExit()
 loadOtabek()
 </script>
 
