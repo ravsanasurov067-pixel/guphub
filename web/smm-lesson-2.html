@@ -3161,6 +3161,64 @@ function initPlyr(){
     }
 }
 
+function initVideo(){
+
+    const mobileSource =
+        document.getElementById("videoSource-mobile")
+
+    const desktopSource =
+        document.getElementById("videoSource-desktop")
+
+    const src =
+        VIDEO_PATHS[lang]
+
+    if(mobileSource){
+        mobileSource.src = src
+    }
+
+    if(desktopSource){
+        desktopSource.src = src
+    }
+
+    const mobileVideo =
+        document.getElementById("lessonVideo-mobile")
+
+    const desktopVideo =
+        document.getElementById("lessonVideo-desktop")
+
+    if(mobileVideo){
+        mobileVideo.load()
+    }
+
+    if(desktopVideo){
+        desktopVideo.load()
+    }
+
+    if(mobilePlyr){
+        mobilePlyr.source = {
+            type:"video",
+            sources:[
+                {
+                    src:src,
+                    type:"video/mp4"
+                }
+            ]
+        }
+    }
+
+    if(desktopPlyr){
+        desktopPlyr.source = {
+            type:"video",
+            sources:[
+                {
+                    src:src,
+                    type:"video/mp4"
+                }
+            ]
+        }
+    }
+}
+
 function initMobilePlyrSwipeExit(){
 
     let touchStartX = 0
