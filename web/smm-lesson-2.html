@@ -2,8 +2,15 @@
 <html lang="ru">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0, viewport-fit=cover"
+>
 <script src="https://telegram.org/js/telegram-web-app.js"></script>
+<link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/plyr/3.8.4/plyr.css"
+>
 
 <title>gaphub - SMM lesson 2</title>
 
@@ -13,23 +20,29 @@
     --accent-2:#a855f7;
 
     --bg:#0c0b14;
-    --bg-soft:#15141e;
+    --bg-dark:#09080f;
 
     --card:#111117;
-    --card-2:#17171f;
+    --card-soft:#171621;
 
     --text:#ffffff;
     --muted:#a8a4b5;
     --muted-soft:#8f8a9e;
 
     --line:rgba(255,255,255,.07);
+    --line-strong:rgba(255,255,255,.10);
 
     --shadow:0 12px 38px rgba(0,0,0,.35);
 
-    --radius-xl:28px;
-    --radius-lg:22px;
-    --radius-md:16px;
+    --radius-xl:30px;
+    --radius-lg:28px;
+    --radius-md:22px;
+    --radius-sm:18px;
 }
+
+/* =========================
+   BASE
+========================= */
 
 *{
     box-sizing:border-box;
@@ -40,10 +53,13 @@ html,
 body{
     margin:0;
     padding:0;
+
     min-height:100%;
+
     font-family:Arial,sans-serif;
+
     background:#000;
-    color:#fff;
+    color:var(--text);
 }
 
 body{
@@ -56,53 +72,17 @@ img{
     max-width:100%;
 }
 
-button{
+button,
+input{
     font-family:inherit;
+}
+
+button{
     cursor:pointer;
 }
 
 .desktop-only{
     display:none;
-}
-
-.btn{
-    border:none;
-    border-radius:18px;
-    transition:.18s ease;
-    font-weight:700;
-}
-
-.btn:active{
-    transform:scale(.985);
-}
-
-.btn-primary{
-    color:#fff;
-    background:linear-gradient(90deg,var(--accent),var(--accent-2));
-    box-shadow:0 14px 32px rgba(203,108,230,.22);
-}
-
-.btn-secondary{
-    color:#fff;
-    background:rgba(255,255,255,.05);
-    border:1px solid rgba(255,255,255,.10);
-}
-
-.glow-card{
-    background:
-        radial-gradient(circle at 86% 14%, rgba(203,108,230,.18), transparent 26%),
-        radial-gradient(circle at 15% 88%, rgba(203,108,230,.08), transparent 22%),
-        linear-gradient(180deg,#171621 0%,#0f0e17 100%);
-    border:1px solid rgba(255,255,255,.05);
-    box-shadow:var(--shadow);
-}
-
-.soft-card{
-    background:
-        radial-gradient(circle at 88% 18%, rgba(203,108,230,.10), transparent 24%),
-        linear-gradient(180deg,#121219 0%,#0d0d12 100%);
-    border:1px solid rgba(255,255,255,.05);
-    box-shadow:var(--shadow);
 }
 
 .lesson-step{
@@ -114,7 +94,94 @@ button{
 }
 
 /* =========================
-   MOBILE
+   COMMON UI
+========================= */
+
+.btn{
+    border:none;
+    border-radius:var(--radius-sm);
+
+    font-weight:800;
+
+    transition:.18s ease;
+}
+
+.btn:active{
+    transform:scale(.985);
+}
+
+.btn-primary{
+    color:#fff;
+
+    background:
+        linear-gradient(
+            90deg,
+            var(--accent),
+            var(--accent-2)
+        );
+
+    box-shadow:0 14px 32px rgba(203,108,230,.22);
+}
+
+.btn-secondary{
+    color:#fff;
+
+    background:rgba(255,255,255,.05);
+    border:1px solid var(--line-strong);
+}
+
+.glow-card{
+    background:
+        radial-gradient(circle at 86% 14%, rgba(203,108,230,.18), transparent 26%),
+        radial-gradient(circle at 15% 88%, rgba(203,108,230,.08), transparent 22%),
+        linear-gradient(180deg,#171621 0%,#0f0e17 100%);
+
+    border:1px solid rgba(255,255,255,.05);
+
+    box-shadow:var(--shadow);
+}
+
+.soft-card{
+    background:
+        radial-gradient(circle at 88% 18%, rgba(203,108,230,.10), transparent 24%),
+        linear-gradient(180deg,#121219 0%,#0d0d12 100%);
+
+    border:1px solid rgba(255,255,255,.05);
+
+    box-shadow:var(--shadow);
+}
+
+/* =========================
+   PLYR
+========================= */
+
+.plyr{
+    border-radius:0;
+
+    --plyr-color-main:var(--accent);
+    --plyr-video-control-color:#fff;
+    --plyr-video-control-background-hover:rgba(203,108,230,.28);
+    --plyr-video-controls-background:linear-gradient(transparent, rgba(0,0,0,.78));
+}
+
+.plyr--video{
+    height:100%;
+}
+
+.plyr__video-wrapper{
+    height:100%;
+    background:#000;
+}
+
+.plyr video{
+    width:100%;
+    height:100%;
+
+    object-fit:cover;
+}
+
+/* =========================
+   MOBILE LAYOUT
 ========================= */
 
 .mobile-shell{
@@ -134,8 +201,6 @@ button{
         linear-gradient(180deg,#09080f 0%,#0c0b14 100%);
 }
 
-/* TOP */
-
 .mobile-top{
     margin-bottom:16px;
 }
@@ -144,22 +209,30 @@ button{
     display:grid;
     grid-template-columns:46px minmax(0,1fr) 64px;
     gap:8px;
+
     align-items:center;
+
     margin-bottom:14px;
 }
 
 .mobile-back{
     width:46px;
     height:34px;
+
     border:none;
     border-radius:999px;
+
     background:rgba(255,255,255,.04);
     border:1px solid rgba(203,108,230,.55);
+
     color:#fff;
+
     display:flex;
     align-items:center;
     justify-content:center;
+
     padding:0;
+
     transition:.18s ease;
 }
 
@@ -171,21 +244,29 @@ button{
 .mobile-back-arrow{
     font-size:20px;
     line-height:1;
+
     transform:translateY(-1px);
 }
 
 .mobile-step-title{
     min-height:34px;
+
     padding:0 12px;
+
     border-radius:999px;
+
     background:rgba(255,255,255,.055);
     border:1px solid rgba(255,255,255,.075);
+
     color:#ebe4f5;
+
     display:flex;
     align-items:center;
     justify-content:center;
+
     font-size:12px;
     font-weight:800;
+
     white-space:nowrap;
     overflow:hidden;
     text-overflow:ellipsis;
@@ -193,13 +274,24 @@ button{
 
 .mobile-lang-chip{
     height:34px;
+
     border:none;
     border-radius:999px;
-    background:linear-gradient(90deg, rgba(203,108,230,.30), rgba(168,85,247,.22));
+
+    background:
+        linear-gradient(
+            90deg,
+            rgba(203,108,230,.30),
+            rgba(168,85,247,.22)
+        );
+
     border:1px solid rgba(203,108,230,.50);
+
     color:#fff;
+
     font-size:12px;
     font-weight:900;
+
     box-shadow:0 10px 24px rgba(203,108,230,.14);
 }
 
@@ -211,24 +303,11 @@ button{
     display:block;
 }
 
-.mobile-badge{
-    display:inline-flex;
-    align-items:center;
-    gap:8px;
-
-    background:rgba(255,255,255,.06);
-
-    border:1px solid rgba(255,255,255,.06);
-
-    border-radius:999px;
-
-    padding:9px 13px;
-
-    font-size:12px;
-
-    color:#ebe4f5;
-
-    margin-bottom:12px;
+.mobile-badge,
+.mobile-subtitle,
+.mobile-video-title,
+.mobile-video-text{
+    display:none;
 }
 
 .mobile-title{
@@ -242,26 +321,15 @@ button{
     letter-spacing:-.6px;
 }
 
-.mobile-subtitle{
-    margin:0;
+/* =========================
+   VIDEO
+========================= */
 
-    color:var(--muted);
-
-    font-size:14px;
-
-    line-height:1.5;
-
-    max-width:330px;
-}
-
-/* VIDEO STEP */
-
-.mobile-video-card{
-    border-radius:26px;
+.mobile-video-card,
+.desktop-video-card{
+    position:relative;
 
     overflow:hidden;
-
-    position:relative;
 
     background:#0d0d12;
 
@@ -270,7 +338,16 @@ button{
     box-shadow:var(--shadow);
 }
 
-.mobile-video-frame{
+.mobile-video-card{
+    border-radius:26px;
+}
+
+.desktop-video-card{
+    border-radius:30px;
+}
+
+.mobile-video-frame,
+.desktop-video-frame{
     width:100%;
     aspect-ratio:16/9;
 
@@ -283,9 +360,11 @@ button{
         linear-gradient(135deg,#171621,#0b0b10);
 }
 
-.mobile-video-frame video{
+.mobile-video-frame video,
+.desktop-video-frame video{
     width:100%;
     height:100%;
+
     object-fit:cover;
 }
 
@@ -293,283 +372,464 @@ button{
     padding:16px;
 }
 
-.mobile-video-title{
-    margin:0 0 8px;
-
-    font-size:18px;
-
-    font-weight:800;
-
-    line-height:1.2;
+.desktop-video-bottom{
+    padding:18px 20px 20px;
 }
 
-.mobile-video-text{
-    margin:0;
-
-    color:var(--muted);
-
-    font-size:14px;
-
-    line-height:1.55;
-}
-
-.mobile-video-action{
-    margin-top:16px;
-}
-
-.mobile-main-btn{
-    width:100%;
-
-    min-height:56px;
-
-    border:none;
-
-    border-radius:18px;
-
-    color:#fff;
-
-    background:linear-gradient(90deg,var(--accent),var(--accent-2));
-
-    box-shadow:0 14px 32px rgba(203,108,230,.25);
-
-    font-size:16px;
-
-    font-weight:800;
-}
-
-/* SUMMARY STEP */
-
-.mobile-summary-head{
-    margin-bottom:16px;
-}
-
-.mobile-section-title{
-    margin:0 0 10px;
-
-    font-size:24px;
-
-    line-height:1.08;
-
-    font-weight:800;
-}
-
-.mobile-note{
-    margin:0;
-
-    color:var(--muted-soft);
-
-    font-size:13px;
-
-    line-height:1.5;
-}
-
-.summary-list{
-    display:flex;
-    flex-direction:column;
-    gap:12px;
-}
-
-.summary-card{
-    border-radius:22px;
-    overflow:hidden;
-}
-
-.summary-question{
-    width:100%;
-
-    min-height:66px;
-
-    background:transparent;
-
-    border:none;
-
-    color:#fff;
-
-    padding:0 16px;
-
-    display:flex;
-
-    align-items:center;
-
-    justify-content:space-between;
-
-    gap:12px;
-
-    text-align:left;
-}
-
-.summary-question-text{
-    font-size:15px;
-
-    line-height:1.35;
-
-    font-weight:800;
-}
-
-.summary-arrow{
-    width:11px;
-    height:11px;
-
-    border-right:2px solid var(--accent);
-    border-bottom:2px solid var(--accent);
-
-    transform:rotate(45deg);
-
-    transition:.25s ease;
-
-    flex-shrink:0;
-
-    margin-right:4px;
-}
-
-.summary-card.open .summary-arrow{
-    transform:rotate(225deg);
-}
-
-.summary-answer-wrap{
-    max-height:0;
-    overflow:hidden;
-    transition:max-height .28s ease;
-}
-
-.summary-answer{
-    padding:0 16px 16px;
-
-    color:#d8d2e3;
-
-    font-size:14px;
-
-    line-height:1.58;
-}
-
-.summary-answer ul{
-    margin:8px 0 0;
-    padding-left:18px;
-}
-
-.summary-answer li{
-    margin:5px 0;
-}
-
-.mobile-summary-action{
-    margin-top:18px;
-}
-
-/* DEEP MODAL */
-
-.deep-overlay{
-    position:fixed;
-    inset:0;
-
-    background:rgba(0,0,0,.74);
-
-    backdrop-filter:blur(12px);
-
-    display:none;
-
-    align-items:center;
-    justify-content:center;
-
-    padding:16px;
-
-    z-index:999;
-}
-
-.deep-overlay.active{
-    display:flex;
-}
-
-.deep-modal{
-    width:100%;
-    max-width:420px;
-
-    border-radius:28px;
-
-    padding:22px;
-}
-
-.deep-icon{
-    width:78px;
-    height:78px;
-
-    margin:0 auto 16px;
-
-    border-radius:26px;
-
-    background:rgba(203,108,230,.14);
-
-    display:flex;
-
-    align-items:center;
-    justify-content:center;
-
-    font-size:34px;
-}
-
-.deep-title{
-    margin:0 0 10px;
-
-    text-align:center;
-
-    font-size:28px;
-
-    line-height:1.08;
-
-    font-weight:800;
-}
-
-.deep-text{
-    margin:0 auto 18px;
-
-    max-width:320px;
-
-    text-align:center;
-
-    color:var(--muted);
-
-    font-size:15px;
-
-    line-height:1.55;
-}
-
-.deep-actions{
+.mobile-video-actions{
     display:grid;
     grid-template-columns:1fr;
     gap:10px;
 }
 
-.deep-btn{
-    width:100%;
-    height:56px;
-    font-size:15px;
+.desktop-video-actions{
+    display:grid;
+    grid-template-columns:minmax(0,1fr) 250px;
+    gap:14px;
+
+    align-items:center;
 }
 
-/* TEST STEP */
+.mobile-main-btn,
+.desktop-main-btn{
+    width:100%;
 
-.mobile-test-head{
+    border:none;
+    border-radius:var(--radius-sm);
+
+    color:#fff;
+
+    background:
+        linear-gradient(
+            90deg,
+            var(--accent),
+            var(--accent-2)
+        );
+
+    box-shadow:0 14px 32px rgba(203,108,230,.25);
+
+    font-size:16px;
+    font-weight:800;
+}
+
+.mobile-main-btn{
+    min-height:56px;
+}
+
+.desktop-main-btn{
+    min-height:58px;
+}
+
+.mobile-material-btn,
+.desktop-material-btn{
+    width:100%;
+
+    border-radius:var(--radius-sm);
+
+    font-size:15px;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    gap:8px;
+}
+
+.mobile-material-btn{
+    min-height:52px;
+}
+
+.desktop-material-btn{
+    min-height:56px;
+}
+
+/* =========================
+   SUMMARY SLIDER
+========================= */
+
+.summary-slider{
+    width:100%;
+}
+
+.summary-stage{
+    width:100%;
+
+    position:relative;
+
+    overflow:hidden;
+
+    border-radius:var(--radius-lg);
+
+    background:
+        radial-gradient(circle at 82% 18%, rgba(203,108,230,.18), transparent 26%),
+        linear-gradient(180deg,#171621 0%,#0f0e17 100%);
+
+    border:1px solid rgba(255,255,255,.06);
+
+    box-shadow:var(--shadow);
+}
+
+.summary-image-wrap{
+    width:100%;
+
+    position:relative;
+
+    overflow:hidden;
+
+    background:
+        radial-gradient(circle at 50% 42%, rgba(203,108,230,.14), transparent 30%),
+        linear-gradient(135deg,#171621,#0b0b10);
+}
+
+.summary-image{
+    width:100%;
+    height:100%;
+
+    object-fit:cover;
+
+    display:block;
+}
+
+.summary-placeholder{
+    width:100%;
+    height:100%;
+    min-height:360px;
+
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+
+    padding:28px;
+
+    text-align:center;
+}
+
+.summary-placeholder-kicker{
+    margin-bottom:12px;
+
+    color:var(--accent);
+
+    font-size:13px;
+    font-weight:900;
+    letter-spacing:.08em;
+    text-transform:uppercase;
+}
+
+.summary-placeholder-title{
+    margin:0 0 12px;
+
+    font-size:28px;
+    line-height:1.08;
+    font-weight:900;
+}
+
+.summary-placeholder-text{
+    margin:0;
+
+    max-width:420px;
+
+    color:var(--muted);
+
+    font-size:15px;
+    line-height:1.55;
+}
+
+.summary-pages{
+    display:flex;
+    flex-wrap:wrap;
+    justify-content:center;
+
+    gap:8px;
+
+    margin-top:14px;
+}
+
+.summary-page-btn{
+    min-width:34px;
+    height:32px;
+
+    border:none;
+    border-radius:999px;
+
+    background:rgba(255,255,255,.045);
+    border:1px solid rgba(255,255,255,.07);
+
+    color:rgba(255,255,255,.62);
+
+    font-size:12px;
+    font-weight:900;
+
+    transition:.18s ease;
+}
+
+.summary-page-btn.active{
+    color:#fff;
+
+    background:
+        linear-gradient(
+            90deg,
+            rgba(203,108,230,.34),
+            rgba(168,85,247,.22)
+        );
+
+    border-color:rgba(203,108,230,.50);
+
+    box-shadow:0 10px 22px rgba(203,108,230,.16);
+}
+
+.summary-page-btn:active{
+    transform:scale(.94);
+}
+
+.summary-slider-action{
+    margin-top:18px;
+}
+
+/* SUMMARY ARROWS */
+
+.summary-overlay-arrow{
+    position:absolute;
+    top:50%;
+    z-index:5;
+
+    width:48px;
+    height:48px;
+
+    border:none;
+    border-radius:999px;
+
+    background:rgba(0,0,0,.38);
+    border:1px solid rgba(255,255,255,.12);
+
+    color:#fff;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    font-size:24px;
+    font-weight:900;
+
+    backdrop-filter:blur(12px);
+
+    box-shadow:0 10px 24px rgba(0,0,0,.28);
+
+    transform:translateY(-50%);
+
+    transition:.18s ease;
+}
+
+.summary-overlay-arrow:active{
+    transform:translateY(-50%) scale(.94);
+}
+
+.summary-overlay-arrow:disabled{
+    opacity:.28;
+    cursor:not-allowed;
+}
+
+.summary-overlay-arrow-left{
+    left:14px;
+}
+
+.summary-overlay-arrow-right{
+    right:14px;
+}
+
+/* SUMMARY SWIPE */
+
+.summary-swipe-stack{
+    width:100%;
+    height:100%;
+
+    position:relative;
+
+    overflow:hidden;
+}
+
+.summary-swipe-current{
+    width:100%;
+    height:100%;
+
+    position:relative;
+    z-index:3;
+
+    transition:
+        transform .28s cubic-bezier(.22,.9,.28,1),
+        opacity .28s ease;
+
+    will-change:transform;
+}
+
+.summary-swipe-current.dragging{
+    transition:none;
+}
+
+.summary-swipe-ghost{
+    display:none;
+}
+
+/* =========================
+   MATERIALS
+========================= */
+
+.material-showcase{
+    width:100%;
+}
+
+.material-cover-shell{
+    position:relative;
+}
+
+.material-cover-card{
+    position:relative;
+
+    overflow:hidden;
+
+    border-radius:var(--radius-lg);
+
+    background:
+        radial-gradient(circle at 50% 18%, rgba(203,108,230,.18), transparent 26%),
+        linear-gradient(180deg,#171621 0%,#0f0e17 100%);
+
+    border:1px solid rgba(255,255,255,.07);
+
+    box-shadow:var(--shadow);
+}
+
+.material-cover-img{
+    width:100%;
+    height:100%;
+
+    object-fit:cover;
+
+    display:block;
+}
+
+.material-cover-placeholder{
+    width:100%;
+    height:100%;
+
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+
+    padding:28px;
+
+    text-align:center;
+
+    background:
+        radial-gradient(circle at 50% 42%, rgba(203,108,230,.16), transparent 30%),
+        linear-gradient(135deg,#171621,#0b0b10);
+}
+
+.material-cover-kicker{
+    margin-bottom:12px;
+
+    color:var(--accent);
+
+    font-size:13px;
+    font-weight:900;
+    letter-spacing:.08em;
+    text-transform:uppercase;
+}
+
+.material-cover-title{
+    margin:0 0 12px;
+
+    font-size:30px;
+    line-height:1.08;
+    font-weight:900;
+}
+
+.material-cover-text{
+    margin:0;
+
+    max-width:360px;
+
+    color:var(--muted);
+
+    font-size:15px;
+    line-height:1.55;
+}
+
+.material-info-card{
+    border-radius:var(--radius-lg);
+
+    padding:22px;
+}
+
+.material-info-title{
+    margin:0 0 10px;
+
+    font-size:28px;
+    line-height:1.08;
+    font-weight:900;
+}
+
+.material-info-text{
+    margin:0 0 18px;
+
+    color:var(--muted);
+
+    font-size:15px;
+    line-height:1.6;
+}
+
+.material-actions{
+    display:grid;
+    gap:12px;
+}
+
+.material-action-btn{
+    width:100%;
+    min-height:56px;
+
+    border-radius:var(--radius-sm);
+
+    font-size:15px;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    text-align:center;
+}
+
+/* =========================
+   TEST
+========================= */
+
+.mobile-test-head,
+.desktop-test-top{
     margin-bottom:16px;
 }
 
 .test-progress-line{
     height:7px;
 
+    margin-top:14px;
+
     border-radius:999px;
 
     background:rgba(255,255,255,.08);
 
     overflow:hidden;
-
-    margin-top:14px;
 }
 
 .test-progress-fill{
     height:100%;
+    width:0%;
 
     border-radius:999px;
 
-    background:linear-gradient(90deg,var(--accent),var(--accent-2));
-
-    width:0%;
+    background:
+        linear-gradient(
+            90deg,
+            var(--accent),
+            var(--accent-2)
+        );
 
     transition:width .25s ease;
 }
@@ -578,10 +838,18 @@ button{
     margin:0 0 16px;
 
     font-size:26px;
-
     line-height:1.15;
-
     font-weight:800;
+}
+
+.test-question.long-question{
+    font-size:26px;
+    line-height:1.18;
+}
+
+.test-question.very-long-question{
+    font-size:22px;
+    line-height:1.22;
 }
 
 .test-answers{
@@ -596,12 +864,10 @@ button{
     min-height:56px;
 
     border:none;
-
-    border-radius:18px;
+    border-radius:var(--radius-sm);
 
     background:rgba(255,255,255,.05);
-
-    border:1px solid rgba(255,255,255,.07);
+    border:1px solid var(--line);
 
     color:#fff;
 
@@ -610,7 +876,6 @@ button{
     text-align:left;
 
     font-size:15px;
-
     line-height:1.35;
 
     transition:.2s ease;
@@ -628,7 +893,6 @@ button{
 
 .test-next{
     width:100%;
-
     height:56px;
 
     margin-top:16px;
@@ -638,6 +902,71 @@ button{
     font-size:16px;
 }
 
+/* =========================
+   SECTION TEXT
+========================= */
+
+.mobile-summary-head{
+    display:none;
+}
+
+.mobile-section-title,
+.desktop-section-title{
+    margin:0 0 10px;
+
+    font-weight:800;
+}
+
+.mobile-section-title{
+    font-size:24px;
+    line-height:1.08;
+}
+
+.desktop-section-title{
+    font-size:30px;
+    line-height:1.08;
+}
+
+.mobile-note,
+.desktop-note{
+    margin:0;
+
+    color:var(--muted-soft);
+
+    line-height:1.55;
+}
+
+.mobile-note{
+    font-size:13px;
+}
+
+.desktop-note{
+    font-size:14px;
+}
+
+/* =========================
+   OTABEK SLOTS
+========================= */
+
+#otabek-mobile-slot{
+    display:none;
+}
+
+@media (max-width:1023px){
+    #otabek-mobile-slot{
+        display:block;
+    }
+}
+
+@media (min-width:1024px){
+    #otabek-mobile-slot{
+        display:none;
+    }
+}
+
+/* =========================
+   DESKTOP
+========================= */
 
 @media (min-width:1024px){
 
@@ -667,31 +996,120 @@ button{
 
     .desktop-app{
         min-height:100vh;
+
         color:var(--text);
     }
 
     .desktop-layout{
         display:block;
+
         min-height:100vh;
     }
 
     .desktop-main{
-    padding:24px 22px 34px;
-    height:100vh;
-    overflow:auto;
-}
+        height:100vh;
+
+        padding:24px 22px 34px;
+
+        overflow:auto;
+    }
 
     .desktop-content-grid{
         display:grid;
-        grid-template-columns:280px minmax(0,1fr) 280px;
+        grid-template-columns:260px minmax(0,1fr) 260px;
         gap:18px;
+
         align-items:start;
-        max-width:1480px;
+
+        max-width:1440px;
+
         margin:0 auto;
     }
 
     .desktop-main-column{
         min-width:0;
+    }
+
+    .desktop-head{
+        margin-bottom:16px;
+    }
+
+    .desktop-lesson-line{
+        display:flex;
+        align-items:center;
+        gap:10px;
+
+        margin-bottom:14px;
+    }
+
+    .desktop-step-back{
+        width:44px;
+        height:36px;
+
+        border:none;
+        border-radius:999px;
+
+        background:rgba(255,255,255,.045);
+        border:1px solid rgba(203,108,230,.45);
+
+        color:#fff;
+
+        display:flex;
+        align-items:center;
+        justify-content:center;
+
+        font-size:22px;
+        font-weight:800;
+
+        flex-shrink:0;
+
+        transition:.18s ease;
+    }
+
+    .desktop-step-back:hover{
+        transform:translateX(-2px);
+
+        background:rgba(203,108,230,.10);
+    }
+
+    .desktop-step-back:active{
+        transform:scale(.95);
+    }
+
+    .desktop-badge{
+        min-height:36px;
+
+        display:inline-flex;
+        align-items:center;
+        gap:8px;
+
+        padding:0 14px;
+
+        border-radius:999px;
+
+        background:rgba(255,255,255,.06);
+        border:1px solid rgba(255,255,255,.06);
+
+        color:#ebe4f5;
+
+        font-size:13px;
+        font-weight:800;
+    }
+
+    .desktop-title{
+        margin:0;
+
+        font-size:clamp(38px,3.2vw,54px);
+        line-height:.96;
+        font-weight:800;
+
+        letter-spacing:-1px;
+    }
+
+    .desktop-subtitle,
+    .desktop-video-title,
+    .desktop-video-text{
+        display:none;
     }
 
     .desktop-side-column{
@@ -703,321 +1121,110 @@ button{
         gap:14px;
     }
 
-    .desktop-head{
-        margin-bottom:16px;
-    }
-
-    .desktop-badge{
-        display:inline-flex;
-        align-items:center;
-        gap:8px;
-
-        background:rgba(255,255,255,.06);
-
-        border:1px solid rgba(255,255,255,.06);
-
-        border-radius:999px;
-
-        padding:10px 14px;
-
-        font-size:13px;
-
-        color:#ebe4f5;
-
-        margin-bottom:14px;
-    }
-
-    .desktop-title{
-        margin:0 0 10px;
-
-        font-size:clamp(38px,3.2vw,56px);
-
-        line-height:.96;
-
-        font-weight:800;
-
-        letter-spacing:-1px;
-    }
-
-    .desktop-subtitle{
-        margin:0;
-
-        color:var(--muted);
-
-        font-size:17px;
-
-        line-height:1.55;
-
-        max-width:760px;
-    }
-
-    /* VIDEO STEP */
-
-    .desktop-video-card{
-        border-radius:30px;
-
-        overflow:hidden;
+    .desktop-control-card{
+        min-height:calc(100vh - 58px);
 
         position:relative;
-
-        background:#0d0d12;
-
-        border:1px solid rgba(255,255,255,.05);
-
-        box-shadow:var(--shadow);
-    }
-
-    .desktop-video-frame{
-        width:100%;
-        aspect-ratio:16/9;
-
-        position:relative;
-
         overflow:hidden;
 
-        background:
-            radial-gradient(circle at 50% 38%, rgba(203,108,230,.18), transparent 28%),
-            linear-gradient(135deg,#171621,#0b0b10);
-    }
-
-    .desktop-video-frame video{
-        width:100%;
-        height:100%;
-
-        object-fit:cover;
-    }
-
-    .desktop-video-bottom{
-        padding:20px;
-    }
-
-    .desktop-video-title{
-        margin:0 0 10px;
-
-        font-size:22px;
-
-        font-weight:800;
-
-        line-height:1.2;
-    }
-
-    .desktop-video-text{
-        margin:0;
-
-        color:var(--muted);
-
-        font-size:15px;
-
-        line-height:1.6;
-
-        max-width:760px;
-    }
-
-    .desktop-video-action{
-        margin-top:18px;
-    }
-
-    .desktop-main-btn{
-        width:100%;
-        max-width:360px;
-
-        min-height:58px;
-
-        border:none;
-
-        border-radius:18px;
-
-        color:#fff;
-
-        background:
-            linear-gradient(
-                90deg,
-                var(--accent),
-                var(--accent-2)
-            );
-
-        box-shadow:0 14px 32px rgba(203,108,230,.25);
-
-        font-size:16px;
-
-        font-weight:800;
-    }
-
-    /* SUMMARY STEP */
-
-    .desktop-summary-top{
-        margin-bottom:16px;
-    }
-
-    .desktop-section-title{
-        margin:0 0 10px;
-
-        font-size:30px;
-
-        line-height:1.08;
-
-        font-weight:800;
-    }
-
-    .desktop-note{
-        margin:0;
-
-        color:var(--muted-soft);
-
-        font-size:14px;
-
-        line-height:1.55;
-    }
-
-    .desktop-summary-grid{
-    display:grid;
-    grid-template-columns:1fr 1fr;
-    gap:12px;
-    align-items:start;
-    }
-
-    .summary-list{
         display:flex;
         flex-direction:column;
-        gap:12px;
-    }
+        gap:18px;
 
-    .summary-card{
-        border-radius:22px;
-        overflow:hidden;
-    }
-
-    .summary-question{
-        width:100%;
-
-        min-height:72px;
-
-        background:transparent;
-
-        border:none;
-
-        color:#fff;
-
-        padding:0 18px;
-
-        display:flex;
-
-        align-items:center;
-
-        justify-content:space-between;
-
-        gap:14px;
-
-        text-align:left;
-    }
-
-    .summary-question-text{
-        font-size:16px;
-
-        line-height:1.35;
-
-        font-weight:800;
-    }
-
-    .summary-arrow{
-        width:11px;
-        height:11px;
-
-        border-right:2px solid var(--accent);
-        border-bottom:2px solid var(--accent);
-
-        transform:rotate(45deg);
-
-        transition:.25s ease;
-
-        flex-shrink:0;
-
-        margin-right:4px;
-    }
-
-    .summary-card.open .summary-arrow{
-        transform:rotate(225deg);
-    }
-
-    .summary-answer-wrap{
-        max-height:0;
-        overflow:hidden;
-        transition:max-height .28s ease;
-    }
-
-    .summary-answer{
-        padding:0 18px 18px;
-
-        color:#d8d2e3;
-
-        font-size:15px;
-
-        line-height:1.62;
-    }
-
-    .summary-answer ul{
-        margin:8px 0 0;
-        padding-left:18px;
-    }
-
-    .summary-answer li{
-        margin:5px 0;
-    }
-
-    .desktop-summary-action{
-        margin-top:18px;
-    }
-
-    /* RIGHT PANEL */
-
-    .desktop-side-card{
-        border-radius:24px;
         padding:18px;
+
+        border-radius:var(--radius-lg);
     }
 
-    .desktop-side-title{
-        margin:0 0 8px;
+    .desktop-side-character{
+        position:absolute;
 
-        font-size:21px;
+        left:50%;
+        bottom:0;
 
-        line-height:1.2;
+        width:100%;
+        max-width:none;
 
+        transform:translateX(-50%);
+
+        z-index:0;
+
+        pointer-events:none;
+        user-select:none;
+    }
+
+    .desktop-language-block,
+    .desktop-steps-list{
+        position:relative;
+        z-index:2;
+    }
+
+    .desktop-language-title{
+        margin:0 0 12px;
+
+        font-size:20px;
+        line-height:1.1;
         font-weight:800;
     }
 
-    .desktop-side-text{
-        margin:0 0 16px;
-
-        color:var(--muted);
-
-        font-size:14px;
-
-        line-height:1.55;
-    }
-
-    .desktop-side-buttons{
+    .desktop-language-options{
         display:grid;
-        grid-template-columns:1fr;
+        grid-template-columns:1fr 1fr;
         gap:10px;
     }
 
-    .desktop-side-btn{
+    .desktop-language-option{
         width:100%;
-        height:54px;
-        font-size:15px;
+        min-height:50px;
+
+        border:none;
+        border-radius:var(--radius-sm);
+
+        padding:0 12px;
+
+        background:rgba(255,255,255,.045);
+        border:1px solid var(--line);
+
+        color:#fff;
+
+        display:flex;
+        align-items:center;
+        justify-content:center;
+        gap:8px;
+
+        text-align:center;
+
+        transition:.18s ease;
     }
 
-    .desktop-steps-card{
-        border-radius:24px;
-        padding:18px;
+    .desktop-language-option:hover{
+        transform:translateY(-1px);
+
+        border-color:rgba(203,108,230,.28);
+
+        background:rgba(203,108,230,.08);
     }
 
-    .desktop-steps-label{
-        color:var(--muted-soft);
+    .desktop-language-option.active{
+        background:
+            linear-gradient(
+                90deg,
+                rgba(203,108,230,.28),
+                rgba(168,85,247,.18)
+            );
 
-        font-size:12px;
+        border-color:rgba(203,108,230,.55);
 
-        margin-bottom:10px;
+        box-shadow:0 12px 26px rgba(203,108,230,.18);
+    }
+
+    .desktop-language-flag{
+        font-size:13px;
+        font-weight:900;
+    }
+
+    .desktop-language-name{
+        display:none;
     }
 
     .desktop-steps-list{
@@ -1027,23 +1234,22 @@ button{
     }
 
     .desktop-step-item{
+        min-height:48px;
+
         display:flex;
         align-items:center;
         gap:10px;
 
-        min-height:44px;
-
-        border-radius:14px;
-
         padding:0 12px;
+
+        border-radius:16px;
 
         background:rgba(255,255,255,.04);
 
         color:#e9e2f1;
 
         font-size:14px;
-
-        font-weight:700;
+        font-weight:800;
 
         cursor:pointer;
 
@@ -1051,8 +1257,20 @@ button{
     }
 
     .desktop-step-item:hover{
-        background:rgba(203,108,230,.12);
         transform:translateX(2px);
+
+        background:rgba(203,108,230,.12);
+    }
+
+    .desktop-step-item.locked{
+        cursor:not-allowed;
+        opacity:.42;
+    }
+
+    .desktop-step-item.locked:hover{
+        transform:none;
+
+        background:rgba(255,255,255,.04);
     }
 
     .desktop-step-dot{
@@ -1071,392 +1289,258 @@ button{
         box-shadow:0 0 12px rgba(203,108,230,.55);
     }
 
-    .desktop-language-card{
-    border-radius:24px;
-    padding:18px;
-}
-
-.desktop-language-kicker{
-    display:inline-flex;
-    align-items:center;
-    min-height:28px;
-    padding:0 10px;
-    border-radius:999px;
-    background:rgba(255,255,255,.06);
-    border:1px solid rgba(255,255,255,.07);
-    color:#d8d2e3;
-    font-size:12px;
-    font-weight:800;
-    margin-bottom:12px;
-}
-
-.desktop-language-title{
-    margin:0 0 14px;
-    font-size:22px;
-    line-height:1.1;
-    font-weight:800;
-}
-
-.desktop-language-options{
-    display:grid;
-    grid-template-columns:1fr;
-    gap:10px;
-}
-
-.desktop-language-option{
-    width:100%;
-    min-height:56px;
-    border:none;
-    border-radius:18px;
-    padding:0 14px;
-    background:rgba(255,255,255,.045);
-    border:1px solid rgba(255,255,255,.07);
-    color:#fff;
-    display:flex;
-    align-items:center;
-    gap:12px;
-    text-align:left;
-    transition:.18s ease;
-}
-
-.desktop-language-option:hover{
-    transform:translateY(-1px);
-    border-color:rgba(203,108,230,.28);
-    background:rgba(203,108,230,.08);
-}
-
-.desktop-language-option.active{
-    background:linear-gradient(90deg, rgba(203,108,230,.28), rgba(168,85,247,.18));
-    border-color:rgba(203,108,230,.55);
-    box-shadow:0 12px 26px rgba(203,108,230,.18);
-}
-
-.desktop-language-flag{
-    width:36px;
-    height:36px;
-    border-radius:14px;
-    background:rgba(255,255,255,.08);
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    font-size:12px;
-    font-weight:900;
-    flex-shrink:0;
-}
-
-.desktop-language-name{
-    font-size:15px;
-    font-weight:800;
-}
-
-.desktop-video-info-row{
-    display:grid;
-    grid-template-columns:minmax(0,1fr) 250px;
-    gap:18px;
-    align-items:center;
-}
-
-.desktop-video-copy{
-    min-width:0;
-}
-
-.desktop-video-action{
-    margin-top:0;
-}
-
-.desktop-video-action .desktop-main-btn{
-    width:100%;
-    max-width:none;
-}
-
-.desktop-lesson-line{
-    display:flex;
-    align-items:center;
-    gap:10px;
-    margin-bottom:14px;
-}
-
-.desktop-step-back{
-    width:44px;
-    height:36px;
-    border:none;
-    border-radius:999px;
-    background:rgba(255,255,255,.045);
-    border:1px solid rgba(203,108,230,.45);
-    color:#fff;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    font-size:22px;
-    font-weight:800;
-    transition:.18s ease;
-}
-
-.desktop-step-back:hover{
-    transform:translateX(-2px);
-    background:rgba(203,108,230,.10);
-}
-
-.desktop-step-back:active{
-    transform:scale(.95);
-}
-
-    /* DEEP MODAL */
-
-    .deep-overlay{
-        position:fixed;
-        inset:0;
-
-        background:rgba(0,0,0,.74);
-
-        backdrop-filter:blur(12px);
-
-        display:none;
-
-        align-items:center;
-        justify-content:center;
-
-        padding:16px;
-
-        z-index:999;
+    .desktop-step-item.available .desktop-step-dot{
+        background:rgba(203,108,230,.65);
     }
 
-    .deep-overlay.active{
-        display:flex;
+    .desktop-step-item.locked .desktop-step-dot{
+        background:rgba(255,255,255,.12);
     }
 
-    .deep-modal{
-        width:100%;
-        max-width:520px;
-
-        border-radius:30px;
-
-        padding:28px;
+    .desktop-step-label{
+        flex:1;
+        min-width:0;
     }
 
-    .deep-modal{
-    position:relative;
-}
-
-.deep-close{
-    position:absolute;
-    top:14px;
-    right:14px;
-    width:34px;
-    height:34px;
-    border:none;
-    border-radius:50%;
-    background:rgba(255,255,255,.07);
-    color:#fff;
-    font-size:22px;
-    line-height:1;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-}
-
-.deep-close:active{
-    transform:scale(.94);
-}
-
-    .deep-icon{
-        width:92px;
-        height:92px;
-
-        margin:0 auto 18px;
-
-        border-radius:28px;
-
-        background:rgba(203,108,230,.14);
-
-        display:flex;
-
-        align-items:center;
-        justify-content:center;
-
-        font-size:40px;
-    }
-
-    .deep-title{
-        margin:0 0 12px;
-
-        text-align:center;
-
-        font-size:34px;
-
-        line-height:1.08;
-
-        font-weight:800;
-    }
-
-    .deep-text{
-        margin:0 auto 20px;
-
-        max-width:380px;
-
-        text-align:center;
-
-        color:var(--muted);
-
-        font-size:16px;
-
-        line-height:1.62;
-    }
-
-    .deep-actions{
-        display:grid;
-        grid-template-columns:1fr;
-        gap:10px;
-    }
-
-    .deep-btn{
-        width:100%;
-        height:58px;
-        font-size:16px;
-    }
-
-    /* TEST */
-
-    .desktop-test-top{
-        margin-bottom:18px;
+    .desktop-step-lock{
+        font-size:13px;
+        opacity:.85;
     }
 
     .test-progress-line{
         height:8px;
 
-        border-radius:999px;
-
-        background:rgba(255,255,255,.08);
-
-        overflow:hidden;
-
         margin-top:16px;
     }
 
-    .test-progress-fill{
-        height:100%;
-
-        border-radius:999px;
-
-        background:
-            linear-gradient(
-                90deg,
-                var(--accent),
-                var(--accent-2)
-            );
-
-        width:0%;
-
-        transition:width .25s ease;
-    }
-
     .test-question{
-        margin:0 0 18px;
+        margin-bottom:18px;
 
         font-size:34px;
-
         line-height:1.12;
-
-        font-weight:800;
     }
 
     .test-answers{
-        display:flex;
-        flex-direction:column;
         gap:12px;
     }
 
     .test-answer{
-        width:100%;
-
         min-height:62px;
-
-        border:none;
-
-        border-radius:18px;
-
-        background:rgba(255,255,255,.05);
-
-        border:1px solid rgba(255,255,255,.07);
-
-        color:#fff;
 
         padding:18px;
 
-        text-align:left;
-
         font-size:16px;
-
         line-height:1.42;
-
-        transition:.2s ease;
-    }
-
-    .test-answer.correct{
-        background:rgba(57,145,84,.28);
-        border-color:rgba(93,210,128,.35);
-    }
-
-    .test-answer.wrong{
-        background:rgba(170,45,66,.30);
-        border-color:rgba(255,90,112,.35);
     }
 
     .test-next{
-        width:100%;
-
         max-width:340px;
-
         height:58px;
 
         margin-top:18px;
 
-        display:none;
-
         font-size:16px;
     }
-}
 
-#otabek-mobile-slot{
-    display:none;
-}
-
-@media (max-width:1023px){
-    #otabek-slot{
-        display:none;
+    .summary-image-wrap{
+        aspect-ratio:16/9;
     }
 
-    #otabek-mobile-slot{
-        display:block;
-    }
-}
-
-@media (min-width:1024px){
-    #otabek-mobile-slot{
-        display:none;
+    .summary-placeholder{
+        min-height:430px;
     }
 
-    #otabek-slot{
-        display:block;
+    .summary-placeholder-title{
+        font-size:34px;
+    }
+
+    .material-showcase{
+        display:grid;
+        grid-template-columns:minmax(260px, 360px) minmax(0, 1fr);
+        gap:22px;
+
+        align-items:center;
+
+        max-width:860px;
+    }
+
+    .material-cover-card{
+        aspect-ratio:3/4.25;
+    }
+
+    .material-info-card{
+        min-height:360px;
+
+        display:flex;
+        flex-direction:column;
+        justify-content:center;
+    }
+
+    .material-actions{
+        grid-template-columns:1fr;
+
+        max-width:320px;
     }
 }
 
 /* =========================
-   ADAPTIVE
+   MOBILE ADAPTIVE
+========================= */
+
+@media (max-width:1023px){
+
+    .summary-image-wrap{
+        aspect-ratio:9/14;
+    }
+
+    .summary-placeholder{
+        min-height:420px;
+    }
+
+    .summary-placeholder-title{
+        font-size:25px;
+    }
+
+    .summary-overlay-arrow{
+        width:34px;
+        height:54px;
+
+        background:transparent;
+        border:none;
+
+        box-shadow:none;
+        backdrop-filter:none;
+
+        color:rgba(255,255,255,.82);
+
+        font-size:34px;
+        font-weight:900;
+
+        text-shadow:0 4px 18px rgba(0,0,0,.75);
+    }
+
+    .summary-overlay-arrow:disabled{
+        opacity:.18;
+    }
+
+    .summary-overlay-arrow-left{
+        left:4px;
+    }
+
+    .summary-overlay-arrow-right{
+        right:4px;
+    }
+
+    .summary-stage{
+        touch-action:pan-y;
+        user-select:none;
+    }
+
+    .summary-swipe-ghost{
+        display:block;
+
+        position:absolute;
+        top:0;
+
+        width:100%;
+        height:100%;
+
+        z-index:1;
+
+        opacity:.34;
+
+        filter:blur(8px);
+        transform:scale(.94);
+
+        pointer-events:none;
+    }
+
+    .summary-swipe-ghost.prev{
+        left:-82%;
+    }
+
+    .summary-swipe-ghost.next{
+        right:-82%;
+    }
+
+    .summary-swipe-current.swipe-left{
+        transform:translateX(-120%) rotate(-4deg);
+        opacity:.75;
+    }
+
+    .summary-swipe-current.swipe-right{
+        transform:translateX(120%) rotate(4deg);
+        opacity:.75;
+    }
+
+    .material-showcase{
+        display:flex;
+        flex-direction:column;
+        gap:16px;
+    }
+
+    .material-cover-shell{
+        width:min(78vw, 330px);
+
+        margin:0 auto;
+    }
+
+    .material-cover-card{
+        aspect-ratio:3/4.25;
+
+        border-radius:26px;
+    }
+
+    .material-info-card{
+        padding:18px;
+    }
+
+    .material-info-title{
+        font-size:24px;
+    }
+
+    .material-info-text{
+        margin-bottom:16px;
+
+        font-size:14px;
+    }
+
+    .material-actions{
+        grid-template-columns:1fr 1fr;
+        gap:10px;
+    }
+
+    .material-action-btn{
+        min-height:54px;
+
+        padding:0 10px;
+
+        font-size:14px;
+    }
+
+    .test-question.long-question{
+        font-size:22px;
+        line-height:1.2;
+    }
+
+    .test-question.very-long-question{
+        font-size:19px;
+        line-height:1.24;
+    }
+}
+
+/* =========================
+   DESKTOP ADAPTIVE
 ========================= */
 
 @media (max-width:1360px) and (min-width:1024px){
-
-    .desktop-layout{
-        grid-template-columns:245px minmax(0,1fr);
-    }
 
     .desktop-main{
         padding:22px 18px 26px;
     }
 
     .desktop-content-grid{
-        grid-template-columns:280px minmax(0,1fr) 280px;
+        grid-template-columns:245px minmax(0,1fr) 245px;
     }
 
     .desktop-title{
@@ -1468,16 +1552,17 @@ button{
 
     .desktop-content-grid{
         grid-template-columns:1fr;
+
         max-width:900px;
     }
 
-    .desktop-side-column{
+    .desktop-control-card{
+        min-height:auto;
+
         position:static;
-        display:grid;
-        grid-template-columns:1fr 1fr;
     }
 
-    .desktop-summary-grid{
+    .desktop-video-actions{
         grid-template-columns:1fr;
     }
 }
@@ -1498,7 +1583,181 @@ button{
     }
 }
 
+/* =========================
+   MOBILE PLYR FULLSCREEN FIX
+========================= */
+
+@media (max-width:1023px){
+
+    .mobile-video-frame .plyr{
+        width:100%;
+        height:100%;
+    }
+
+}
+
+/* =========================
+   TEST RESULT MODAL
+========================= */
+
+.result-overlay{
+    position:fixed;
+    inset:0;
+    z-index:9000;
+
+    display:none;
+    align-items:center;
+    justify-content:center;
+
+    padding:18px;
+
+    background:rgba(0,0,0,.58);
+    backdrop-filter:blur(14px);
+}
+
+.result-overlay.active{
+    display:flex;
+}
+
+.result-modal{
+    width:min(520px, 100%);
+
+    border-radius:30px;
+    padding:24px;
+
+    background:
+        radial-gradient(circle at 82% 14%, rgba(203,108,230,.22), transparent 28%),
+        linear-gradient(180deg,#171621 0%,#0f0e17 100%);
+
+    border:1px solid rgba(255,255,255,.08);
+
+    box-shadow:0 24px 70px rgba(0,0,0,.48);
+
+    color:#fff;
+}
+
+.result-fire{
+    width:54px;
+    height:54px;
+
+    margin:0 auto 14px;
+
+    border-radius:20px;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    background:rgba(203,108,230,.16);
+    border:1px solid rgba(203,108,230,.30);
+
+    font-size:30px;
+}
+
+.result-title{
+    margin:0 0 8px;
+
+    text-align:center;
+
+    font-size:30px;
+    line-height:1.1;
+    font-weight:900;
+}
+
+.result-score{
+    margin:0 0 18px;
+
+    text-align:center;
+
+    color:var(--muted);
+
+    font-size:15px;
+    line-height:1.45;
+    font-weight:700;
+}
+
+.result-scale{
+    display:grid;
+    gap:10px;
+
+    margin-bottom:18px;
+}
+
+.result-scale-item{
+    padding:13px 14px;
+
+    border-radius:18px;
+
+    background:rgba(255,255,255,.045);
+    border:1px solid rgba(255,255,255,.07);
+
+    color:rgba(255,255,255,.72);
+
+    font-size:14px;
+    line-height:1.35;
+    font-weight:800;
+}
+
+.result-scale-item.active{
+    color:#fff;
+
+    background:
+        linear-gradient(
+            90deg,
+            rgba(203,108,230,.30),
+            rgba(168,85,247,.18)
+        );
+
+    border-color:rgba(203,108,230,.45);
+}
+
+.result-actions{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:10px;
+}
+
+.result-btn{
+    width:100%;
+    min-height:54px;
+
+    border:none;
+    border-radius:18px;
+
+    color:#fff;
+
+    font-size:15px;
+    line-height:1.2;
+    font-weight:900;
+}
+
+.result-btn-secondary{
+    background:rgba(255,255,255,.055);
+    border:1px solid rgba(255,255,255,.09);
+}
+
+.result-btn-primary{
+    background:
+        linear-gradient(
+            90deg,
+            var(--accent),
+            var(--accent-2)
+        );
+
+    box-shadow:0 14px 32px rgba(203,108,230,.22);
+}
+
+@media (max-width:420px){
+    .result-actions{
+        grid-template-columns:1fr;
+    }
+
+    .result-title{
+        font-size:26px;
+    }
+}
 </style>
+
 </head>
 
 <body>
@@ -1517,33 +1776,57 @@ button{
 
             <div class="mobile-lesson-bar">
 
-                <button class="mobile-back" onclick="goBack()">
+                <button
+                    class="mobile-back"
+                    onclick="goBack()"
+                >
                     <span class="mobile-back-arrow">←</span>
                 </button>
 
-                <div class="mobile-step-title" id="mobileStepTitle"></div>
+                <div
+                    class="mobile-step-title"
+                    id="mobileStepTitle"
+                ></div>
 
-                <button class="mobile-lang-chip" onclick="toggleLessonLang()">
+                <button
+                    class="mobile-lang-chip"
+                    onclick="toggleLessonLang()"
+                >
                     <span id="mobileLangCurrent"></span>
                 </button>
 
             </div>
 
-            <div class="mobile-video-head" id="mobileVideoHead">
+            <div
+                class="mobile-video-head"
+                id="mobileVideoHead"
+            >
 
-                <div class="mobile-badge" id="lessonBadge-mobile"></div>
+                <div
+                    class="mobile-badge"
+                    id="lessonBadge-mobile"
+                ></div>
 
-                <h1 class="mobile-title" id="lessonTitle-mobile"></h1>
+                <h1
+                    class="mobile-title"
+                    id="lessonTitle-mobile"
+                ></h1>
 
-                <p class="mobile-subtitle" id="lessonSubtitle-mobile"></p>
+                <p
+                    class="mobile-subtitle"
+                    id="lessonSubtitle-mobile"
+                ></p>
 
             </div>
 
         </div>
 
-        <!-- STEP VIDEO -->
+        <!-- STEP: VIDEO -->
 
-        <section class="lesson-step active" id="step-video-mobile">
+        <section
+            class="lesson-step active"
+            id="step-video-mobile"
+        >
 
             <div class="mobile-video-card">
 
@@ -1555,23 +1838,40 @@ button{
                         playsinline
                         preload="metadata"
                     >
-                        <source id="videoSource-mobile" type="video/mp4">
+                        <source
+                            id="videoSource-mobile"
+                            type="video/mp4"
+                        >
                     </video>
 
                 </div>
 
                 <div class="mobile-video-bottom">
 
-                    <h2 class="mobile-video-title" id="videoTitle-mobile"></h2>
+                    <h2
+                        class="mobile-video-title"
+                        id="videoTitle-mobile"
+                    ></h2>
 
-                    <p class="mobile-video-text" id="videoText-mobile"></p>
+                    <p
+                        class="mobile-video-text"
+                        id="videoText-mobile"
+                    ></p>
 
-                    <div class="mobile-video-action">
+                    <div class="mobile-video-actions">
+
+                        <button
+                            class="btn btn-secondary mobile-material-btn"
+                            id="videoMaterialBtn-mobile"
+                            onclick="openMaterial()"
+                        ></button>
+
                         <button
                             class="mobile-main-btn"
                             id="goSummaryBtn-mobile"
                             onclick="goStep('summary')"
                         ></button>
+
                     </div>
 
                 </div>
@@ -1580,9 +1880,12 @@ button{
 
         </section>
 
-        <!-- STEP SUMMARY -->
+        <!-- STEP: SUMMARY -->
 
-        <section class="lesson-step" id="step-summary-mobile">
+        <section
+            class="lesson-step"
+            id="step-summary-mobile"
+        >
 
             <div class="mobile-summary-head">
 
@@ -1598,54 +1901,116 @@ button{
 
             </div>
 
-            <div class="summary-list" id="summaryList-mobile"></div>
+            <div class="summary-slider">
 
-            <div class="mobile-summary-action">
+                <div
+                    class="summary-stage"
+                    ontouchstart="summaryTouchStart(event)"
+                    ontouchmove="summaryTouchMove(event)"
+                    ontouchend="summaryTouchEnd(event)"
+                >
 
-                <button
-                    class="mobile-main-btn"
-                    id="summaryFinishBtn-mobile"
-                    onclick="openDeepModal()"
-                ></button>
+                    <div
+                        class="summary-image-wrap"
+                        id="summaryImageWrap-mobile"
+                    ></div>
+
+                    <button
+                        class="summary-overlay-arrow summary-overlay-arrow-left"
+                        id="summaryPrev-mobile"
+                        onclick="prevSummaryCard()"
+                    >
+                        ←
+                    </button>
+
+                    <button
+                        class="summary-overlay-arrow summary-overlay-arrow-right"
+                        id="summaryNext-mobile"
+                        onclick="nextSummaryCard()"
+                    >
+                        →
+                    </button>
+
+                </div>
+
+                <div
+                    class="summary-pages"
+                    id="summaryPages-mobile"
+                ></div>
+
+                <div class="summary-slider-action">
+
+                    <button
+                        class="mobile-main-btn"
+                        id="summaryFinishBtn-mobile"
+                        onclick="goStep('deep')"
+                    ></button>
+
+                </div>
 
             </div>
 
         </section>
 
-        <!-- STEP DEEP -->
+        <!-- STEP: MATERIALS -->
 
-        <section class="lesson-step" id="step-deep-mobile">
+        <section
+            class="lesson-step"
+            id="step-deep-mobile"
+        >
 
-            <div class="mobile-summary-head">
+            <div class="material-showcase">
 
-                <h2
-                    class="mobile-section-title"
-                    id="deepTitle-mobile"
-                ></h2>
+                <div class="material-cover-shell">
 
-                <p
-                    class="mobile-note"
-                    id="deepText-mobile"
-                ></p>
+                    <div class="material-cover-card">
+
+                        <div id="materialCover-mobile"></div>
+
+                    </div>
+
+                </div>
+
+                <div class="material-info-card soft-card">
+
+                    <h2
+                        class="material-info-title"
+                        id="materialTitle-mobile"
+                    ></h2>
+
+                    <p
+                        class="material-info-text"
+                        id="materialText-mobile"
+                    ></p>
+
+                    <div class="material-actions">
+
+                        <button
+                            class="btn btn-primary material-action-btn"
+                            id="materialOpenBtn-mobile"
+                            onclick="openMaterial()"
+                        ></button>
+
+                        <button
+                            class="btn btn-secondary material-action-btn"
+                            id="goTestBtn-mobile"
+                            onclick="goStep('test')"
+                        ></button>
+
+                    </div>
+
+                </div>
 
             </div>
 
-            <div class="summary-list" id="deepList-mobile"></div>
-
-            <div class="mobile-summary-action">
-
-                <button
-                    class="mobile-main-btn"
-                    id="goTestBtn-mobile"
-                    onclick="goStep('test')"
-                ></button>
-
-            </div>
         </section>
 
-        <!-- STEP TEST -->
+        <!-- STEP: TEST -->
 
-        <section class="lesson-step" id="step-test-mobile">
+        <section
+            class="lesson-step"
+            id="step-test-mobile"
+        >
 
             <div class="mobile-test-head">
 
@@ -1668,9 +2033,15 @@ button{
 
             </div>
 
-            <h3 class="test-question" id="testQuestion-mobile"></h3>
+            <h3
+                class="test-question"
+                id="testQuestion-mobile"
+            ></h3>
 
-            <div class="test-answers" id="testAnswers-mobile"></div>
+            <div
+                class="test-answers"
+                id="testAnswers-mobile"
+            ></div>
 
             <button
                 class="btn btn-primary test-next"
@@ -1698,7 +2069,11 @@ button{
 
             <div class="desktop-content-grid">
 
+                <!-- LEFT: OTABEK -->
+
                 <div id="otabek-slot"></div>
+
+                <!-- CENTER -->
 
                 <div class="desktop-main-column">
 
@@ -1706,53 +2081,86 @@ button{
 
                         <div class="desktop-lesson-line">
 
-                            <button class="desktop-step-back" onclick="goBack()">
+                            <button
+                                class="desktop-step-back"
+                                onclick="goBack()"
+                            >
                                 <span>←</span>
                             </button>
 
-                            <div class="desktop-badge" id="lessonBadge-desktop"></div>
+                            <div
+                                class="desktop-badge"
+                                id="lessonBadge-desktop"
+                            ></div>
 
                         </div>
 
-                        <h1 class="desktop-title" id="lessonTitle-desktop"></h1>
+                        <h1
+                            class="desktop-title"
+                            id="lessonTitle-desktop"
+                        ></h1>
 
-                        <p class="desktop-subtitle" id="lessonSubtitle-desktop"></p>
+                        <p
+                            class="desktop-subtitle"
+                            id="lessonSubtitle-desktop"
+                        ></p>
 
                     </div>
 
-                    <section class="lesson-step active" id="step-video-desktop">
+                    <!-- STEP: VIDEO -->
+
+                    <section
+                        class="lesson-step active"
+                        id="step-video-desktop"
+                    >
 
                         <div class="desktop-video-card">
 
-                            <div class="desktop-video-frame">
+                            <div
+                                class="desktop-video-frame"
+                                id="desktopVideoFrame"
+                            >
 
                                 <video
+                                    class="js-plyr-video"
                                     id="lessonVideo-desktop"
                                     controls
                                     playsinline
                                     preload="metadata"
                                 >
-                                    <source id="videoSource-desktop" type="video/mp4">
+                                    <source
+                                        id="videoSource-desktop"
+                                        type="video/mp4"
+                                    >
                                 </video>
 
                             </div>
 
                             <div class="desktop-video-bottom">
 
-                                <div class="desktop-video-info-row">
+                                <h2
+                                    class="desktop-video-title"
+                                    id="videoTitle-desktop"
+                                ></h2>
 
-                                    <div class="desktop-video-copy">
-                                        <h2 class="desktop-video-title" id="videoTitle-desktop"></h2>
-                                        <p class="desktop-video-text" id="videoText-desktop"></p>
-                                    </div>
+                                <p
+                                    class="desktop-video-text"
+                                    id="videoText-desktop"
+                                ></p>
 
-                                    <div class="desktop-video-action">
-                                        <button
-                                            class="desktop-main-btn"
-                                            id="goSummaryBtn-desktop"
-                                            onclick="goStep('summary')"
-                                        ></button>
-                                    </div>
+                                <div class="desktop-video-actions">
+
+                                    <button
+                                        class="btn btn-secondary desktop-material-btn"
+                                        id="videoMaterialBtn-desktop"
+                                        onclick="openMaterial()"
+                                    ></button>
+
+                                    <button
+                                        class="desktop-main-btn"
+                                        id="goSummaryBtn-desktop"
+                                        onclick="goStep('summary')"
+                                    ></button>
 
                                 </div>
 
@@ -1762,70 +2170,177 @@ button{
 
                     </section>
 
-                    <section class="lesson-step" id="step-summary-desktop">
+                    <!-- STEP: SUMMARY -->
+
+                    <section
+                        class="lesson-step"
+                        id="step-summary-desktop"
+                    >
 
                         <div class="desktop-summary-top">
 
-                            <h2 class="desktop-section-title" id="summaryTitle-desktop"></h2>
+                            <h2
+                                class="desktop-section-title"
+                                id="summaryTitle-desktop"
+                            ></h2>
 
-                            <p class="desktop-note" id="summaryNote-desktop"></p>
-
-                        </div>
-
-                        <div class="desktop-summary-grid" id="summaryList-desktop"></div>
-
-                        <div class="desktop-summary-action">
-
-                            <button
-                                class="desktop-main-btn"
-                                id="summaryFinishBtn-desktop"
-                                onclick="openDeepModal()"
-                            ></button>
-
-                        </div>
-                    </section>
-
-                    <section class="lesson-step" id="step-deep-desktop">
-
-                        <div class="desktop-summary-top">
-
-                            <h2 class="desktop-section-title" id="deepTitle-desktop"></h2>
-
-                            <p class="desktop-note" id="deepText-desktop"></p>
+                            <p
+                                class="desktop-note"
+                                id="summaryNote-desktop"
+                            ></p>
 
                         </div>
 
-                        <div class="desktop-summary-grid" id="deepList-desktop"></div>
+                        <div class="summary-slider">
 
-                        <div class="desktop-summary-action">
+                            <div class="summary-stage">
 
-                            <button
-                                class="desktop-main-btn"
-                                id="summaryFinishBtn-desktop"
-                                onclick="openDeepModal()"
-                            ></button>
+                                <div
+                                    class="summary-image-wrap"
+                                    id="summaryImageWrap-desktop"
+                                ></div>
 
-                        </div>
+                                <button
+                                    class="summary-overlay-arrow summary-overlay-arrow-left"
+                                    id="summaryPrev-desktop"
+                                    onclick="prevSummaryCard()"
+                                >
+                                    ←
+                                </button>
 
-                    </section>
+                                <button
+                                    class="summary-overlay-arrow summary-overlay-arrow-right"
+                                    id="summaryNext-desktop"
+                                    onclick="nextSummaryCard()"
+                                >
+                                    →
+                                </button>
 
-                    <section class="lesson-step" id="step-test-desktop">
+                            </div>
 
-                        <div class="desktop-test-top">
+                            <div
+                                class="summary-pages"
+                                id="summaryPages-desktop"
+                            ></div>
 
-                            <h2 class="desktop-section-title" id="testTitle-desktop"></h2>
+                            <div class="summary-slider-action">
 
-                            <p class="desktop-note" id="testText-desktop"></p>
+                                <button
+                                    class="desktop-main-btn"
+                                    id="summaryFinishBtn-desktop"
+                                    onclick="goStep('deep')"
+                                ></button>
 
-                            <div class="test-progress-line">
-                                <div class="test-progress-fill" id="testProgress-desktop"></div>
                             </div>
 
                         </div>
 
-                        <h3 class="test-question" id="testQuestion-desktop"></h3>
+                    </section>
 
-                        <div class="test-answers" id="testAnswers-desktop"></div>
+                    <!-- STEP: MATERIALS -->
+
+                    <section
+                        class="lesson-step"
+                        id="step-deep-desktop"
+                    >
+
+                        <div class="desktop-summary-top">
+
+                            <h2
+                                class="desktop-section-title"
+                                id="deepTitle-desktop"
+                            ></h2>
+
+                            <p
+                                class="desktop-note"
+                                id="deepText-desktop"
+                            ></p>
+
+                        </div>
+
+                        <div class="material-showcase">
+
+                            <div class="material-cover-shell">
+
+                                <div class="material-cover-card">
+
+                                    <div id="materialCover-desktop"></div>
+
+                                </div>
+
+                            </div>
+
+                            <div class="material-info-card soft-card">
+
+                                <h2
+                                    class="material-info-title"
+                                    id="materialTitle-desktop"
+                                ></h2>
+
+                                <p
+                                    class="material-info-text"
+                                    id="materialText-desktop"
+                                ></p>
+
+                                <div class="material-actions">
+
+                                    <button
+                                        class="btn btn-primary material-action-btn"
+                                        id="materialOpenBtn-desktop"
+                                        onclick="openMaterial()"
+                                    ></button>
+
+                                    <button
+                                        class="btn btn-secondary material-action-btn"
+                                        id="goTestBtn-desktop"
+                                        onclick="goStep('test')"
+                                    ></button>
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                    </section>
+
+                    <!-- STEP: TEST -->
+
+                    <section
+                        class="lesson-step"
+                        id="step-test-desktop"
+                    >
+
+                        <div class="desktop-test-top">
+
+                            <h2
+                                class="desktop-section-title"
+                                id="testTitle-desktop"
+                            ></h2>
+
+                            <p
+                                class="desktop-note"
+                                id="testText-desktop"
+                            ></p>
+
+                            <div class="test-progress-line">
+                                <div
+                                    class="test-progress-fill"
+                                    id="testProgress-desktop"
+                                ></div>
+                            </div>
+
+                        </div>
+
+                        <h3
+                            class="test-question"
+                            id="testQuestion-desktop"
+                        ></h3>
+
+                        <div
+                            class="test-answers"
+                            id="testAnswers-desktop"
+                        ></div>
 
                         <button
                             class="btn btn-primary test-next"
@@ -1837,41 +2352,42 @@ button{
 
                 </div>
 
+                <!-- RIGHT: LANGUAGE + PROGRESS -->
+
                 <aside class="desktop-side-column">
 
-                    <div class="desktop-language-card glow-card">
+                    <div class="desktop-control-card soft-card">
 
-                        <div class="desktop-language-kicker" id="languageKicker-desktop"></div>
+                        <div class="desktop-language-block">
 
-                        <h3 class="desktop-language-title" id="languageTitle-desktop"></h3>
+                            <h3
+                                class="desktop-language-title"
+                                id="languageTitle-desktop"
+                            ></h3>
 
-                        <div class="desktop-language-options">
+                            <div class="desktop-language-options">
 
-                            <button
-                                class="desktop-language-option"
-                                id="lessonLangRu-desktop"
-                                onclick="setLessonLang('ru')"
-                            >
-                                <span class="desktop-language-flag">RU</span>
-                                <span class="desktop-language-name">Русский</span>
-                            </button>
+                                <button
+                                    class="desktop-language-option"
+                                    id="lessonLangRu-desktop"
+                                    onclick="setLessonLang('ru')"
+                                >
+                                    <span class="desktop-language-flag">RU</span>
+                                    <span class="desktop-language-name">Русский</span>
+                                </button>
 
-                            <button
-                                class="desktop-language-option"
-                                id="lessonLangUz-desktop"
-                                onclick="setLessonLang('uz')"
-                            >
-                                <span class="desktop-language-flag">UZ</span>
-                                <span class="desktop-language-name">O‘zbekcha</span>
-                            </button>
+                                <button
+                                    class="desktop-language-option"
+                                    id="lessonLangUz-desktop"
+                                    onclick="setLessonLang('uz')"
+                                >
+                                    <span class="desktop-language-flag">UZ</span>
+                                    <span class="desktop-language-name">O‘zbekcha</span>
+                                </button>
+
+                            </div>
 
                         </div>
-
-                    </div>
-
-                    <div class="desktop-steps-card soft-card">
-
-                        <div class="desktop-steps-label" id="stepsLabel-desktop"></div>
 
                         <div class="desktop-steps-list">
 
@@ -1881,7 +2397,14 @@ button{
                                 onclick="goStep('video')"
                             >
                                 <div class="desktop-step-dot"></div>
-                                <span id="stepVideoLabel-desktop"></span>
+                                <span
+                                    class="desktop-step-label"
+                                    id="stepVideoLabel-desktop"
+                                ></span>
+                                <span
+                                    class="desktop-step-lock"
+                                    id="desktopStepLock-video"
+                                ></span>
                             </div>
 
                             <div
@@ -1890,7 +2413,14 @@ button{
                                 onclick="goStep('summary')"
                             >
                                 <div class="desktop-step-dot"></div>
-                                <span id="stepSummaryLabel-desktop"></span>
+                                <span
+                                    class="desktop-step-label"
+                                    id="stepSummaryLabel-desktop"
+                                ></span>
+                                <span
+                                    class="desktop-step-lock"
+                                    id="desktopStepLock-summary"
+                                ></span>
                             </div>
 
                             <div
@@ -1899,7 +2429,14 @@ button{
                                 onclick="goStep('deep')"
                             >
                                 <div class="desktop-step-dot"></div>
-                                <span id="stepDeepLabel-desktop"></span>
+                                <span
+                                    class="desktop-step-label"
+                                    id="stepDeepLabel-desktop"
+                                ></span>
+                                <span
+                                    class="desktop-step-lock"
+                                    id="desktopStepLock-deep"
+                                ></span>
                             </div>
 
                             <div
@@ -1908,10 +2445,23 @@ button{
                                 onclick="goStep('test')"
                             >
                                 <div class="desktop-step-dot"></div>
-                                <span id="stepTestLabel-desktop"></span>
+                                <span
+                                    class="desktop-step-label"
+                                    id="stepTestLabel-desktop"
+                                ></span>
+                                <span
+                                    class="desktop-step-lock"
+                                    id="desktopStepLock-test"
+                                ></span>
                             </div>
 
                         </div>
+
+                        <img
+                            class="desktop-side-character"
+                            src="images/smm/lesson-1/side-character.png"
+                            alt=""
+                        >
 
                     </div>
 
@@ -1925,44 +2475,7 @@ button{
 
 </div>
 
-<!-- =========================
-     DEEP MODAL
-========================= -->
-
-<div class="deep-overlay" id="deepOverlay">
-
-    <div class="deep-modal glow-card">
-        <button
-            class="deep-close"
-            onclick="goStep('summary'); closeDeepModal()"
-        >
-            ×
-        </button>
-        <div class="deep-icon">✦</div>
-
-        <h2 class="deep-title" id="deepModalTitle"></h2>
-
-        <p class="deep-text" id="deepModalText"></p>
-
-        <div class="deep-actions">
-
-            <button
-                class="btn btn-secondary deep-btn"
-                id="deepMaterialBtn"
-                onclick="openMaterial(); closeDeepModal();"
-            ></button>
-
-            <button
-                class="btn btn-primary deep-btn"
-                id="deepTestBtn"
-                onclick="goStep('test'); closeDeepModal();"
-            ></button>
-
-        </div>
-
-    </div>
-
-</div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/plyr/3.8.4/plyr.min.js"></script>
 
 <script>
 let lang = localStorage.getItem("lang") || "uz"
@@ -1971,14 +2484,29 @@ const COURSE_SLUG = "smm"
 const LESSON_ID = 2
 const NEXT_LESSON_ID = 3
 
-const VIDEO_PATH = "https://bot.gaphub.uz/videos/smm/lesson-2.mp4"
+const VIDEO_PATHS = {
+    ru:"https://bot.gaphub.uz/videos/smm/lesson-2-ru.mp4",
+    uz:"https://bot.gaphub.uz/videos/smm/lesson-2-uz.mp4"
+}
 
 const MATERIAL_PATHS = {
     ru:"https://bot.gaphub.uz/materials/smm/lesson-2-ru.pdf",
     uz:"https://bot.gaphub.uz/materials/smm/lesson-2-uz.pdf"
 }
 
+const STEP_ORDER = ["video", "summary", "deep", "test"]
+const SUMMARY_CARDS_COUNT = 10
+
 let currentStep = "video"
+let maxUnlockedStepIndex = 1
+let currentSummaryCardIndex = 0
+
+let summaryTouchStartX = 0
+let summaryTouchStartY = 0
+let summaryTouchMoveX = 0
+let summaryTouchMoveY = 0
+let summaryIsDragging = false
+let summaryIsHorizontalSwipe = false
 
 let currentQuestionIndex = 0
 let score = 0
@@ -1986,327 +2514,126 @@ let selectedAnswer = false
 
 let telegramUserId = null
 
-function setText(id, value){
-
-    const el = document.getElementById(id)
-
-    if(el){
-        el.innerText = value
-    }
-}
+let mobilePlyr = null
+let desktopPlyr = null
 
 const t = {
 
     uz:{
-
-        back:"Orqaga",
-
         lessonBadge:"SMM • 2-dars",
-
-        lessonTitle:"SMM’da start va sahifani upakovka qilish",
-
-       lessonSubtitle:"Bu darsda SMM’da startni qanday qilish, sahifani to‘g‘ri upakovka qilish va birinchi taassurot nima uchun muhimligini tushunamiz.",
+        lessonTitle:"Nisha va platformani tanlash",
+        lessonSubtitle:"Bu darsda SMMda nisha nima uchun muhimligini, turli bizneslarga bir xil yondashib bo‘lmasligini va qaysi platformadan boshlash yaxshiroq ekanini ko‘rib chiqamiz.",
 
         videoTitle:"2-dars videosi",
-
         videoText:"Videoni ko‘ring va keyin qisqa xulosaga o‘ting.",
-
-        goSummary:"Xulosaga o‘tish",
+        videoMaterial:"Video materiallari",
+        goSummary:"Xulosaga o‘tish →",
 
         summaryTitle:"Darsdan qisqa xulosa",
+        summaryNote:"Asosiy fikrlarni slaydlarda ko‘rib chiqing.",
+        summaryFinish:"Materiallarga o‘tish",
 
-        summaryNote:"Savolni bosing, javob pastga ochiladi.",
+        deepTitle:"Materiallar",
+        deepText:"Bu yerda darsga tegishli PDF va qo‘shimcha materiallar joylashadi.",
 
-        summaryFinish:"Men o‘qib chiqdim",
-
-        deepTitle:"Chuqurroq material",
-
-        deepText:"Bu yerda mavzuni kengroq tushuntiradigan qo‘shimcha materiallar bo‘ladi.",
+        materialTitle:"Dars materiallari",
+        materialText:"PDF konspektni oching: unda darsdagi asosiy fikrlar, misollar va qaytib ko‘rish uchun qulay xulosa bor.",
+        materialOpen:"PDFni ko‘rish",
 
         goTest:"Testga o‘tish",
 
         testTitle:"Bilimni tekshirish",
-
         testText:"Test orqali asosiy tushunchalarni mustahkamlang.",
-
         nextQuestion:"Keyingi savol",
-
-        materialBtn:"Material",
-
-        openTestBtn:"Test",
-
-        sideTitle:"Darsni yakunlash",
-
-        sideText:"Videoni ko‘ring, xulosani o‘qing va test orqali mavzuni mustahkamlang.",
-
-        stepsLabel:"Dars bosqichlari",
 
         stepVideo:"Video",
         stepSummary:"Xulosa",
-        stepDeep:"Chuqurlashish",
+        stepDeep:"Materiallar",
         stepTest:"Test",
 
-        modalTitle:"Keyingi qadam",
-
-        modalText:"Xohlasangiz chuqurroq materialni o‘rganishingiz yoki darhol testga o‘tishingiz mumkin.",
-
-        modalMaterial:"Chuqurroq material",
-        modalTest:"Testga o‘tish",
+        languageTitle:"Kurs tili",
 
         finishTitle:"Dars yakunlandi",
-
-       finishText:"Siz 2-darsni tugatdingiz. Endi keyingi darsga o‘tishingiz mumkin.",
-
+        finishText:"Siz 2-darsni tugatdingiz. Endi keyingi darsga o‘tishingiz mumkin.",
         finishNext:"3-darsga o‘tish",
+
+        showResults:"Natijalarni ko‘rish",
+
+        resultBadTitle:"Darsni qayta ko‘rish kerak",
+        resultGoodTitle:"Yaxshi natija",
+        resultGreatTitle:"A’lo natija",
+
+        resultBadText:"Ba’zi joylar tushunarsiz qolgan. Darsni yana bir marta ko‘rib, testni qayta topshirishni tavsiya qilamiz.",
+        resultGoodText:"Yaxshi natija, lekin bundan ham yaxshiroq bo‘lishi mumkin. Asosiy tushuncha bor, detallarga e’tibor kerak.",
+        resultGreatText:"Tabriklaymiz! Dars juda yaxshi o‘zlashtirildi.",
+
+        resultScaleBad:"0–4 to‘g‘ri javob — past natija, darsni qayta ko‘rishni tavsiya qilamiz",
+        resultScaleGood:"5–7 to‘g‘ri javob — yaxshi natija, lekin yanada yaxshiroq bo‘lishi mumkin",
+        resultScaleGreat:"8–10 to‘g‘ri javob — a’lo natija, dars o‘zlashtirildi",
+
+        restartLesson:"Darsni qayta ko‘rish",
+        finishLessonBtn:"Darsni yakunlash",
 
         materialMissing:"Material keyinroq qo‘shiladi"
     },
 
     ru:{
-
-        back:"Назад",
-
         lessonBadge:"SMM • Урок 2",
-
-        lessonTitle:"Старт в SMM и упаковка страницы",
-
-        lessonSubtitle:"В этом уроке разбираем, как начать путь в SMM, правильно упаковать страницу и почему первое впечатление сильно влияет на доверие аудитории.",
+        lessonTitle:"Ниша и платформа в SMM",
+        lessonSubtitle:"В этом уроке разбираем, зачем выбирать нишу, почему разные бизнесы нельзя вести одинаково и с какой платформы лучше начинать.",
 
         videoTitle:"Видео второго урока",
-
         videoText:"Посмотри видео и после этого перейди к выжимке урока.",
-
-        goSummary:"Перейти к выжимке",
+        videoMaterial:"Материалы к видео",
+        goSummary:"Перейти к выжимке →",
 
         summaryTitle:"Выжимка урока",
+        summaryNote:"Посмотри основные мысли урока в слайдах.",
+        summaryFinish:"Перейти к материалам",
 
-        summaryNote:"Нажми на вопрос, чтобы раскрыть короткий ответ.",
-
-        summaryFinish:"Я прочитал",
-
-        deepTitle:"Углубленный материал",
-
+        deepTitle:"Материалы",
         deepText:"Здесь будут дополнительные материалы для более глубокого понимания темы.",
+
+        materialTitle:"Материалы к уроку",
+        materialText:"Открой PDF-конспект: там собраны главные мысли урока, примеры и удобная выжимка, к которой можно вернуться позже.",
+        materialOpen:"Смотреть PDF",
 
         goTest:"Перейти к тесту",
 
         testTitle:"Проверка знаний",
-
         testText:"Закрепи основные понятия через короткий тест.",
-
         nextQuestion:"Следующий вопрос",
-
-        materialBtn:"Материал",
-
-        openTestBtn:"Тест",
-
-        sideTitle:"Завершить урок",
-
-        sideText:"Посмотри видео, изучи выжимку и закрепи тему тестом.",
-
-        stepsLabel:"Этапы урока",
 
         stepVideo:"Видео",
         stepSummary:"Выжимка",
-        stepDeep:"Углубление",
+        stepDeep:"Материалы",
         stepTest:"Тест",
 
-        modalTitle:"Что дальше?",
-
-        modalText:"Можешь пройти углубленный материал или сразу перейти к тесту.",
-
-        modalMaterial:"Углубленный материал",
-        modalTest:"Перейти к тесту",
+        languageTitle:"Язык курса",
 
         finishTitle:"Урок завершён",
-
-        finishText:"Ты прошел второй урок. Теперь можно перейти к третьему уроку.",
-
+        finishText:"Ты прошёл второй урок. Теперь можно перейти к третьему уроку.",
         finishNext:"Перейти к 3 уроку",
+
+        showResults:"Узнать результаты",
+
+        resultBadTitle:"Нужно повторить урок",
+        resultGoodTitle:"Хороший результат",
+        resultGreatTitle:"Отличный результат",
+
+        resultBadText:"Есть пробелы. Советуем ещё раз пройти урок и потом повторить тест.",
+        resultGoodText:"Хороший результат, но можно лучше. Основу ты понял, осталось закрепить детали.",
+        resultGreatText:"Поздравляем! Урок усвоен отлично.",
+
+        resultScaleBad:"0–4 правильных ответа — плохо, советуем ещё раз пройти урок",
+        resultScaleGood:"5–7 правильных ответов — хороший результат, но можно лучше",
+        resultScaleGreat:"8–10 правильных ответов — отличный результат, урок усвоен",
+
+        restartLesson:"Пройти урок ещё раз",
+        finishLessonBtn:"Закончить урок",
 
         materialMissing:"Материал будет добавлен позже"
     }
-}
-
-const summaryData = {
-
-    ru:[
-
-        {
-            q:"Ниша в SMM",
-            a:"Ниша определяет:<br><br>• стиль контента<br>• подачу<br>• аудиторию<br>• восприятие страницы<br><br>Контент, который работает для кофейни, может полностью не подойти юристу или фитнес-залу."
-        },
-
-        {
-            q:"Почему важно понимать свою нишу?",
-            a:"Когда человек понимает сферу, ему проще:<br><br>• чувствовать аудиторию<br>• придумывать темы<br>• понимать подачу<br>• делать контент естественным<br><br>Из-за этого страница выглядит живее и убедительнее."
-        },
-
-        {
-            q:"Instagram в SMM",
-            a:"Instagram сейчас остаётся основной площадкой для продвижения в Узбекистане.<br><br>Именно там формируется первое впечатление о бизнесе, люди оценивают визуал и принимают решение доверять странице или нет."
-        },
-
-        {
-            q:"Telegram в SMM",
-            a:"Telegram помогает удерживать аудиторию внутри проекта.<br><br>Там сильнее работают:<br><br>• объяснения<br>• сторителлинг<br>• общение<br>• более глубокий контент"
-        },
-
-        {
-            q:"Оформление профиля",
-            a:"Профиль — это упаковка бизнеса.<br><br>Человек оценивает страницу за несколько секунд:<br><br>• аватарку<br>• bio<br>• обложки<br>• первые публикации<br>• общее ощущение от профиля"
-        },
-
-        {
-            q:"Аватарка",
-            a:"Хорошая аватарка должна быть:<br><br>• простой<br>• понятной<br>• читаемой даже в маленьком размере<br><br>Перегруженные логотипы обычно воспринимаются хуже."
-        },
-
-        {
-            q:"Bio",
-            a:"Главная задача bio — быстро объяснить:<br><br>• что это за проект<br>• что человек здесь получит<br>• куда ему двигаться дальше<br><br>Сложные и длинные описания работают хуже."
-        },
-
-        {
-            q:"Обложки рилсов",
-            a:"Обложка рилса должна быстро объяснять тему видео.<br><br>Лучше всего работают:<br><br>• короткие заголовки<br>• крупный текст<br>• единый стиль оформления"
-        },
-
-        {
-            q:"Почему важен единый стиль?",
-            a:"Когда страница выглядит хаотично:<br><br>• доверие падает<br>• профиль хуже запоминается<br>• контент воспринимается слабее<br><br>Аккуратный и единый стиль усиливает восприятие проекта."
-        },
-
-        {
-            q:"Подписчики и реальный результат",
-            a:"Большое количество подписчиков не гарантирует:<br><br>• продажи<br>• активность<br>• хорошие охваты<br><br>Намного важнее:<br><br>• живая аудитория<br>• удержание<br>• реакции<br>• вовлечённость"
-        },
-
-        {
-            q:"Алгоритмы Instagram",
-            a:"Instagram анализирует:<br><br>• досмотры<br>• сохранения<br>• реакции<br>• удержание внимания<br><br>Чем сильнее реакция аудитории, тем активнее платформа продвигает контент."
-        },
-
-        {
-            q:"Удержание внимания",
-            a:"Удержание показывает, насколько долго человек взаимодействует с контентом.<br><br>Если видео закрывают сразу — это слабый сигнал для алгоритма."
-        },
-
-        {
-            q:"Рилсы",
-            a:"Рилсы — главный источник новых охватов в Instagram.<br><br>Именно через короткие видео аудитория чаще всего впервые находит страницу."
-        },
-
-        {
-            q:"Карусели",
-            a:"Карусели помогают:<br><br>• удерживать внимание<br>• объяснять тему<br>• давать пользу через несколько слайдов"
-        },
-
-        {
-            q:"Сторис",
-            a:"Сторис формируют ощущение живой страницы.<br><br>Через них появляется:<br><br>• постоянный контакт<br>• доверие<br>• ощущение активности внутри профиля"
-        },
-
-        {
-            q:"Обычные посты",
-            a:"Обычные посты хорошо подходят:<br><br>• для кейсов<br>• отзывов<br>• экспертного контента<br>• важных объявлений"
-        },
-
-        {
-            q:"Главная мысль урока",
-            a:"Сильная SMM-страница строится не только на красивом визуале.<br><br>Основа — это:<br><br>• понимание своей аудитории<br>• правильная упаковка<br>• живой контент<br>• системная работа со страницей"
-        }
-
-    ],
-
-    uz:[
-
-        {
-            q:"SMM’da nisha",
-            a:"Nisha quyidagilarni belgilaydi:<br><br>• kontent stili<br>• podacha<br>• auditoriya<br>• sahifaning qanday qabul qilinishi<br><br>Kofeyna uchun ishlaydigan kontent yurist yoki fitness zaliga umuman mos kelmasligi mumkin."
-        },
-
-        {
-            q:"Nega o‘z nishasini tushunish muhim?",
-            a:"Odam sohani tushunganda unga:<br><br>• auditoriyani his qilish<br>• mavzu topish<br>• podachani tushunish<br>• kontentni tabiiy qilish osonroq bo‘ladi<br><br>Shu sababli sahifa jonliroq va ishonchliroq ko‘rinadi."
-        },
-
-        {
-            q:"Instagram SMM’da",
-            a:"Instagram hozir O‘zbekistondagi asosiy продвижение platformasi bo‘lib qolmoqda.<br><br>Aynan shu yerda biznes haqida birinchi taassurot shakllanadi, odamlar vizualni baholaydi va sahifaga ishonish yoki ishonmaslik haqida qaror qiladi."
-        },
-
-        {
-            q:"Telegram SMM’da",
-            a:"Telegram auditoriyani loyiha ichida ushlab turishga yordam beradi.<br><br>Bu yerda kuchliroq ishlaydi:<br><br>• tushuntirishlar<br>• сторителлинг<br>• muloqot<br>• chuqurroq kontent"
-        },
-
-        {
-            q:"Profilni оформлять qilish",
-            a:"Profil — bu biznesning upakovkasi.<br><br>Odam sahifani bir necha soniyada baholaydi:<br><br>• avatar<br>• bio<br>• oblojkalar<br>• birinchi postlar<br>• umumiy taassurot"
-        },
-
-        {
-            q:"Avatar",
-            a:"Yaxshi avatar:<br><br>• oddiy<br>• tushunarli<br>• kichik o‘lchamda ham o‘qilishi oson bo‘lishi kerak<br><br>Ortacha yuklangan logotiplar odatda yomonroq qabul qilinadi."
-        },
-
-        {
-            q:"Bio",
-            a:"Bio’ning asosiy vazifasi tezda tushuntirish:<br><br>• bu qanday loyiha<br>• odam bu yerda nima oladi<br>• keyin qayerga o‘tishi kerakligini<br><br>Murakkab va uzun tavsiflar yomonroq ishlaydi."
-        },
-
-        {
-            q:"Rils oblojkalari",
-            a:"Rils oblojkasi video mavzusini tezda tushuntirib berishi kerak.<br><br>Eng yaxshi ishlaydi:<br><br>• qisqa sarlavhalar<br>• katta matn<br>• yagona stil"
-        },
-
-        {
-            q:"Nega yagona stil muhim?",
-            a:"Sahifa tartibsiz ko‘rinsa:<br><br>• ishonch pasayadi<br>• profil yomonroq esda qoladi<br>• kontent kuchsizroq qabul qilinadi<br><br>Toza va yagona stil loyiha qabul qilinishini kuchaytiradi."
-        },
-
-        {
-            q:"Obunachilar va real natija",
-            a:"Ko‘p obunachi:<br><br>• savdo<br>• aktivlik<br>• yaxshi охватni kafolatlamaydi<br><br>Muhimrog‘i:<br><br>• jonli auditoriya<br>• удержание<br>• reaksiyalar<br>• вовлеченность"
-        },
-
-        {
-            q:"Instagram algoritmlari",
-            a:"Instagram quyidagilarni tahlil qiladi:<br><br>• dosmotlar<br>• saqlashlar<br>• reaksiyalar<br>• e’tiborni ushlab qolish<br><br>Auditoriya reaksiyasi qanchalik kuchli bo‘lsa, platforma kontentni shunchalik aktiv targ‘ib qiladi."
-        },
-
-        {
-            q:"E’tiborni ushlab qolish",
-            a:"Удержание odam kontent bilan qancha vaqt ishlashini ko‘rsatadi.<br><br>Agar video darrov yopilsa — bu algoritm uchun sust signal hisoblanadi."
-        },
-
-        {
-            q:"Rilslar",
-            a:"Rilslar Instagram’dagi yangi охватlarning asosiy manbasi hisoblanadi.<br><br>Aynan qisqa videolar orqali auditoriya ko‘pincha sahifani birinchi marta topadi."
-        },
-
-        {
-            q:"Karusellar",
-            a:"Karusellar:<br><br>• e’tiborni ushlab turishga<br>• mavzuni tushuntirishga<br>• bir nechta slayd orqali foyda berishga yordam beradi"
-        },
-
-        {
-            q:"Storislar",
-            a:"Storislar tirik sahifa hissini yaratadi.<br><br>Ular orqali:<br><br>• doimiy aloqa<br>• ishonch<br>• profil ichidagi aktivlik hissi paydo bo‘ladi"
-        },
-
-        {
-            q:"Oddiy postlar",
-            a:"Oddiy postlar yaxshi mos keladi:<br><br>• кейсlar<br>• отзывlar<br>• ekspert kontenti<br>• muhim e’lonlar uchun"
-        },
-
-        {
-            q:"Darsning asosiy fikri",
-            a:"Kuchli SMM-sahifa faqat chiroyli vizual asosida qurilmaydi.<br><br>Asos:<br><br>• auditoriyani tushunish<br>• to‘g‘ri upakovka<br>• jonli kontent<br>• sahifa bilan tizimli ishlashdir"
-        }
-
-    ]
 }
 
 const questions = {
@@ -2314,80 +2641,113 @@ const questions = {
     ru:[
 
         {
-            question:"Почему работа сразу с несколькими нишами на старте часто замедляет развитие в SMM?",
+            question:"Зачем перед началом работы в SMM выбирать нишу?",
             answers:[
-                "Алгоритмы Instagram хуже продвигают такие страницы",
-                "Становится сложнее понимать аудиторию и выстраивать подачу",
-                "Из-за этого уменьшается количество охватов",
-                "Нельзя одновременно вести разные проекты"
+                "Чтобы сразу понять, какие тренды нужно копировать у конкурентов",
+                "Чтобы не делать SMM абстрактно, а понимать, с каким продуктом, аудиторией и подачей работаешь",
+                "Чтобы выбрать самый дорогой сегмент и сразу брать большие чеки",
+                "Чтобы заранее решить, какие цвета будут использоваться в визуале страницы"
             ],
             correct:1
         },
 
         {
-            question:"Почему Instagram считается основной платформой для SMM в Узбекистане?",
+            question:"Почему нельзя одинаково вести страницу кофейни, салона красоты и юридических услуг?",
             answers:[
-                "Потому что там проще запускать рекламу",
-                "Потому что Instagram заменил Telegram",
-                "Потому что именно там формируется первое впечатление о бизнесе",
-                "Потому что TikTok полностью запрещён"
-            ],
-            correct:2
-        },
-
-        {
-            question:"Какая основная задача Telegram внутри SMM-системы?",
-            answers:[
-                "Делать вирусные охваты",
-                "Удерживать аудиторию и усиливать контакт с ней",
-                "Заменять Instagram-профиль",
-                "Использоваться только для продаж"
-            ],
-            correct:1
-        },
-
-        {
-            question:"Почему хаотичное оформление профиля может снижать доверие к странице?",
-            answers:[
-                "Instagram ограничивает такие аккаунты",
-                "Алгоритмы хуже продвигают разноцветные профили",
-                "Страница начинает выглядеть несистемно и менее профессионально",
-                "Из-за этого уменьшается количество сторис"
-            ],
-            correct:2
-        },
-
-        {
-            question:"Что означает высокий показатель удержания в контенте?",
-            answers:[
-                "Человек долго взаимодействует с публикацией",
-                "Контент набрал много подписчиков",
-                "Видео имеет длинный монтаж",
-                "Публикация получила большое количество хештегов"
+                "Потому что у каждой ниши разная аудитория, подача и причины покупки",
+                "Потому что для каждой ниши нужна отдельная социальная сеть",
+                "Потому что юридические услуги нельзя продвигать через контент",
+                "Потому что кафе и салоны красоты можно продвигать только через Reels"
             ],
             correct:0
         },
 
         {
-            question:"Почему большое количество подписчиков не всегда означает сильный SMM?",
+            question:"Какая ниша будет более удобной для старта новичку?",
             answers:[
-                "Подписчики не влияют на алгоритмы",
-                "Важнее живая аудитория и реакция на контент",
-                "Instagram скрывает часть подписчиков",
-                "Продажи не связаны с соцсетями"
+                "Медицина, потому что люди всегда ищут врачей",
+                "Финансы, потому что там выше доверие к экспертам",
+                "Кафе или одежда, потому что продукт понятный и его легче показать через контент",
+                "Юридические услуги, потому что там достаточно просто объяснить выгоду"
+            ],
+            correct:2
+        },
+
+        {
+            question:"В чём сложность средних ниш вроде мебели, ремонта или автоуслуг?",
+            answers:[
+                "Там нельзя использовать соцсети как основной канал продвижения",
+                "Там продукт часто требует больше объяснения, показа процесса и закрытия сомнений",
+                "Там не работает визуальный контент, поэтому нужен только текст",
+                "Там аудитория обычно не принимает решения через Instagram или Telegram"
             ],
             correct:1
         },
 
         {
-            question:"Почему карусели считаются сильным форматом контента?",
+            question:"Почему сложные ниши не самый лучший вариант для первого практического кейса?",
             answers:[
-                "Они автоматически попадают в рекомендации",
-                "Через них проще продавать рекламу",
-                "Они увеличивают взаимодействие человека с контентом",
-                "Они полностью заменяют рилсы"
+                "Потому что в них всегда маленький спрос",
+                "Потому что их нельзя продвигать без большого рекламного бюджета",
+                "Потому что там нужна экспертиза, осторожность, доверие и понимание ответственности",
+                "Потому что такие ниши подходят только для YouTube и Facebook"
             ],
             correct:2
+        },
+
+        {
+            question:"Какой критерий помогает понять, что нишу можно рассматривать для старта в Узбекистане?",
+            answers:[
+                "В нише уже есть живые страницы, активность и понятный спрос",
+                "В нише вообще нет конкурентов и никто не ведёт соцсети",
+                "В нише можно каждый день снимать одинаковые ролики",
+                "В нише достаточно просто поставить низкую цену"
+            ],
+            correct:0
+        },
+
+        {
+            question:"Почему на старте не стоит пытаться вести все платформы сразу?",
+            answers:[
+                "Потому что большинство платформ не подходят для бизнеса",
+                "Потому что лучше сфокусироваться на одной главной площадке и не распыляться",
+                "Потому что Telegram и YouTube мешают росту Instagram",
+                "Потому что если бизнес есть везде, аудитория перестаёт доверять бренду"
+            ],
+            correct:1
+        },
+
+        {
+            question:"Почему в курсе основной платформой выбран Instagram?",
+            answers:[
+                "Потому что Instagram полностью заменяет сайт, Telegram и рекламу",
+                "Потому что там проще всего сразу получить продажи без стратегии",
+                "Потому что в Instagram видно базу SMM: профиль, визуал, контент, реакцию и продажи",
+                "Потому что остальные платформы в Узбекистане почти не используются"
+            ],
+            correct:2
+        },
+
+        {
+            question:"Какую роль Telegram чаще всего может играть рядом с Instagram?",
+            answers:[
+                "Полностью заменять Instagram, потому что визуал там не нужен",
+                "Быть дополнительным каналом для информации, связи и общения с аудиторией",
+                "Использоваться только для публикации коротких видео",
+                "Нужен только крупным брендам, у которых уже есть большая аудитория"
+            ],
+            correct:1
+        },
+
+        {
+            question:"Как начинающий SMM-специалист может использовать TikTok, даже если бизнес не ведёт там аккаунт?",
+            answers:[
+                "Как источник идей и трендов для коротких видео",
+                "Как основную платформу для всех проектов в Узбекистане",
+                "Только для платной рекламы",
+                "Никак, потому что если платформа заблокирована, она полностью бесполезна"
+            ],
+            correct:0
         }
 
     ],
@@ -2395,96 +2755,190 @@ const questions = {
     uz:[
 
         {
-            question:"Nega startda bir vaqtning o‘zida bir nechta nisha bilan ishlash SMM’da rivojlanishni sekinlashtiradi?",
+            question:"SMMda ish boshlashdan oldin nima uchun nisha tanlash kerak?",
             answers:[
-                "Instagram bunday sahifalarni yomonroq targ‘ib qiladi",
-                "Auditoriyani tushunish va podachani qurish qiyinlashadi",
-                "Shu sabab охват kamayadi",
-                "Bir vaqtning o‘zida turli loyihalarni yuritib bo‘lmaydi"
+                "Raqobatchilardan qaysi trendlarni ko‘chirish kerakligini darhol bilish uchun",
+                "SMMni mavhum qilmaslik, qaysi mahsulot, auditoriya va uslub bilan ishlayotganingni tushunish uchun",
+                "Eng qimmat segmentni tanlab, darhol katta chek olish uchun",
+                "Sahifa vizualida qaysi ranglar ishlatilishini oldindan hal qilish uchun"
             ],
             correct:1
         },
 
         {
-            question:"Nega Instagram O‘zbekistonda asosiy SMM platformasi hisoblanadi?",
+            question:"Nima uchun qahvaxona, go‘zallik saloni va yuridik xizmatlar sahifasini bir xil yuritib bo‘lmaydi?",
             answers:[
-                "Chunki u yerda reklamani ishga tushirish osonroq",
-                "Chunki Instagram Telegram o‘rnini bosgan",
-                "Chunki aynan shu yerda biznes haqidagi birinchi taassurot shakllanadi",
-                "Chunki TikTok to‘liq taqiqlangan"
-            ],
-            correct:2
-        },
-
-        {
-            question:"Telegram’ning SMM ichidagi asosiy vazifasi nima?",
-            answers:[
-                "Virus охват yig‘ish",
-                "Auditoriyani ushlab turish va u bilan aloqani kuchaytirish",
-                "Instagram profilini almashtirish",
-                "Faqat savdo uchun ishlatilish"
-            ],
-            correct:1
-        },
-
-        {
-            question:"Nega tartibsiz оформлять qilingan profil sahifaga bo‘lgan ishonchni kamaytirishi mumkin?",
-            answers:[
-                "Instagram bunday akkauntlarni cheklaydi",
-                "Algoritmlar rang-barang profillarni yomonroq targ‘ib qiladi",
-                "Sahifa tizimsiz va kamroq professional ko‘rina boshlaydi",
-                "Shu sabab storislar soni kamayadi"
-            ],
-            correct:2
-        },
-
-        {
-            question:"Kontentdagi yuqori удержание nimani anglatadi?",
-            answers:[
-                "Odam post bilan uzoqroq ishlaydi",
-                "Kontent ko‘p obunachi yig‘gan",
-                "Videoda uzun montaj bor",
-                "Postda juda ko‘p hashtag ishlatilgan"
+                "Chunki har bir nishaning auditoriyasi, uslubi va xarid qilish sabablari har xil",
+                "Chunki har bir nisha uchun alohida ijtimoiy tarmoq kerak",
+                "Chunki yuridik xizmatlarni kontent orqali targ‘ib qilib bo‘lmaydi",
+                "Chunki kafe va go‘zallik salonlarini faqat Reels orqali targ‘ib qilish mumkin"
             ],
             correct:0
         },
 
         {
-            question:"Nega ko‘p obunachi har doim ham kuchli SMM degani emas?",
+            question:"Yangi boshlovchi uchun qaysi nisha qulayroq bo‘ladi?",
             answers:[
-                "Obunachilar algoritmlarga ta’sir qilmaydi",
-                "Jonli auditoriya va kontentga reaksiya muhimroq",
-                "Instagram obunachilarning bir qismini yashiradi",
-                "Savdo ijtimoiy tarmoqlarga bog‘liq emas"
+                "Tibbiyot, chunki odamlar doim shifokor izlaydi",
+                "Moliya, chunki u yerda ekspertlarga ishonch yuqoriroq",
+                "Kafe yoki kiyim-kechak, chunki mahsulot tushunarli va uni kontent orqali ko‘rsatish osonroq",
+                "Yuridik xizmatlar, chunki u yerda foydani tushuntirish juda oson"
+            ],
+            correct:2
+        },
+
+        {
+            question:"Mebel, ta’mir yoki avtoxizmat kabi o‘rta nishalarning murakkabligi nimada?",
+            answers:[
+                "U yerda ijtimoiy tarmoqlardan asosiy targ‘ibot kanali sifatida foydalanib bo‘lmaydi",
+                "Bunday mahsulot ko‘pincha ko‘proq tushuntirish, jarayonni ko‘rsatish va shubhalarni yopishni talab qiladi",
+                "U yerda vizual kontent ishlamaydi, shuning uchun faqat matn kerak",
+                "U yerda auditoriya odatda Instagram yoki Telegram orqali qaror qabul qilmaydi"
             ],
             correct:1
         },
 
         {
-            question:"Nega karusellar kuchli kontent formati hisoblanadi?",
+            question:"Nima uchun murakkab nishalar birinchi amaliy keys uchun eng yaxshi tanlov emas?",
             answers:[
-                "Ular avtomatik ravishda tavsiyalarga tushadi",
-                "Ular orqali reklamani sotish osonroq",
-                "Ular odamning kontent bilan ishlash vaqtini oshiradi",
-                "Ular rilslarni to‘liq almashtiradi"
+                "Chunki ularda doim talab kam bo‘ladi",
+                "Chunki ularni katta reklama budjetisiz targ‘ib qilib bo‘lmaydi",
+                "Chunki u yerda ekspertlik, ehtiyotkorlik, ishonch va mas’uliyatni tushunish kerak",
+                "Chunki bunday nishalar faqat YouTube va Facebook uchun mos"
             ],
             correct:2
+        },
+
+        {
+            question:"O‘zbekistonda start uchun nishani ko‘rib chiqish mumkinligini qaysi mezon ko‘rsatadi?",
+            answers:[
+                "Nishada allaqachon jonli sahifalar, faollik va tushunarli talab bor",
+                "Nishada umuman raqobatchilar yo‘q va hech kim ijtimoiy tarmoq yuritmaydi",
+                "Nishada har kuni bir xil roliklar olish mumkin",
+                "Nishada shunchaki past narx qo‘yish yetarli"
+            ],
+            correct:0
+        },
+
+        {
+            question:"Nima uchun startda barcha platformalarni birdan yuritishga urinmaslik kerak?",
+            answers:[
+                "Chunki platformalarning ko‘pchiligi biznesga mos kelmaydi",
+                "Chunki bitta asosiy platformaga fokus qilish va tarqalib ketmaslik yaxshiroq",
+                "Chunki Telegram va YouTube Instagram o‘sishiga xalaqit beradi",
+                "Chunki biznes hamma joyda bo‘lsa, auditoriya brendga ishonmay qo‘yadi"
+            ],
+            correct:1
+        },
+
+        {
+            question:"Nima uchun kursda asosiy platforma sifatida Instagram tanlangan?",
+            answers:[
+                "Chunki Instagram sayt, Telegram va reklamani to‘liq almashtiradi",
+                "Chunki u yerda strategiyasiz ham darhol savdo olish eng oson",
+                "Chunki Instagramda SMM bazasi ko‘rinadi: profil, vizual, kontent, reaksiya va savdo",
+                "Chunki O‘zbekistonda boshqa platformalar deyarli ishlatilmaydi"
+            ],
+            correct:2
+        },
+
+        {
+            question:"Instagram yonida Telegram ko‘pincha qanday rol o‘ynashi mumkin?",
+            answers:[
+                "Instagramni to‘liq almashtiradi, chunki u yerda vizual kerak emas",
+                "Ma’lumot, aloqa va auditoriya bilan muloqot uchun qo‘shimcha kanal bo‘ladi",
+                "Faqat qisqa videolar joylash uchun ishlatiladi",
+                "Faqat allaqachon katta auditoriyasi bor yirik brendlarga kerak"
+            ],
+            correct:1
+        },
+
+        {
+            question:"Boshlovchi SMM-mutaxassis biznes TikTok yuritmasa ham TikTokdan qanday foydalanishi mumkin?",
+            answers:[
+                "Qisqa videolar uchun g‘oya va trendlar manbasi sifatida",
+                "O‘zbekistondagi barcha loyihalar uchun asosiy platforma sifatida",
+                "Faqat pullik reklama uchun",
+                "Hech qanday, chunki platforma bloklangan bo‘lsa, u butunlay foydasiz"
+            ],
+            correct:0
         }
 
     ]
 }
 
+/* =========================
+   HELPERS
+========================= */
+
+function setText(id, value){
+
+    const el =
+        document.getElementById(id)
+
+    if(el){
+        el.innerText = value
+    }
+}
+
+function impact(type = "light"){
+
+    try{
+        if(
+            window.Telegram &&
+            Telegram.WebApp &&
+            Telegram.WebApp.HapticFeedback
+        ){
+            Telegram.WebApp.HapticFeedback.impactOccurred(type)
+        }
+    }catch(error){}
+}
+
+function goBack(){
+
+    impact()
+
+    if(currentStep !== "video"){
+        const currentIndex = getStepIndex(currentStep)
+        const previousStep = STEP_ORDER[currentIndex - 1]
+
+        if(previousStep){
+            goStep(previousStep)
+            return
+        }
+    }
+
+    window.location.href = "learn-smm-v2.html"
+}
+
+/* =========================
+   PATHS
+========================= */
+
+function getSummaryImagePath(index, device){
+
+    const number =
+        index + 1
+
+    return `images/smm/lesson-1/summary-${number}-${lang}-${device}.png`
+}
+
+function getMaterialCoverPath(device){
+
+    return `images/smm/lesson-1/material-cover-${lang}-${device}.png`
+}
+
+/* =========================
+   STATIC TEXT
+========================= */
+
 function updateStaticText(){
 
-    const d = t[lang]
+    const d =
+        t[lang]
 
-    document.documentElement.lang = lang === "uz"
-        ? "uz"
-        : "ru"
-
-    /* MOBILE */
-
-    setText("back-mobile", d.back)
+    document.documentElement.lang =
+        lang === "uz" ? "uz" : "ru"
 
     setText("lessonBadge-mobile", d.lessonBadge)
     setText("lessonTitle-mobile", d.lessonTitle)
@@ -2492,37 +2946,24 @@ function updateStaticText(){
 
     setText("videoTitle-mobile", d.videoTitle)
     setText("videoText-mobile", d.videoText)
-
+    setText("videoMaterialBtn-mobile", d.videoMaterial)
     setText("goSummaryBtn-mobile", d.goSummary)
 
     setText("summaryTitle-mobile", d.summaryTitle)
     setText("summaryNote-mobile", d.summaryNote)
-
     setText("summaryFinishBtn-mobile", d.summaryFinish)
 
     setText("deepTitle-mobile", d.deepTitle)
     setText("deepText-mobile", d.deepText)
 
+    setText("materialTitle-mobile", d.materialTitle)
+    setText("materialText-mobile", d.materialText)
+    setText("materialOpenBtn-mobile", d.materialOpen)
     setText("goTestBtn-mobile", d.goTest)
 
     setText("testTitle-mobile", d.testTitle)
     setText("testText-mobile", d.testText)
-
     setText("nextQuestionBtn-mobile", d.nextQuestion)
-
-    /* DESKTOP */
-
-    setText("catalog-desktop", d.catalog)
-
-    setText("languageKicker-desktop", lang === "uz"
-    ? "Til"
-    : "Язык"
-)
-
-setText("languageTitle-desktop", lang === "uz"
-    ? "Ta’lim tilini tanlang"
-    : "Выберите язык обучения"
-)
 
     setText("lessonBadge-desktop", d.lessonBadge)
     setText("lessonTitle-desktop", d.lessonTitle)
@@ -2530,104 +2971,50 @@ setText("languageTitle-desktop", lang === "uz"
 
     setText("videoTitle-desktop", d.videoTitle)
     setText("videoText-desktop", d.videoText)
-
+    setText("videoMaterialBtn-desktop", d.videoMaterial)
     setText("goSummaryBtn-desktop", d.goSummary)
 
     setText("summaryTitle-desktop", d.summaryTitle)
     setText("summaryNote-desktop", d.summaryNote)
-
     setText("summaryFinishBtn-desktop", d.summaryFinish)
 
     setText("deepTitle-desktop", d.deepTitle)
     setText("deepText-desktop", d.deepText)
 
+    setText("materialTitle-desktop", d.materialTitle)
+    setText("materialText-desktop", d.materialText)
+    setText("materialOpenBtn-desktop", d.materialOpen)
     setText("goTestBtn-desktop", d.goTest)
 
     setText("testTitle-desktop", d.testTitle)
     setText("testText-desktop", d.testText)
-
     setText("nextQuestionBtn-desktop", d.nextQuestion)
 
-    setText("stepsLabel-desktop", d.stepsLabel)
+    setText("languageTitle-desktop", d.languageTitle)
 
     setText("stepVideoLabel-desktop", d.stepVideo)
     setText("stepSummaryLabel-desktop", d.stepSummary)
     setText("stepDeepLabel-desktop", d.stepDeep)
     setText("stepTestLabel-desktop", d.stepTest)
 
-    /* MODAL */
-
-    setText("deepModalTitle", d.modalTitle)
-    setText("deepModalText", d.modalText)
-
-    setText("deepMaterialBtn", d.modalMaterial)
-    setText("deepTestBtn", d.modalTest)
-
     updateLessonLangButtons()
     updateMobileStepTitle()
     renderSummary()
+    renderMaterialCover()
+    renderQuestion()
+    updateDesktopSteps()
 }
 
-function renderSummary(){
+/* =========================
+   LANGUAGE
+========================= */
 
-    const data = summaryData[lang]
+function toggleLessonLang(){
 
-    const mobileRoot = document.getElementById("summaryList-mobile")
-    const desktopRoot = document.getElementById("summaryList-desktop")
+    const nextLang =
+        lang === "uz" ? "ru" : "uz"
 
-    const html = data.map(item => `
-        <div class="summary-card soft-card">
-
-            <button
-                class="summary-question"
-                onclick="toggleSummary(this)"
-            >
-
-                <span class="summary-question-text">
-                    ${item.q}
-                </span>
-
-                <span class="summary-arrow"></span>
-
-            </button>
-
-            <div class="summary-answer-wrap">
-
-                <div class="summary-answer">
-                    ${item.a.replace(/\n/g, "<br>")}
-                </div>
-
-            </div>
-
-        </div>
-    `).join("")
-
-    if(mobileRoot){
-        mobileRoot.innerHTML = html
-    }
-
-    if(desktopRoot){
-        desktopRoot.innerHTML = html
-    }
-}
-
-
-function updateLessonLangButtons(){
-
-    const buttons = [
-        ["lessonLangUz-mobile", "uz"],
-        ["lessonLangRu-mobile", "ru"],
-        ["lessonLangUz-desktop", "uz"],
-        ["lessonLangRu-desktop", "ru"]
-    ]
-
-    buttons.forEach(([id, value]) => {
-        const el = document.getElementById(id)
-
-        if(el){
-            el.classList.toggle("active", lang === value)
-        }
-    })
+    setLessonLang(nextLang)
 }
 
 function setLessonLang(value){
@@ -2635,102 +3022,546 @@ function setLessonLang(value){
     impact()
 
     lang = value
+
     localStorage.setItem("lang", value)
 
+    currentQuestionIndex = 0
+    score = 0
+    selectedAnswer = false
+    currentSummaryCardIndex = 0
+
     updateStaticText()
-    renderQuestion()
+    initVideo()
+    loadOtabek()
 }
 
-function toggleSummary(button){
+function updateLessonLangButtons(){
 
-    impact()
+    const buttons = [
+        ["lessonLangUz-desktop", "uz"],
+        ["lessonLangRu-desktop", "ru"]
+    ]
 
-    const card = button.closest(".summary-card")
-    const wrap = card.querySelector(".summary-answer-wrap")
+    buttons.forEach(([id, value]) => {
 
-    const isOpen = card.classList.contains("open")
+        const el =
+            document.getElementById(id)
 
-    document.querySelectorAll(".summary-card").forEach(item => {
-        item.classList.remove("open")
+        if(el){
+            el.classList.toggle("active", lang === value)
+        }
     })
+}
 
-    document.querySelectorAll(".summary-answer-wrap").forEach(item => {
-        item.style.maxHeight = "0px"
-    })
+function updateMobileStepTitle(){
 
-    if(!isOpen){
-        card.classList.add("open")
-        wrap.style.maxHeight = wrap.scrollHeight + "px"
+    const title =
+        document.getElementById("mobileStepTitle")
+
+    const chip =
+        document.getElementById("mobileLangCurrent")
+
+    if(title){
+        title.innerText =
+            t[lang][`step${capitalizeStep(currentStep)}`]
+    }
+
+    if(chip){
+        chip.innerText =
+            lang.toUpperCase()
     }
 }
 
-function updateDesktopSteps(){
+function capitalizeStep(step){
 
-    document.querySelectorAll(".desktop-step-item").forEach(item => {
-        item.classList.remove("active")
-    })
+    return step.charAt(0).toUpperCase() + step.slice(1)
+}
 
-    const current = document.getElementById(`desktopStep-${currentStep}`)
+/* =========================
+   VIDEO
+========================= */
+
+function initPlyr(){
+
+    const desktopVideo =
+        document.getElementById("lessonVideo-desktop")
+
+    if(window.Plyr && desktopVideo){
+        desktopPlyr = new Plyr(desktopVideo)
+    }
+}
+
+function initVideo(){
+
+    const mobileSource =
+        document.getElementById("videoSource-mobile")
+
+    const desktopSource =
+        document.getElementById("videoSource-desktop")
+
+    const src =
+        VIDEO_PATHS[lang]
+
+    if(mobileSource){
+        mobileSource.src = src
+    }
+
+    if(desktopSource){
+        desktopSource.src = src
+    }
+
+    const mobileVideo =
+        document.getElementById("lessonVideo-mobile")
+
+    const desktopVideo =
+        document.getElementById("lessonVideo-desktop")
+
+    if(mobileVideo){
+        mobileVideo.load()
+    }
+
+    if(desktopVideo){
+        desktopVideo.load()
+    }
+}
+
+/* =========================
+   SUMMARY
+========================= */
+
+function renderSummary(){
+
+    const mobileWrap =
+        document.getElementById("summaryImageWrap-mobile")
+
+    const desktopWrap =
+        document.getElementById("summaryImageWrap-desktop")
+
+    const mobilePrev =
+        document.getElementById("summaryPrev-mobile")
+
+    const desktopPrev =
+        document.getElementById("summaryPrev-desktop")
+
+    const mobileNext =
+        document.getElementById("summaryNext-mobile")
+
+    const desktopNext =
+        document.getElementById("summaryNext-desktop")
+
+    const mobilePages =
+        document.getElementById("summaryPages-mobile")
+
+    const desktopPages =
+        document.getElementById("summaryPages-desktop")
+
+    renderSummaryImage(mobileWrap, "mobile")
+    renderSummaryImage(desktopWrap, "desktop")
+
+    if(mobilePrev){
+        mobilePrev.disabled =
+            currentSummaryCardIndex === 0
+    }
+
+    if(desktopPrev){
+        desktopPrev.disabled =
+            currentSummaryCardIndex === 0
+    }
+
+    if(mobileNext){
+        mobileNext.disabled =
+            currentSummaryCardIndex === SUMMARY_CARDS_COUNT - 1
+    }
+
+    if(desktopNext){
+        desktopNext.disabled =
+            currentSummaryCardIndex === SUMMARY_CARDS_COUNT - 1
+    }
+
+    renderSummaryPages(mobilePages)
+    renderSummaryPages(desktopPages)
+}
+
+function renderSummaryImage(root, device){
+
+    if(!root) return
+
+    const currentSrc =
+        getSummaryImagePath(currentSummaryCardIndex, device)
+
+    const prevIndex =
+        Math.max(currentSummaryCardIndex - 1, 0)
+
+    const nextIndex =
+        Math.min(currentSummaryCardIndex + 1, SUMMARY_CARDS_COUNT - 1)
+
+    const prevSrc =
+        getSummaryImagePath(prevIndex, device)
+
+    const nextSrc =
+        getSummaryImagePath(nextIndex, device)
+
+    root.innerHTML = `
+        <div class="summary-swipe-stack">
+
+            <div class="summary-swipe-ghost prev">
+                ${renderSummaryCardContent(prevSrc, prevIndex, device)}
+            </div>
+
+            <div class="summary-swipe-ghost next">
+                ${renderSummaryCardContent(nextSrc, nextIndex, device)}
+            </div>
+
+            <div
+                class="summary-swipe-current"
+                id="summarySwipeCurrent-${device}"
+            >
+                ${renderSummaryCardContent(currentSrc, currentSummaryCardIndex, device)}
+            </div>
+
+        </div>
+    `
+}
+
+function renderSummaryCardContent(src, index, device){
+
+    const number =
+        String(index + 1).padStart(2, "0")
+
+    const deviceText =
+        device === "mobile" ? "mobile" : "desktop"
+
+    return `
+        <img
+            class="summary-image"
+            src="${src}"
+            alt="Summary ${number}"
+            onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"
+        >
+
+        <div
+            class="summary-placeholder"
+            style="display:none;"
+        >
+            <div class="summary-placeholder-kicker">
+                ${lang.toUpperCase()} • ${deviceText}
+            </div>
+
+            <h3 class="summary-placeholder-title">
+                Карточка ${number}
+            </h3>
+
+            <p class="summary-placeholder-text">
+                Здесь позже будет изображение:<br>
+                summary-${index + 1}-${lang}-${device}.png
+            </p>
+        </div>
+    `
+}
+
+function renderSummaryPages(root){
+
+    if(!root) return
+
+    let html = ""
+
+    for(let i = 0; i < SUMMARY_CARDS_COUNT; i++){
+
+        const label =
+            String(i + 1).padStart(2, "0")
+
+        const activeClass =
+            i === currentSummaryCardIndex ? "active" : ""
+
+        html += `
+            <button
+                class="summary-page-btn ${activeClass}"
+                onclick="setSummaryCard(${i})"
+            >
+                ${label}
+            </button>
+        `
+    }
+
+    root.innerHTML = html
+}
+
+function setSummaryCard(index){
+
+    if(index < 0) return
+    if(index >= SUMMARY_CARDS_COUNT) return
+
+    impact()
+
+    currentSummaryCardIndex = index
+
+    renderSummary()
+}
+
+function nextSummaryCard(){
+
+    if(currentSummaryCardIndex >= SUMMARY_CARDS_COUNT - 1) return
+
+    setSummaryCard(currentSummaryCardIndex + 1)
+}
+
+function prevSummaryCard(){
+
+    if(currentSummaryCardIndex <= 0) return
+
+    setSummaryCard(currentSummaryCardIndex - 1)
+}
+
+/* =========================
+   SUMMARY SWIPE
+========================= */
+
+function summaryTouchStart(event){
+
+    if(!event.touches || !event.touches[0]) return
+
+    summaryTouchStartX =
+        event.touches[0].clientX
+
+    summaryTouchStartY =
+        event.touches[0].clientY
+
+    summaryTouchMoveX =
+        summaryTouchStartX
+
+    summaryTouchMoveY =
+        summaryTouchStartY
+
+    summaryIsDragging = true
+    summaryIsHorizontalSwipe = false
+
+    const current =
+        document.getElementById("summarySwipeCurrent-mobile")
 
     if(current){
-        current.classList.add("active")
+        current.classList.add("dragging")
+        current.classList.remove("swipe-left")
+        current.classList.remove("swipe-right")
+        current.style.transform = "translateX(0px) rotate(0deg)"
+    }
+}
+
+function summaryTouchMove(event){
+
+    if(!summaryIsDragging) return
+    if(!event.touches || !event.touches[0]) return
+
+    summaryTouchMoveX =
+        event.touches[0].clientX
+
+    summaryTouchMoveY =
+        event.touches[0].clientY
+
+    const diffX =
+        summaryTouchMoveX - summaryTouchStartX
+
+    const diffY =
+        summaryTouchMoveY - summaryTouchStartY
+
+    if(
+        Math.abs(diffX) > 12 &&
+        Math.abs(diffX) > Math.abs(diffY)
+    ){
+        summaryIsHorizontalSwipe = true
+    }
+
+    if(!summaryIsHorizontalSwipe) return
+
+    event.preventDefault()
+
+    const current =
+        document.getElementById("summarySwipeCurrent-mobile")
+
+    if(!current) return
+
+    const limitedX =
+        Math.max(Math.min(diffX, 130), -130)
+
+    const rotate =
+        limitedX / 38
+
+    current.style.transform =
+        `translateX(${limitedX}px) rotate(${rotate}deg)`
+}
+
+function summaryTouchEnd(){
+
+    if(!summaryIsDragging) return
+
+    summaryIsDragging = false
+
+    const diffX =
+        summaryTouchMoveX - summaryTouchStartX
+
+    const diffY =
+        summaryTouchMoveY - summaryTouchStartY
+
+    const current =
+        document.getElementById("summarySwipeCurrent-mobile")
+
+    if(current){
+        current.classList.remove("dragging")
+        current.style.transform = ""
+    }
+
+    if(!summaryIsHorizontalSwipe) return
+    if(Math.abs(diffX) < 70) return
+    if(Math.abs(diffY) > 90) return
+
+    if(diffX < 0){
+
+        if(current){
+            current.classList.add("swipe-left")
+        }
+
+        setTimeout(() => {
+            nextSummaryCard()
+        }, 160)
+
+        return
+    }
+
+    if(diffX > 0){
+
+        if(current){
+            current.classList.add("swipe-right")
+        }
+
+        setTimeout(() => {
+            prevSummaryCard()
+        }, 160)
+    }
+}
+
+/* =========================
+   MATERIALS
+========================= */
+
+function renderMaterialCover(){
+
+    renderMaterialCoverItem(
+        document.getElementById("materialCover-mobile"),
+        "mobile"
+    )
+
+    renderMaterialCoverItem(
+        document.getElementById("materialCover-desktop"),
+        "desktop"
+    )
+}
+
+function renderMaterialCoverItem(root, device){
+
+    if(!root) return
+
+    const src =
+        getMaterialCoverPath(device)
+
+    const deviceText =
+        device === "mobile" ? "mobile" : "desktop"
+
+    root.innerHTML = `
+        <img
+            class="material-cover-img"
+            src="${src}"
+            alt="PDF material cover"
+            onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"
+        >
+
+        <div
+            class="material-cover-placeholder"
+            style="display:none;"
+        >
+            <div class="material-cover-kicker">
+                ${lang.toUpperCase()} • ${deviceText}
+            </div>
+
+            <h3 class="material-cover-title">
+                PDF обложка
+            </h3>
+
+            <p class="material-cover-text">
+                Здесь позже будет изображение:<br>
+                material-cover-${lang}-${device}.png
+            </p>
+        </div>
+    `
+}
+
+function openMaterial(){
+
+    impact()
+
+    const url =
+        MATERIAL_PATHS[lang]
+
+    if(!url){
+        alert(t[lang].materialMissing)
+        return
+    }
+
+    window.open(url, "_blank")
+}
+
+/* =========================
+   STEPS
+========================= */
+
+function getStepIndex(step){
+
+    return STEP_ORDER.indexOf(step)
+}
+
+function canOpenStep(step){
+
+    const index =
+        getStepIndex(step)
+
+    return index <= maxUnlockedStepIndex
+}
+
+function unlockNextStep(step){
+
+    const index =
+        getStepIndex(step)
+
+    if(index < 0) return
+
+    const nextIndex =
+        Math.min(index + 1, STEP_ORDER.length - 1)
+
+    if(nextIndex > maxUnlockedStepIndex){
+        maxUnlockedStepIndex = nextIndex
     }
 }
 
 function goStep(step){
 
+    const targetIndex =
+        getStepIndex(step)
+
+    if(targetIndex === -1) return
+
+    if(!canOpenStep(step)){
+        impact("medium")
+        updateDesktopSteps()
+        return
+    }
+
     impact()
 
     currentStep = step
 
-    const mobileVideoHead = document.getElementById("mobileVideoHead")
-    const desktopHead = document.querySelector(".desktop-head")
-
-    if(step === "video"){
-
-        if(mobileVideoHead){
-            mobileVideoHead.style.display = "block"
-        }
-
-        if(desktopHead){
-            desktopHead.style.display = "block"
-        }
-
-    }else{
-
-        if(mobileVideoHead){
-            mobileVideoHead.style.display = "none"
-        }
-
-        if(desktopHead){
-            desktopHead.style.display = "none"
-        }
-    }
+    unlockNextStep(step)
 
     updateMobileStepTitle()
-
-    const mobileSteps = document.querySelectorAll("#step-video-mobile, #step-summary-mobile, #step-deep-mobile, #step-test-mobile")
-    const desktopSteps = document.querySelectorAll("#step-video-desktop, #step-summary-desktop, #step-deep-desktop, #step-test-desktop")
-
-    mobileSteps.forEach(item => {
-        item.classList.remove("active")
-    })
-
-    desktopSteps.forEach(item => {
-        item.classList.remove("active")
-    })
-
-    const mobileTarget = document.getElementById(`step-${step}-mobile`)
-    const desktopTarget = document.getElementById(`step-${step}-desktop`)
-
-    if(mobileTarget){
-        mobileTarget.classList.add("active")
-    }
-
-    if(desktopTarget){
-        desktopTarget.classList.add("active")
-    }
-
+    updateStepHeaders(step)
+    updateStepVisibility(step)
     updateDesktopSteps()
 
     window.scrollTo({
@@ -2743,120 +3574,239 @@ function goStep(step){
     }
 }
 
-function openDeepModal(){
+function updateStepHeaders(step){
 
-    impact()
+    const mobileVideoHead =
+        document.getElementById("mobileVideoHead")
 
-    const modal = document.getElementById("deepOverlay")
+    const desktopHead =
+        document.querySelector(".desktop-head")
 
-    if(modal){
-        modal.classList.add("active")
+    const display =
+        step === "video" ? "block" : "none"
+
+    if(mobileVideoHead){
+        mobileVideoHead.style.display = display
+    }
+
+    if(desktopHead){
+        desktopHead.style.display = display
     }
 }
 
-function closeDeepModal(){
+function updateStepVisibility(step){
 
-    const modal = document.getElementById("deepOverlay")
+    const mobileSteps =
+        document.querySelectorAll(
+            "#step-video-mobile, #step-summary-mobile, #step-deep-mobile, #step-test-mobile"
+        )
 
-    if(modal){
-        modal.classList.remove("active")
+    const desktopSteps =
+        document.querySelectorAll(
+            "#step-video-desktop, #step-summary-desktop, #step-deep-desktop, #step-test-desktop"
+        )
+
+    mobileSteps.forEach(item => {
+        item.classList.remove("active")
+    })
+
+    desktopSteps.forEach(item => {
+        item.classList.remove("active")
+    })
+
+    const mobileTarget =
+        document.getElementById(`step-${step}-mobile`)
+
+    const desktopTarget =
+        document.getElementById(`step-${step}-desktop`)
+
+    if(mobileTarget){
+        mobileTarget.classList.add("active")
+    }
+
+    if(desktopTarget){
+        desktopTarget.classList.add("active")
+    }
+}
+
+function updateDesktopSteps(){
+
+    document
+        .querySelectorAll(".desktop-step-item")
+        .forEach(item => {
+            item.classList.remove("active")
+            item.classList.remove("available")
+            item.classList.remove("locked")
+        })
+
+    STEP_ORDER.forEach((step, index) => {
+
+        const item =
+            document.getElementById(`desktopStep-${step}`)
+
+        const lock =
+            document.getElementById(`desktopStepLock-${step}`)
+
+        if(!item) return
+
+        if(lock){
+            lock.innerText = ""
+        }
+
+        if(step === currentStep){
+            item.classList.add("active")
+            return
+        }
+
+        if(index <= maxUnlockedStepIndex){
+            item.classList.add("available")
+            return
+        }
+
+        item.classList.add("locked")
+
+        if(lock){
+            lock.innerText = "🔒"
+        }
+    })
+}
+
+/* =========================
+   TEST
+========================= */
+
+function updateQuestionSize(element, text){
+
+    if(!element) return
+
+    element.classList.remove("long-question")
+    element.classList.remove("very-long-question")
+
+    if(text.length > 120){
+        element.classList.add("very-long-question")
+        return
+    }
+
+    if(text.length > 80){
+        element.classList.add("long-question")
     }
 }
 
 function renderQuestion(){
 
-    const data = questions[lang]
-    const question = data[currentQuestionIndex]
+    const list =
+        questions[lang]
 
-    if(!question){
-        finishLesson()
-        return
-    }
+    const item =
+        list[currentQuestionIndex]
+
+    const mobileQuestion =
+        document.getElementById("testQuestion-mobile")
+
+    const desktopQuestion =
+        document.getElementById("testQuestion-desktop")
+
+    const mobileAnswers =
+        document.getElementById("testAnswers-mobile")
+
+    const desktopAnswers =
+        document.getElementById("testAnswers-desktop")
+
+    const mobileNext =
+        document.getElementById("nextQuestionBtn-mobile")
+
+    const desktopNext =
+        document.getElementById("nextQuestionBtn-desktop")
+
+    if(!item) return
 
     selectedAnswer = false
 
-    const mobileQuestion = document.getElementById("testQuestion-mobile")
-    const desktopQuestion = document.getElementById("testQuestion-desktop")
-
     if(mobileQuestion){
-        mobileQuestion.innerText = question.question
+        mobileQuestion.innerText = item.question
+        updateQuestionSize(mobileQuestion, item.question)
     }
 
     if(desktopQuestion){
-        desktopQuestion.innerText = question.question
+        desktopQuestion.innerText = item.question
+        updateQuestionSize(desktopQuestion, item.question)
     }
 
-    const mobileAnswers = document.getElementById("testAnswers-mobile")
-    const desktopAnswers = document.getElementById("testAnswers-desktop")
-
-    const answersHTML = question.answers.map((answer, index) => `
-        <button
-            class="test-answer"
-            onclick="selectAnswer(this, ${index})"
-        >
-            ${answer}
-        </button>
-    `).join("")
+    const html =
+        item.answers.map((answer, index) => `
+            <button
+                class="test-answer"
+                onclick="selectAnswer(${index})"
+            >
+                ${answer}
+            </button>
+        `).join("")
 
     if(mobileAnswers){
-        mobileAnswers.innerHTML = answersHTML
+        mobileAnswers.innerHTML = html
     }
 
     if(desktopAnswers){
-        desktopAnswers.innerHTML = answersHTML
+        desktopAnswers.innerHTML = html
     }
 
-    updateTestProgress()
-
-    const mobileNext = document.getElementById("nextQuestionBtn-mobile")
-    const desktopNext = document.getElementById("nextQuestionBtn-desktop")
+    const isLastQuestion =
+        currentQuestionIndex === list.length - 1
 
     if(mobileNext){
+        mobileNext.innerText =
+            isLastQuestion ? t[lang].showResults : t[lang].nextQuestion
+
         mobileNext.style.display = "none"
     }
 
     if(desktopNext){
+        desktopNext.innerText =
+            isLastQuestion ? t[lang].showResults : t[lang].nextQuestion
+
         desktopNext.style.display = "none"
     }
+
+    updateTestProgress()
 }
 
-function selectAnswer(button, index){
+function selectAnswer(index){
 
     if(selectedAnswer) return
 
-    selectedAnswer = true
-
     impact()
 
-    const data = questions[lang]
-    const question = data[currentQuestionIndex]
+    selectedAnswer = true
 
-    const allButtons = document.querySelectorAll(".test-answer")
+    const item =
+        questions[lang][currentQuestionIndex]
 
-    allButtons.forEach(btn => {
-        btn.disabled = true
+    const answerButtons =
+        document.querySelectorAll(".test-answer")
+
+    answerButtons.forEach((button, buttonIndex) => {
+
+        const localIndex =
+            buttonIndex % item.answers.length
+
+        if(localIndex === item.correct){
+            button.classList.add("correct")
+        }
+
+        if(localIndex === index && index !== item.correct){
+            button.classList.add("wrong")
+        }
     })
 
-    if(index === question.correct){
-
-        button.classList.add("correct")
+    if(index === item.correct){
         score++
-
-    }else{
-
-        button.classList.add("wrong")
-
-        allButtons.forEach((btn, btnIndex) => {
-
-            if(btnIndex === question.correct){
-                btn.classList.add("correct")
-            }
-
-        })
     }
 
-    const mobileNext = document.getElementById("nextQuestionBtn-mobile")
-    const desktopNext = document.getElementById("nextQuestionBtn-desktop")
+    const mobileNext =
+        document.getElementById("nextQuestionBtn-mobile")
+
+    const desktopNext =
+        document.getElementById("nextQuestionBtn-desktop")
 
     if(mobileNext){
         mobileNext.style.display = "block"
@@ -2871,26 +3821,52 @@ function nextQuestion(){
 
     impact()
 
-    currentQuestionIndex++
+    const list =
+        questions[lang]
 
-    renderQuestion()
+    if(currentQuestionIndex < list.length - 1){
+        currentQuestionIndex++
+        renderQuestion()
+        return
+    }
+
+    const mobileProgress =
+        document.getElementById("testProgress-mobile")
+
+    const desktopProgress =
+        document.getElementById("testProgress-desktop")
+
+    if(mobileProgress){
+        mobileProgress.style.width = "100%"
+    }
+
+    if(desktopProgress){
+        desktopProgress.style.width = "100%"
+    }
+
+    finishLesson()
 }
 
 function updateTestProgress(){
 
-    const data = questions[lang]
+    const list =
+        questions[lang]
 
-    const percent = ((currentQuestionIndex) / data.length) * 100
+    const percent =
+        (currentQuestionIndex / list.length) * 100
 
-    const mobileProgress = document.getElementById("testProgress-mobile")
-    const desktopProgress = document.getElementById("testProgress-desktop")
+    const mobileProgress =
+        document.getElementById("testProgress-mobile")
+
+    const desktopProgress =
+        document.getElementById("testProgress-desktop")
 
     if(mobileProgress){
-        mobileProgress.style.width = `${percent}%`
+        mobileProgress.style.width = percent + "%"
     }
 
     if(desktopProgress){
-        desktopProgress.style.width = `${percent}%`
+        desktopProgress.style.width = percent + "%"
     }
 }
 
@@ -2898,283 +3874,246 @@ async function saveProgress(){
 
     try{
 
-        if(!telegramUserId) return
+        if(!telegramUserId){
+            console.log("No telegram user id, progress not saved")
+            return false
+        }
 
-        await fetch("https://api.gaphub.uz/progress/complete",{
+        const response =
+            await fetch("https://api.gaphub.uz/progress/complete", {
 
-            method:"POST",
+                method:"POST",
 
-            headers:{
-                "Content-Type":"application/json"
-            },
+                headers:{
+                    "Content-Type":"application/json"
+                },
 
-            body:JSON.stringify({
-                telegram_id:telegramUserId,
-                course_slug:COURSE_SLUG,
-                lesson_id:LESSON_ID
+                body:JSON.stringify({
+                    telegram_id:telegramUserId,
+                    course_slug:COURSE_SLUG,
+                    lesson_id:LESSON_ID
+                })
             })
-        })
+
+        return response.ok
 
     }catch(error){
 
-        console.log(error)
+        console.log("Progress save error:", error)
+        return false
     }
 }
 
-async function finishLesson(){
+function getResultStatus(){
 
-    await saveProgress()
+    const total =
+        questions[lang].length
 
-    const d = t[lang]
+    if(score <= 4){
+        return {
+            key:"bad",
+            title:t[lang].resultBadTitle,
+            text:t[lang].resultBadText,
+            scoreText:`${score}/${total}`
+        }
+    }
 
-    const mobileRoot = document.getElementById("step-test-mobile")
-    const desktopRoot = document.getElementById("step-test-desktop")
+    if(score <= 7){
+        return {
+            key:"good",
+            title:t[lang].resultGoodTitle,
+            text:t[lang].resultGoodText,
+            scoreText:`${score}/${total}`
+        }
+    }
 
-    const html = `
-        <div class="glow-card" style="
-            border-radius:28px;
-            padding:24px;
-        ">
+    return {
+        key:"great",
+        title:t[lang].resultGreatTitle,
+        text:t[lang].resultGreatText,
+        scoreText:`${score}/${total}`
+    }
+}
 
-            <h2 style="
-                margin:0 0 12px;
-                font-size:32px;
-                line-height:1.1;
-                font-weight:800;
-            ">
-                ${d.finishTitle}
+function finishLesson(){
+
+    impact("medium")
+
+    const result =
+        getResultStatus()
+
+    let overlay =
+        document.getElementById("resultOverlay")
+
+    if(!overlay){
+        overlay = document.createElement("div")
+        overlay.id = "resultOverlay"
+        overlay.className = "result-overlay"
+        document.body.appendChild(overlay)
+    }
+
+    overlay.innerHTML = `
+        <div class="result-modal">
+
+            <div class="result-fire">
+                🔥
+            </div>
+
+            <h2 class="result-title">
+                ${result.title}
             </h2>
 
-            <p style="
-                margin:0 0 20px;
-                color:var(--muted);
-                line-height:1.6;
-                font-size:15px;
-            ">
-                ${d.finishText}
+            <p class="result-score">
+                ${result.text}<br>
+                ${result.scoreText}
             </p>
 
-            <button
-                class="mobile-main-btn"
-                onclick="openNextLesson()"
-            >
-                ${d.finishNext}
-            </button>
+            <div class="result-scale">
+
+                <div class="result-scale-item ${result.key === "bad" ? "active" : ""}">
+                    ${t[lang].resultScaleBad}
+                </div>
+
+                <div class="result-scale-item ${result.key === "good" ? "active" : ""}">
+                    ${t[lang].resultScaleGood}
+                </div>
+
+                <div class="result-scale-item ${result.key === "great" ? "active" : ""}">
+                    ${t[lang].resultScaleGreat}
+                </div>
+
+            </div>
+
+            <div class="result-actions">
+
+                <button
+                    class="result-btn result-btn-secondary"
+                    onclick="restartLesson()"
+                >
+                    ${t[lang].restartLesson}
+                </button>
+
+                <button
+                    class="result-btn result-btn-primary"
+                    onclick="completeLesson()"
+                >
+                    ${t[lang].finishLessonBtn}
+                </button>
+
+            </div>
 
         </div>
     `
 
-    if(mobileRoot){
-        mobileRoot.innerHTML = html
-    }
-
-    if(desktopRoot){
-        desktopRoot.innerHTML = html
-    }
+    overlay.classList.add("active")
 }
 
-function openNextLesson(){
+function restartLesson(){
 
     impact()
 
-    window.location.href = `smm-lesson-${NEXT_LESSON_ID}.html`
+    const overlay =
+        document.getElementById("resultOverlay")
+
+    if(overlay){
+        overlay.classList.remove("active")
+    }
+
+    currentQuestionIndex = 0
+    score = 0
+    selectedAnswer = false
+
+    renderQuestion()
+    goStep("video")
 }
 
-function openMaterial(){
+async function completeLesson(){
 
-    impact()
+    impact("medium")
 
-    const path = MATERIAL_PATHS[lang]
-
-    if(!path){
-        alert(t[lang].materialMissing)
-        return
-    }
-
-    window.open(path, "_blank")
-}
-
-function initVideo(){
-
-    const mobileVideo = document.getElementById("lessonVideo-mobile")
-    const desktopVideo = document.getElementById("lessonVideo-desktop")
-
-    const mobileSource = document.getElementById("videoSource-mobile")
-    const desktopSource = document.getElementById("videoSource-desktop")
-
-    if(mobileSource){
-        mobileSource.src = VIDEO_PATH
-    }
-
-    if(desktopSource){
-        desktopSource.src = VIDEO_PATH
-    }
-
-    if(mobileVideo){
-        mobileVideo.load()
-    }
-
-    if(desktopVideo){
-        desktopVideo.load()
-    }
-}
-
-function goBack(){
-
-    impact()
-
-    if(currentStep === "test"){
-        goStep("deep")
-        return
-    }
-
-    if(currentStep === "deep"){
-        goStep("summary")
-        return
-    }
-
-    if(currentStep === "summary"){
-        goStep("video")
-        return
-    }
+    await saveProgress()
 
     window.location.href = "learn-smm-v2.html"
 }
 
-function goHome(){
-
-    impact()
-
-    localStorage.setItem("lang", lang)
-
-    window.location.href = "index.html"
-}
-
-function goCourses(){
-
-    impact()
-
-    localStorage.setItem("lang", lang)
-
-    window.location.href = "courses.html"
-}
-
-function goPage(page){
-
-    impact()
-
-    localStorage.setItem("lang", lang)
-
-    window.location.href = page
-}
+/* =========================
+   TELEGRAM
+========================= */
 
 function initTelegram(){
 
-    if(window.Telegram && Telegram.WebApp){
+    try{
 
-        const tg = Telegram.WebApp
+        if(
+            window.Telegram &&
+            Telegram.WebApp
+        ){
+            Telegram.WebApp.ready()
+            Telegram.WebApp.expand()
 
-        tg.ready()
-        tg.expand()
+            const user =
+                Telegram.WebApp.initDataUnsafe &&
+                Telegram.WebApp.initDataUnsafe.user
 
-        try{
-            tg.requestFullscreen()
-        }catch(e){}
-
-        if(tg.initDataUnsafe && tg.initDataUnsafe.user){
-
-            telegramUserId = tg.initDataUnsafe.user.id
+            if(user && user.id){
+                telegramUserId = user.id
+            }
         }
 
-        document.body.style.minHeight =
-            tg.viewportHeight + "px"
-    }
+    }catch(error){}
 }
 
-function toggleLessonLang(){
-
-    if(lang === "ru"){
-        setLessonLang("uz")
-        return
-    }
-
-    setLessonLang("ru")
-}
-
-function updateMobileStepTitle(){
-
-    const d = t[lang]
-    const title = document.getElementById("mobileStepTitle")
-    const langChip = document.getElementById("mobileLangCurrent")
-
-    if(langChip){
-        langChip.innerText = lang === "ru" ? "RU" : "UZ"
-    }
-
-    if(!title) return
-
-    if(currentStep === "video"){
-        title.innerText = d.lessonBadge
-        return
-    }
-
-    if(currentStep === "summary"){
-        title.innerText = d.summaryTitle
-        return
-    }
-
-    if(currentStep === "deep"){
-        title.innerText = d.deepTitle
-        return
-    }
-
-    if(currentStep === "test"){
-        title.innerText = d.testTitle
-    }
-}
-
-function impact(style = "light"){
-
-    if(
-        window.Telegram &&
-        Telegram.WebApp &&
-        Telegram.WebApp.HapticFeedback
-    ){
-
-        Telegram.WebApp.HapticFeedback
-            .impactOccurred(style)
-    }
-}
+/* =========================
+   OTABEK
+========================= */
 
 function loadOtabek(){
 
-    window.OTABEK_STORAGE_KEY = "smm_lesson_2"
+    window.OTABEK_STORAGE_KEY =
+        `smm_lesson_${LESSON_ID}_${lang}`
 
-    fetch("otabek.html")
+     window.OTABEK_LANG = lang
+
+    const isDesktop =
+        window.innerWidth >= 1024
+
+    const slot =
+        isDesktop
+            ? document.getElementById("otabek-slot")
+            : document.getElementById("otabek-mobile-slot")
+
+    if(!slot) return
+
+    slot.innerHTML = ""
+
+    fetch(`otabek.html?v=${Date.now()}`)
         .then(response => response.text())
         .then(html => {
-            const desktopSlot = document.getElementById("otabek-slot")
-            const mobileSlot = document.getElementById("otabek-mobile-slot")
 
-            if(window.innerWidth >= 1024){
+            slot.innerHTML = html
 
-                if(desktopSlot){
-                    desktopSlot.innerHTML = html
-                }
+            const oldOtabekScript =
+                document.getElementById("otabekRuntimeScript")
 
-            }else{
-
-                if(mobileSlot){
-                    mobileSlot.innerHTML = html
-                }
+            if(oldOtabekScript){
+                oldOtabekScript.remove()
             }
 
-            const scripts = document.querySelectorAll("#otabek-slot script, #otabek-mobile-slot script")
+            const scripts =
+                slot.querySelectorAll("script")
 
             scripts.forEach(oldScript => {
-                const newScript = document.createElement("script")
-                newScript.textContent = oldScript.textContent
+
+                const newScript =
+                    document.createElement("script")
+
+                newScript.id = "otabekRuntimeScript"
+
+                newScript.textContent =
+                    oldScript.textContent
+
                 document.body.appendChild(newScript)
+
                 oldScript.remove()
             })
         })
@@ -3183,11 +4122,15 @@ function loadOtabek(){
         })
 }
 
+/* =========================
+   INIT
+========================= */
+
+initTelegram()
 updateStaticText()
 initVideo()
-initTelegram()
+initPlyr()
 loadOtabek()
-
 </script>
 
 </body>
