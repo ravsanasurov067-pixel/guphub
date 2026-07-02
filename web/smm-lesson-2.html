@@ -1587,6 +1587,7 @@ button{
    MOBILE PLYR FULLSCREEN FIX
 ========================= */
 
+
 @media (max-width:1023px){
 
     .mobile-video-frame{
@@ -1595,29 +1596,56 @@ button{
     }
 
     .mobile-video-frame .plyr{
-        position:absolute;
-        inset:0;
-
-        width:100% !important;
-        height:100% !important;
-        max-width:100% !important;
-        max-height:100% !important;
+        width:100%;
+        height:100%;
     }
 
     .mobile-video-frame .plyr__video-wrapper{
-        width:100% !important;
-        height:100% !important;
-        max-width:100% !important;
-        max-height:100% !important;
+        width:100%;
+        height:100%;
     }
 
     .mobile-video-frame .plyr video{
-        width:100% !important;
-        height:100% !important;
-        max-width:100% !important;
-        max-height:100% !important;
-
+        width:100%;
+        height:100%;
         object-fit:cover;
+    }
+
+    .mobile-video-frame .plyr.plyr--fullscreen-fallback{
+        position:fixed !important;
+        inset:0 !important;
+
+        width:100vw !important;
+        height:100vh !important;
+
+        max-width:none !important;
+        max-height:none !important;
+
+        z-index:99999 !important;
+
+        border-radius:0 !important;
+        background:#000 !important;
+    }
+
+    .mobile-video-frame .plyr.plyr--fullscreen-fallback .plyr__video-wrapper{
+        width:100vw !important;
+        height:100vh !important;
+
+        max-width:none !important;
+        max-height:none !important;
+
+        background:#000 !important;
+    }
+
+    .mobile-video-frame .plyr.plyr--fullscreen-fallback video{
+        width:100vw !important;
+        height:100vh !important;
+
+        max-width:none !important;
+        max-height:none !important;
+
+        object-fit:contain !important;
+        background:#000 !important;
     }
 
 }
