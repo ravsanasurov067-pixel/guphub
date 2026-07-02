@@ -3153,8 +3153,49 @@ function initPlyr(){
     }
 
     if(window.Plyr && mobileVideo){
-        mobilePlyr = new Plyr(mobileVideo, plyrOptions)
-    }
+
+    mobilePlyr = new Plyr(mobileVideo, plyrOptions)
+
+    mobilePlyr.on("enterfullscreen", function(){
+
+        try{
+            if(window.Telegram && Telegram.WebApp){
+
+                if(Telegram.WebApp.requestFullscreen){
+                    Telegram.WebApp.requestFullscreen()
+                }
+
+                if(Telegram.WebApp.disableVerticalSwipes){
+                    Telegram.WebApp.disableVerticalSwipes()
+                }
+
+                if(Telegram.WebApp.enableClosingConfirmation){
+                    Telegram.WebApp.enableClosingConfirmation()
+                }
+            }
+        }catch(error){}
+    })
+
+    mobilePlyr.on("exitfullscreen", function(){
+
+        try{
+            if(window.Telegram && Telegram.WebApp){
+
+                if(Telegram.WebApp.exitFullscreen){
+                    Telegram.WebApp.exitFullscreen()
+                }
+
+                if(Telegram.WebApp.enableVerticalSwipes){
+                    Telegram.WebApp.enableVerticalSwipes()
+                }
+
+                if(Telegram.WebApp.disableClosingConfirmation){
+                    Telegram.WebApp.disableClosingConfirmation()
+                }
+            }
+        }catch(error){}
+    })
+}
 
     if(window.Plyr && desktopVideo){
         desktopPlyr = new Plyr(desktopVideo, plyrOptions)
