@@ -3223,10 +3223,14 @@ function initMobilePlyrSwipeExit(){
 
     let touchStartX = 0
     let touchStartY = 0
+    let touchMoveX = 0
+    let touchMoveY = 0
+    let isDraggingVideo = false
+    let activeFullscreen = null
 
     document.addEventListener("touchstart", function(event){
 
-        const activeFullscreen =
+        activeFullscreen =
             document.querySelector(".plyr--fullscreen-fallback")
 
         if(!activeFullscreen) return
@@ -3238,39 +3242,131 @@ function initMobilePlyrSwipeExit(){
         touchStartY =
             event.touches[0].clientY
 
+        touchMoveX =
+            touchStartX
+
+        touchMoveY =
+            touchStartY
+
+        isDraggingVideo = false
+
+        activeFullscreen.style.transition = "none"
+        activeFullscreen.style.willChange = "transform, opacity"
+
     }, { passive:true })
 
-    document.addEventListener("touchend", function(event){
-
-        const activeFullscreen =
-            document.querySelector(".plyr--fullscreen-fallback")
+    document.addEventListener("touchmove", function(event){
 
         if(!activeFullscreen) return
-        if(!event.changedTouches || !event.changedTouches[0]) return
+        if(!event.touches || !event.touches[0]) return
 
-        const touchEndX =
-            event.changedTouches[0].clientX
+        touchMoveX =
+            event.touches[0].clientX
 
-        const touchEndY =
-            event.changedTouches[0].clientY
+        touchMoveY =
+            event.touches[0].clientY
 
         const diffX =
-            touchEndX - touchStartX
+            touchMoveX - touchStartX
 
         const diffY =
-            touchEndY - touchStartY
+            touchMoveY - touchStartY
 
-        const isVerticalSwipe =
-            Math.abs(diffY) > 90 &&
-            Math.abs(diffY) > Math.abs(diffX) * 1.4
+        const isVertical =
+            Math.abs(diffY) > 10 &&
+            Math.abs(diffY) > Math.abs(diffX) * 1.2
 
-        if(!isVerticalSwipe) return
+        if(!isVertical && !isDraggingVideo) return
 
-        try{
-            if(mobilePlyr && mobilePlyr.fullscreen){
-                mobilePlyr.fullscreen.exit()
+        isDraggingVideo = true
+
+        const limitedY =
+            Math.max(Math.min(diffY, 220), -220)
+
+        const progress =
+            Math.min(Math.abs(limitedY) / 220, 1)
+
+        const scale =
+            1 - progress * 0.08
+
+        const opacity =
+            1 - progress * 0.35
+
+        activeFullscreen.style.transform =
+            `translateY(${limitedY}px) scale(${scale})`
+
+        activeFullscreen.style.opacity =
+            String(opacity)
+
+    }, { passive:true })
+
+    document.addEventListener("touchend", function(){
+
+        if(!activeFullscreen) return
+
+        const diffY =
+            touchMoveY - touchStartY
+
+        const shouldExit =
+            isDraggingVideo &&
+            Math.abs(diffY) > 110
+
+        activeFullscreen.style.transition =
+            "transform .22s ease, opacity .22s ease"
+
+        if(shouldExit){
+
+            const exitY =
+                diffY > 0 ? window.innerHeight : -window.innerHeight
+
+            activeFullscreen.style.transform =
+                `translateY(${exitY}px) scale(.92)`
+
+            activeFullscreen.style.opacity =
+                "0"
+
+            setTimeout(function(){
+
+                try{
+                    if(mobilePlyr && mobilePlyr.fullscreen){
+                        mobilePlyr.fullscreen.exit()
+                    }
+                }catch(error){}
+
+                if(activeFullscreen){
+                    activeFullscreen.style.transition = ""
+                    activeFullscreen.style.transform = ""
+                    activeFullscreen.style.opacity = ""
+                    activeFullscreen.style.willChange = ""
+                }
+
+                activeFullscreen = null
+                isDraggingVideo = false
+
+            }, 180)
+
+            return
+        }
+
+        activeFullscreen.style.transform =
+            "translateY(0) scale(1)"
+
+        activeFullscreen.style.opacity =
+            "1"
+
+        setTimeout(function(){
+
+            if(activeFullscreen){
+                activeFullscreen.style.transition = ""
+                activeFullscreen.style.transform = ""
+                activeFullscreen.style.opacity = ""
+                activeFullscreen.style.willChange = ""
             }
-        }catch(error){}
+
+            activeFullscreen = null
+            isDraggingVideo = false
+
+        }, 230)
 
     }, { passive:true })
 }
