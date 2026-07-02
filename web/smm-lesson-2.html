@@ -3136,6 +3136,16 @@ function initVideoFullscreenTest(){
 
     if(!isAndroid) return
 
+    alert(
+        "Android test loaded\n" +
+        "fullscreenEnabled: " + document.fullscreenEnabled + "\n" +
+        "Telegram.requestFullscreen: " + (
+            window.Telegram &&
+            Telegram.WebApp &&
+            typeof Telegram.WebApp.requestFullscreen
+        )
+    )
+
     const frame =
         document.querySelector(".mobile-video-frame")
 
