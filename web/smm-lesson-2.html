@@ -1589,9 +1589,35 @@ button{
 
 @media (max-width:1023px){
 
+    .mobile-video-frame{
+        position:relative;
+        overflow:hidden;
+    }
+
     .mobile-video-frame .plyr{
-        width:100%;
-        height:100%;
+        position:absolute;
+        inset:0;
+
+        width:100% !important;
+        height:100% !important;
+        max-width:100% !important;
+        max-height:100% !important;
+    }
+
+    .mobile-video-frame .plyr__video-wrapper{
+        width:100% !important;
+        height:100% !important;
+        max-width:100% !important;
+        max-height:100% !important;
+    }
+
+    .mobile-video-frame .plyr video{
+        width:100% !important;
+        height:100% !important;
+        max-width:100% !important;
+        max-height:100% !important;
+
+        object-fit:cover;
     }
 
 }
