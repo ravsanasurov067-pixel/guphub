@@ -1833,6 +1833,7 @@ button{
                 <div class="mobile-video-frame">
 
                     <video
+                        class="js-plyr-video"
                         id="lessonVideo-mobile"
                         controls
                         playsinline
@@ -3084,11 +3085,26 @@ function capitalizeStep(step){
 
 function initPlyr(){
 
+    const mobileVideo =
+        document.getElementById("lessonVideo-mobile")
+
     const desktopVideo =
         document.getElementById("lessonVideo-desktop")
 
+    const plyrOptions = {
+        fullscreen:{
+            enabled:true,
+            fallback:"force",
+            iosNative:true
+        }
+    }
+
+    if(window.Plyr && mobileVideo){
+        mobilePlyr = new Plyr(mobileVideo, plyrOptions)
+    }
+
     if(window.Plyr && desktopVideo){
-        desktopPlyr = new Plyr(desktopVideo)
+        desktopPlyr = new Plyr(desktopVideo, plyrOptions)
     }
 }
 
@@ -3124,79 +3140,6 @@ function initVideo(){
     if(desktopVideo){
         desktopVideo.load()
     }
-}
-
-/* =========================
-   ANDROID VIDEO FULLSCREEN TEST
-========================= */
-
-function initVideoFullscreenTest(){
-
-    const isAndroid =
-        /Android/i.test(navigator.userAgent)
-
-    if(!isAndroid) return
-
-    alert(
-        "Android test loaded\n" +
-        "fullscreenEnabled: " + document.fullscreenEnabled + "\n" +
-        "Telegram.requestFullscreen: " + (
-            window.Telegram &&
-            Telegram.WebApp &&
-            typeof Telegram.WebApp.requestFullscreen
-        )
-    )
-
-    const frame =
-        document.querySelector(".mobile-video-frame")
-
-    const video =
-        document.getElementById("lessonVideo-mobile")
-
-    if(!frame || !video) return
-
-    frame.addEventListener("click", async function(){
-
-        const info = [
-            "Android fullscreen test",
-            "document.fullscreenEnabled: " + document.fullscreenEnabled,
-            "video.requestFullscreen: " + typeof video.requestFullscreen,
-            "frame.requestFullscreen: " + typeof frame.requestFullscreen,
-            "Telegram.requestFullscreen: " + (
-                window.Telegram &&
-                Telegram.WebApp &&
-                typeof Telegram.WebApp.requestFullscreen
-            )
-        ].join("\n")
-
-        try{
-
-            if(video.requestFullscreen){
-                await video.requestFullscreen()
-                alert(info + "\n\nvideo.requestFullscreen: SUCCESS")
-                return
-            }
-
-            if(frame.requestFullscreen){
-                await frame.requestFullscreen()
-                alert(info + "\n\nframe.requestFullscreen: SUCCESS")
-                return
-            }
-
-            alert(info + "\n\nHTML video fullscreen API is not available")
-
-        }catch(error){
-
-            alert(
-                info +
-                "\n\nrequestFullscreen ERROR:\n" +
-                error.name +
-                "\n" +
-                error.message
-            )
-        }
-
-    }, { once:true })
 }
 
 /* =========================
@@ -4203,7 +4146,6 @@ function loadOtabek(){
 initTelegram()
 updateStaticText()
 initVideo()
-initVideoFullscreenTest()
 initPlyr()
 loadOtabek()
 </script>
