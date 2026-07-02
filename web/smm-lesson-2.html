@@ -1649,6 +1649,21 @@ button{
 
 }
 
+.video-swipe-backdrop{
+    position:fixed;
+    inset:0;
+    z-index:99998;
+
+    background:rgba(0,0,0,.34);
+    backdrop-filter:blur(18px);
+    -webkit-backdrop-filter:blur(18px);
+
+    opacity:0;
+    pointer-events:none;
+
+    transition:opacity .18s ease;
+}
+
 /* =========================
    TEST RESULT MODAL
 ========================= */
@@ -3225,8 +3240,56 @@ function initMobilePlyrSwipeExit(){
     let touchStartY = 0
     let touchMoveX = 0
     let touchMoveY = 0
+
     let isDraggingVideo = false
     let activeFullscreen = null
+    let swipeBackdrop = null
+
+    function createSwipeBackdrop(){
+
+        swipeBackdrop =
+            document.getElementById("videoSwipeBackdrop")
+
+        if(!swipeBackdrop){
+            swipeBackdrop =
+                document.createElement("div")
+
+            swipeBackdrop.id = "videoSwipeBackdrop"
+            swipeBackdrop.className = "video-swipe-backdrop"
+
+            document.body.appendChild(swipeBackdrop)
+        }
+
+        requestAnimationFrame(function(){
+            swipeBackdrop.style.opacity = "1"
+        })
+    }
+
+    function resetSwipeBackdrop(){
+
+        if(!swipeBackdrop) return
+
+        swipeBackdrop.style.opacity = "0"
+
+        setTimeout(function(){
+
+            if(swipeBackdrop){
+                swipeBackdrop.remove()
+                swipeBackdrop = null
+            }
+
+        }, 220)
+    }
+
+    function resetActiveFullscreen(){
+
+        if(!activeFullscreen) return
+
+        activeFullscreen.style.transition = ""
+        activeFullscreen.style.transform = ""
+        activeFullscreen.style.willChange = ""
+        activeFullscreen.style.borderRadius = ""
+    }
 
     document.addEventListener("touchstart", function(event){
 
@@ -3250,8 +3313,11 @@ function initMobilePlyrSwipeExit(){
 
         isDraggingVideo = false
 
+        createSwipeBackdrop()
+
         activeFullscreen.style.transition = "none"
-        activeFullscreen.style.willChange = "transform, opacity"
+        activeFullscreen.style.willChange = "transform"
+        activeFullscreen.style.borderRadius = "26px"
 
     }, { passive:true })
 
@@ -3281,22 +3347,21 @@ function initMobilePlyrSwipeExit(){
         isDraggingVideo = true
 
         const limitedY =
-            Math.max(Math.min(diffY, 220), -220)
+            Math.max(Math.min(diffY, 240), -240)
 
         const progress =
-            Math.min(Math.abs(limitedY) / 220, 1)
+            Math.min(Math.abs(limitedY) / 240, 1)
 
         const scale =
-            1 - progress * 0.08
-
-        const opacity =
-            1 - progress * 0.35
+            1 - progress * 0.10
 
         activeFullscreen.style.transform =
             `translateY(${limitedY}px) scale(${scale})`
 
-        activeFullscreen.style.opacity =
-            String(opacity)
+        if(swipeBackdrop){
+            swipeBackdrop.style.opacity =
+                String(0.35 + progress * 0.55)
+        }
 
     }, { passive:true })
 
@@ -3309,10 +3374,10 @@ function initMobilePlyrSwipeExit(){
 
         const shouldExit =
             isDraggingVideo &&
-            Math.abs(diffY) > 110
+            Math.abs(diffY) > 115
 
         activeFullscreen.style.transition =
-            "transform .22s ease, opacity .22s ease"
+            "transform .22s ease"
 
         if(shouldExit){
 
@@ -3320,10 +3385,9 @@ function initMobilePlyrSwipeExit(){
                 diffY > 0 ? window.innerHeight : -window.innerHeight
 
             activeFullscreen.style.transform =
-                `translateY(${exitY}px) scale(.92)`
+                `translateY(${exitY}px) scale(.88)`
 
-            activeFullscreen.style.opacity =
-                "0"
+            resetSwipeBackdrop()
 
             setTimeout(function(){
 
@@ -3333,17 +3397,12 @@ function initMobilePlyrSwipeExit(){
                     }
                 }catch(error){}
 
-                if(activeFullscreen){
-                    activeFullscreen.style.transition = ""
-                    activeFullscreen.style.transform = ""
-                    activeFullscreen.style.opacity = ""
-                    activeFullscreen.style.willChange = ""
-                }
+                resetActiveFullscreen()
 
                 activeFullscreen = null
                 isDraggingVideo = false
 
-            }, 180)
+            }, 190)
 
             return
         }
@@ -3351,17 +3410,10 @@ function initMobilePlyrSwipeExit(){
         activeFullscreen.style.transform =
             "translateY(0) scale(1)"
 
-        activeFullscreen.style.opacity =
-            "1"
-
         setTimeout(function(){
 
-            if(activeFullscreen){
-                activeFullscreen.style.transition = ""
-                activeFullscreen.style.transform = ""
-                activeFullscreen.style.opacity = ""
-                activeFullscreen.style.willChange = ""
-            }
+            resetActiveFullscreen()
+            resetSwipeBackdrop()
 
             activeFullscreen = null
             isDraggingVideo = false
