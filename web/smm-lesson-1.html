@@ -1589,11 +1589,79 @@ button{
 
 @media (max-width:1023px){
 
+    .mobile-video-frame{
+        position:relative;
+        overflow:hidden;
+    }
+
     .mobile-video-frame .plyr{
         width:100%;
         height:100%;
     }
 
+    .mobile-video-frame .plyr__video-wrapper{
+        width:100%;
+        height:100%;
+    }
+
+    .mobile-video-frame .plyr video{
+        width:100%;
+        height:100%;
+        object-fit:cover;
+    }
+
+    .mobile-video-frame .plyr.plyr--fullscreen-fallback{
+        position:fixed !important;
+        inset:0 !important;
+
+        width:100vw !important;
+        height:100vh !important;
+
+        max-width:none !important;
+        max-height:none !important;
+
+        z-index:99999 !important;
+
+        border-radius:0 !important;
+        background:#000 !important;
+    }
+
+    .mobile-video-frame .plyr.plyr--fullscreen-fallback .plyr__video-wrapper{
+        width:100vw !important;
+        height:100vh !important;
+
+        max-width:none !important;
+        max-height:none !important;
+
+        background:#000 !important;
+    }
+
+    .mobile-video-frame .plyr.plyr--fullscreen-fallback video{
+        width:100vw !important;
+        height:100vh !important;
+
+        max-width:none !important;
+        max-height:none !important;
+
+        object-fit:contain !important;
+        background:#000 !important;
+    }
+
+}
+
+.video-swipe-backdrop{
+    position:fixed;
+    inset:0;
+    z-index:99998;
+
+    background:rgba(0,0,0,.34);
+    backdrop-filter:blur(18px);
+    -webkit-backdrop-filter:blur(18px);
+
+    opacity:0;
+    pointer-events:none;
+
+    transition:opacity .18s ease;
 }
 
 /* =========================
@@ -1833,9 +1901,11 @@ button{
                 <div class="mobile-video-frame">
 
                     <video
+                        class="js-plyr-video"
                         id="lessonVideo-mobile"
                         controls
                         playsinline
+                        webkit-playsinline
                         preload="metadata"
                     >
                         <source
@@ -3081,11 +3151,26 @@ function capitalizeStep(step){
 
 function initPlyr(){
 
+    const mobileVideo =
+        document.getElementById("lessonVideo-mobile")
+
     const desktopVideo =
         document.getElementById("lessonVideo-desktop")
 
+    const plyrOptions = {
+        fullscreen:{
+            enabled:true,
+            fallback:"force",
+            iosNative:true
+        }
+    }
+
+    if(window.Plyr && mobileVideo){
+        mobilePlyr = new Plyr(mobileVideo, plyrOptions)
+    }
+
     if(window.Plyr && desktopVideo){
-        desktopPlyr = new Plyr(desktopVideo)
+        desktopPlyr = new Plyr(desktopVideo, plyrOptions)
     }
 }
 
@@ -3121,6 +3206,219 @@ function initVideo(){
     if(desktopVideo){
         desktopVideo.load()
     }
+
+    if(mobilePlyr){
+        mobilePlyr.source = {
+            type:"video",
+            sources:[
+                {
+                    src:src,
+                    type:"video/mp4"
+                }
+            ]
+        }
+    }
+
+    if(desktopPlyr){
+        desktopPlyr.source = {
+            type:"video",
+            sources:[
+                {
+                    src:src,
+                    type:"video/mp4"
+                }
+            ]
+        }
+    }
+}
+
+function initMobilePlyrSwipeExit(){
+
+    let touchStartX = 0
+    let touchStartY = 0
+    let touchMoveX = 0
+    let touchMoveY = 0
+
+    let isDraggingVideo = false
+    let activeFullscreen = null
+    let swipeBackdrop = null
+
+    function createSwipeBackdrop(){
+
+        swipeBackdrop =
+            document.getElementById("videoSwipeBackdrop")
+
+        if(!swipeBackdrop){
+            swipeBackdrop =
+                document.createElement("div")
+
+            swipeBackdrop.id = "videoSwipeBackdrop"
+            swipeBackdrop.className = "video-swipe-backdrop"
+
+            document.body.appendChild(swipeBackdrop)
+        }
+
+        requestAnimationFrame(function(){
+            swipeBackdrop.style.opacity = "1"
+        })
+    }
+
+    function resetSwipeBackdrop(){
+
+        if(!swipeBackdrop) return
+
+        swipeBackdrop.style.opacity = "0"
+
+        setTimeout(function(){
+
+            if(swipeBackdrop){
+                swipeBackdrop.remove()
+                swipeBackdrop = null
+            }
+
+        }, 220)
+    }
+
+    function resetActiveFullscreen(){
+
+        if(!activeFullscreen) return
+
+        activeFullscreen.style.transition = ""
+        activeFullscreen.style.transform = ""
+        activeFullscreen.style.willChange = ""
+        activeFullscreen.style.borderRadius = ""
+    }
+
+    document.addEventListener("touchstart", function(event){
+
+        activeFullscreen =
+            document.querySelector(".plyr--fullscreen-fallback")
+
+        if(!activeFullscreen) return
+        if(!event.touches || !event.touches[0]) return
+
+        touchStartX =
+            event.touches[0].clientX
+
+        touchStartY =
+            event.touches[0].clientY
+
+        touchMoveX =
+            touchStartX
+
+        touchMoveY =
+            touchStartY
+
+        isDraggingVideo = false
+
+        createSwipeBackdrop()
+
+        activeFullscreen.style.transition = "none"
+        activeFullscreen.style.willChange = "transform"
+        activeFullscreen.style.borderRadius = "26px"
+
+    }, { passive:true })
+
+    document.addEventListener("touchmove", function(event){
+
+        if(!activeFullscreen) return
+        if(!event.touches || !event.touches[0]) return
+
+        touchMoveX =
+            event.touches[0].clientX
+
+        touchMoveY =
+            event.touches[0].clientY
+
+        const diffX =
+            touchMoveX - touchStartX
+
+        const diffY =
+            touchMoveY - touchStartY
+
+        const isVertical =
+            Math.abs(diffY) > 10 &&
+            Math.abs(diffY) > Math.abs(diffX) * 1.2
+
+        if(!isVertical && !isDraggingVideo) return
+
+        isDraggingVideo = true
+
+        const limitedY =
+            Math.max(Math.min(diffY, 240), -240)
+
+        const progress =
+            Math.min(Math.abs(limitedY) / 240, 1)
+
+        const scale =
+            1 - progress * 0.10
+
+        activeFullscreen.style.transform =
+            `translateY(${limitedY}px) scale(${scale})`
+
+        if(swipeBackdrop){
+            swipeBackdrop.style.opacity =
+                String(0.35 + progress * 0.55)
+        }
+
+    }, { passive:true })
+
+    document.addEventListener("touchend", function(){
+
+        if(!activeFullscreen) return
+
+        const diffY =
+            touchMoveY - touchStartY
+
+        const shouldExit =
+            isDraggingVideo &&
+            Math.abs(diffY) > 115
+
+        activeFullscreen.style.transition =
+            "transform .22s ease"
+
+        if(shouldExit){
+
+            const exitY =
+                diffY > 0 ? window.innerHeight : -window.innerHeight
+
+            activeFullscreen.style.transform =
+                `translateY(${exitY}px) scale(.88)`
+
+            resetSwipeBackdrop()
+
+            setTimeout(function(){
+
+                try{
+                    if(mobilePlyr && mobilePlyr.fullscreen){
+                        mobilePlyr.fullscreen.exit()
+                    }
+                }catch(error){}
+
+                resetActiveFullscreen()
+
+                activeFullscreen = null
+                isDraggingVideo = false
+
+            }, 190)
+
+            return
+        }
+
+        activeFullscreen.style.transform =
+            "translateY(0) scale(1)"
+
+        setTimeout(function(){
+
+            resetActiveFullscreen()
+            resetSwipeBackdrop()
+
+            activeFullscreen = null
+            isDraggingVideo = false
+
+        }, 230)
+
+    }, { passive:true })
 }
 
 /* =========================
@@ -4049,6 +4347,14 @@ function initTelegram(){
             Telegram.WebApp.ready()
             Telegram.WebApp.expand()
 
+            if(Telegram.WebApp.disableVerticalSwipes){
+                Telegram.WebApp.disableVerticalSwipes()
+            }
+
+            if(Telegram.WebApp.enableClosingConfirmation){
+                Telegram.WebApp.enableClosingConfirmation()
+            }
+
             const user =
                 Telegram.WebApp.initDataUnsafe &&
                 Telegram.WebApp.initDataUnsafe.user
@@ -4128,6 +4434,7 @@ initTelegram()
 updateStaticText()
 initVideo()
 initPlyr()
+initMobilePlyrSwipeExit()
 loadOtabek()
 </script>
 
