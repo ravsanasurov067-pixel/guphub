@@ -12,7 +12,7 @@
     href="https://cdnjs.cloudflare.com/ajax/libs/plyr/3.8.4/plyr.css"
 >
 
-<title>gaphub - SMM lesson 8</title>
+<title>gaphub - SMM lesson 9</title>
 
 <style>
 :root{
@@ -2551,17 +2551,17 @@ button{
 let lang = localStorage.getItem("lang") || "uz"
 
 const COURSE_SLUG = "smm"
-const LESSON_ID = 8
-const NEXT_LESSON_ID = 9
+const LESSON_ID = 9
+const NEXT_LESSON_ID = 10
 
 const VIDEO_PATHS = {
-    ru:"https://bot.gaphub.uz/videos/smm/lesson-8-ru.mp4",
-    uz:"https://bot.gaphub.uz/videos/smm/lesson-8-uz.mp4"
+    ru:"https://bot.gaphub.uz/videos/smm/lesson-9-ru.mp4",
+    uz:"https://bot.gaphub.uz/videos/smm/lesson-9-uz.mp4"
 }
 
 const MATERIAL_PATHS = {
-    ru:"https://bot.gaphub.uz/materials/smm/lesson-8-ru.pdf",
-    uz:"https://bot.gaphub.uz/materials/smm/lesson-8-uz.pdf"
+    ru:"https://bot.gaphub.uz/materials/smm/lesson-9-ru.pdf",
+    uz:"https://bot.gaphub.uz/materials/smm/lesson-9-uz.pdf"
 }
 
 const STEP_ORDER = ["video", "summary", "deep", "test"]
@@ -2590,11 +2590,11 @@ let desktopPlyr = null
 const t = {
 
     uz:{
-        lessonBadge:"SMM • 8-dars",
-        lessonTitle:"Kontent-reja va rubrikalar",
-        lessonSubtitle:"Bu darsda kontent turlari, rubrikalar, rubrikator, kontent-reja va har bir postning aniq maqsadi qanday ishlashini ko‘rib chiqamiz.",
-
-        videoTitle:"8-dars videosi",
+        lessonBadge:"SMM • 9-dars",
+        lessonTitle:"Telegram kanal va qo‘llab-quvvatlash",
+        lessonSubtitle:"Bu darsda Telegram biznesga qanday yordam berishini, kanal, mahkamlangan xabar, bot, qo‘llab-quvvatlash, ishonch va auditoriyani ushlab qolish qanday ishlashini ko‘rib chiqamiz.",
+                
+        videoTitle:"9-dars videosi",
         videoText:"Videoni ko‘ring va keyin qisqa xulosaga o‘ting.",
         videoMaterial:"Video materiallari",
         goSummary:"Xulosaga o‘tish →",
@@ -2624,8 +2624,8 @@ const t = {
         languageTitle:"Kurs tili",
 
         finishTitle:"Dars yakunlandi",
-        finishText:"Siz 8-darsni tugatdingiz. Endi keyingi darsga o‘tishingiz mumkin.",
-        finishNext:"9-darsga o‘tish",
+        finishText:"Siz 9-darsni tugatdingiz. Endi keyingi darsga o‘tishingiz mumkin.",
+        finishNext:"10-darsga o‘tish",
 
         showResults:"Natijalarni ko‘rish",
 
@@ -2648,11 +2648,11 @@ const t = {
     },
 
     ru:{
-        lessonBadge:"SMM • Урок 8",
-        lessonTitle:"Контент-план и рубрики",
-        lessonSubtitle:"В этом уроке разбираем виды контента, рубрики, рубрикатор, контент-план и то, зачем каждой публикации нужна понятная задача.",
+        lessonBadge:"SMM • Урок 9",
+        lessonTitle:"Telegram-канал и поддержка",
+        lessonSubtitle:"В этом уроке разбираем, как Telegram помогает бизнесу давать информацию, удерживать аудиторию, вести к заявке, работать через канал, закреп, бота, поддержку и контент доверия.",
 
-        videoTitle:"Видео восьмого урока",
+        videoTitle:"Видео девятого урока",
         videoText:"Посмотри видео и после этого перейди к выжимке урока.",
         videoMaterial:"Материалы к видео",
         goSummary:"Перейти к выжимке →",
@@ -2682,8 +2682,8 @@ const t = {
         languageTitle:"Язык курса",
 
         finishTitle:"Урок завершён",
-        finishText:"Ты прошёл восьмой урок. Теперь можно перейти к девятому уроку.",
-        finishNext:"Перейти к 9 уроку",
+        finishText:"Ты прошёл девятый урок. Теперь можно перейти к десятому уроку.",
+        finishNext:"Перейти к 10 уроку",
 
         showResults:"Узнать результаты",
 
@@ -2711,113 +2711,113 @@ const questions = {
     ru:[
 
         {
-            question:"Ресторан публикует сет на двоих, показывает цену и пишет, что бронь столика открыта на вечер. Какую задачу в первую очередь решает такая публикация?",
+            question:"Клиент увидел товар в Instagram, заинтересовался, но не хочет искать сайт и заполнять длинную форму. Как Telegram может помочь бизнесу в такой ситуации?",
             answers:[
-                "Развлекает аудиторию и делает страницу менее сухой",
-                "Ведёт человека к покупке, заявке или сообщению",
-                "Собирает мнения аудитории через голосование",
-                "Показывает внутренние процессы команды"
+                "Дать человеку более короткий путь: открыть канал, посмотреть информацию и быстро написать проекту",
+                "Полностью заменить Instagram и убрать необходимость визуального контента",
+                "Сделать так, чтобы клиент покупал без уточнения цены и условий",
+                "Автоматически увеличить охваты всех публикаций в Instagram"
             ],
-            correct:1
+            correct:0
         },
 
         {
-            question:"Автошкола делает карусель “5 ошибок, из-за которых новички проваливают экзамен”. К какому виду контента это ближе всего?",
+            question:"В Instagram человек чаще сначала оценивает картинку, стиль и общее ощущение страницы. А что чаще становится сильной стороной Telegram?",
             answers:[
-                "Продающий контент",
-                "Развлекательный контент",
-                "Полезный контент",
-                "Репутационный контент"
+                "Только короткие развлекательные видео",
+                "Визуальная упаковка профиля и единая сетка постов",
+                "Информация, конкретика, возможность читать, сравнивать и возвращаться к постам",
+                "Автоматический подбор аудитории для рекламы"
             ],
             correct:2
         },
 
         {
-            question:"Кофейня в сторис предлагает выбрать новый вкус десерта через голосование. Что здесь главное?",
+            question:"Проект хочет регулярно публиковать новости, товары, полезные посты и объявления так, чтобы подписчики видели это у себя в Telegram. Какой инструмент лучше подходит для этой задачи?",
             answers:[
-                "Показать, что у кофейни есть доставка",
-                "Продать конкретный десерт через прямой призыв к покупке",
-                "Закрепить важную информацию в highlights",
-                "Получить реакцию аудитории и вовлечь людей в жизнь проекта"
+                "Поддержка, где менеджер отвечает на вопросы клиентов",
+                "Закреп, который остаётся сверху",
+                "Бот, который ведёт человека по сценарию",
+                "Канал, где проект публикует сообщения для подписчиков"
             ],
             correct:3
         },
 
         {
-            question:"Клининговая компания показывает квартиру до и после уборки. Почему такой контент важен для страницы?",
+            question:"Человек впервые зашёл в Telegram-канал магазина. Ему нужно быстро понять, куда он попал, что здесь предлагают и куда нажать дальше. Что должно помочь в первую очередь?",
             answers:[
-                "Он помогает доказать, что бизнес реальный и результат можно увидеть",
-                "Он нужен только для развлечения аудитории",
-                "Он заменяет продающий контент и больше ничего публиковать не нужно",
-                "Он работает только если добавить много хэштегов"
+                "Последний обычный пост, даже если он про случайную новость",
+                "Закреплённое сообщение с понятным входом в проект",
+                "Количество подписчиков канала",
+                "Любой пост из Instagram, пересланный без изменений"
+            ],
+            correct:1
+        },
+
+        {
+            question:"В закрепе канала написано: “Добро пожаловать, следите за новостями”. Больше ничего нет. Почему такой закреп слабый?",
+            answers:[
+                "Он не объясняет, что это за проект, что он предлагает и какой следующий шаг сделать",
+                "Он слишком короткий, а закреп всегда должен быть большим текстом",
+                "В нём нет хэштегов, поэтому Telegram не поймёт тему канала",
+                "В закрепе нельзя писать приветствие, там должны быть только цены"
             ],
             correct:0
         },
 
         {
-            question:"Страница публикует почти только акции, цены и призывы купить. Почему такая контент-система может работать слабо?",
+            question:"Клиент нажимает кнопку “каталог”, выбирает раздел и получает нужную информацию без участия менеджера. Что здесь работает?",
             answers:[
-                "Потому что продающий контент вообще нельзя использовать часто",
-                "Потому что Instagram показывает только развлекательные публикации",
-                "Потому что любую продажу нужно делать только через Reels",
-                "Потому что страница начинает давить, если в ней нет пользы, доверия, вовлечения и живого контента"
-            ],
-            correct:3
-        },
-
-        {
-            question:"Бренд каждый день придумывает темы с нуля: сегодня отзыв, завтра мем, потом случайный пост, потом опять продажа. Никакой повторяющейся логики нет. Чего не хватает странице?",
-            answers:[
-                "Рубрик, которые задают регулярные направления контента",
-                "Большего количества случайных идей",
-                "Только хэштегов под каждым постом",
-                "Отдельной страницы под каждый вид контента"
-            ],
-            correct:0
-        },
-
-        {
-            question:"Что лучше всего описывает рубрикатор?",
-            answers:[
-                "Список всех опубликованных постов за прошлый месяц",
-                "Расписание выхода сторис по часам",
-                "Набор готовых шаблонов для визуала в Canva",
-                "Таблица, где фиксируются рубрики, боль ЦА, наполнение и формат публикации"
-            ],
-            correct:3
-        },
-
-        {
-            question:"В контент-плане указаны дата, рубрика, формат, идея и цель публикации. Зачем нужна колонка “цель”?",
-            answers:[
-                "Чтобы заменить описание поста одной короткой фразой",
-                "Чтобы автоматически выбрать лучший час публикации",
-                "Чтобы понимать, зачем выходит конкретная публикация и какую задачу она решает",
-                "Чтобы не использовать разные виды контента на странице"
+                "Обычный пост",
+                "Закреп",
+                "Telegram-бот",
+                "Комментарии под публикацией"
             ],
             correct:2
         },
 
         {
-            question:"Почему в контент-плане стоит оставлять свободные дни или место для изменений?",
+            question:"Покупатель хочет уточнить наличие, цену и доставку. Готового ответа ему не хватает, нужен живой человек. Что здесь важнее всего настроить нормально?",
             answers:[
-                "Чтобы страница могла реагировать на тренды, новые товары, отзывы или срочные акции",
-                "Чтобы можно было вообще не публиковать контент без причины",
-                "Чтобы не использовать рубрики и каждый раз начинать с нуля",
-                "Чтобы заменить планирование случайными публикациями"
+                "Длинное описание канала",
+                "Поддержку, где человеку быстро и понятно отвечают",
+                "Развлекательный контент в канале",
+                "Список всех прошлых публикаций"
+            ],
+            correct:1
+        },
+
+        {
+            question:"Магазин показывает в Telegram упаковку заказов, отзывы клиентов и процесс работы. Какую роль это сильнее всего выполняет?",
+            answers:[
+                "Заменяет необходимость отвечать на вопросы клиентов",
+                "Помогает связать Telegram с рекламным кабинетом",
+                "Делает канал похожим на Instagram Reels",
+                "Усиливает доверие, потому что люди видят реальную жизнь проекта"
+            ],
+            correct:3
+        },
+
+        {
+            question:"Человек пришёл из Instagram, подписался на Telegram-канал, но не купил сразу. Через неделю увидел полезный пост, вернулся и сделал заказ. Что здесь сработало?",
+            answers:[
+                "Удержание аудитории рядом с проектом после первого интереса",
+                "Визуальная навигация Instagram-профиля",
+                "Сегментация аудитории по возрасту",
+                "Поиск трендов для коротких видео"
             ],
             correct:0
         },
 
         {
-            question:"Страница регулярно публикует контент, но у каждой публикации своя случайная задача: один пост просто “чтобы был”, другой без связи с аудиторией, третий не ведёт ни к доверию, ни к пользе, ни к продаже. Что здесь нужно исправить?",
+            question:"У бренда есть Telegram-канал, но там публикуются только сухие объявления: “товар есть”, “цена такая”, “пишите”. Люди подписываются, но быстро перестают читать. Чего не хватает каналу?",
             answers:[
-                "Добавить больше развлекательных Reels, чтобы страница выглядела активнее",
-                "Привязать публикации к понятным задачам: продажа, польза, вовлечение, доверие или развлечение",
-                "Убрать все посты и оставить только сторис",
-                "Делать публикации реже, чтобы аудитория не уставала"
+                "Сложного бота и технической автоворонки",
+                "Больше случайных постов без общей логики",
+                "Контента, который не только продаёт, но и даёт информацию, доверие и причину оставаться",
+                "Полного отказа от Instagram, чтобы вся аудитория перешла в Telegram"
             ],
-            correct:1
+            correct:2
         }
 
     ],
@@ -2825,113 +2825,113 @@ const questions = {
     uz:[
 
         {
-            question:"Restoran ikki kishilik setni joylaydi, narxini ko‘rsatadi va kechqurun uchun stol bron qilish ochiq ekanini yozadi. Bunday post birinchi navbatda qanday vazifani bajaradi?",
+            question:"Mijoz Instagramda mahsulotni ko‘rdi, qiziqdi, lekin sayt qidirishni va uzun forma to‘ldirishni xohlamaydi. Bunday vaziyatda Telegram biznesga qanday yordam berishi mumkin?",
             answers:[
-                "Auditoriyani ko‘ngil ochadi va sahifani kamroq quruq qiladi",
-                "Odamni xarid, ariza yoki xabar yozishga olib boradi",
-                "Ovoz berish orqali auditoriya fikrlarini yig‘adi",
-                "Jamoaning ichki jarayonlarini ko‘rsatadi"
+                "Odamga qisqaroq yo‘l berish: kanalni ochish, ma’lumotni ko‘rish va loyihaga tez yozish",
+                "Instagramni to‘liq almashtirish va vizual kontent zaruratini yo‘qotish",
+                "Mijoz narx va shartlarni aniqlamasdan xarid qiladigan qilish",
+                "Instagramdagi barcha postlar qamrovini avtomatik oshirish"
             ],
-            correct:1
+            correct:0
         },
 
         {
-            question:"Avtomaktab “Yangi boshlovchilar imtihondan yiqilishiga sabab bo‘ladigan 5 xato” degan karusel qiladi. Bu qaysi kontent turiga yaqinroq?",
+            question:"Instagramda odam ko‘pincha avval rasm, uslub va sahifaning umumiy taassurotini baholaydi. Telegramning kuchli tomoni ko‘proq nimada bo‘ladi?",
             answers:[
-                "Sotuvchi kontent",
-                "Ko‘ngilochar kontent",
-                "Foydali kontent",
-                "Reputatsion kontent"
+                "Faqat qisqa ko‘ngilochar videolarda",
+                "Profilning vizual upakovkasi va yagona post setkasida",
+                "Ma’lumot, aniqlik, o‘qish, solishtirish va postlarga qaytish imkoniyatida",
+                "Reklama uchun auditoriyani avtomatik tanlashda"
             ],
             correct:2
         },
 
         {
-            question:"Qahvaxona storisda yangi desert ta’mini ovoz berish orqali tanlashni taklif qiladi. Bu yerda asosiy narsa nima?",
+            question:"Loyiha yangiliklar, mahsulotlar, foydali postlar va e’lonlarni muntazam joylab, obunachilar buni Telegramida ko‘rishini xohlaydi. Bu vazifa uchun qaysi vosita yaxshiroq?",
             answers:[
-                "Qahvaxonada yetkazib berish borligini ko‘rsatish",
-                "Aniq bir desertni to‘g‘ridan-to‘g‘ri sotib olishga chaqirish",
-                "Muhim ma’lumotni highlightsga mahkamlash",
-                "Auditoriya reaksiyasini olish va odamlarni loyiha hayotiga jalb qilish"
+                "Menejer mijoz savollariga javob beradigan qo‘llab-quvvatlash",
+                "Yuqorida turadigan mahkamlangan xabar",
+                "Odamni ssenariy bo‘yicha olib boradigan bot",
+                "Loyiha obunachilar uchun xabarlar joylaydigan kanal"
             ],
             correct:3
         },
 
         {
-            question:"Klining kompaniyasi tozalashdan oldin va keyingi kvartirani ko‘rsatadi. Nega bunday kontent sahifa uchun muhim?",
+            question:"Odam Telegram do‘kon kanaliga birinchi marta kirdi. U tezda qayerga kirganini, bu yerda nima taklif qilinishini va keyin qayerga bosishni tushunishi kerak. Birinchi navbatda nima yordam berishi kerak?",
             answers:[
-                "U biznes haqiqiy ekanini va natijani ko‘rish mumkinligini isbotlashga yordam beradi",
-                "U faqat auditoriyani ko‘ngil ochish uchun kerak",
-                "U sotuvchi kontentni almashtiradi va boshqa hech narsa chiqarish shart emas",
-                "U faqat ko‘p hashtag qo‘shilganda ishlaydi"
+                "Oxirgi oddiy post, u tasodifiy yangilik haqida bo‘lsa ham",
+                "Loyihaga tushunarli kirish beradigan mahkamlangan xabar",
+                "Kanal obunachilari soni",
+                "Instagramdan o‘zgarishsiz yuborilgan har qanday post"
+            ],
+            correct:1
+        },
+
+        {
+            question:"Kanalning mahkamlangan xabarida: “Xush kelibsiz, yangiliklarni kuzatib boring” deb yozilgan. Boshqa hech narsa yo‘q. Nega bunday закреп kuchsiz?",
+            answers:[
+                "U bu qanday loyiha ekanini, nima taklif qilishini va keyingi qadam nima ekanini tushuntirmaydi",
+                "U juda qisqa, закреп esa doim katta matn bo‘lishi kerak",
+                "Unda hashtaglar yo‘q, shuning uchun Telegram kanal mavzusini tushunmaydi",
+                "Закрепda salomlashish yozib bo‘lmaydi, u yerda faqat narxlar bo‘lishi kerak"
             ],
             correct:0
         },
 
         {
-            question:"Sahifa deyarli faqat aksiyalar, narxlar va sotib olishga chaqiriqlarni joylaydi. Nega bunday kontent tizimi kuchsiz ishlashi mumkin?",
+            question:"Mijoz “katalog” tugmasini bosadi, bo‘limni tanlaydi va menejersiz kerakli ma’lumotni oladi. Bu yerda nima ishlayapti?",
             answers:[
-                "Chunki sotuvchi kontentni umuman tez-tez ishlatib bo‘lmaydi",
-                "Chunki Instagram faqat ko‘ngilochar postlarni ko‘rsatadi",
-                "Chunki har qanday savdoni faqat Reels orqali qilish kerak",
-                "Chunki sahifada foyda, ishonch, jalb qilish va jonli kontent bo‘lmasa, u bosim o‘tkazayotgandek ko‘rinadi"
-            ],
-            correct:3
-        },
-
-        {
-            question:"Brend har kuni mavzularni noldan o‘ylab topadi: bugun fikr, ertaga mem, keyin tasodifiy post, keyin yana savdo. Takrorlanadigan mantiq yo‘q. Sahifaga nima yetishmayapti?",
-            answers:[
-                "Kontentning muntazam yo‘nalishlarini belgilaydigan rubrikalar",
-                "Ko‘proq tasodifiy g‘oyalar",
-                "Har bir post ostida faqat hashtaglar",
-                "Har bir kontent turi uchun alohida sahifa"
-            ],
-            correct:0
-        },
-
-        {
-            question:"Rubrikatorni eng yaxshi nima tasvirlaydi?",
-            answers:[
-                "O‘tgan oy chiqqan barcha postlar ro‘yxati",
-                "Storislar chiqishining soatbay jadvali",
-                "Canva’da vizual uchun tayyor shablonlar to‘plami",
-                "Rubrikalar, ЦА og‘rig‘i, to‘ldirish va post formati yoziladigan jadval"
-            ],
-            correct:3
-        },
-
-        {
-            question:"Kontent-rejada sana, rubrika, format, g‘oya va post maqsadi ko‘rsatilgan. “Maqsad” ustuni nima uchun kerak?",
-            answers:[
-                "Post tavsifini bitta qisqa jumla bilan almashtirish uchun",
-                "Eng yaxshi chiqish vaqtini avtomatik tanlash uchun",
-                "Aniq post nima uchun chiqayotganini va qanday vazifani bajarishini tushunish uchun",
-                "Sahifada turli kontent turlaridan foydalanmaslik uchun"
+                "Oddiy post",
+                "Mahkamlangan xabar",
+                "Telegram-bot",
+                "Post ostidagi izohlar"
             ],
             correct:2
         },
 
         {
-            question:"Nega kontent-rejada bo‘sh kunlar yoki o‘zgarishlar uchun joy qoldirish kerak?",
+            question:"Xaridor mavjudlik, narx va yetkazib berishni aniqlashtirmoqchi. Tayyor javob yetarli emas, unga tirik odam kerak. Bu yerda eng muhim nima?",
             answers:[
-                "Sahifa trendlar, yangi mahsulotlar, fikrlar yoki shoshilinch aksiyalarga javob bera olishi uchun",
-                "Sababsiz umuman kontent chiqarmaslik mumkin bo‘lishi uchun",
-                "Rubrikalardan foydalanmasdan har safar noldan boshlash uchun",
-                "Rejalashtirishni tasodifiy postlar bilan almashtirish uchun"
+                "Kanalning uzun tavsifi",
+                "Odamga tez va tushunarli javob beriladigan qo‘llab-quvvatlashni normal sozlash",
+                "Kanaldagi ko‘ngilochar kontent",
+                "Barcha eski postlar ro‘yxati"
+            ],
+            correct:1
+        },
+
+        {
+            question:"Do‘kon Telegramda buyurtmalar qadoqlanishi, mijozlar fikrlari va ish jarayonini ko‘rsatadi. Bu eng ko‘p qanday rol bajaradi?",
+            answers:[
+                "Mijoz savollariga javob berish zaruratini almashtiradi",
+                "Telegramni reklama kabineti bilan bog‘lashga yordam beradi",
+                "Kanalni Instagram Reelsga o‘xshatadi",
+                "Ishonchni kuchaytiradi, chunki odamlar loyihaning real hayotini ko‘radi"
+            ],
+            correct:3
+        },
+
+        {
+            question:"Odam Instagramdan keldi, Telegram-kanalga obuna bo‘ldi, lekin darhol xarid qilmadi. Bir haftadan keyin foydali postni ko‘rib, qaytdi va buyurtma berdi. Bu yerda nima ishladi?",
+            answers:[
+                "Birinchi qiziqishdan keyin auditoriyani loyiha yonida ushlab qolish",
+                "Instagram-profilning vizual navigatsiyasi",
+                "Auditoriyani yosh bo‘yicha segmentlash",
+                "Qisqa videolar uchun trendlarni qidirish"
             ],
             correct:0
         },
 
         {
-            question:"Sahifa muntazam kontent chiqaradi, lekin har bir postning vazifasi tasodifiy: biri shunchaki “bo‘lsin” uchun, biri auditoriya bilan bog‘lanmagan, uchinchisi ishonchga ham, foydaga ham, savdoga ham olib bormaydi. Bu yerda nimani tuzatish kerak?",
+            question:"Brendda Telegram-kanal bor, lekin u yerda faqat quruq e’lonlar chiqadi: “mahsulot bor”, “narx shuncha”, “yozing”. Odamlar obuna bo‘ladi, lekin tezda o‘qimay qo‘yadi. Kanalga nima yetishmayapti?",
             answers:[
-                "Sahifa faolroq ko‘rinishi uchun ko‘proq ko‘ngilochar Reels qo‘shish",
-                "Postlarni aniq vazifalarga bog‘lash: savdo, foyda, jalb qilish, ishonch yoki ko‘ngil ochish",
-                "Barcha postlarni olib tashlab, faqat storis qoldirish",
-                "Auditoriya charchamasligi uchun postlarni kamroq chiqarish"
+                "Murakkab bot va texnik avto-voronka",
+                "Umumiy mantiqsiz ko‘proq tasodifiy postlar",
+                "Faqat sotmaydigan, balki ma’lumot, ishonch va qolish uchun sabab beradigan kontent",
+                "Butun auditoriya Telegramga o‘tishi uchun Instagramdan to‘liq voz kechish"
             ],
-            correct:1
+            correct:2
         }
 
     ]

@@ -12,7 +12,7 @@
     href="https://cdnjs.cloudflare.com/ajax/libs/plyr/3.8.4/plyr.css"
 >
 
-<title>gaphub - SMM lesson 8</title>
+<title>gaphub - SMM lesson 14</title>
 
 <style>
 :root{
@@ -2551,17 +2551,17 @@ button{
 let lang = localStorage.getItem("lang") || "uz"
 
 const COURSE_SLUG = "smm"
-const LESSON_ID = 8
-const NEXT_LESSON_ID = 9
+const LESSON_ID = 14
+const NEXT_LESSON_ID = 15
 
 const VIDEO_PATHS = {
-    ru:"https://bot.gaphub.uz/videos/smm/lesson-8-ru.mp4",
-    uz:"https://bot.gaphub.uz/videos/smm/lesson-8-uz.mp4"
+    ru:"https://bot.gaphub.uz/videos/smm/lesson-14-ru.mp4",
+    uz:"https://bot.gaphub.uz/videos/smm/lesson-14-uz.mp4"
 }
 
 const MATERIAL_PATHS = {
-    ru:"https://bot.gaphub.uz/materials/smm/lesson-8-ru.pdf",
-    uz:"https://bot.gaphub.uz/materials/smm/lesson-8-uz.pdf"
+    ru:"https://bot.gaphub.uz/materials/smm/lesson-14-ru.pdf",
+    uz:"https://bot.gaphub.uz/materials/smm/lesson-14-uz.pdf"
 }
 
 const STEP_ORDER = ["video", "summary", "deep", "test"]
@@ -2590,11 +2590,11 @@ let desktopPlyr = null
 const t = {
 
     uz:{
-        lessonBadge:"SMM • 8-dars",
-        lessonTitle:"Kontent-reja va rubrikalar",
-        lessonSubtitle:"Bu darsda kontent turlari, rubrikalar, rubrikator, kontent-reja va har bir postning aniq maqsadi qanday ishlashini ko‘rib chiqamiz.",
+        lessonBadge:"SMM • 14-dars",
+        lessonTitle:"Raqobatchilar va SWOT-tahlil",
+        lessonSubtitle:"Bu darsda bozor, to‘g‘ridan-to‘g‘ri va bilvosita raqobatchilar, bozor yetakchilari, raqobatchilarni tahlil qilish va SWOT qanday ishlashini ko‘rib chiqamiz.",
 
-        videoTitle:"8-dars videosi",
+        videoTitle:"14-dars videosi",
         videoText:"Videoni ko‘ring va keyin qisqa xulosaga o‘ting.",
         videoMaterial:"Video materiallari",
         goSummary:"Xulosaga o‘tish →",
@@ -2624,8 +2624,8 @@ const t = {
         languageTitle:"Kurs tili",
 
         finishTitle:"Dars yakunlandi",
-        finishText:"Siz 8-darsni tugatdingiz. Endi keyingi darsga o‘tishingiz mumkin.",
-        finishNext:"9-darsga o‘tish",
+        finishText:"Siz 14-darsni tugatdingiz. Endi keyingi darsga o‘tishingiz mumkin.",
+        finishNext:"15-darsga o‘tish",
 
         showResults:"Natijalarni ko‘rish",
 
@@ -2648,11 +2648,11 @@ const t = {
     },
 
     ru:{
-        lessonBadge:"SMM • Урок 8",
-        lessonTitle:"Контент-план и рубрики",
-        lessonSubtitle:"В этом уроке разбираем виды контента, рубрики, рубрикатор, контент-план и то, зачем каждой публикации нужна понятная задача.",
+        lessonBadge:"SMM • Урок 14",
+        lessonTitle:"Конкуренты и SWOT-анализ",
+        lessonSubtitle:"В этом уроке разбираем рынок, прямых и косвенных конкурентов, лидеров рынка, анализ конкурентов и SWOT: сильные стороны, слабые стороны, возможности и угрозы.",
 
-        videoTitle:"Видео восьмого урока",
+        videoTitle:"Видео четырнадцатого урока",
         videoText:"Посмотри видео и после этого перейди к выжимке урока.",
         videoMaterial:"Материалы к видео",
         goSummary:"Перейти к выжимке →",
@@ -2682,8 +2682,8 @@ const t = {
         languageTitle:"Язык курса",
 
         finishTitle:"Урок завершён",
-        finishText:"Ты прошёл восьмой урок. Теперь можно перейти к девятому уроку.",
-        finishNext:"Перейти к 9 уроку",
+        finishText:"Ты прошёл четырнадцатый урок. Теперь можно перейти к пятнадцатому уроку.",
+        finishNext:"Перейти к 15 уроку",
 
         showResults:"Узнать результаты",
 
@@ -2711,113 +2711,168 @@ const questions = {
     ru:[
 
         {
-            question:"Ресторан публикует сет на двоих, показывает цену и пишет, что бронь столика открыта на вечер. Какую задачу в первую очередь решает такая публикация?",
+            question:"Какой термин лучше описывает среду вокруг проекта: аудиторию, конкурентов, спрос, цены, предложения и привычки клиентов?",
             answers:[
-                "Развлекает аудиторию и делает страницу менее сухой",
-                "Ведёт человека к покупке, заявке или сообщению",
-                "Собирает мнения аудитории через голосование",
-                "Показывает внутренние процессы команды"
+                "Воронка",
+                "Рынок",
+                "Рубрикатор",
+                "Tone of Voice"
             ],
             correct:1
         },
 
         {
-            question:"Автошкола делает карусель “5 ошибок, из-за которых новички проваливают экзамен”. К какому виду контента это ближе всего?",
+            question:"Кофейня смотрит на другие кофейни в своём городе, которые продают похожий продукт похожей аудитории. Какой это тип конкурентов?",
             answers:[
-                "Продающий контент",
-                "Развлекательный контент",
-                "Полезный контент",
-                "Репутационный контент"
+                "Косвенные конкуренты",
+                "Лидеры рынка",
+                "Прямые конкуренты",
+                "Случайная аудитория"
             ],
             correct:2
         },
 
         {
-            question:"Кофейня в сторис предлагает выбрать новый вкус десерта через голосование. Что здесь главное?",
+            question:"Человек хочет быстро зарядиться энергией. Он может купить кофе, а может выбрать энергетик. Какой термин лучше описывает конкуренцию между такими вариантами?",
             answers:[
-                "Показать, что у кофейни есть доставка",
-                "Продать конкретный десерт через прямой призыв к покупке",
-                "Закрепить важную информацию в highlights",
-                "Получить реакцию аудитории и вовлечь людей в жизнь проекта"
-            ],
-            correct:3
-        },
-
-        {
-            question:"Клининговая компания показывает квартиру до и после уборки. Почему такой контент важен для страницы?",
-            answers:[
-                "Он помогает доказать, что бизнес реальный и результат можно увидеть",
-                "Он нужен только для развлечения аудитории",
-                "Он заменяет продающий контент и больше ничего публиковать не нужно",
-                "Он работает только если добавить много хэштегов"
-            ],
-            correct:0
-        },
-
-        {
-            question:"Страница публикует почти только акции, цены и призывы купить. Почему такая контент-система может работать слабо?",
-            answers:[
-                "Потому что продающий контент вообще нельзя использовать часто",
-                "Потому что Instagram показывает только развлекательные публикации",
-                "Потому что любую продажу нужно делать только через Reels",
-                "Потому что страница начинает давить, если в ней нет пользы, доверия, вовлечения и живого контента"
-            ],
-            correct:3
-        },
-
-        {
-            question:"Бренд каждый день придумывает темы с нуля: сегодня отзыв, завтра мем, потом случайный пост, потом опять продажа. Никакой повторяющейся логики нет. Чего не хватает странице?",
-            answers:[
-                "Рубрик, которые задают регулярные направления контента",
-                "Большего количества случайных идей",
-                "Только хэштегов под каждым постом",
-                "Отдельной страницы под каждый вид контента"
-            ],
-            correct:0
-        },
-
-        {
-            question:"Что лучше всего описывает рубрикатор?",
-            answers:[
-                "Список всех опубликованных постов за прошлый месяц",
-                "Расписание выхода сторис по часам",
-                "Набор готовых шаблонов для визуала в Canva",
-                "Таблица, где фиксируются рубрики, боль ЦА, наполнение и формат публикации"
-            ],
-            correct:3
-        },
-
-        {
-            question:"В контент-плане указаны дата, рубрика, формат, идея и цель публикации. Зачем нужна колонка “цель”?",
-            answers:[
-                "Чтобы заменить описание поста одной короткой фразой",
-                "Чтобы автоматически выбрать лучший час публикации",
-                "Чтобы понимать, зачем выходит конкретная публикация и какую задачу она решает",
-                "Чтобы не использовать разные виды контента на странице"
-            ],
-            correct:2
-        },
-
-        {
-            question:"Почему в контент-плане стоит оставлять свободные дни или место для изменений?",
-            answers:[
-                "Чтобы страница могла реагировать на тренды, новые товары, отзывы или срочные акции",
-                "Чтобы можно было вообще не публиковать контент без причины",
-                "Чтобы не использовать рубрики и каждый раз начинать с нуля",
-                "Чтобы заменить планирование случайными публикациями"
-            ],
-            correct:0
-        },
-
-        {
-            question:"Страница регулярно публикует контент, но у каждой публикации своя случайная задача: один пост просто “чтобы был”, другой без связи с аудиторией, третий не ведёт ни к доверию, ни к пользе, ни к продаже. Что здесь нужно исправить?",
-            answers:[
-                "Добавить больше развлекательных Reels, чтобы страница выглядела активнее",
-                "Привязать публикации к понятным задачам: продажа, польза, вовлечение, доверие или развлечение",
-                "Убрать все посты и оставить только сторис",
-                "Делать публикации реже, чтобы аудитория не уставала"
+                "Прямые конкуренты",
+                "Косвенные конкуренты",
+                "SWOT-анализ",
+                "Ядро ЦА"
             ],
             correct:1
+        },
+
+        {
+            question:"У сильного бренда в нише больше бюджета, опыта, команды и узнаваемости. За ним уже следит аудитория, и он крепко закрепился на рынке. Как его лучше назвать?",
+            answers:[
+                "Лидер рынка",
+                "Тёплая аудитория",
+                "Рубрика",
+                "Оффер"
+            ],
+            correct:0
+        },
+
+        {
+            question:"Проект увидел у конкурента удачную рубрику и хочет использовать похожую идею у себя. Какой подход будет правильным?",
+            answers:[
+                "Скопировать стиль, тексты и позиционирование конкурента, потому что это уже работает",
+                "Взять рабочую механику и адаптировать её под свою аудиторию, продукт и бренд",
+                "Использовать только визуал конкурента, а тексты написать свои",
+                "Не смотреть конкурентов вообще, чтобы не потерять уникальность"
+            ],
+            correct:1
+        },
+
+        {
+            question:"При анализе конкурента SMM-специалист смотрит bio, аватар, ссылку, закрепы и первый экран профиля. Что он пытается понять?",
+            answers:[
+                "Насколько часто конкурент публикует развлекательный контент",
+                "Какой рекламный бюджет использует конкурент",
+                "Понятно ли, что предлагает проект, чем он отличается и куда ведёт человека дальше",
+                "Сколько людей купили продукт после просмотра профиля"
+            ],
+            correct:2
+        },
+
+        {
+            question:"У конкурента много подписчиков, но под постами почти нет комментариев, сохранений, репостов и живой реакции. Что важно не упустить при анализе?",
+            answers:[
+                "Количество подписчиков само по себе не показывает реальную вовлечённость аудитории",
+                "Если подписчиков много, значит контент точно работает хорошо",
+                "Лайки и комментарии не имеют значения для SMM-анализа",
+                "Нужно смотреть только оформление профиля, а не поведение аудитории"
+            ],
+            correct:0
+        },
+
+        {
+            question:"Конкурент пытается выглядеть премиально, но пишет хаотично, дёшево и неуверенно. Что здесь не совпадает?",
+            answers:[
+                "Хэштеги и охваты",
+                "Tone of Voice и позиционирование",
+                "Highlights и Reels",
+                "Сегменты и рубрики"
+            ],
+            correct:1
+        },
+
+        {
+            question:"Какой термин лучше описывает инструмент, который собирает сильные стороны, слабые стороны, возможности и угрозы проекта в одну таблицу?",
+            answers:[
+                "Customer Journey Map",
+                "Контент-план",
+                "SWOT-анализ",
+                "Engagement Rate"
+            ],
+            correct:2
+        },
+
+        {
+            question:"В SWOT проект фиксирует: хорошая упаковка, понятный оффер, быстрые ответы менеджера и сильные отзывы. В какой блок это логичнее записать?",
+            answers:[
+                "S, сильные стороны",
+                "W, слабые стороны",
+                "O, возможности",
+                "T, угрозы"
+            ],
+            correct:0
+        },
+
+        {
+            question:"У проекта слабый ассортимент, мало отзывов и непонятный путь до заявки. В какой блок SWOT это относится?",
+            answers:[
+                "O, возможности",
+                "T, угрозы",
+                "S, сильные стороны",
+                "W, слабые стороны"
+            ],
+            correct:3
+        },
+
+        {
+            question:"В нише растёт спрос на саморазвитие, появляются новые форматы подборок, а Telegram можно использовать как каталог и канал доверия. В какой блок SWOT это лучше занести?",
+            answers:[
+                "W, слабые стороны",
+                "O, возможности",
+                "T, угрозы",
+                "S, сильные стороны"
+            ],
+            correct:1
+        },
+
+        {
+            question:"Крупные маркетплейсы дают больше выбора, ниже цены и сильную логистику. Для небольшого книжного магазина это скорее…",
+            answers:[
+                "Угроза со стороны рынка",
+                "Сильная сторона проекта",
+                "Внутренняя рубрика контента",
+                "CTA в профиле"
+            ],
+            correct:0
+        },
+
+        {
+            question:"Чем отличаются S и W от O и T в SWOT?",
+            answers:[
+                "S и W описывают рынок, а O и T описывают только контент проекта",
+                "S и W относятся к внутреннему состоянию проекта, а O и T к внешнему рынку",
+                "S и W нужны только для конкурентов, а O и T только для своего аккаунта",
+                "S и W показывают охваты, а O и T показывают количество заявок"
+            ],
+            correct:1
+        },
+
+        {
+            question:"После анализа своего проекта и конкурентов стало понятно: у проекта слабый закреп, но конкуренты плохо объясняют подбор под задачу. Какой вывод будет самым полезным?",
+            answers:[
+                "Ничего не менять, потому что конкуренты тоже неидеальны",
+                "Скопировать закреп у лидера рынка без адаптации",
+                "Усилить свой закреп и сделать акцент на подборе под задачу как возможном отличии",
+                "Убрать Telegram, потому что слабый закреп мешает продвижению"
+            ],
+            correct:2
         }
 
     ],
@@ -2825,113 +2880,168 @@ const questions = {
     uz:[
 
         {
-            question:"Restoran ikki kishilik setni joylaydi, narxini ko‘rsatadi va kechqurun uchun stol bron qilish ochiq ekanini yozadi. Bunday post birinchi navbatda qanday vazifani bajaradi?",
+            question:"Loyiha atrofidagi muhitni — auditoriya, raqobatchilar, talab, narxlar, takliflar va mijozlar odatlarini qaysi termin yaxshiroq tasvirlaydi?",
             answers:[
-                "Auditoriyani ko‘ngil ochadi va sahifani kamroq quruq qiladi",
-                "Odamni xarid, ariza yoki xabar yozishga olib boradi",
-                "Ovoz berish orqali auditoriya fikrlarini yig‘adi",
-                "Jamoaning ichki jarayonlarini ko‘rsatadi"
+                "Voronka",
+                "Bozor",
+                "Rubrikator",
+                "Tone of Voice"
             ],
             correct:1
         },
 
         {
-            question:"Avtomaktab “Yangi boshlovchilar imtihondan yiqilishiga sabab bo‘ladigan 5 xato” degan karusel qiladi. Bu qaysi kontent turiga yaqinroq?",
+            question:"Qahvaxona o‘z shahridagi o‘xshash mahsulotni o‘xshash auditoriyaga sotadigan boshqa qahvaxonalarni ko‘rib chiqyapti. Bu qanday raqobatchilar turi?",
             answers:[
-                "Sotuvchi kontent",
-                "Ko‘ngilochar kontent",
-                "Foydali kontent",
-                "Reputatsion kontent"
+                "Bilvosita raqobatchilar",
+                "Bozor yetakchilari",
+                "To‘g‘ridan-to‘g‘ri raqobatchilar",
+                "Tasodifiy auditoriya"
             ],
             correct:2
         },
 
         {
-            question:"Qahvaxona storisda yangi desert ta’mini ovoz berish orqali tanlashni taklif qiladi. Bu yerda asosiy narsa nima?",
+            question:"Odam tezda energiya olishni xohlaydi. U kofe sotib olishi yoki energetik tanlashi mumkin. Bunday variantlar orasidagi raqobatni qaysi termin yaxshiroq tasvirlaydi?",
             answers:[
-                "Qahvaxonada yetkazib berish borligini ko‘rsatish",
-                "Aniq bir desertni to‘g‘ridan-to‘g‘ri sotib olishga chaqirish",
-                "Muhim ma’lumotni highlightsga mahkamlash",
-                "Auditoriya reaksiyasini olish va odamlarni loyiha hayotiga jalb qilish"
-            ],
-            correct:3
-        },
-
-        {
-            question:"Klining kompaniyasi tozalashdan oldin va keyingi kvartirani ko‘rsatadi. Nega bunday kontent sahifa uchun muhim?",
-            answers:[
-                "U biznes haqiqiy ekanini va natijani ko‘rish mumkinligini isbotlashga yordam beradi",
-                "U faqat auditoriyani ko‘ngil ochish uchun kerak",
-                "U sotuvchi kontentni almashtiradi va boshqa hech narsa chiqarish shart emas",
-                "U faqat ko‘p hashtag qo‘shilganda ishlaydi"
-            ],
-            correct:0
-        },
-
-        {
-            question:"Sahifa deyarli faqat aksiyalar, narxlar va sotib olishga chaqiriqlarni joylaydi. Nega bunday kontent tizimi kuchsiz ishlashi mumkin?",
-            answers:[
-                "Chunki sotuvchi kontentni umuman tez-tez ishlatib bo‘lmaydi",
-                "Chunki Instagram faqat ko‘ngilochar postlarni ko‘rsatadi",
-                "Chunki har qanday savdoni faqat Reels orqali qilish kerak",
-                "Chunki sahifada foyda, ishonch, jalb qilish va jonli kontent bo‘lmasa, u bosim o‘tkazayotgandek ko‘rinadi"
-            ],
-            correct:3
-        },
-
-        {
-            question:"Brend har kuni mavzularni noldan o‘ylab topadi: bugun fikr, ertaga mem, keyin tasodifiy post, keyin yana savdo. Takrorlanadigan mantiq yo‘q. Sahifaga nima yetishmayapti?",
-            answers:[
-                "Kontentning muntazam yo‘nalishlarini belgilaydigan rubrikalar",
-                "Ko‘proq tasodifiy g‘oyalar",
-                "Har bir post ostida faqat hashtaglar",
-                "Har bir kontent turi uchun alohida sahifa"
-            ],
-            correct:0
-        },
-
-        {
-            question:"Rubrikatorni eng yaxshi nima tasvirlaydi?",
-            answers:[
-                "O‘tgan oy chiqqan barcha postlar ro‘yxati",
-                "Storislar chiqishining soatbay jadvali",
-                "Canva’da vizual uchun tayyor shablonlar to‘plami",
-                "Rubrikalar, ЦА og‘rig‘i, to‘ldirish va post formati yoziladigan jadval"
-            ],
-            correct:3
-        },
-
-        {
-            question:"Kontent-rejada sana, rubrika, format, g‘oya va post maqsadi ko‘rsatilgan. “Maqsad” ustuni nima uchun kerak?",
-            answers:[
-                "Post tavsifini bitta qisqa jumla bilan almashtirish uchun",
-                "Eng yaxshi chiqish vaqtini avtomatik tanlash uchun",
-                "Aniq post nima uchun chiqayotganini va qanday vazifani bajarishini tushunish uchun",
-                "Sahifada turli kontent turlaridan foydalanmaslik uchun"
-            ],
-            correct:2
-        },
-
-        {
-            question:"Nega kontent-rejada bo‘sh kunlar yoki o‘zgarishlar uchun joy qoldirish kerak?",
-            answers:[
-                "Sahifa trendlar, yangi mahsulotlar, fikrlar yoki shoshilinch aksiyalarga javob bera olishi uchun",
-                "Sababsiz umuman kontent chiqarmaslik mumkin bo‘lishi uchun",
-                "Rubrikalardan foydalanmasdan har safar noldan boshlash uchun",
-                "Rejalashtirishni tasodifiy postlar bilan almashtirish uchun"
-            ],
-            correct:0
-        },
-
-        {
-            question:"Sahifa muntazam kontent chiqaradi, lekin har bir postning vazifasi tasodifiy: biri shunchaki “bo‘lsin” uchun, biri auditoriya bilan bog‘lanmagan, uchinchisi ishonchga ham, foydaga ham, savdoga ham olib bormaydi. Bu yerda nimani tuzatish kerak?",
-            answers:[
-                "Sahifa faolroq ko‘rinishi uchun ko‘proq ko‘ngilochar Reels qo‘shish",
-                "Postlarni aniq vazifalarga bog‘lash: savdo, foyda, jalb qilish, ishonch yoki ko‘ngil ochish",
-                "Barcha postlarni olib tashlab, faqat storis qoldirish",
-                "Auditoriya charchamasligi uchun postlarni kamroq chiqarish"
+                "To‘g‘ridan-to‘g‘ri raqobatchilar",
+                "Bilvosita raqobatchilar",
+                "SWOT-tahlil",
+                "ЦА yadrosi"
             ],
             correct:1
+        },
+
+        {
+            question:"Nishadagi kuchli brendda budjet, tajriba, jamoa va tanilish ko‘proq. Auditoriya uni allaqachon kuzatadi va u bozorda mustahkam o‘rnashgan. Uni qanday atash yaxshiroq?",
+            answers:[
+                "Bozor yetakchisi",
+                "Iliq auditoriya",
+                "Rubrika",
+                "Offer"
+            ],
+            correct:0
+        },
+
+        {
+            question:"Loyiha raqobatchida yaxshi ishlagan rubrikani ko‘rdi va o‘zida o‘xshash g‘oyadan foydalanmoqchi. Qaysi yondashuv to‘g‘ri bo‘ladi?",
+            answers:[
+                "Raqobatchining uslubi, matnlari va pozitsionlashini ko‘chirish, chunki bu allaqachon ishlayapti",
+                "Ishlayotgan mexanikani olib, uni o‘z auditoriyasi, mahsuloti va brendiga moslashtirish",
+                "Faqat raqobatchining vizualini ishlatish, matnlarni esa o‘zi yozish",
+                "Unikallikni yo‘qotmaslik uchun raqobatchilarga umuman qaramaslik"
+            ],
+            correct:1
+        },
+
+        {
+            question:"Raqobatchini tahlil qilayotganda SMM-mutaxassis bio, avatar, havola, mahkamlangan postlar va profilning birinchi ekranini ko‘radi. U nimani tushunmoqchi?",
+            answers:[
+                "Raqobatchi qanchalik tez-tez ko‘ngilochar kontent chiqarishini",
+                "Raqobatchi qanday reklama budjetidan foydalanishini",
+                "Loyiha nima taklif qilayotgani, nimasi bilan farq qilishi va odamni keyin qayerga olib borishi tushunarlimi yoki yo‘qmi",
+                "Profilni ko‘rgandan keyin nechta odam mahsulot sotib olganini"
+            ],
+            correct:2
+        },
+
+        {
+            question:"Raqobatchida obunachilar ko‘p, lekin postlar ostida izohlar, saqlashlar, repostlar va jonli reaksiyalar deyarli yo‘q. Tahlilda nimani unutmaslik muhim?",
+            answers:[
+                "Obunachilar sonining o‘zi auditoriyaning real jalb qilinganligini ko‘rsatmaydi",
+                "Obunachilar ko‘p bo‘lsa, kontent aniq yaxshi ishlayapti",
+                "Layk va izohlar SMM-tahlil uchun ahamiyatga ega emas",
+                "Faqat profil bezagini ko‘rish kerak, auditoriya xatti-harakatini emas"
+            ],
+            correct:0
+        },
+
+        {
+            question:"Raqobatchi premium ko‘rinishga harakat qiladi, lekin tartibsiz, arzon va ishonchsiz ohangda yozadi. Bu yerda nima mos kelmayapti?",
+            answers:[
+                "Hashtaglar va qamrovlar",
+                "Tone of Voice va pozitsionlash",
+                "Highlights va Reels",
+                "Segmentlar va rubrikalar"
+            ],
+            correct:1
+        },
+
+        {
+            question:"Loyihaning kuchli tomonlari, zaif tomonlari, imkoniyatlari va xavflarini bitta jadvalga yig‘adigan vositani qaysi termin yaxshiroq tasvirlaydi?",
+            answers:[
+                "Customer Journey Map",
+                "Kontent-reja",
+                "SWOT-tahlil",
+                "Engagement Rate"
+            ],
+            correct:2
+        },
+
+        {
+            question:"SWOTda loyiha quyidagilarni qayd qiladi: yaxshi upakovka, tushunarli offer, menejerning tez javoblari va kuchli fikrlar. Buni qaysi blokka yozish mantiqiyroq?",
+            answers:[
+                "S, kuchli tomonlar",
+                "W, zaif tomonlar",
+                "O, imkoniyatlar",
+                "T, xavflar"
+            ],
+            correct:0
+        },
+
+        {
+            question:"Loyihada assortiment zaif, fikrlar kam va arizagacha bo‘lgan yo‘l tushunarsiz. Bu SWOTning qaysi blokiga kiradi?",
+            answers:[
+                "O, imkoniyatlar",
+                "T, xavflar",
+                "S, kuchli tomonlar",
+                "W, zaif tomonlar"
+            ],
+            correct:3
+        },
+
+        {
+            question:"Nishada o‘zini rivojlantirishga talab oshmoqda, yangi подборка formatlari paydo bo‘lmoqda, Telegramdan esa katalog va ishonch kanali sifatida foydalanish mumkin. Buni SWOTda qaysi blokka yozish yaxshiroq?",
+            answers:[
+                "W, zaif tomonlar",
+                "O, imkoniyatlar",
+                "T, xavflar",
+                "S, kuchli tomonlar"
+            ],
+            correct:1
+        },
+
+        {
+            question:"Yirik marketplace’lar ko‘proq tanlov, pastroq narxlar va kuchli logistika beradi. Kichik kitob do‘koni uchun bu ko‘proq...",
+            answers:[
+                "Bozor tomondan xavf",
+                "Loyihaning kuchli tomoni",
+                "Kontentning ichki rubrikasi",
+                "Profildagi CTA"
+            ],
+            correct:0
+        },
+
+        {
+            question:"SWOTda S va W O va Tdan nimasi bilan farq qiladi?",
+            answers:[
+                "S va W bozorni tasvirlaydi, O va T esa faqat loyiha kontentini tasvirlaydi",
+                "S va W loyihaning ichki holatiga, O va T esa tashqi bozorga tegishli",
+                "S va W faqat raqobatchilar uchun, O va T esa faqat o‘z akkaunti uchun kerak",
+                "S va W qamrovlarni, O va T esa arizalar sonini ko‘rsatadi"
+            ],
+            correct:1
+        },
+
+        {
+            question:"O‘z loyihasi va raqobatchilar tahlilidan keyin ma’lum bo‘ldi: loyihada mahkamlangan post zaif, lekin raqobatchilar ham vazifaga mos tanlab berishni yomon tushuntiradi. Qaysi xulosa eng foydali bo‘ladi?",
+            answers:[
+                "Hech narsani o‘zgartirmaslik, chunki raqobatchilar ham ideal emas",
+                "Bozor yetakchisining mahkamlangan postini moslashtirmasdan ko‘chirish",
+                "O‘z mahkamlangan postini kuchaytirish va vazifaga mos tanlab berishni mumkin bo‘lgan farq sifatida ko‘rsatish",
+                "Telegramni olib tashlash, chunki zaif mahkamlangan post rivojlanishga xalaqit beradi"
+            ],
+            correct:2
         }
 
     ]

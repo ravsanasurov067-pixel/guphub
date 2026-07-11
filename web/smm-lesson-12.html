@@ -12,7 +12,7 @@
     href="https://cdnjs.cloudflare.com/ajax/libs/plyr/3.8.4/plyr.css"
 >
 
-<title>gaphub - SMM lesson 8</title>
+<title>gaphub - SMM lesson 12</title>
 
 <style>
 :root{
@@ -2551,17 +2551,17 @@ button{
 let lang = localStorage.getItem("lang") || "uz"
 
 const COURSE_SLUG = "smm"
-const LESSON_ID = 8
-const NEXT_LESSON_ID = 9
+const LESSON_ID = 12
+const NEXT_LESSON_ID = 13
 
 const VIDEO_PATHS = {
-    ru:"https://bot.gaphub.uz/videos/smm/lesson-8-ru.mp4",
-    uz:"https://bot.gaphub.uz/videos/smm/lesson-8-uz.mp4"
+    ru:"https://bot.gaphub.uz/videos/smm/lesson-11-ru.mp4",
+    uz:"https://bot.gaphub.uz/videos/smm/lesson-11-uz.mp4"
 }
 
 const MATERIAL_PATHS = {
-    ru:"https://bot.gaphub.uz/materials/smm/lesson-8-ru.pdf",
-    uz:"https://bot.gaphub.uz/materials/smm/lesson-8-uz.pdf"
+    ru:"https://bot.gaphub.uz/materials/smm/lesson-11-ru.pdf",
+    uz:"https://bot.gaphub.uz/materials/smm/lesson-11-uz.pdf"
 }
 
 const STEP_ORDER = ["video", "summary", "deep", "test"]
@@ -2590,11 +2590,11 @@ let desktopPlyr = null
 const t = {
 
     uz:{
-        lessonBadge:"SMM • 8-dars",
-        lessonTitle:"Kontent-reja va rubrikalar",
-        lessonSubtitle:"Bu darsda kontent turlari, rubrikalar, rubrikator, kontent-reja va har bir postning aniq maqsadi qanday ishlashini ko‘rib chiqamiz.",
-
-        videoTitle:"8-dars videosi",
+        lessonBadge:"SMM • 11-dars",
+        lessonTitle:"Progrev va oddiy voronka",
+        lessonSubtitle:"Bu darsda kontent orqali ishonch hosil qilish, Instagram va Telegram bog‘lanishi, customer journey, kasания, CTA va oddiy savdo voronkasi qanday ishlashini ko‘rib chiqamiz.",
+            
+        videoTitle:"11-dars videosi",
         videoText:"Videoni ko‘ring va keyin qisqa xulosaga o‘ting.",
         videoMaterial:"Video materiallari",
         goSummary:"Xulosaga o‘tish →",
@@ -2624,8 +2624,8 @@ const t = {
         languageTitle:"Kurs tili",
 
         finishTitle:"Dars yakunlandi",
-        finishText:"Siz 8-darsni tugatdingiz. Endi keyingi darsga o‘tishingiz mumkin.",
-        finishNext:"9-darsga o‘tish",
+        finishText:"Siz 11-darsni tugatdingiz. Endi keyingi darsga o‘tishingiz mumkin.",
+        finishNext:"12-darsga o‘tish",
 
         showResults:"Natijalarni ko‘rish",
 
@@ -2648,11 +2648,11 @@ const t = {
     },
 
     ru:{
-        lessonBadge:"SMM • Урок 8",
-        lessonTitle:"Контент-план и рубрики",
-        lessonSubtitle:"В этом уроке разбираем виды контента, рубрики, рубрикатор, контент-план и то, зачем каждой публикации нужна понятная задача.",
+        lessonBadge:"SMM • Урок 11",
+        lessonTitle:"Прогрев и простая воронка",
+        lessonSubtitle:"В этом уроке разбираем, как через контент, доверие и несколько касаний подготовить человека к заявке или покупке, а также как работает путь клиента и простая воронка.",
 
-        videoTitle:"Видео восьмого урока",
+        videoTitle:"Видео одиннадцатого урока",
         videoText:"Посмотри видео и после этого перейди к выжимке урока.",
         videoMaterial:"Материалы к видео",
         goSummary:"Перейти к выжимке →",
@@ -2682,8 +2682,8 @@ const t = {
         languageTitle:"Язык курса",
 
         finishTitle:"Урок завершён",
-        finishText:"Ты прошёл восьмой урок. Теперь можно перейти к девятому уроку.",
-        finishNext:"Перейти к 9 уроку",
+        finishText:"Ты прошёл одиннадцатый урок. Теперь можно перейти к двенадцатому уроку.",
+        finishNext:"Перейти к 12 уроку",
 
         showResults:"Узнать результаты",
 
@@ -2711,113 +2711,113 @@ const questions = {
     ru:[
 
         {
-            question:"Ресторан публикует сет на двоих, показывает цену и пишет, что бронь столика открыта на вечер. Какую задачу в первую очередь решает такая публикация?",
+            question:"Какой термин лучше описывает подготовку человека к заявке или покупке через контент, доверие и несколько касаний?",
             answers:[
-                "Развлекает аудиторию и делает страницу менее сухой",
-                "Ведёт человека к покупке, заявке или сообщению",
-                "Собирает мнения аудитории через голосование",
-                "Показывает внутренние процессы команды"
+                "Прогрев",
+                "Рубрикатор",
+                "Позиционирование",
+                "Охват"
+            ],
+            correct:0
+        },
+
+        {
+            question:"Учебный центр постоянно пишет только “запишитесь на курс”, но аудитория не понимает ценность, не видит отличий и не доверяет проекту. Почему такой подход слабый?",
+            answers:[
+                "Потому что прямые продажи вообще нельзя использовать в SMM",
+                "Потому что клиент часто не готов купить после одного касания, ему нужно увидеть пользу, доверие и понятный следующий шаг",
+                "Потому что любой курс нужно продавать только через Telegram",
+                "Потому что продающий контент работает только после запуска рекламы"
             ],
             correct:1
         },
 
         {
-            question:"Автошкола делает карусель “5 ошибок, из-за которых новички проваливают экзамен”. К какому виду контента это ближе всего?",
+            question:"Instagram зацепил человека через Reels, профиль объяснил оффер, а Telegram дал больше деталей, отзывов и условий. Что здесь выстроено правильно?",
             answers:[
-                "Продающий контент",
-                "Развлекательный контент",
-                "Полезный контент",
-                "Репутационный контент"
+                "Платформы работают отдельно, без связи друг с другом",
+                "Telegram заменяет Instagram, потому что информации там больше",
+                "Instagram и Telegram работают как одна связка: первый привлекает внимание, второй углубляет доверие",
+                "Вся продажа держится только на первом ролике"
             ],
             correct:2
         },
 
         {
-            question:"Кофейня в сторис предлагает выбрать новый вкус десерта через голосование. Что здесь главное?",
+            question:"Какой термин описывает путь человека от первого контакта с проектом до заявки или покупки?",
             answers:[
-                "Показать, что у кофейни есть доставка",
-                "Продать конкретный десерт через прямой призыв к покупке",
-                "Закрепить важную информацию в highlights",
-                "Получить реакцию аудитории и вовлечь людей в жизнь проекта"
-            ],
-            correct:3
-        },
-
-        {
-            question:"Клининговая компания показывает квартиру до и после уборки. Почему такой контент важен для страницы?",
-            answers:[
-                "Он помогает доказать, что бизнес реальный и результат можно увидеть",
-                "Он нужен только для развлечения аудитории",
-                "Он заменяет продающий контент и больше ничего публиковать не нужно",
-                "Он работает только если добавить много хэштегов"
-            ],
-            correct:0
-        },
-
-        {
-            question:"Страница публикует почти только акции, цены и призывы купить. Почему такая контент-система может работать слабо?",
-            answers:[
-                "Потому что продающий контент вообще нельзя использовать часто",
-                "Потому что Instagram показывает только развлекательные публикации",
-                "Потому что любую продажу нужно делать только через Reels",
-                "Потому что страница начинает давить, если в ней нет пользы, доверия, вовлечения и живого контента"
-            ],
-            correct:3
-        },
-
-        {
-            question:"Бренд каждый день придумывает темы с нуля: сегодня отзыв, завтра мем, потом случайный пост, потом опять продажа. Никакой повторяющейся логики нет. Чего не хватает странице?",
-            answers:[
-                "Рубрик, которые задают регулярные направления контента",
-                "Большего количества случайных идей",
-                "Только хэштегов под каждым постом",
-                "Отдельной страницы под каждый вид контента"
-            ],
-            correct:0
-        },
-
-        {
-            question:"Что лучше всего описывает рубрикатор?",
-            answers:[
-                "Список всех опубликованных постов за прошлый месяц",
-                "Расписание выхода сторис по часам",
-                "Набор готовых шаблонов для визуала в Canva",
-                "Таблица, где фиксируются рубрики, боль ЦА, наполнение и формат публикации"
-            ],
-            correct:3
-        },
-
-        {
-            question:"В контент-плане указаны дата, рубрика, формат, идея и цель публикации. Зачем нужна колонка “цель”?",
-            answers:[
-                "Чтобы заменить описание поста одной короткой фразой",
-                "Чтобы автоматически выбрать лучший час публикации",
-                "Чтобы понимать, зачем выходит конкретная публикация и какую задачу она решает",
-                "Чтобы не использовать разные виды контента на странице"
-            ],
-            correct:2
-        },
-
-        {
-            question:"Почему в контент-плане стоит оставлять свободные дни или место для изменений?",
-            answers:[
-                "Чтобы страница могла реагировать на тренды, новые товары, отзывы или срочные акции",
-                "Чтобы можно было вообще не публиковать контент без причины",
-                "Чтобы не использовать рубрики и каждый раз начинать с нуля",
-                "Чтобы заменить планирование случайными публикациями"
-            ],
-            correct:0
-        },
-
-        {
-            question:"Страница регулярно публикует контент, но у каждой публикации своя случайная задача: один пост просто “чтобы был”, другой без связи с аудиторией, третий не ведёт ни к доверию, ни к пользе, ни к продаже. Что здесь нужно исправить?",
-            answers:[
-                "Добавить больше развлекательных Reels, чтобы страница выглядела активнее",
-                "Привязать публикации к понятным задачам: продажа, польза, вовлечение, доверие или развлечение",
-                "Убрать все посты и оставить только сторис",
-                "Делать публикации реже, чтобы аудитория не уставала"
+                "CTA",
+                "Customer journey",
+                "Tone of voice",
+                "Highlights"
             ],
             correct:1
+        },
+
+        {
+            question:"SMM-специалист открывает проект не как владелец, а как обычный клиент: смотрит контент, профиль, bio, ссылку, Telegram, закреп и пытается понять, легко ли дойти до заявки. Что он проверяет?",
+            answers:[
+                "Насколько дорого выглядит визуал проекта",
+                "Какой формат контента чаще попадает в рекомендации",
+                "Сколько публикаций можно сделать за неделю",
+                "Не ломается ли путь клиента на каком-то этапе"
+            ],
+            correct:3
+        },
+
+        {
+            question:"Человек увидел Reels, перешёл в профиль, открыл Telegram, прочитал закреп, посмотрел отзывы и написал в поддержку. Как называются эти точки взаимодействия с проектом?",
+            answers:[
+                "Касания",
+                "Сегменты",
+                "Рубрики",
+                "Хэштеги"
+            ],
+            correct:0
+        },
+
+        {
+            question:"В прогреве человек только впервые заинтересовался проектом. Какой CTA будет уместнее на этом этапе?",
+            answers:[
+                "“Сразу оплатите заказ, пока цена не выросла”",
+                "“Перейдите в профиль или Telegram, чтобы посмотреть детали”",
+                "“Оставьте отзыв после покупки”",
+                "“Заполните большую анкету для менеджера”"
+            ],
+            correct:1
+        },
+
+        {
+            question:"Человек уже изучил предложение, посмотрел отзывы и выбирает вариант. Какой CTA будет сильнее, чем просто “пишите”?",
+            answers:[
+                "“Следите за новостями”",
+                "“У нас хороший сервис”",
+                "“Напишите в поддержку, и мы подберём вариант под вашу задачу”",
+                "“Смотрите наши публикации дальше”"
+            ],
+            correct:2
+        },
+
+        {
+            question:"Почему путь до покупки называют воронкой?",
+            answers:[
+                "Потому что весь контент должен вести только в Telegram",
+                "Потому что на каждом этапе людей становится меньше: увидели многие, заинтересовались часть, заявку оставили ещё меньше",
+                "Потому что клиент всегда покупает только после пяти одинаковых касаний",
+                "Потому что воронка нужна только для рекламы и не относится к органическому контенту"
+            ],
+            correct:1
+        },
+
+        {
+            question:"Онлайн-магазин получил 10 000 просмотров Reels, 3 000 переходов в профиль, 1 500 переходов глубже, 150 человек начали выбирать и 50 сделали заказ. Что лучше всего показывает такая схема?",
+            answers:[
+                "Что все, кто увидел контент, должны были купить",
+                "Что Reels плохо работает, если заказ сделали не все",
+                "Что воронка показывает путь и отсев людей на разных этапах",
+                "Что Telegram не нужен, если есть просмотры в Instagram"
+            ],
+            correct:2
         }
 
     ],
@@ -2825,113 +2825,113 @@ const questions = {
     uz:[
 
         {
-            question:"Restoran ikki kishilik setni joylaydi, narxini ko‘rsatadi va kechqurun uchun stol bron qilish ochiq ekanini yozadi. Bunday post birinchi navbatda qanday vazifani bajaradi?",
+            question:"Kontent, ishonch va bir nechta tegish orqali odamni ariza yoki xaridga tayyorlashni qaysi termin yaxshiroq tasvirlaydi?",
             answers:[
-                "Auditoriyani ko‘ngil ochadi va sahifani kamroq quruq qiladi",
-                "Odamni xarid, ariza yoki xabar yozishga olib boradi",
-                "Ovoz berish orqali auditoriya fikrlarini yig‘adi",
-                "Jamoaning ichki jarayonlarini ko‘rsatadi"
+                "Progrev",
+                "Rubrikator",
+                "Pozitsionlash",
+                "Qamrov"
+            ],
+            correct:0
+        },
+
+        {
+            question:"O‘quv markazi doim faqat “kursga yoziling” deb yozadi, lekin auditoriya qiymatni tushunmaydi, farqlarni ko‘rmaydi va loyihaga ishonmaydi. Nega bunday yondashuv kuchsiz?",
+            answers:[
+                "Chunki SMMda to‘g‘ridan-to‘g‘ri sotuvlarni umuman ishlatib bo‘lmaydi",
+                "Chunki mijoz ko‘pincha bitta tegishdan keyin sotib olishga tayyor bo‘lmaydi, unga foyda, ishonch va tushunarli keyingi qadam kerak",
+                "Chunki har qanday kursni faqat Telegram orqali sotish kerak",
+                "Chunki sotuvchi kontent faqat reklama ishga tushirilgandan keyin ishlaydi"
             ],
             correct:1
         },
 
         {
-            question:"Avtomaktab “Yangi boshlovchilar imtihondan yiqilishiga sabab bo‘ladigan 5 xato” degan karusel qiladi. Bu qaysi kontent turiga yaqinroq?",
+            question:"Instagram odamni Reels orqali qiziqtirdi, profil offerni tushuntirdi, Telegram esa ko‘proq tafsilotlar, fikrlar va shartlarni berdi. Bu yerda nima to‘g‘ri qurilgan?",
             answers:[
-                "Sotuvchi kontent",
-                "Ko‘ngilochar kontent",
-                "Foydali kontent",
-                "Reputatsion kontent"
+                "Platformalar bir-biri bilan bog‘lanmasdan alohida ishlayapti",
+                "Telegram Instagramni almashtiryapti, chunki unda ma’lumot ko‘proq",
+                "Instagram va Telegram bitta bog‘lam sifatida ishlayapti: birinchisi e’tibor tortadi, ikkinchisi ishonchni chuqurlashtiradi",
+                "Butun savdo faqat birinchi rolikka bog‘langan"
             ],
             correct:2
         },
 
         {
-            question:"Qahvaxona storisda yangi desert ta’mini ovoz berish orqali tanlashni taklif qiladi. Bu yerda asosiy narsa nima?",
+            question:"Odamning loyiha bilan birinchi kontaktdan ariza yoki xaridgacha bo‘lgan yo‘lini qaysi termin tasvirlaydi?",
             answers:[
-                "Qahvaxonada yetkazib berish borligini ko‘rsatish",
-                "Aniq bir desertni to‘g‘ridan-to‘g‘ri sotib olishga chaqirish",
-                "Muhim ma’lumotni highlightsga mahkamlash",
-                "Auditoriya reaksiyasini olish va odamlarni loyiha hayotiga jalb qilish"
-            ],
-            correct:3
-        },
-
-        {
-            question:"Klining kompaniyasi tozalashdan oldin va keyingi kvartirani ko‘rsatadi. Nega bunday kontent sahifa uchun muhim?",
-            answers:[
-                "U biznes haqiqiy ekanini va natijani ko‘rish mumkinligini isbotlashga yordam beradi",
-                "U faqat auditoriyani ko‘ngil ochish uchun kerak",
-                "U sotuvchi kontentni almashtiradi va boshqa hech narsa chiqarish shart emas",
-                "U faqat ko‘p hashtag qo‘shilganda ishlaydi"
-            ],
-            correct:0
-        },
-
-        {
-            question:"Sahifa deyarli faqat aksiyalar, narxlar va sotib olishga chaqiriqlarni joylaydi. Nega bunday kontent tizimi kuchsiz ishlashi mumkin?",
-            answers:[
-                "Chunki sotuvchi kontentni umuman tez-tez ishlatib bo‘lmaydi",
-                "Chunki Instagram faqat ko‘ngilochar postlarni ko‘rsatadi",
-                "Chunki har qanday savdoni faqat Reels orqali qilish kerak",
-                "Chunki sahifada foyda, ishonch, jalb qilish va jonli kontent bo‘lmasa, u bosim o‘tkazayotgandek ko‘rinadi"
-            ],
-            correct:3
-        },
-
-        {
-            question:"Brend har kuni mavzularni noldan o‘ylab topadi: bugun fikr, ertaga mem, keyin tasodifiy post, keyin yana savdo. Takrorlanadigan mantiq yo‘q. Sahifaga nima yetishmayapti?",
-            answers:[
-                "Kontentning muntazam yo‘nalishlarini belgilaydigan rubrikalar",
-                "Ko‘proq tasodifiy g‘oyalar",
-                "Har bir post ostida faqat hashtaglar",
-                "Har bir kontent turi uchun alohida sahifa"
-            ],
-            correct:0
-        },
-
-        {
-            question:"Rubrikatorni eng yaxshi nima tasvirlaydi?",
-            answers:[
-                "O‘tgan oy chiqqan barcha postlar ro‘yxati",
-                "Storislar chiqishining soatbay jadvali",
-                "Canva’da vizual uchun tayyor shablonlar to‘plami",
-                "Rubrikalar, ЦА og‘rig‘i, to‘ldirish va post formati yoziladigan jadval"
-            ],
-            correct:3
-        },
-
-        {
-            question:"Kontent-rejada sana, rubrika, format, g‘oya va post maqsadi ko‘rsatilgan. “Maqsad” ustuni nima uchun kerak?",
-            answers:[
-                "Post tavsifini bitta qisqa jumla bilan almashtirish uchun",
-                "Eng yaxshi chiqish vaqtini avtomatik tanlash uchun",
-                "Aniq post nima uchun chiqayotganini va qanday vazifani bajarishini tushunish uchun",
-                "Sahifada turli kontent turlaridan foydalanmaslik uchun"
-            ],
-            correct:2
-        },
-
-        {
-            question:"Nega kontent-rejada bo‘sh kunlar yoki o‘zgarishlar uchun joy qoldirish kerak?",
-            answers:[
-                "Sahifa trendlar, yangi mahsulotlar, fikrlar yoki shoshilinch aksiyalarga javob bera olishi uchun",
-                "Sababsiz umuman kontent chiqarmaslik mumkin bo‘lishi uchun",
-                "Rubrikalardan foydalanmasdan har safar noldan boshlash uchun",
-                "Rejalashtirishni tasodifiy postlar bilan almashtirish uchun"
-            ],
-            correct:0
-        },
-
-        {
-            question:"Sahifa muntazam kontent chiqaradi, lekin har bir postning vazifasi tasodifiy: biri shunchaki “bo‘lsin” uchun, biri auditoriya bilan bog‘lanmagan, uchinchisi ishonchga ham, foydaga ham, savdoga ham olib bormaydi. Bu yerda nimani tuzatish kerak?",
-            answers:[
-                "Sahifa faolroq ko‘rinishi uchun ko‘proq ko‘ngilochar Reels qo‘shish",
-                "Postlarni aniq vazifalarga bog‘lash: savdo, foyda, jalb qilish, ishonch yoki ko‘ngil ochish",
-                "Barcha postlarni olib tashlab, faqat storis qoldirish",
-                "Auditoriya charchamasligi uchun postlarni kamroq chiqarish"
+                "CTA",
+                "Customer journey",
+                "Tone of voice",
+                "Highlights"
             ],
             correct:1
+        },
+
+        {
+            question:"SMM-mutaxassis loyihani egasi sifatida emas, oddiy mijoz sifatida ochadi: kontent, profil, bio, havola, Telegram, закрепni ko‘radi va arizagacha yetib borish osonmi yoki yo‘qmi tushunishga harakat qiladi. U nimani tekshiryapti?",
+            answers:[
+                "Loyiha vizuali qanchalik qimmat ko‘rinishini",
+                "Qaysi kontent formati tavsiyalarga ko‘proq chiqishini",
+                "Bir haftada nechta publikatsiya qilish mumkinligini",
+                "Mijoz yo‘li biror bosqichda buzilmayaptimi yoki yo‘qmi"
+            ],
+            correct:3
+        },
+
+        {
+            question:"Odam Reelsni ko‘rdi, profilga o‘tdi, Telegramni ochdi, закрепni o‘qidi, fikrlarni ko‘rdi va qo‘llab-quvvatlashga yozdi. Loyiha bilan bu aloqa nuqtalari qanday ataladi?",
+            answers:[
+                "Tegishlar",
+                "Segmentlar",
+                "Rubrikalar",
+                "Hashtaglar"
+            ],
+            correct:0
+        },
+
+        {
+            question:"Progrevda odam loyiha bilan endigina qiziqdi. Bu bosqichda qaysi CTA mosroq bo‘ladi?",
+            answers:[
+                "“Narx oshmasidan hoziroq buyurtmani to‘lang”",
+                "“Tafsilotlarni ko‘rish uchun profil yoki Telegramga o‘ting”",
+                "“Xariddan keyin fikr qoldiring”",
+                "“Menejer uchun katta anketani to‘ldiring”"
+            ],
+            correct:1
+        },
+
+        {
+            question:"Odam taklifni o‘rgandi, fikrlarni ko‘rdi va variant tanlayapti. Qaysi CTA oddiy “yozing”dan kuchliroq bo‘ladi?",
+            answers:[
+                "“Yangiliklarni kuzatib boring”",
+                "“Bizda yaxshi servis bor”",
+                "“Qo‘llab-quvvatlashga yozing, biz vazifangizga mos variantni tanlab beramiz”",
+                "“Publikatsiyalarimizni tomosha qilishda davom eting”"
+            ],
+            correct:2
+        },
+
+        {
+            question:"Nega xaridgacha bo‘lgan yo‘l voronka deb ataladi?",
+            answers:[
+                "Chunki barcha kontent faqat Telegramga olib borishi kerak",
+                "Chunki har bir bosqichda odamlar kamayib boradi: ko‘pchilik ko‘radi, bir qismi qiziqadi, yana kamrog‘i ariza qoldiradi",
+                "Chunki mijoz doim faqat beshta bir xil tegishdan keyin sotib oladi",
+                "Chunki voronka faqat reklama uchun kerak va organik kontentga aloqasi yo‘q"
+            ],
+            correct:1
+        },
+
+        {
+            question:"Onlayn do‘kon Reelsdan 10 000 ko‘rish, profilga 3 000 o‘tish, chuqurroq 1 500 o‘tish, 150 ta tanlash boshlangan holat va 50 ta buyurtma oldi. Bunday sxema nimani eng yaxshi ko‘rsatadi?",
+            answers:[
+                "Kontentni ko‘rgan hamma sotib olishi kerak bo‘lganini",
+                "Agar hamma buyurtma qilmagan bo‘lsa, Reels yomon ishlashini",
+                "Voronka turli bosqichlarda odamlarning yo‘lini va chiqib ketishini ko‘rsatishini",
+                "Instagramda ko‘rishlar bo‘lsa, Telegram kerak emasligini"
+            ],
+            correct:2
         }
 
     ]

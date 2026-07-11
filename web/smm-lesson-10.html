@@ -12,7 +12,7 @@
     href="https://cdnjs.cloudflare.com/ajax/libs/plyr/3.8.4/plyr.css"
 >
 
-<title>gaphub - SMM lesson 8</title>
+<title>gaphub - SMM lesson 10</title>
 
 <style>
 :root{
@@ -2551,17 +2551,17 @@ button{
 let lang = localStorage.getItem("lang") || "uz"
 
 const COURSE_SLUG = "smm"
-const LESSON_ID = 8
-const NEXT_LESSON_ID = 9
+const LESSON_ID = 10
+const NEXT_LESSON_ID = 11
 
 const VIDEO_PATHS = {
-    ru:"https://bot.gaphub.uz/videos/smm/lesson-8-ru.mp4",
-    uz:"https://bot.gaphub.uz/videos/smm/lesson-8-uz.mp4"
+    ru:"https://bot.gaphub.uz/videos/smm/lesson-10-ru.mp4",
+    uz:"https://bot.gaphub.uz/videos/smm/lesson-10-uz.mp4"
 }
 
 const MATERIAL_PATHS = {
-    ru:"https://bot.gaphub.uz/materials/smm/lesson-8-ru.pdf",
-    uz:"https://bot.gaphub.uz/materials/smm/lesson-8-uz.pdf"
+    ru:"https://bot.gaphub.uz/materials/smm/lesson-10-ru.pdf",
+    uz:"https://bot.gaphub.uz/materials/smm/lesson-10-uz.pdf"
 }
 
 const STEP_ORDER = ["video", "summary", "deep", "test"]
@@ -2590,11 +2590,11 @@ let desktopPlyr = null
 const t = {
 
     uz:{
-        lessonBadge:"SMM • 8-dars",
-        lessonTitle:"Kontent-reja va rubrikalar",
-        lessonSubtitle:"Bu darsda kontent turlari, rubrikalar, rubrikator, kontent-reja va har bir postning aniq maqsadi qanday ishlashini ko‘rib chiqamiz.",
-
-        videoTitle:"8-dars videosi",
+        lessonBadge:"SMM • 10-dars",
+        lessonTitle:"Offer, UTP va pozitsionlash",
+        lessonSubtitle:"Bu darsda mahsulot, offer, UTP va pozitsionlash nimani anglatishini, ular bir-biridan qanday farq qilishini va biznesni raqobatchilardan qanday ajratishini ko‘rib chiqamiz.",
+            
+        videoTitle:"10-dars videosi",
         videoText:"Videoni ko‘ring va keyin qisqa xulosaga o‘ting.",
         videoMaterial:"Video materiallari",
         goSummary:"Xulosaga o‘tish →",
@@ -2624,8 +2624,8 @@ const t = {
         languageTitle:"Kurs tili",
 
         finishTitle:"Dars yakunlandi",
-        finishText:"Siz 8-darsni tugatdingiz. Endi keyingi darsga o‘tishingiz mumkin.",
-        finishNext:"9-darsga o‘tish",
+        finishText:"Siz 10-darsni tugatdingiz. Endi keyingi darsga o‘tishingiz mumkin.",
+        finishNext:"11-darsga o‘tish",
 
         showResults:"Natijalarni ko‘rish",
 
@@ -2648,11 +2648,11 @@ const t = {
     },
 
     ru:{
-        lessonBadge:"SMM • Урок 8",
-        lessonTitle:"Контент-план и рубрики",
-        lessonSubtitle:"В этом уроке разбираем виды контента, рубрики, рубрикатор, контент-план и то, зачем каждой публикации нужна понятная задача.",
+        lessonBadge:"SMM • Урок 10",
+        lessonTitle:"Оффер, УТП и позиционирование",
+        lessonSubtitle:"В этом уроке разбираем, чем продукт отличается от оффера, зачем нужно УТП и как позиционирование помогает проекту занять понятное место в голове аудитории.",
 
-        videoTitle:"Видео восьмого урока",
+        videoTitle:"Видео десятого урока",
         videoText:"Посмотри видео и после этого перейди к выжимке урока.",
         videoMaterial:"Материалы к видео",
         goSummary:"Перейти к выжимке →",
@@ -2682,8 +2682,8 @@ const t = {
         languageTitle:"Язык курса",
 
         finishTitle:"Урок завершён",
-        finishText:"Ты прошёл восьмой урок. Теперь можно перейти к девятому уроку.",
-        finishNext:"Перейти к 9 уроку",
+        finishText:"Ты прошёл десятый урок. Теперь можно перейти к одиннадцатому уроку.",
+        finishNext:"Перейти к 11 уроку",
 
         showResults:"Узнать результаты",
 
@@ -2711,113 +2711,113 @@ const questions = {
     ru:[
 
         {
-            question:"Ресторан публикует сет на двоих, показывает цену и пишет, что бронь столика открыта на вечер. Какую задачу в первую очередь решает такая публикация?",
+            question:"Какой термин лучше описывает конкретное предложение для клиента: что он получает, зачем ему это нужно и почему стоит обратить внимание?",
             answers:[
-                "Развлекает аудиторию и делает страницу менее сухой",
-                "Ведёт человека к покупке, заявке или сообщению",
-                "Собирает мнения аудитории через голосование",
-                "Показывает внутренние процессы команды"
+                "Позиционирование",
+                "Оффер",
+                "Визуальная навигация",
+                "Контент-план"
             ],
             correct:1
         },
 
         {
-            question:"Автошкола делает карусель “5 ошибок, из-за которых новички проваливают экзамен”. К какому виду контента это ближе всего?",
+            question:"Фитнес-зал продаёт абонемент. Ядро аудитории: новички, которые давно хотят начать, но боятся не разобраться. Какой вариант звучит как более сильный оффер?",
             answers:[
-                "Продающий контент",
-                "Развлекательный контент",
-                "Полезный контент",
-                "Репутационный контент"
+                "Лучший фитнес-зал в городе с современными тренажёрами",
+                "Абонементы на месяц, три месяца и год по выгодной цене",
+                "Первый месяц тренировок с программой и поддержкой тренера для тех, кто хочет начать без хаоса и страха",
+                "Просторный зал, удобное расположение и дружелюбная атмосфера"
             ],
             correct:2
         },
 
         {
-            question:"Кофейня в сторис предлагает выбрать новый вкус десерта через голосование. Что здесь главное?",
+            question:"Чем оффер отличается от продукта?",
             answers:[
-                "Показать, что у кофейни есть доставка",
-                "Продать конкретный десерт через прямой призыв к покупке",
-                "Закрепить важную информацию в highlights",
-                "Получить реакцию аудитории и вовлечь людей в жизнь проекта"
-            ],
-            correct:3
-        },
-
-        {
-            question:"Клининговая компания показывает квартиру до и после уборки. Почему такой контент важен для страницы?",
-            answers:[
-                "Он помогает доказать, что бизнес реальный и результат можно увидеть",
-                "Он нужен только для развлечения аудитории",
-                "Он заменяет продающий контент и больше ничего публиковать не нужно",
-                "Он работает только если добавить много хэштегов"
-            ],
-            correct:0
-        },
-
-        {
-            question:"Страница публикует почти только акции, цены и призывы купить. Почему такая контент-система может работать слабо?",
-            answers:[
-                "Потому что продающий контент вообще нельзя использовать часто",
-                "Потому что Instagram показывает только развлекательные публикации",
-                "Потому что любую продажу нужно делать только через Reels",
-                "Потому что страница начинает давить, если в ней нет пользы, доверия, вовлечения и живого контента"
-            ],
-            correct:3
-        },
-
-        {
-            question:"Бренд каждый день придумывает темы с нуля: сегодня отзыв, завтра мем, потом случайный пост, потом опять продажа. Никакой повторяющейся логики нет. Чего не хватает странице?",
-            answers:[
-                "Рубрик, которые задают регулярные направления контента",
-                "Большего количества случайных идей",
-                "Только хэштегов под каждым постом",
-                "Отдельной страницы под каждый вид контента"
-            ],
-            correct:0
-        },
-
-        {
-            question:"Что лучше всего описывает рубрикатор?",
-            answers:[
-                "Список всех опубликованных постов за прошлый месяц",
-                "Расписание выхода сторис по часам",
-                "Набор готовых шаблонов для визуала в Canva",
-                "Таблица, где фиксируются рубрики, боль ЦА, наполнение и формат публикации"
-            ],
-            correct:3
-        },
-
-        {
-            question:"В контент-плане указаны дата, рубрика, формат, идея и цель публикации. Зачем нужна колонка “цель”?",
-            answers:[
-                "Чтобы заменить описание поста одной короткой фразой",
-                "Чтобы автоматически выбрать лучший час публикации",
-                "Чтобы понимать, зачем выходит конкретная публикация и какую задачу она решает",
-                "Чтобы не использовать разные виды контента на странице"
+                "Продукт показывает визуальный стиль бренда, а оффер отвечает за цвета и шрифты",
+                "Продукт нужен только бизнесу, а оффер нужен только подписчикам",
+                "Продукт это то, что продаётся, а оффер объясняет, что человек получает и почему это ему интересно",
+                "Продукт всегда связан с ценой, а оффер всегда связан только со скидкой"
             ],
             correct:2
         },
 
         {
-            question:"Почему в контент-плане стоит оставлять свободные дни или место для изменений?",
+            question:"Какой термин отвечает на вопрос: почему человек должен выбрать именно этот проект, а не другой?",
             answers:[
-                "Чтобы страница могла реагировать на тренды, новые товары, отзывы или срочные акции",
-                "Чтобы можно было вообще не публиковать контент без причины",
-                "Чтобы не использовать рубрики и каждый раз начинать с нуля",
-                "Чтобы заменить планирование случайными публикациями"
+                "УТП",
+                "Хук",
+                "Рубрикатор",
+                "Температура аудитории"
             ],
             correct:0
         },
 
         {
-            question:"Страница регулярно публикует контент, но у каждой публикации своя случайная задача: один пост просто “чтобы был”, другой без связи с аудиторией, третий не ведёт ни к доверию, ни к пользе, ни к продаже. Что здесь нужно исправить?",
+            question:"Сервис ремонта телефонов пишет: “Качественный ремонт и индивидуальный подход”. Почему это слабое УТП?",
             answers:[
-                "Добавить больше развлекательных Reels, чтобы страница выглядела активнее",
-                "Привязать публикации к понятным задачам: продажа, польза, вовлечение, доверие или развлечение",
-                "Убрать все посты и оставить только сторис",
-                "Делать публикации реже, чтобы аудитория не уставала"
+                "Потому что клиентам не важны качество и отношение",
+                "Потому что такие фразы слишком общие и не показывают конкретное отличие",
+                "Потому что УТП нельзя использовать в сфере ремонта",
+                "Потому что сильное УТП всегда должно быть связано только со скидкой"
             ],
             correct:1
+        },
+
+        {
+            question:"Сервис ремонта телефонов обещает: “Ремонт с видеофиксацией процесса и согласованием цены до начала работы”. Почему это сильнее обычной фразы про качество?",
+            answers:[
+                "Потому что формулировка закрывает конкретные страхи клиента: плохая деталь, скрытая цена и недоверие к процессу",
+                "Потому что любое длинное предложение всегда продаёт лучше короткого",
+                "Потому что клиенту не нужно понимать, что именно ему предлагают",
+                "Потому что видеофиксация полностью заменяет поддержку и консультацию"
+            ],
+            correct:0
+        },
+
+        {
+            question:"Какой термин описывает то, какое место проект занимает в голове аудитории и как бренд должен восприниматься?",
+            answers:[
+                "CTA",
+                "Охваты",
+                "Позиционирование",
+                "Highlights"
+            ],
+            correct:2
+        },
+
+        {
+            question:"Бренд называет себя премиальным, но страница выглядит хаотично, менеджер отвечает сухо, упаковка обычная, а в постах постоянно давят скидками. В чём главная проблема?",
+            answers:[
+                "Бренду нужно чаще публиковать развлекательный контент",
+                "У бренда слишком мало хэштегов и Reels",
+                "Нужно просто поставить слово “premium” в bio заметнее",
+                "Заявленный образ не совпадает с тем, как проект выглядит, общается и обслуживает клиента"
+            ],
+            correct:3
+        },
+
+        {
+            question:"У магазина такой же товар, как у конкурентов. За счёт чего он всё равно может выделиться?",
+            answers:[
+                "Только через более низкую цену",
+                "Через сервис, подбор, консультацию, доставку, прозрачные условия или другую понятную для клиента фишку",
+                "Через обещание “качество и забота”, даже если непонятно, что за этим стоит",
+                "Через постоянную смену визуального стиля, чтобы страница выглядела новой"
+            ],
+            correct:1
+        },
+
+        {
+            question:"Как лучше собрать общую логику урока?",
+            answers:[
+                "Продукт это что продаём, оффер это как предлагаем, УТП это почему выбрать нас, позиционирование это как нас должны воспринимать",
+                "Продукт это почему выбрать нас, УТП это что продаём, оффер это визуал, позиционирование это цена",
+                "Оффер это название товара, УТП это скидка, позиционирование это количество постов, продукт это аудитория",
+                "Позиционирование это хэштеги, оффер это сторис, УТП это Reels, продукт это рубрика"
+            ],
+            correct:0
         }
 
     ],
@@ -2825,113 +2825,113 @@ const questions = {
     uz:[
 
         {
-            question:"Restoran ikki kishilik setni joylaydi, narxini ko‘rsatadi va kechqurun uchun stol bron qilish ochiq ekanini yozadi. Bunday post birinchi navbatda qanday vazifani bajaradi?",
+            question:"Mijoz uchun aniq taklifni qaysi termin yaxshiroq tasvirlaydi: u nima oladi, bu unga nima uchun kerak va nega e’tibor berishi kerak?",
             answers:[
-                "Auditoriyani ko‘ngil ochadi va sahifani kamroq quruq qiladi",
-                "Odamni xarid, ariza yoki xabar yozishga olib boradi",
-                "Ovoz berish orqali auditoriya fikrlarini yig‘adi",
-                "Jamoaning ichki jarayonlarini ko‘rsatadi"
+                "Pozitsionlash",
+                "Offer",
+                "Vizual navigatsiya",
+                "Kontent-reja"
             ],
             correct:1
         },
 
         {
-            question:"Avtomaktab “Yangi boshlovchilar imtihondan yiqilishiga sabab bo‘ladigan 5 xato” degan karusel qiladi. Bu qaysi kontent turiga yaqinroq?",
+            question:"Fitnes zal abonement sotadi. Auditoriya yadrosi: anchadan beri boshlamoqchi bo‘lgan, lekin tushunmay qolishdan qo‘rqadigan yangi boshlovchilar. Qaysi variant kuchliroq offerga o‘xshaydi?",
             answers:[
-                "Sotuvchi kontent",
-                "Ko‘ngilochar kontent",
-                "Foydali kontent",
-                "Reputatsion kontent"
+                "Zamonaviy trenajorlarga ega shahardagi eng yaxshi fitnes zal",
+                "Bir oy, uch oy va bir yilga foydali narxdagi abonementlar",
+                "Xaossiz va qo‘rquvsiz boshlamoqchi bo‘lganlar uchun dastur va trener yordami bilan birinchi oy mashg‘ulotlari",
+                "Keng zal, qulay joylashuv va do‘stona muhit"
             ],
             correct:2
         },
 
         {
-            question:"Qahvaxona storisda yangi desert ta’mini ovoz berish orqali tanlashni taklif qiladi. Bu yerda asosiy narsa nima?",
+            question:"Offer mahsulotdan nimasi bilan farq qiladi?",
             answers:[
-                "Qahvaxonada yetkazib berish borligini ko‘rsatish",
-                "Aniq bir desertni to‘g‘ridan-to‘g‘ri sotib olishga chaqirish",
-                "Muhim ma’lumotni highlightsga mahkamlash",
-                "Auditoriya reaksiyasini olish va odamlarni loyiha hayotiga jalb qilish"
-            ],
-            correct:3
-        },
-
-        {
-            question:"Klining kompaniyasi tozalashdan oldin va keyingi kvartirani ko‘rsatadi. Nega bunday kontent sahifa uchun muhim?",
-            answers:[
-                "U biznes haqiqiy ekanini va natijani ko‘rish mumkinligini isbotlashga yordam beradi",
-                "U faqat auditoriyani ko‘ngil ochish uchun kerak",
-                "U sotuvchi kontentni almashtiradi va boshqa hech narsa chiqarish shart emas",
-                "U faqat ko‘p hashtag qo‘shilganda ishlaydi"
-            ],
-            correct:0
-        },
-
-        {
-            question:"Sahifa deyarli faqat aksiyalar, narxlar va sotib olishga chaqiriqlarni joylaydi. Nega bunday kontent tizimi kuchsiz ishlashi mumkin?",
-            answers:[
-                "Chunki sotuvchi kontentni umuman tez-tez ishlatib bo‘lmaydi",
-                "Chunki Instagram faqat ko‘ngilochar postlarni ko‘rsatadi",
-                "Chunki har qanday savdoni faqat Reels orqali qilish kerak",
-                "Chunki sahifada foyda, ishonch, jalb qilish va jonli kontent bo‘lmasa, u bosim o‘tkazayotgandek ko‘rinadi"
-            ],
-            correct:3
-        },
-
-        {
-            question:"Brend har kuni mavzularni noldan o‘ylab topadi: bugun fikr, ertaga mem, keyin tasodifiy post, keyin yana savdo. Takrorlanadigan mantiq yo‘q. Sahifaga nima yetishmayapti?",
-            answers:[
-                "Kontentning muntazam yo‘nalishlarini belgilaydigan rubrikalar",
-                "Ko‘proq tasodifiy g‘oyalar",
-                "Har bir post ostida faqat hashtaglar",
-                "Har bir kontent turi uchun alohida sahifa"
-            ],
-            correct:0
-        },
-
-        {
-            question:"Rubrikatorni eng yaxshi nima tasvirlaydi?",
-            answers:[
-                "O‘tgan oy chiqqan barcha postlar ro‘yxati",
-                "Storislar chiqishining soatbay jadvali",
-                "Canva’da vizual uchun tayyor shablonlar to‘plami",
-                "Rubrikalar, ЦА og‘rig‘i, to‘ldirish va post formati yoziladigan jadval"
-            ],
-            correct:3
-        },
-
-        {
-            question:"Kontent-rejada sana, rubrika, format, g‘oya va post maqsadi ko‘rsatilgan. “Maqsad” ustuni nima uchun kerak?",
-            answers:[
-                "Post tavsifini bitta qisqa jumla bilan almashtirish uchun",
-                "Eng yaxshi chiqish vaqtini avtomatik tanlash uchun",
-                "Aniq post nima uchun chiqayotganini va qanday vazifani bajarishini tushunish uchun",
-                "Sahifada turli kontent turlaridan foydalanmaslik uchun"
+                "Mahsulot brendning vizual uslubini ko‘rsatadi, offer esa rang va shriftlarga javob beradi",
+                "Mahsulot faqat biznesga kerak, offer esa faqat obunachilarga kerak",
+                "Mahsulot bu sotilayotgan narsa, offer esa odam nima olishini va nega bu unga qiziq ekanini tushuntiradi",
+                "Mahsulot doim narx bilan bog‘liq, offer esa faqat chegirma bilan bog‘liq"
             ],
             correct:2
         },
 
         {
-            question:"Nega kontent-rejada bo‘sh kunlar yoki o‘zgarishlar uchun joy qoldirish kerak?",
+            question:"Qaysi termin “nega odam aynan shu loyihani tanlashi kerak?” degan savolga javob beradi?",
             answers:[
-                "Sahifa trendlar, yangi mahsulotlar, fikrlar yoki shoshilinch aksiyalarga javob bera olishi uchun",
-                "Sababsiz umuman kontent chiqarmaslik mumkin bo‘lishi uchun",
-                "Rubrikalardan foydalanmasdan har safar noldan boshlash uchun",
-                "Rejalashtirishni tasodifiy postlar bilan almashtirish uchun"
+                "UTP",
+                "Xuk",
+                "Rubrikator",
+                "Auditoriya harorati"
             ],
             correct:0
         },
 
         {
-            question:"Sahifa muntazam kontent chiqaradi, lekin har bir postning vazifasi tasodifiy: biri shunchaki “bo‘lsin” uchun, biri auditoriya bilan bog‘lanmagan, uchinchisi ishonchga ham, foydaga ham, savdoga ham olib bormaydi. Bu yerda nimani tuzatish kerak?",
+            question:"Telefon ta’mirlash servisi: “Sifatli ta’mir va individual yondashuv” deb yozadi. Nega bu kuchsiz UTP?",
             answers:[
-                "Sahifa faolroq ko‘rinishi uchun ko‘proq ko‘ngilochar Reels qo‘shish",
-                "Postlarni aniq vazifalarga bog‘lash: savdo, foyda, jalb qilish, ishonch yoki ko‘ngil ochish",
-                "Barcha postlarni olib tashlab, faqat storis qoldirish",
-                "Auditoriya charchamasligi uchun postlarni kamroq chiqarish"
+                "Chunki mijozlarga sifat va munosabat muhim emas",
+                "Chunki bunday iboralar juda umumiy va aniq farqni ko‘rsatmaydi",
+                "Chunki ta’mirlash sohasida UTP ishlatib bo‘lmaydi",
+                "Chunki kuchli UTP doim faqat chegirma bilan bog‘liq bo‘lishi kerak"
             ],
             correct:1
+        },
+
+        {
+            question:"Telefon ta’mirlash servisi: “Jarayon videosi bilan va narxni ish boshlanishidan oldin kelishgan holda ta’mir” deb va’da beradi. Nega bu oddiy sifat haqidagi iboradan kuchliroq?",
+            answers:[
+                "Chunki formulirovka mijozning aniq qo‘rquvlarini yopadi: yomon detal, yashirin narx va jarayonga ishonchsizlik",
+                "Chunki har qanday uzun gap qisqa gapdan yaxshiroq sotadi",
+                "Chunki mijoz unga aynan nima taklif qilinayotganini tushunishi shart emas",
+                "Chunki video qayd qilish qo‘llab-quvvatlash va konsultatsiyani to‘liq almashtiradi"
+            ],
+            correct:0
+        },
+
+        {
+            question:"Qaysi termin loyiha auditoriya ongida qanday joy egallashi va brend qanday qabul qilinishi kerakligini tasvirlaydi?",
+            answers:[
+                "CTA",
+                "Qamrovlar",
+                "Pozitsionlash",
+                "Highlights"
+            ],
+            correct:2
+        },
+
+        {
+            question:"Brend o‘zini premium deb ataydi, lekin sahifa tartibsiz ko‘rinadi, menejer quruq javob beradi, upakovka oddiy, postlarda esa doim chegirmalar bilan bosim qiladi. Asosiy muammo nimada?",
+            answers:[
+                "Brend ko‘proq ko‘ngilochar kontent chiqarishi kerak",
+                "Brendda hashtaglar va Reels juda kam",
+                "Bio’da “premium” so‘zini shunchaki ko‘rinadiganroq qilish kerak",
+                "E’lon qilingan obraz loyiha qanday ko‘rinishi, muloqot qilishi va mijozga xizmat qilishi bilan mos kelmaydi"
+            ],
+            correct:3
+        },
+
+        {
+            question:"Do‘konda raqobatchilardagi kabi bir xil mahsulot bor. U baribir nima hisobiga ajralib turishi mumkin?",
+            answers:[
+                "Faqat pastroq narx orqali",
+                "Servis, tanlab berish, konsultatsiya, yetkazib berish, shaffof shartlar yoki mijoz uchun tushunarli boshqa farq orqali",
+                "“Sifat va g‘amxo‘rlik” va’dasi orqali, hatto buning ortida nima borligi tushunarsiz bo‘lsa ham",
+                "Sahifa yangi ko‘rinishi uchun vizual uslubni doimiy almashtirish orqali"
+            ],
+            correct:1
+        },
+
+        {
+            question:"Darsning umumiy mantiqini qanday yig‘ish yaxshiroq?",
+            answers:[
+                "Mahsulot — nima sotamiz, offer — qanday taklif qilamiz, UTP — nega bizni tanlashadi, pozitsionlash — bizni qanday qabul qilishlari kerak",
+                "Mahsulot — nega bizni tanlashadi, UTP — nima sotamiz, offer — vizual, pozitsionlash — narx",
+                "Offer — mahsulot nomi, UTP — chegirma, pozitsionlash — postlar soni, mahsulot — auditoriya",
+                "Pozitsionlash — hashtaglar, offer — storis, UTP — Reels, mahsulot — rubrika"
+            ],
+            correct:0
         }
 
     ]

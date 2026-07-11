@@ -12,7 +12,7 @@
     href="https://cdnjs.cloudflare.com/ajax/libs/plyr/3.8.4/plyr.css"
 >
 
-<title>gaphub - SMM lesson 8</title>
+<title>gaphub - SMM lesson 13</title>
 
 <style>
 :root{
@@ -2551,17 +2551,17 @@ button{
 let lang = localStorage.getItem("lang") || "uz"
 
 const COURSE_SLUG = "smm"
-const LESSON_ID = 8
-const NEXT_LESSON_ID = 9
+const LESSON_ID = 13
+const NEXT_LESSON_ID = 14
 
 const VIDEO_PATHS = {
-    ru:"https://bot.gaphub.uz/videos/smm/lesson-8-ru.mp4",
-    uz:"https://bot.gaphub.uz/videos/smm/lesson-8-uz.mp4"
+    ru:"https://bot.gaphub.uz/videos/smm/lesson-13-ru.mp4",
+    uz:"https://bot.gaphub.uz/videos/smm/lesson-13-uz.mp4"
 }
 
 const MATERIAL_PATHS = {
-    ru:"https://bot.gaphub.uz/materials/smm/lesson-8-ru.pdf",
-    uz:"https://bot.gaphub.uz/materials/smm/lesson-8-uz.pdf"
+    ru:"https://bot.gaphub.uz/materials/smm/lesson-13-ru.pdf",
+    uz:"https://bot.gaphub.uz/materials/smm/lesson-13-uz.pdf"
 }
 
 const STEP_ORDER = ["video", "summary", "deep", "test"]
@@ -2590,11 +2590,11 @@ let desktopPlyr = null
 const t = {
 
     uz:{
-        lessonBadge:"SMM • 8-dars",
-        lessonTitle:"Kontent-reja va rubrikalar",
-        lessonSubtitle:"Bu darsda kontent turlari, rubrikalar, rubrikator, kontent-reja va har bir postning aniq maqsadi qanday ishlashini ko‘rib chiqamiz.",
+        lessonBadge:"SMM • 13-dars",
+        lessonTitle:"SMM-tahlil va audit",
+        lessonSubtitle:"Bu darsda profilni tahlil qilish, mijoz yo‘li, Tone of Voice, kontent natijalari, asosiy raqamlar, ER, offer va UTPni tekshirishni ko‘rib chiqamiz.",
 
-        videoTitle:"8-dars videosi",
+        videoTitle:"13-dars videosi",
         videoText:"Videoni ko‘ring va keyin qisqa xulosaga o‘ting.",
         videoMaterial:"Video materiallari",
         goSummary:"Xulosaga o‘tish →",
@@ -2624,8 +2624,8 @@ const t = {
         languageTitle:"Kurs tili",
 
         finishTitle:"Dars yakunlandi",
-        finishText:"Siz 8-darsni tugatdingiz. Endi keyingi darsga o‘tishingiz mumkin.",
-        finishNext:"9-darsga o‘tish",
+        finishText:"Siz 13-darsni tugatdingiz. Endi keyingi darsga o‘tishingiz mumkin.",
+        finishNext:"14-darsga o‘tish",
 
         showResults:"Natijalarni ko‘rish",
 
@@ -2648,11 +2648,11 @@ const t = {
     },
 
     ru:{
-        lessonBadge:"SMM • Урок 8",
-        lessonTitle:"Контент-план и рубрики",
-        lessonSubtitle:"В этом уроке разбираем виды контента, рубрики, рубрикатор, контент-план и то, зачем каждой публикации нужна понятная задача.",
+        lessonBadge:"SMM • Урок 13",
+        lessonTitle:"SMM-анализ и аудит проекта",
+        lessonSubtitle:"В этом уроке разбираем, как проверять профиль, путь клиента, Tone of Voice, результаты контента, базовые метрики, ER, оффер и УТП.",
 
-        videoTitle:"Видео восьмого урока",
+        videoTitle:"Видео тринадцатого урока",
         videoText:"Посмотри видео и после этого перейди к выжимке урока.",
         videoMaterial:"Материалы к видео",
         goSummary:"Перейти к выжимке →",
@@ -2682,8 +2682,8 @@ const t = {
         languageTitle:"Язык курса",
 
         finishTitle:"Урок завершён",
-        finishText:"Ты прошёл восьмой урок. Теперь можно перейти к девятому уроку.",
-        finishNext:"Перейти к 9 уроку",
+        finishText:"Ты прошёл тринадцатый урок. Теперь можно перейти к четырнадцатому уроку.",
+        finishNext:"Перейти к 14 уроку",
 
         showResults:"Узнать результаты",
 
@@ -2711,113 +2711,113 @@ const questions = {
     ru:[
 
         {
-            question:"Ресторан публикует сет на двоих, показывает цену и пишет, что бронь столика открыта на вечер. Какую задачу в первую очередь решает такая публикация?",
+            question:"Какой термин лучше описывает сбор и разбор данных о поведении аудитории, эффективности контента и рекламных действиях?",
             answers:[
-                "Развлекает аудиторию и делает страницу менее сухой",
-                "Ведёт человека к покупке, заявке или сообщению",
-                "Собирает мнения аудитории через голосование",
-                "Показывает внутренние процессы команды"
+                "Рубрикатор",
+                "SMM-анализ",
+                "Tone of Voice",
+                "Контент-план"
             ],
             correct:1
         },
 
         {
-            question:"Автошкола делает карусель “5 ошибок, из-за которых новички проваливают экзамен”. К какому виду контента это ближе всего?",
+            question:"Страница выглядит красиво, но владелец не понимает, какие публикации дают реакции, где люди теряются и что нужно улучшить. Чего здесь не хватает?",
             answers:[
-                "Продающий контент",
-                "Развлекательный контент",
-                "Полезный контент",
-                "Репутационный контент"
+                "Анализа текущего состояния проекта, а не оценки “на глаз”",
+                "Большего количества случайных постов",
+                "Только нового визуального стиля",
+                "Запуска рекламы без проверки страницы"
+            ],
+            correct:0
+        },
+
+        {
+            question:"Проект проверяет аватар, bio, актуальные, ссылку и закреплённые публикации. Что он пытается понять в первую очередь?",
+            answers:[
+                "Какие конкуренты используют похожие рубрики",
+                "Какой ER у последнего поста",
+                "Насколько быстро человек понимает, куда попал, что ему предлагают и что делать дальше",
+                "Сколько рекламного бюджета нужно на продвижение"
             ],
             correct:2
         },
 
         {
-            question:"Кофейня в сторис предлагает выбрать новый вкус десерта через голосование. Что здесь главное?",
+            question:"Какой термин лучше подходит для проверки пути пользователя от первого касания до заявки, покупки или сообщения в поддержку?",
             answers:[
-                "Показать, что у кофейни есть доставка",
-                "Продать конкретный десерт через прямой призыв к покупке",
-                "Закрепить важную информацию в highlights",
-                "Получить реакцию аудитории и вовлечь людей в жизнь проекта"
-            ],
-            correct:3
-        },
-
-        {
-            question:"Клининговая компания показывает квартиру до и после уборки. Почему такой контент важен для страницы?",
-            answers:[
-                "Он помогает доказать, что бизнес реальный и результат можно увидеть",
-                "Он нужен только для развлечения аудитории",
-                "Он заменяет продающий контент и больше ничего публиковать не нужно",
-                "Он работает только если добавить много хэштегов"
-            ],
-            correct:0
-        },
-
-        {
-            question:"Страница публикует почти только акции, цены и призывы купить. Почему такая контент-система может работать слабо?",
-            answers:[
-                "Потому что продающий контент вообще нельзя использовать часто",
-                "Потому что Instagram показывает только развлекательные публикации",
-                "Потому что любую продажу нужно делать только через Reels",
-                "Потому что страница начинает давить, если в ней нет пользы, доверия, вовлечения и живого контента"
-            ],
-            correct:3
-        },
-
-        {
-            question:"Бренд каждый день придумывает темы с нуля: сегодня отзыв, завтра мем, потом случайный пост, потом опять продажа. Никакой повторяющейся логики нет. Чего не хватает странице?",
-            answers:[
-                "Рубрик, которые задают регулярные направления контента",
-                "Большего количества случайных идей",
-                "Только хэштегов под каждым постом",
-                "Отдельной страницы под каждый вид контента"
-            ],
-            correct:0
-        },
-
-        {
-            question:"Что лучше всего описывает рубрикатор?",
-            answers:[
-                "Список всех опубликованных постов за прошлый месяц",
-                "Расписание выхода сторис по часам",
-                "Набор готовых шаблонов для визуала в Canva",
-                "Таблица, где фиксируются рубрики, боль ЦА, наполнение и формат публикации"
-            ],
-            correct:3
-        },
-
-        {
-            question:"В контент-плане указаны дата, рубрика, формат, идея и цель публикации. Зачем нужна колонка “цель”?",
-            answers:[
-                "Чтобы заменить описание поста одной короткой фразой",
-                "Чтобы автоматически выбрать лучший час публикации",
-                "Чтобы понимать, зачем выходит конкретная публикация и какую задачу она решает",
-                "Чтобы не использовать разные виды контента на странице"
-            ],
-            correct:2
-        },
-
-        {
-            question:"Почему в контент-плане стоит оставлять свободные дни или место для изменений?",
-            answers:[
-                "Чтобы страница могла реагировать на тренды, новые товары, отзывы или срочные акции",
-                "Чтобы можно было вообще не публиковать контент без причины",
-                "Чтобы не использовать рубрики и каждый раз начинать с нуля",
-                "Чтобы заменить планирование случайными публикациями"
-            ],
-            correct:0
-        },
-
-        {
-            question:"Страница регулярно публикует контент, но у каждой публикации своя случайная задача: один пост просто “чтобы был”, другой без связи с аудиторией, третий не ведёт ни к доверию, ни к пользе, ни к продаже. Что здесь нужно исправить?",
-            answers:[
-                "Добавить больше развлекательных Reels, чтобы страница выглядела активнее",
-                "Привязать публикации к понятным задачам: продажа, польза, вовлечение, доверие или развлечение",
-                "Убрать все посты и оставить только сторис",
-                "Делать публикации реже, чтобы аудитория не уставала"
+                "SWOT-анализ",
+                "CJM",
+                "УТП",
+                "ER"
             ],
             correct:1
+        },
+
+        {
+            question:"Человек зашёл в профиль, заинтересовался продуктом, но не нашёл ссылку на Telegram, каталог или поддержку. Где ломается система?",
+            answers:[
+                "В выборе брендовых цветов",
+                "В количестве подписчиков",
+                "В частоте публикаций",
+                "В пути до заявки"
+            ],
+            correct:3
+        },
+
+        {
+            question:"Бренд в одних постах говорит строго и экспертно, в других резко переходит на слишком шуточный тон, а в сообщениях отвечает сухо и не похоже на себя. Что нужно проверить?",
+            answers:[
+                "Tone of Voice",
+                "Хэштеги",
+                "Воронку конкурентов",
+                "Количество highlights"
+            ],
+            correct:0
+        },
+
+        {
+            question:"Проект хочет понять, какие посты реально помогают продвижению. На что лучше смотреть?",
+            answers:[
+                "Только на то, какие публикации визуально красивее",
+                "Только на количество постов за неделю",
+                "На охваты, реакции, сохранения, переходы, сообщения и связь публикаций с задачей страницы",
+                "Только на то, есть ли в публикации хэштеги"
+            ],
+            correct:2
+        },
+
+        {
+            question:"Почему важно фиксировать базовые цифры: подписчики, охваты, показы, реакции и рост аккаунта?",
+            answers:[
+                "Чтобы потом была точка отсчёта и можно было понять, улучшилась страница или нет",
+                "Чтобы заменить анализ аудитории одной таблицей",
+                "Чтобы не заниматься оформлением профиля",
+                "Чтобы сразу понять, какой конкурент слабее"
+            ],
+            correct:0
+        },
+
+        {
+            question:"Конкурент набрал много подписчиков, но под постами мало реакций, комментариев, сохранений и репостов. Какой показатель помогает оценить реальную вовлечённость аудитории?",
+            answers:[
+                "CTA",
+                "ER",
+                "CJM",
+                "Bio"
+            ],
+            correct:1
+        },
+
+        {
+            question:"В ходе аудита стало понятно: оффер в bio размытый, в закрепе нет понятного следующего шага, а первые публикации не объясняют, почему выбрать именно этот проект. Что логичнее усилить?",
+            answers:[
+                "Только количество развлекательных Reels",
+                "Только частоту публикаций",
+                "УТП, оффер и понятность пути человека к заявке",
+                "Смену ниши, потому что страницу уже нельзя исправить"
+            ],
+            correct:2
         }
 
     ],
@@ -2825,113 +2825,113 @@ const questions = {
     uz:[
 
         {
-            question:"Restoran ikki kishilik setni joylaydi, narxini ko‘rsatadi va kechqurun uchun stol bron qilish ochiq ekanini yozadi. Bunday post birinchi navbatda qanday vazifani bajaradi?",
+            question:"Auditoriya xatti-harakati, kontent samaradorligi va reklama harakatlari haqidagi ma’lumotlarni yig‘ish va tahlil qilishni qaysi termin yaxshiroq tasvirlaydi?",
             answers:[
-                "Auditoriyani ko‘ngil ochadi va sahifani kamroq quruq qiladi",
-                "Odamni xarid, ariza yoki xabar yozishga olib boradi",
-                "Ovoz berish orqali auditoriya fikrlarini yig‘adi",
-                "Jamoaning ichki jarayonlarini ko‘rsatadi"
+                "Rubrikator",
+                "SMM-tahlil",
+                "Tone of Voice",
+                "Kontent-reja"
             ],
             correct:1
         },
 
         {
-            question:"Avtomaktab “Yangi boshlovchilar imtihondan yiqilishiga sabab bo‘ladigan 5 xato” degan karusel qiladi. Bu qaysi kontent turiga yaqinroq?",
+            question:"Sahifa chiroyli ko‘rinadi, lekin egasi qaysi postlar reaksiya berayotganini, odamlar qayerda yo‘qolayotganini va nimani yaxshilash kerakligini tushunmaydi. Bu yerda nima yetishmayapti?",
             answers:[
-                "Sotuvchi kontent",
-                "Ko‘ngilochar kontent",
-                "Foydali kontent",
-                "Reputatsion kontent"
+                "Loyihaning hozirgi holatini tahlil qilish, “ko‘z bilan” baholash emas",
+                "Ko‘proq tasodifiy postlar",
+                "Faqat yangi vizual uslub",
+                "Sahifani tekshirmasdan reklama ishga tushirish"
+            ],
+            correct:0
+        },
+
+        {
+            question:"Loyiha avatar, bio, aktual, havola va mahkamlangan postlarni tekshiryapti. U birinchi navbatda nimani tushunmoqchi?",
+            answers:[
+                "Qaysi raqobatchilar o‘xshash rubrikalardan foydalanishini",
+                "Oxirgi postning ER ko‘rsatkichini",
+                "Odam qayerga kirganini, nima taklif qilinayotganini va keyin nima qilish kerakligini qanchalik tez tushunishini",
+                "Targ‘ibot uchun qancha reklama budjeti kerakligini"
             ],
             correct:2
         },
 
         {
-            question:"Qahvaxona storisda yangi desert ta’mini ovoz berish orqali tanlashni taklif qiladi. Bu yerda asosiy narsa nima?",
+            question:"Foydalanuvchining birinchi tegishdan ariza, xarid yoki qo‘llab-quvvatlashga xabar yozishgacha bo‘lgan yo‘lini tekshirishga qaysi termin mosroq?",
             answers:[
-                "Qahvaxonada yetkazib berish borligini ko‘rsatish",
-                "Aniq bir desertni to‘g‘ridan-to‘g‘ri sotib olishga chaqirish",
-                "Muhim ma’lumotni highlightsga mahkamlash",
-                "Auditoriya reaksiyasini olish va odamlarni loyiha hayotiga jalb qilish"
-            ],
-            correct:3
-        },
-
-        {
-            question:"Klining kompaniyasi tozalashdan oldin va keyingi kvartirani ko‘rsatadi. Nega bunday kontent sahifa uchun muhim?",
-            answers:[
-                "U biznes haqiqiy ekanini va natijani ko‘rish mumkinligini isbotlashga yordam beradi",
-                "U faqat auditoriyani ko‘ngil ochish uchun kerak",
-                "U sotuvchi kontentni almashtiradi va boshqa hech narsa chiqarish shart emas",
-                "U faqat ko‘p hashtag qo‘shilganda ishlaydi"
-            ],
-            correct:0
-        },
-
-        {
-            question:"Sahifa deyarli faqat aksiyalar, narxlar va sotib olishga chaqiriqlarni joylaydi. Nega bunday kontent tizimi kuchsiz ishlashi mumkin?",
-            answers:[
-                "Chunki sotuvchi kontentni umuman tez-tez ishlatib bo‘lmaydi",
-                "Chunki Instagram faqat ko‘ngilochar postlarni ko‘rsatadi",
-                "Chunki har qanday savdoni faqat Reels orqali qilish kerak",
-                "Chunki sahifada foyda, ishonch, jalb qilish va jonli kontent bo‘lmasa, u bosim o‘tkazayotgandek ko‘rinadi"
-            ],
-            correct:3
-        },
-
-        {
-            question:"Brend har kuni mavzularni noldan o‘ylab topadi: bugun fikr, ertaga mem, keyin tasodifiy post, keyin yana savdo. Takrorlanadigan mantiq yo‘q. Sahifaga nima yetishmayapti?",
-            answers:[
-                "Kontentning muntazam yo‘nalishlarini belgilaydigan rubrikalar",
-                "Ko‘proq tasodifiy g‘oyalar",
-                "Har bir post ostida faqat hashtaglar",
-                "Har bir kontent turi uchun alohida sahifa"
-            ],
-            correct:0
-        },
-
-        {
-            question:"Rubrikatorni eng yaxshi nima tasvirlaydi?",
-            answers:[
-                "O‘tgan oy chiqqan barcha postlar ro‘yxati",
-                "Storislar chiqishining soatbay jadvali",
-                "Canva’da vizual uchun tayyor shablonlar to‘plami",
-                "Rubrikalar, ЦА og‘rig‘i, to‘ldirish va post formati yoziladigan jadval"
-            ],
-            correct:3
-        },
-
-        {
-            question:"Kontent-rejada sana, rubrika, format, g‘oya va post maqsadi ko‘rsatilgan. “Maqsad” ustuni nima uchun kerak?",
-            answers:[
-                "Post tavsifini bitta qisqa jumla bilan almashtirish uchun",
-                "Eng yaxshi chiqish vaqtini avtomatik tanlash uchun",
-                "Aniq post nima uchun chiqayotganini va qanday vazifani bajarishini tushunish uchun",
-                "Sahifada turli kontent turlaridan foydalanmaslik uchun"
-            ],
-            correct:2
-        },
-
-        {
-            question:"Nega kontent-rejada bo‘sh kunlar yoki o‘zgarishlar uchun joy qoldirish kerak?",
-            answers:[
-                "Sahifa trendlar, yangi mahsulotlar, fikrlar yoki shoshilinch aksiyalarga javob bera olishi uchun",
-                "Sababsiz umuman kontent chiqarmaslik mumkin bo‘lishi uchun",
-                "Rubrikalardan foydalanmasdan har safar noldan boshlash uchun",
-                "Rejalashtirishni tasodifiy postlar bilan almashtirish uchun"
-            ],
-            correct:0
-        },
-
-        {
-            question:"Sahifa muntazam kontent chiqaradi, lekin har bir postning vazifasi tasodifiy: biri shunchaki “bo‘lsin” uchun, biri auditoriya bilan bog‘lanmagan, uchinchisi ishonchga ham, foydaga ham, savdoga ham olib bormaydi. Bu yerda nimani tuzatish kerak?",
-            answers:[
-                "Sahifa faolroq ko‘rinishi uchun ko‘proq ko‘ngilochar Reels qo‘shish",
-                "Postlarni aniq vazifalarga bog‘lash: savdo, foyda, jalb qilish, ishonch yoki ko‘ngil ochish",
-                "Barcha postlarni olib tashlab, faqat storis qoldirish",
-                "Auditoriya charchamasligi uchun postlarni kamroq chiqarish"
+                "SWOT-tahlil",
+                "CJM",
+                "UTP",
+                "ER"
             ],
             correct:1
+        },
+
+        {
+            question:"Odam profilga kirdi, mahsulotga qiziqdi, lekin Telegram, katalog yoki qo‘llab-quvvatlash havolasini topmadi. Tizim qayerda buzilyapti?",
+            answers:[
+                "Brend ranglarini tanlashda",
+                "Obunachilar sonida",
+                "Postlar chastotasida",
+                "Arizagacha bo‘lgan yo‘lda"
+            ],
+            correct:3
+        },
+
+        {
+            question:"Brend ba’zi postlarda jiddiy va ekspert ohangida gapiradi, boshqalarida keskin hazilga o‘tadi, xabarlarda esa quruq va o‘ziga o‘xshamagan tarzda javob beradi. Nimani tekshirish kerak?",
+            answers:[
+                "Tone of Voice",
+                "Hashtaglar",
+                "Raqobatchilar voronkasi",
+                "Highlights soni"
+            ],
+            correct:0
+        },
+
+        {
+            question:"Loyiha qaysi postlar haqiqatan ham rivojlanishga yordam berayotganini tushunmoqchi. Nimalarga qarash yaxshiroq?",
+            answers:[
+                "Faqat qaysi postlar vizual jihatdan chiroyliroq ekaniga",
+                "Faqat haftadagi postlar soniga",
+                "Qamrovlar, reaksiyalar, saqlashlar, o‘tishlar, xabarlar va postlarning sahifa vazifasi bilan bog‘liqligiga",
+                "Faqat postda hashtag bor yoki yo‘qligiga"
+            ],
+            correct:2
+        },
+
+        {
+            question:"Nega bazaviy raqamlarni — obunachilar, qamrovlar, ko‘rsatishlar, reaksiyalar va akkaunt o‘sishini qayd qilish muhim?",
+            answers:[
+                "Keyin boshlang‘ich nuqta bo‘lishi va sahifa yaxshilangan-yaxshilanmaganini tushunish uchun",
+                "Auditoriya tahlilini bitta jadval bilan almashtirish uchun",
+                "Profilni bezash bilan shug‘ullanmaslik uchun",
+                "Qaysi raqobatchi kuchsizroq ekanini darhol tushunish uchun"
+            ],
+            correct:0
+        },
+
+        {
+            question:"Raqobatchida obunachilar ko‘p, lekin postlar ostida reaksiya, izoh, saqlash va repostlar kam. Auditoriyaning real jalb qilinganligini qaysi ko‘rsatkich baholashga yordam beradi?",
+            answers:[
+                "CTA",
+                "ER",
+                "CJM",
+                "Bio"
+            ],
+            correct:1
+        },
+
+        {
+            question:"Audit davomida ma’lum bo‘ldi: bio’dagi offer xira, mahkamlangan postda tushunarli keyingi qadam yo‘q, birinchi postlar esa nega aynan shu loyihani tanlash kerakligini tushuntirmaydi. Nimani kuchaytirish mantiqiyroq?",
+            answers:[
+                "Faqat ko‘ngilochar Reels sonini",
+                "Faqat postlar chastotasini",
+                "UTP, offer va odamning arizagacha bo‘lgan yo‘lining tushunarliligini",
+                "Nishani almashtirishni, chunki sahifani endi tuzatib bo‘lmaydi"
+            ],
+            correct:2
         }
 
     ]
