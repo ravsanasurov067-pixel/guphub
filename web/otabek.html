@@ -411,31 +411,58 @@
    MOBILE
 ========================= */
 
-.otabek-mobile-fab{
+.otabek-mobile-launcher{
     position:fixed;
 
-    right:16px;
-    bottom:calc(18px + env(safe-area-inset-bottom));
+    right:14px;
+    bottom:calc(16px + env(safe-area-inset-bottom));
 
-    width:58px;
-    height:58px;
+    z-index:3000;
+
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+}
+
+.otabek-mobile-fab{
+    width:76px;
+    height:76px;
+
+    padding:0;
 
     border:none;
-    border-radius:22px;
+    border-radius:26px;
 
     overflow:hidden;
 
     background:#000;
-
     color:#fff;
 
     display:flex;
     align-items:center;
     justify-content:center;
 
-    z-index:3000;
+    box-shadow:0 18px 38px rgba(0,0,0,.38);
+}
 
-    box-shadow:0 18px 38px rgba(203,108,230,.32);
+.otabek-mobile-launcher-role{
+    margin-top:7px;
+
+    color:rgba(255,255,255,.68);
+
+    font-size:10px;
+    line-height:1.1;
+    font-weight:700;
+}
+
+.otabek-mobile-launcher-name{
+    margin-top:2px;
+
+    color:#fff;
+
+    font-size:13px;
+    line-height:1.1;
+    font-weight:900;
 }
 
 
@@ -740,18 +767,30 @@
 
     <!-- MOBILE -->
 
-    <button
-        class="otabek-mobile-fab"
-        onclick="toggleOtabekMobile()"
-    >
-        <img
-            class="otabek-avatar-img"
-            src="images/smm/lesson-1/otabek-mobile.png"
-            alt="Отабек"
-            onerror="this.style.display='none'; this.parentElement.querySelector('.otabek-avatar-letter').style.display='block';"
+    <div class="otabek-mobile-launcher">
+
+        <button
+            class="otabek-mobile-fab"
+            onclick="toggleOtabekMobile()"
         >
-        <span class="otabek-avatar-letter" style="display:none;">O</span>
-    </button>
+            <img
+                class="otabek-avatar-img"
+                src="images/smm/lesson-1/otabek-mobile.png"
+                alt="Отабек"
+                onerror="this.style.display='none'; this.parentElement.querySelector('.otabek-avatar-letter').style.display='block';"
+            >
+            <span class="otabek-avatar-letter" style="display:none;">O</span>
+        </button>
+
+        <div class="otabek-mobile-launcher-role">
+            AI Ассистент
+        </div>
+
+        <div class="otabek-mobile-launcher-name">
+            Отабек
+        </div>
+
+    </div>
 
     <div
         class="otabek-mobile-overlay"
