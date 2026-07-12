@@ -4855,6 +4855,8 @@ function openSummaryFullscreen(){
 
     if(!elements.root) return
 
+    clearSummaryFullscreenWheelState()
+
     impact()
 
     summaryFullscreenIsOpen = true
@@ -4917,6 +4919,8 @@ function closeSummaryFullscreen(){
             elements.track.style.transform = ""
             elements.track.style.opacity = ""
         }
+
+        clearSummaryFullscreenWheelState()
 
     }, 390)
 }
@@ -5345,6 +5349,51 @@ let summaryFullscreenWheelLocked = false
 let summaryFullscreenWheelDirection = null
 let summaryFullscreenWheelVisualY = 0
 
+function clearSummaryFullscreenWheelState(){
+
+    const elements =
+        getSummaryFullscreenElements()
+
+    clearTimeout(
+        summaryFullscreenWheelEndTimer
+    )
+
+    summaryFullscreenWheelEndTimer = null
+
+    summaryFullscreenWheelDeltaX = 0
+    summaryFullscreenWheelDeltaY = 0
+    summaryFullscreenWheelVisualY = 0
+
+    summaryFullscreenWheelDirection = null
+    summaryFullscreenWheelLocked = false
+
+    if(elements.card){
+        elements.card.style.transition = ""
+        elements.card.style.transform = ""
+        elements.card.style.opacity = ""
+    }
+
+    if(elements.root){
+        elements.root.style.transition = ""
+        elements.root.style.background = ""
+    }
+
+    if(elements.counter){
+        elements.counter.style.transition = ""
+        elements.counter.style.opacity = ""
+    }
+
+    if(elements.prev){
+        elements.prev.style.transition = ""
+        elements.prev.style.opacity = ""
+    }
+
+    if(elements.next){
+        elements.next.style.transition = ""
+        elements.next.style.opacity = ""
+    }
+}
+
 function resetSummaryFullscreenWheelGesture(){
 
     const elements =
@@ -5670,6 +5719,8 @@ function closeSummaryFullscreenBySwipe(direction){
 
         summaryFullscreenGestureDirection = null
         summaryFullscreenGestureActive = false
+
+        clearSummaryFullscreenWheelState()
 
     }, 310)
 }
