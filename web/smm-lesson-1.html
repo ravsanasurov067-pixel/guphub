@@ -5045,39 +5045,70 @@ function initSummaryFullscreen(){
                 if(summaryFullscreenIsAnimating) return
                 if(summaryFullscreenWheelLocked) return
 
-                const horizontalDelta =
-                    Math.abs(event.deltaX) >= Math.abs(event.deltaY)
-                        ? event.deltaX
-                        : 0
+                const absX =
+                    Math.abs(event.deltaX)
 
-                if(Math.abs(horizontalDelta) < 1){
+                const absY =
+                    Math.abs(event.deltaY)
+
+                if(absX < 1 && absY < 1){
                     return
                 }
 
                 event.preventDefault()
 
-                summaryFullscreenWheelDeltaX +=
-                    horizontalDelta
-
                 clearTimeout(
                     summaryFullscreenWheelResetTimer
                 )
+
+                /*
+                    Определяем направление жеста.
+
+                    Если движение в основном горизонтальное,
+                    накапливаем только X.
+
+                    Если движение в основном вертикальное,
+                    накапливаем только Y.
+                */
+
+                if(absX > absY){
+
+                    summaryFullscreenWheelDeltaX +=
+                        event.deltaX
+
+                    summaryFullscreenWheelDeltaY = 0
+
+                }else{
+
+                    summaryFullscreenWheelDeltaY +=
+                        event.deltaY
+
+                    summaryFullscreenWheelDeltaX = 0
+                }
 
                 summaryFullscreenWheelResetTimer =
                     setTimeout(function(){
 
                         summaryFullscreenWheelDeltaX = 0
+                        summaryFullscreenWheelDeltaY = 0
 
-                    }, 140)
+                    }, 160)
 
-                const threshold = 55
+                const horizontalThreshold = 55
+                const verticalThreshold = 75
+
+                /*
+                    Горизонтальный жест:
+                    листаем карточки.
+                */
 
                 if(
                     summaryFullscreenWheelDeltaX >
-                    threshold
+                    horizontalThreshold
                 ){
 
                     summaryFullscreenWheelDeltaX = 0
+                    summaryFullscreenWheelDeltaY = 0
                     summaryFullscreenWheelLocked = true
 
                     animateSummaryFullscreenHorizontalChange(
@@ -5095,10 +5126,11 @@ function initSummaryFullscreen(){
 
                 if(
                     summaryFullscreenWheelDeltaX <
-                    -threshold
+                    -horizontalThreshold
                 ){
 
                     summaryFullscreenWheelDeltaX = 0
+                    summaryFullscreenWheelDeltaY = 0
                     summaryFullscreenWheelLocked = true
 
                     animateSummaryFullscreenHorizontalChange(
@@ -5110,6 +5142,55 @@ function initSummaryFullscreen(){
                         summaryFullscreenWheelLocked = false
 
                     }, 700)
+
+                    return
+                }
+
+                /*
+                    Вертикальный жест:
+                    плавно закрываем fullscreen.
+                */
+
+                if(
+                    summaryFullscreenWheelDeltaY >
+                    verticalThreshold
+                ){
+
+                    summaryFullscreenWheelDeltaX = 0
+                    summaryFullscreenWheelDeltaY = 0
+                    summaryFullscreenWheelLocked = true
+
+                    closeSummaryFullscreenBySwipe(
+                        "down"
+                    )
+
+                    setTimeout(function(){
+
+                        summaryFullscreenWheelLocked = false
+
+                    }, 400)
+
+                    return
+                }
+
+                if(
+                    summaryFullscreenWheelDeltaY <
+                    -verticalThreshold
+                ){
+
+                    summaryFullscreenWheelDeltaX = 0
+                    summaryFullscreenWheelDeltaY = 0
+                    summaryFullscreenWheelLocked = true
+
+                    closeSummaryFullscreenBySwipe(
+                        "up"
+                    )
+
+                    setTimeout(function(){
+
+                        summaryFullscreenWheelLocked = false
+
+                    }, 400)
                 }
             },
             {
