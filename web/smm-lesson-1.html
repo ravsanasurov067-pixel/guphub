@@ -995,6 +995,10 @@ button{
         overflow:hidden;
     }
 
+    .mobile-otabek-label{
+        display:none !important;
+    }
+
     .mobile-shell{
         display:none;
     }
@@ -1843,7 +1847,285 @@ button{
         font-size:26px;
     }
 }
+
+/* =========================
+   SUMMARY FULLSCREEN
+========================= */
+
+body.summary-fullscreen-open{
+    overflow:hidden !important;
+    touch-action:none;
+}
+
+.summary-fullscreen{
+    position:fixed;
+    inset:0;
+    z-index:100000;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    overflow:hidden;
+
+    background:rgba(0,0,0,0);
+
+    opacity:0;
+    visibility:hidden;
+    pointer-events:none;
+
+    transition:
+        background .38s cubic-bezier(.22,.61,.36,1),
+        opacity .32s ease,
+        visibility 0s linear .38s;
+
+    touch-action:none;
+    user-select:none;
+    -webkit-user-select:none;
+}
+
+.summary-fullscreen.active{
+    background:rgba(0,0,0,.96);
+
+    opacity:1;
+    visibility:visible;
+    pointer-events:auto;
+
+    transition:
+        background .38s cubic-bezier(.22,.61,.36,1),
+        opacity .32s ease,
+        visibility 0s;
+}
+
+.summary-fullscreen.closing{
+    pointer-events:none;
+}
+
+.summary-fullscreen-stage{
+    position:relative;
+
+    width:100%;
+    height:100%;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    overflow:hidden;
+
+    touch-action:none;
+}
+
+.summary-fullscreen-track{
+    position:relative;
+
+    width:100%;
+    height:100%;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    transform:translate3d(0,0,0);
+
+    will-change:transform, opacity;
+}
+
+.summary-fullscreen-card{
+    position:absolute;
+    inset:0;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    padding:
+        max(18px, env(safe-area-inset-top))
+        max(18px, env(safe-area-inset-right))
+        max(18px, env(safe-area-inset-bottom))
+        max(18px, env(safe-area-inset-left));
+
+    transform:translate3d(0,0,0) scale(1);
+    opacity:1;
+
+    will-change:transform, opacity;
+
+    transition:
+        transform .44s cubic-bezier(.22,.61,.36,1),
+        opacity .32s ease;
+}
+
+.summary-fullscreen-card.dragging{
+    transition:none;
+}
+
+.summary-fullscreen-image{
+    display:block;
+
+    max-width:100%;
+    max-height:100%;
+
+    width:auto;
+    height:auto;
+
+    object-fit:contain;
+
+    border-radius:0;
+
+    box-shadow:0 24px 80px rgba(0,0,0,.42);
+
+    pointer-events:none;
+    user-select:none;
+    -webkit-user-drag:none;
+}
+
+.summary-fullscreen-counter{
+    position:absolute;
+    top:max(16px, env(safe-area-inset-top));
+    left:50%;
+    z-index:10;
+
+    min-width:62px;
+    height:34px;
+
+    padding:0 13px;
+
+    border-radius:999px;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    background:rgba(20,20,20,.62);
+    border:1px solid rgba(255,255,255,.12);
+
+    color:#fff;
+
+    font-size:13px;
+    line-height:1;
+    font-weight:800;
+
+    backdrop-filter:blur(14px);
+    -webkit-backdrop-filter:blur(14px);
+
+    transform:translateX(-50%);
+
+    transition:opacity .22s ease;
+}
+
+.summary-fullscreen-arrow{
+    position:absolute;
+    top:50%;
+    z-index:10;
+
+    width:52px;
+    height:52px;
+
+    border:none;
+    border-radius:999px;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    padding:0;
+
+    background:rgba(25,25,25,.58);
+    border:1px solid rgba(255,255,255,.12);
+
+    color:#fff;
+
+    font-size:26px;
+    line-height:1;
+    font-weight:700;
+
+    backdrop-filter:blur(14px);
+    -webkit-backdrop-filter:blur(14px);
+
+    transform:translateY(-50%);
+
+    transition:
+        opacity .2s ease,
+        transform .2s ease,
+        background .2s ease;
+}
+
+.summary-fullscreen-arrow:hover{
+    background:rgba(50,50,50,.72);
+}
+
+.summary-fullscreen-arrow:active{
+    transform:translateY(-50%) scale(.92);
+}
+
+.summary-fullscreen-arrow:disabled{
+    opacity:.18;
+    pointer-events:none;
+}
+
+.summary-fullscreen-arrow-left{
+    left:24px;
+}
+
+.summary-fullscreen-arrow-right{
+    right:24px;
+}
+
+@media (max-width:1023px){
+
+    .summary-fullscreen{
+        background:rgba(0,0,0,0);
+    }
+
+    .summary-fullscreen.active{
+        background:rgba(0,0,0,1);
+    }
+
+    .summary-fullscreen-card{
+        padding:
+            max(10px, env(safe-area-inset-top))
+            0
+            max(10px, env(safe-area-inset-bottom));
+    }
+
+    .summary-fullscreen-image{
+        width:100%;
+        height:100%;
+
+        max-width:none;
+        max-height:none;
+
+        object-fit:contain;
+
+        box-shadow:none;
+    }
+
+    .summary-fullscreen-arrow{
+        display:none;
+    }
+
+    .summary-fullscreen-counter{
+        top:max(12px, env(safe-area-inset-top));
+
+        height:32px;
+
+        background:rgba(20,20,20,.48);
+    }
+}
+
+@media (min-width:1024px){
+
+    .summary-fullscreen-stage{
+        cursor:zoom-out;
+    }
+
+    .summary-fullscreen-image{
+        max-width:calc(100vw - 180px);
+        max-height:calc(100vh - 60px);
+    }
+}
 </style>
+
 
 </head>
 
@@ -2562,6 +2844,66 @@ button{
 
     </div>
 
+</div>
+
+<!-- =========================
+     SUMMARY FULLSCREEN
+========================= -->
+
+<div
+    class="summary-fullscreen"
+    id="summaryFullscreen"
+    aria-hidden="true"
+>
+    <div
+        class="summary-fullscreen-stage"
+        id="summaryFullscreenStage"
+    >
+
+        <div
+            class="summary-fullscreen-counter"
+            id="summaryFullscreenCounter"
+        >
+            1 / 10
+        </div>
+
+        <button
+            class="summary-fullscreen-arrow summary-fullscreen-arrow-left"
+            id="summaryFullscreenPrev"
+            type="button"
+            aria-label="Предыдущая карточка"
+        >
+            ←
+        </button>
+
+        <div
+            class="summary-fullscreen-track"
+            id="summaryFullscreenTrack"
+        >
+            <div
+                class="summary-fullscreen-card"
+                id="summaryFullscreenCard"
+            >
+                <img
+                    class="summary-fullscreen-image"
+                    id="summaryFullscreenImage"
+                    src=""
+                    alt=""
+                    draggable="false"
+                >
+            </div>
+        </div>
+
+        <button
+            class="summary-fullscreen-arrow summary-fullscreen-arrow-right"
+            id="summaryFullscreenNext"
+            type="button"
+            aria-label="Следующая карточка"
+        >
+            →
+        </button>
+
+    </div>
 </div>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/plyr/3.8.4/plyr.min.js"></script>
@@ -4446,6 +4788,841 @@ function loadOtabek(){
 }
 
 /* =========================
+   SUMMARY FULLSCREEN
+========================= */
+
+let summaryFullscreenIsOpen = false
+let summaryFullscreenIsAnimating = false
+
+function getSummaryFullscreenElements(){
+
+    return {
+        root:document.getElementById("summaryFullscreen"),
+        stage:document.getElementById("summaryFullscreenStage"),
+        track:document.getElementById("summaryFullscreenTrack"),
+        card:document.getElementById("summaryFullscreenCard"),
+        image:document.getElementById("summaryFullscreenImage"),
+        counter:document.getElementById("summaryFullscreenCounter"),
+        prev:document.getElementById("summaryFullscreenPrev"),
+        next:document.getElementById("summaryFullscreenNext")
+    }
+}
+
+function updateSummaryFullscreen(){
+
+    const elements =
+        getSummaryFullscreenElements()
+
+    if(!elements.image) return
+
+    const device =
+        window.innerWidth >= 1024
+            ? "desktop"
+            : "mobile"
+
+    elements.image.src =
+        getSummaryImagePath(
+            currentSummaryCardIndex,
+            device
+        )
+
+    elements.image.alt =
+        `Summary ${currentSummaryCardIndex + 1}`
+
+    if(elements.counter){
+        elements.counter.innerText =
+            `${currentSummaryCardIndex + 1} / ${SUMMARY_CARDS_COUNT}`
+    }
+
+    if(elements.prev){
+        elements.prev.disabled =
+            currentSummaryCardIndex === 0
+    }
+
+    if(elements.next){
+        elements.next.disabled =
+            currentSummaryCardIndex === SUMMARY_CARDS_COUNT - 1
+    }
+}
+
+function openSummaryFullscreen(){
+
+    if(summaryFullscreenIsOpen) return
+    if(summaryFullscreenIsAnimating) return
+
+    const elements =
+        getSummaryFullscreenElements()
+
+    if(!elements.root) return
+
+    impact()
+
+    summaryFullscreenIsOpen = true
+    summaryFullscreenIsAnimating = true
+
+    updateSummaryFullscreen()
+
+    document.body.classList.add(
+        "summary-fullscreen-open"
+    )
+
+    elements.root.classList.remove("closing")
+    elements.root.setAttribute("aria-hidden", "false")
+
+    requestAnimationFrame(function(){
+
+        elements.root.classList.add("active")
+
+        setTimeout(function(){
+            summaryFullscreenIsAnimating = false
+        }, 420)
+    })
+}
+
+function closeSummaryFullscreen(){
+
+    if(!summaryFullscreenIsOpen) return
+    if(summaryFullscreenIsAnimating) return
+
+    const elements =
+        getSummaryFullscreenElements()
+
+    if(!elements.root) return
+
+    impact()
+
+    summaryFullscreenIsAnimating = true
+
+    elements.root.classList.add("closing")
+    elements.root.classList.remove("active")
+
+    setTimeout(function(){
+
+        summaryFullscreenIsOpen = false
+        summaryFullscreenIsAnimating = false
+
+        elements.root.classList.remove("closing")
+        elements.root.setAttribute("aria-hidden", "true")
+
+        document.body.classList.remove(
+            "summary-fullscreen-open"
+        )
+
+        if(elements.card){
+            elements.card.style.transform = ""
+            elements.card.style.opacity = ""
+        }
+
+        if(elements.track){
+            elements.track.style.transform = ""
+            elements.track.style.opacity = ""
+        }
+
+    }, 390)
+}
+
+function setSummaryFullscreenCard(index){
+
+    if(index < 0) return
+    if(index >= SUMMARY_CARDS_COUNT) return
+    if(index === currentSummaryCardIndex) return
+
+    currentSummaryCardIndex = index
+
+    updateSummaryFullscreen()
+    renderSummary()
+}
+
+function nextSummaryFullscreenCard(){
+
+    if(
+        currentSummaryCardIndex >=
+        SUMMARY_CARDS_COUNT - 1
+    ){
+        return
+    }
+
+    impact()
+
+    setSummaryFullscreenCard(
+        currentSummaryCardIndex + 1
+    )
+}
+
+function prevSummaryFullscreenCard(){
+
+    if(currentSummaryCardIndex <= 0){
+        return
+    }
+
+    impact()
+
+    setSummaryFullscreenCard(
+        currentSummaryCardIndex - 1
+    )
+}
+
+function initSummaryFullscreen(){
+
+    const elements =
+        getSummaryFullscreenElements()
+
+    if(!elements.root) return
+
+    document.addEventListener(
+        "click",
+        function(event){
+
+            const summaryImage =
+                event.target.closest(
+                    ".summary-image-wrap .summary-image"
+                )
+
+            if(!summaryImage) return
+            if(summaryFullscreenIsOpen) return
+
+            openSummaryFullscreen()
+        }
+    )
+
+    if(elements.prev){
+
+        elements.prev.addEventListener(
+            "click",
+            function(event){
+
+                event.stopPropagation()
+
+                prevSummaryFullscreenCard()
+            }
+        )
+    }
+
+    if(elements.next){
+
+        elements.next.addEventListener(
+            "click",
+            function(event){
+
+                event.stopPropagation()
+
+                nextSummaryFullscreenCard()
+            }
+        )
+    }
+
+    if(elements.stage){
+
+        elements.stage.addEventListener(
+            "click",
+            function(event){
+
+                if(window.innerWidth < 1024){
+                    return
+                }
+
+                if(
+                    event.target.closest(
+                        ".summary-fullscreen-arrow"
+                    )
+                ){
+                    return
+                }
+
+                closeSummaryFullscreen()
+            }
+        )
+    }
+
+    document.addEventListener(
+        "keydown",
+        function(event){
+
+            if(!summaryFullscreenIsOpen) return
+
+            if(event.key === "Escape"){
+                closeSummaryFullscreen()
+                return
+            }
+
+            if(event.key === "ArrowLeft"){
+                prevSummaryFullscreenCard()
+                return
+            }
+
+            if(event.key === "ArrowRight"){
+                nextSummaryFullscreenCard()
+            }
+        }
+    )
+}
+
+/* =========================
+   SUMMARY FULLSCREEN MOBILE GESTURES
+========================= */
+
+let summaryFullscreenTouchStartX = 0
+let summaryFullscreenTouchStartY = 0
+
+let summaryFullscreenTouchCurrentX = 0
+let summaryFullscreenTouchCurrentY = 0
+
+let summaryFullscreenTouchStartTime = 0
+let summaryFullscreenLastTapTime = 0
+
+let summaryFullscreenGestureDirection = null
+let summaryFullscreenGestureActive = false
+
+function resetSummaryFullscreenGesture(){
+
+    const elements =
+        getSummaryFullscreenElements()
+
+    summaryFullscreenGestureDirection = null
+    summaryFullscreenGestureActive = false
+
+    if(elements.card){
+
+        elements.card.classList.remove("dragging")
+
+        elements.card.style.transition =
+            "transform .34s cubic-bezier(.22,.61,.36,1), opacity .28s ease"
+
+        elements.card.style.transform =
+            "translate3d(0,0,0) scale(1)"
+
+        elements.card.style.opacity = "1"
+    }
+
+    if(elements.root){
+
+        elements.root.style.background = ""
+    }
+
+    setTimeout(function(){
+
+        if(elements.card){
+            elements.card.style.transition = ""
+        }
+
+    }, 360)
+}
+
+function animateSummaryFullscreenHorizontalChange(direction){
+
+    if(summaryFullscreenIsAnimating) return
+
+    const elements =
+        getSummaryFullscreenElements()
+
+    if(!elements.card) return
+
+    const isNext =
+        direction === "next"
+
+    const targetIndex =
+        isNext
+            ? currentSummaryCardIndex + 1
+            : currentSummaryCardIndex - 1
+
+    if(
+        targetIndex < 0 ||
+        targetIndex >= SUMMARY_CARDS_COUNT
+    ){
+        resetSummaryFullscreenGesture()
+        return
+    }
+
+    summaryFullscreenIsAnimating = true
+
+    const exitX =
+        isNext
+            ? -window.innerWidth
+            : window.innerWidth
+
+    const enterX =
+        isNext
+            ? window.innerWidth
+            : -window.innerWidth
+
+    elements.card.classList.remove("dragging")
+
+    elements.card.style.transition =
+        "transform .28s cubic-bezier(.22,.61,.36,1), opacity .24s ease"
+
+    elements.card.style.transform =
+        `translate3d(${exitX}px,0,0) scale(.96)`
+
+    elements.card.style.opacity = ".45"
+
+    setTimeout(function(){
+
+        currentSummaryCardIndex = targetIndex
+
+        updateSummaryFullscreen()
+        renderSummary()
+
+        elements.card.style.transition = "none"
+
+        elements.card.style.transform =
+            `translate3d(${enterX}px,0,0) scale(.96)`
+
+        elements.card.style.opacity = ".45"
+
+        requestAnimationFrame(function(){
+
+            requestAnimationFrame(function(){
+
+                elements.card.style.transition =
+                    "transform .36s cubic-bezier(.22,.61,.36,1), opacity .28s ease"
+
+                elements.card.style.transform =
+                    "translate3d(0,0,0) scale(1)"
+
+                elements.card.style.opacity = "1"
+
+                setTimeout(function(){
+
+                    elements.card.style.transition = ""
+
+                    summaryFullscreenIsAnimating = false
+                    summaryFullscreenGestureDirection = null
+                    summaryFullscreenGestureActive = false
+
+                }, 380)
+            })
+        })
+
+    }, 270)
+}
+
+function closeSummaryFullscreenBySwipe(direction){
+
+    if(summaryFullscreenIsAnimating) return
+
+    const elements =
+        getSummaryFullscreenElements()
+
+    if(
+        !elements.root ||
+        !elements.card
+    ){
+        return
+    }
+
+    summaryFullscreenIsAnimating = true
+
+    const exitY =
+        direction === "down"
+            ? window.innerHeight
+            : -window.innerHeight
+
+    elements.card.classList.remove("dragging")
+
+    elements.card.style.transition =
+        "transform .3s cubic-bezier(.22,.61,.36,1), opacity .26s ease"
+
+    elements.card.style.transform =
+        `translate3d(0,${exitY}px,0) scale(.82)`
+
+    elements.card.style.opacity = "0"
+
+    elements.root.style.transition =
+        "background .3s ease, opacity .3s ease"
+
+    elements.root.style.background =
+        "rgba(0,0,0,0)"
+
+    setTimeout(function(){
+
+        elements.root.classList.remove("active")
+        elements.root.classList.remove("closing")
+
+        elements.root.setAttribute(
+            "aria-hidden",
+            "true"
+        )
+
+        elements.root.style.background = ""
+        elements.root.style.transition = ""
+
+        elements.card.style.transition = ""
+        elements.card.style.transform = ""
+        elements.card.style.opacity = ""
+
+        document.body.classList.remove(
+            "summary-fullscreen-open"
+        )
+
+        summaryFullscreenIsOpen = false
+        summaryFullscreenIsAnimating = false
+
+        summaryFullscreenGestureDirection = null
+        summaryFullscreenGestureActive = false
+
+    }, 310)
+}
+
+function initSummaryFullscreenMobileGestures(){
+
+    const elements =
+        getSummaryFullscreenElements()
+
+    if(!elements.stage) return
+
+    elements.stage.addEventListener(
+        "touchstart",
+        function(event){
+
+            if(window.innerWidth >= 1024) return
+            if(!summaryFullscreenIsOpen) return
+            if(summaryFullscreenIsAnimating) return
+
+            if(
+                !event.touches ||
+                !event.touches[0]
+            ){
+                return
+            }
+
+            const touch =
+                event.touches[0]
+
+            summaryFullscreenTouchStartX =
+                touch.clientX
+
+            summaryFullscreenTouchStartY =
+                touch.clientY
+
+            summaryFullscreenTouchCurrentX =
+                touch.clientX
+
+            summaryFullscreenTouchCurrentY =
+                touch.clientY
+
+            summaryFullscreenTouchStartTime =
+                Date.now()
+
+            summaryFullscreenGestureDirection = null
+            summaryFullscreenGestureActive = true
+
+            if(elements.card){
+
+                elements.card.classList.add("dragging")
+
+                elements.card.style.transition = "none"
+            }
+
+        },
+        {
+            passive:true
+        }
+    )
+
+    elements.stage.addEventListener(
+        "touchmove",
+        function(event){
+
+            if(window.innerWidth >= 1024) return
+            if(!summaryFullscreenIsOpen) return
+            if(!summaryFullscreenGestureActive) return
+            if(summaryFullscreenIsAnimating) return
+
+            if(
+                !event.touches ||
+                !event.touches[0]
+            ){
+                return
+            }
+
+            const touch =
+                event.touches[0]
+
+            summaryFullscreenTouchCurrentX =
+                touch.clientX
+
+            summaryFullscreenTouchCurrentY =
+                touch.clientY
+
+            const diffX =
+                summaryFullscreenTouchCurrentX -
+                summaryFullscreenTouchStartX
+
+            const diffY =
+                summaryFullscreenTouchCurrentY -
+                summaryFullscreenTouchStartY
+
+            if(!summaryFullscreenGestureDirection){
+
+                if(
+                    Math.abs(diffX) < 8 &&
+                    Math.abs(diffY) < 8
+                ){
+                    return
+                }
+
+                summaryFullscreenGestureDirection =
+                    Math.abs(diffX) > Math.abs(diffY)
+                        ? "horizontal"
+                        : "vertical"
+            }
+
+            event.preventDefault()
+
+            if(!elements.card) return
+
+            if(
+                summaryFullscreenGestureDirection ===
+                "horizontal"
+            ){
+
+                let moveX =
+                    diffX
+
+                const atFirstCard =
+                    currentSummaryCardIndex === 0
+
+                const atLastCard =
+                    currentSummaryCardIndex ===
+                    SUMMARY_CARDS_COUNT - 1
+
+                if(
+                    atFirstCard &&
+                    diffX > 0
+                ){
+                    moveX =
+                        diffX * .25
+                }
+
+                if(
+                    atLastCard &&
+                    diffX < 0
+                ){
+                    moveX =
+                        diffX * .25
+                }
+
+                const progress =
+                    Math.min(
+                        Math.abs(moveX) /
+                        window.innerWidth,
+                        1
+                    )
+
+                const scale =
+                    1 - progress * .035
+
+                elements.card.style.transform =
+                    `translate3d(${moveX}px,0,0) scale(${scale})`
+
+                elements.card.style.opacity =
+                    String(
+                        1 - progress * .18
+                    )
+
+                return
+            }
+
+            if(
+                summaryFullscreenGestureDirection ===
+                "vertical"
+            ){
+
+                const maxDistance =
+                    window.innerHeight * .55
+
+                const limitedY =
+                    Math.max(
+                        Math.min(diffY, maxDistance),
+                        -maxDistance
+                    )
+
+                const progress =
+                    Math.min(
+                        Math.abs(limitedY) /
+                        (window.innerHeight * .45),
+                        1
+                    )
+
+                const scale =
+                    1 - progress * .18
+
+                const opacity =
+                    1 - progress * .5
+
+                elements.card.style.transform =
+                    `translate3d(0,${limitedY}px,0) scale(${scale})`
+
+                elements.card.style.opacity =
+                    String(opacity)
+
+                if(elements.root){
+
+                    const backgroundOpacity =
+                        .96 - progress * .76
+
+                    elements.root.style.background =
+                        `rgba(0,0,0,${backgroundOpacity})`
+                }
+            }
+
+        },
+        {
+            passive:false
+        }
+    )
+
+    elements.stage.addEventListener(
+        "touchend",
+        function(){
+
+            if(window.innerWidth >= 1024) return
+            if(!summaryFullscreenIsOpen) return
+            if(!summaryFullscreenGestureActive) return
+            if(summaryFullscreenIsAnimating) return
+
+            const diffX =
+                summaryFullscreenTouchCurrentX -
+                summaryFullscreenTouchStartX
+
+            const diffY =
+                summaryFullscreenTouchCurrentY -
+                summaryFullscreenTouchStartY
+
+            const distance =
+                Math.sqrt(
+                    diffX * diffX +
+                    diffY * diffY
+                )
+
+            const touchDuration =
+                Date.now() -
+                summaryFullscreenTouchStartTime
+
+            const isTap =
+                distance < 12 &&
+                touchDuration < 280
+
+            if(isTap){
+
+                const currentTime =
+                    Date.now()
+
+                const timeBetweenTaps =
+                    currentTime -
+                    summaryFullscreenLastTapTime
+
+                if(
+                    timeBetweenTaps > 0 &&
+                    timeBetweenTaps < 320
+                ){
+                    summaryFullscreenLastTapTime = 0
+                    summaryFullscreenGestureActive = false
+
+                    if(elements.card){
+                        elements.card.classList.remove("dragging")
+                    }
+
+                    closeSummaryFullscreen()
+                    return
+                }
+
+                summaryFullscreenLastTapTime =
+                    currentTime
+
+                resetSummaryFullscreenGesture()
+                return
+            }
+
+            if(
+                summaryFullscreenGestureDirection ===
+                "horizontal"
+            ){
+
+                const horizontalThreshold =
+                    Math.min(
+                        90,
+                        window.innerWidth * .22
+                    )
+
+                if(
+                    diffX < -horizontalThreshold &&
+                    currentSummaryCardIndex <
+                    SUMMARY_CARDS_COUNT - 1
+                ){
+                    animateSummaryFullscreenHorizontalChange(
+                        "next"
+                    )
+
+                    return
+                }
+
+                if(
+                    diffX > horizontalThreshold &&
+                    currentSummaryCardIndex > 0
+                ){
+                    animateSummaryFullscreenHorizontalChange(
+                        "prev"
+                    )
+
+                    return
+                }
+
+                resetSummaryFullscreenGesture()
+                return
+            }
+
+            if(
+                summaryFullscreenGestureDirection ===
+                "vertical"
+            ){
+
+                const verticalThreshold =
+                    Math.min(
+                        130,
+                        window.innerHeight * .18
+                    )
+
+                if(
+                    Math.abs(diffY) >
+                    verticalThreshold
+                ){
+                    closeSummaryFullscreenBySwipe(
+                        diffY > 0
+                            ? "down"
+                            : "up"
+                    )
+
+                    return
+                }
+
+                resetSummaryFullscreenGesture()
+                return
+            }
+
+            resetSummaryFullscreenGesture()
+        },
+        {
+            passive:true
+        }
+    )
+
+    elements.stage.addEventListener(
+        "touchcancel",
+        function(){
+
+            if(window.innerWidth >= 1024) return
+            if(!summaryFullscreenIsOpen) return
+
+            resetSummaryFullscreenGesture()
+        },
+        {
+            passive:true
+        }
+    )
+}
+
+/* =========================
    INIT
 ========================= */
 
@@ -4454,6 +5631,8 @@ updateStaticText()
 initVideo()
 initPlyr()
 initMobilePlyrSwipeExit()
+initSummaryFullscreen()
+initSummaryFullscreenMobileGestures()
 loadOtabek()
 </script>
 
