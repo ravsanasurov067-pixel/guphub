@@ -5034,82 +5034,81 @@ function initSummaryFullscreen(){
         )
     }
 
+    
     if(elements.stage){
 
-        elements.stage.addEventListener(
-            "wheel",
-            function(event){
+    elements.stage.addEventListener(
+        "wheel",
+        function(event){
 
-                if(window.innerWidth < 1024) return
-                if(!summaryFullscreenIsOpen) return
-                if(summaryFullscreenIsAnimating) return
-                if(summaryFullscreenWheelLocked) return
+            if(window.innerWidth < 1024) return
+            if(!summaryFullscreenIsOpen) return
+            if(summaryFullscreenIsAnimating) return
+            if(summaryFullscreenWheelLocked) return
 
-                const absX =
-                    Math.abs(event.deltaX)
+            const absX =
+                Math.abs(event.deltaX)
 
-                const absY =
-                    Math.abs(event.deltaY)
+            const absY =
+                Math.abs(event.deltaY)
 
-                if(absX < 1 && absY < 1){
+            if(absX < 1 && absY < 1){
+                return
+            }
+
+            event.preventDefault()
+
+            const elements =
+                getSummaryFullscreenElements()
+
+            /*
+                Направление фиксируем в начале жеста,
+                чтобы диагональное движение не прыгало
+                между горизонтальным и вертикальным.
+            */
+
+            if(!summaryFullscreenWheelDirection){
+
+                if(absX < 3 && absY < 3){
                     return
                 }
 
-                event.preventDefault()
+                summaryFullscreenWheelDirection =
+                    absX > absY
+                        ? "horizontal"
+                        : "vertical"
+            }
 
-                clearTimeout(
-                    summaryFullscreenWheelResetTimer
-                )
+            clearTimeout(
+                summaryFullscreenWheelEndTimer
+            )
 
-                /*
-                    Определяем направление жеста.
+            /*
+                Горизонтальный жест:
+                сохраняем уже работающую логику
+                переключения карточек.
+            */
 
-                    Если движение в основном горизонтальное,
-                    накапливаем только X.
+            if(
+                summaryFullscreenWheelDirection ===
+                "horizontal"
+            ){
 
-                    Если движение в основном вертикальное,
-                    накапливаем только Y.
-                */
-
-                if(absX > absY){
-
-                    summaryFullscreenWheelDeltaX +=
-                        event.deltaX
-
-                    summaryFullscreenWheelDeltaY = 0
-
-                }else{
-
-                    summaryFullscreenWheelDeltaY +=
-                        event.deltaY
-
-                    summaryFullscreenWheelDeltaX = 0
-                }
-
-                summaryFullscreenWheelResetTimer =
-                    setTimeout(function(){
-
-                        summaryFullscreenWheelDeltaX = 0
-                        summaryFullscreenWheelDeltaY = 0
-
-                    }, 160)
+                summaryFullscreenWheelDeltaX +=
+                    event.deltaX
 
                 const horizontalThreshold = 55
-                const verticalThreshold = 75
-
-                /*
-                    Горизонтальный жест:
-                    листаем карточки.
-                */
 
                 if(
                     summaryFullscreenWheelDeltaX >
                     horizontalThreshold
                 ){
 
+                    summaryFullscreenWheelLocked = true
+
                     summaryFullscreenWheelDeltaX = 0
                     summaryFullscreenWheelDeltaY = 0
-                    summaryFullscreenWheelLocked = true
+                    summaryFullscreenWheelDirection = null
 
                     animateSummaryFullscreenHorizontalChange(
                         "next"
@@ -5129,9 +5128,11 @@ function initSummaryFullscreen(){
                     -horizontalThreshold
                 ){
 
+                    summaryFullscreenWheelLocked = true
+
                     summaryFullscreenWheelDeltaX = 0
                     summaryFullscreenWheelDeltaY = 0
-                    summaryFullscreenWheelLocked = true
+                    summaryFullscreenWheelDirection = null
 
                     animateSummaryFullscreenHorizontalChange(
                         "prev"
@@ -5146,58 +5147,147 @@ function initSummaryFullscreen(){
                     return
                 }
 
-                /*
-                    Вертикальный жест:
-                    плавно закрываем fullscreen.
-                */
-
-                if(
-                    summaryFullscreenWheelDeltaY >
-                    verticalThreshold
-                ){
-
-                    summaryFullscreenWheelDeltaX = 0
-                    summaryFullscreenWheelDeltaY = 0
-                    summaryFullscreenWheelLocked = true
-
-                    closeSummaryFullscreenBySwipe(
-                        "down"
-                    )
-
+                summaryFullscreenWheelEndTimer =
                     setTimeout(function(){
 
-                        summaryFullscreenWheelLocked = false
+                        summaryFullscreenWheelDeltaX = 0
+                        summaryFullscreenWheelDirection = null
 
-                    }, 400)
+                    }, 120)
 
-                    return
-                }
-
-                if(
-                    summaryFullscreenWheelDeltaY <
-                    -verticalThreshold
-                ){
-
-                    summaryFullscreenWheelDeltaX = 0
-                    summaryFullscreenWheelDeltaY = 0
-                    summaryFullscreenWheelLocked = true
-
-                    closeSummaryFullscreenBySwipe(
-                        "up"
-                    )
-
-                    setTimeout(function(){
-
-                        summaryFullscreenWheelLocked = false
-
-                    }, 400)
-                }
-            },
-            {
-                passive:false
+                return
             }
-        )
-    }
+
+            /*
+                Вертикальный жест:
+                картинка движется вместе с пальцами.
+
+                На Mac при естественной прокрутке
+                deltaY направлен противоположно
+                физическому движению пальцев,
+                поэтому используется минус.
+            */
+
+            summaryFullscreenWheelDeltaY +=
+                event.deltaY
+
+            const rawMoveY =
+                -summaryFullscreenWheelDeltaY * .72
+
+            const maxMoveY =
+                Math.min(
+                    360,
+                    window.innerHeight * .42
+                )
+
+            summaryFullscreenWheelVisualY =
+                Math.max(
+                    Math.min(rawMoveY, maxMoveY),
+                    -maxMoveY
+                )
+
+            const progress =
+                Math.min(
+                    Math.abs(
+                        summaryFullscreenWheelVisualY
+                    ) /
+                    (window.innerHeight * .34),
+                    1
+                )
+
+            const scale =
+                1 - progress * .14
+
+            const cardOpacity =
+                1 - progress * .38
+
+            const backgroundOpacity =
+                .96 - progress * .86
+
+            const controlsOpacity =
+                1 - progress * .9
+
+            if(elements.card){
+
+                elements.card.style.transition =
+                    "none"
+
+                elements.card.style.transform =
+                    `translate3d(0,${summaryFullscreenWheelVisualY}px,0) scale(${scale})`
+
+                elements.card.style.opacity =
+                    String(cardOpacity)
+            }
+
+            if(elements.root){
+
+                elements.root.style.transition =
+                    "none"
+
+                elements.root.style.background =
+                    `rgba(0,0,0,${Math.max(backgroundOpacity, .08)})`
+            }
+
+            if(elements.counter){
+
+                elements.counter.style.transition =
+                    "none"
+
+                elements.counter.style.opacity =
+                    String(
+                        Math.max(
+                            controlsOpacity,
+                            0
+                        )
+                    )
+            }
+
+            if(elements.prev){
+
+                elements.prev.style.transition =
+                    "none"
+
+                elements.prev.style.opacity =
+                    String(
+                        Math.max(
+                            controlsOpacity,
+                            0
+                        )
+                    )
+            }
+
+            if(elements.next){
+
+                elements.next.style.transition =
+                    "none"
+
+                elements.next.style.opacity =
+                    String(
+                        Math.max(
+                            controlsOpacity,
+                            0
+                        )
+                    )
+            }
+
+            /*
+                Если новые wheel-события перестали
+                приходить, считаем, что пальцы
+                отпущены от тачпада.
+            */
+
+            summaryFullscreenWheelEndTimer =
+                setTimeout(function(){
+
+                    finishSummaryFullscreenWheelGesture()
+
+                }, 110)
+        },
+        {
+            passive:false
+        }
+    )
+}
 
     document.addEventListener(
         "keydown",
@@ -5250,8 +5340,149 @@ let summaryFullscreenGestureActive = false
 let summaryFullscreenWheelDeltaX = 0
 let summaryFullscreenWheelDeltaY = 0
 
-let summaryFullscreenWheelResetTimer = null
+let summaryFullscreenWheelEndTimer = null
 let summaryFullscreenWheelLocked = false
+let summaryFullscreenWheelDirection = null
+let summaryFullscreenWheelVisualY = 0
+
+function resetSummaryFullscreenWheelGesture(){
+
+    const elements =
+        getSummaryFullscreenElements()
+
+    summaryFullscreenWheelDeltaX = 0
+    summaryFullscreenWheelDeltaY = 0
+    summaryFullscreenWheelVisualY = 0
+    summaryFullscreenWheelDirection = null
+    summaryFullscreenWheelLocked = false
+
+    clearTimeout(
+        summaryFullscreenWheelEndTimer
+    )
+
+    if(elements.card){
+
+        elements.card.style.transition =
+            "transform .38s cubic-bezier(.22,.72,.25,1), opacity .3s ease"
+
+        elements.card.style.transform =
+            "translate3d(0,0,0) scale(1)"
+
+        elements.card.style.opacity = "1"
+    }
+
+    if(elements.root){
+
+        elements.root.style.transition =
+            "background .34s ease"
+
+        elements.root.style.background =
+            ""
+    }
+
+    if(elements.counter){
+
+        elements.counter.style.transition =
+            "opacity .25s ease"
+
+        elements.counter.style.opacity =
+            "1"
+    }
+
+    if(elements.prev){
+
+        elements.prev.style.transition =
+            "opacity .25s ease"
+
+        elements.prev.style.opacity =
+            ""
+    }
+
+    if(elements.next){
+
+        elements.next.style.transition =
+            "opacity .25s ease"
+
+        elements.next.style.opacity =
+            ""
+    }
+
+    setTimeout(function(){
+
+        if(elements.card){
+            elements.card.style.transition = ""
+        }
+
+        if(elements.root){
+            elements.root.style.transition = ""
+        }
+
+        if(elements.counter){
+            elements.counter.style.transition = ""
+        }
+
+        if(elements.prev){
+            elements.prev.style.transition = ""
+        }
+
+        if(elements.next){
+            elements.next.style.transition = ""
+        }
+
+    }, 400)
+}
+
+function finishSummaryFullscreenWheelGesture(){
+
+    if(
+        !summaryFullscreenIsOpen ||
+        summaryFullscreenIsAnimating
+    ){
+        return
+    }
+
+    if(
+        summaryFullscreenWheelDirection !==
+        "vertical"
+    ){
+        summaryFullscreenWheelDeltaY = 0
+        summaryFullscreenWheelVisualY = 0
+        summaryFullscreenWheelDirection = null
+        summaryFullscreenWheelLocked = false
+        return
+    }
+
+    const closeThreshold =
+        Math.min(
+            110,
+            window.innerHeight * .14
+        )
+
+    const shouldClose =
+        Math.abs(
+            summaryFullscreenWheelVisualY
+        ) >= closeThreshold
+
+    if(shouldClose){
+
+        summaryFullscreenWheelLocked = true
+
+        closeSummaryFullscreenBySwipe(
+            summaryFullscreenWheelVisualY > 0
+                ? "down"
+                : "up"
+        )
+
+        summaryFullscreenWheelDeltaX = 0
+        summaryFullscreenWheelDeltaY = 0
+        summaryFullscreenWheelVisualY = 0
+        summaryFullscreenWheelDirection = null
+
+        return
+    }
+
+    resetSummaryFullscreenWheelGesture()
+}
 
 function resetSummaryFullscreenGesture(){
 
