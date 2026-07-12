@@ -5041,19 +5041,35 @@ function initSummaryFullscreen(){
             if(!summaryFullscreenIsOpen) return
 
             if(event.key === "Escape"){
+
+                event.preventDefault()
+                event.stopPropagation()
+                event.stopImmediatePropagation()
+
                 closeSummaryFullscreen()
-                return
+
+                return false
             }
 
             if(event.key === "ArrowLeft"){
+
+                event.preventDefault()
+                event.stopPropagation()
+
                 prevSummaryFullscreenCard()
+
                 return
             }
 
             if(event.key === "ArrowRight"){
+
+                event.preventDefault()
+                event.stopPropagation()
+
                 nextSummaryFullscreenCard()
             }
-        }
+        },
+        true
     )
 }
 
