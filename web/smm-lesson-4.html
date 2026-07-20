@@ -2988,9 +2988,9 @@ function goBack(){
 function getSummaryImagePath(index, device){
 
     const number =
-        index + 1
+        String(index + 1).padStart(2, "0")
 
-    return `images/smm/lesson-1/summary-${number}-${lang}-${device}.png`
+    return `images/smm/lesson-4/summary-4-${lang}-${device}-${number}.png`
 }
 
 function getMaterialCoverPath(device){
